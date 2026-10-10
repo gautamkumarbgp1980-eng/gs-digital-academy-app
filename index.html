@@ -4,505 +4,373 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#06172d">
-<meta name="description" content="GS Digital Academy Global Promotion App">
+<meta name="theme-color" content="#042641">
+<meta name="description" content="GS Digital Academy - Learn, Connect and Promote">
+<title>GS Digital Academy App</title>
 <link rel="manifest" href="./manifest.json">
-<link rel="icon" href="./icon-192.png" type="image/png">
-<title>GS Digital Academy | Global Promotion App</title>
-
 <style>
-:root {
-  --bg:#06172d;
-  --card:#0b2948;
-  --blue:#10436b;
-  --gold:#f4c95d;
-  --text:#ffffff;
-  --muted:#c7d6e9;
-}
-* { box-sizing:border-box; }
-body {
-  margin:0;
-  color:var(--text);
-  font-family:system-ui,Arial,sans-serif;
-  background:linear-gradient(160deg,#041225,#0b2b4c,#06172d);
-}
-.wrap { max-width:760px; margin:auto; padding:14px; }
-header {
-  text-align:center;
-  padding:24px 14px;
-  border:1px solid #f4c95d55;
-  border-radius:24px;
-  background:radial-gradient(ellipse at top,#174777,transparent 70%),
-             linear-gradient(145deg,#0d2d50,#06172d);
-}
-.logo {
-  display:block;
-  width:clamp(120px,35vw,180px);
-  aspect-ratio:1;
-  object-fit:contain;
-  margin:0 auto 14px;
-  filter:drop-shadow(0 6px 15px #0008);
-}
-h1 { color:var(--gold); font-size:clamp(23px,6vw,32px); margin:8px 0; }
-h2 { color:var(--gold); font-size:20px; margin:0 0 14px; }
-p { line-height:1.7; }
-.subtitle { color:var(--muted); }
-.pill {
-  display:inline-block;
-  border:1px solid #f4c95d99;
-  color:#ffdf83;
-  border-radius:30px;
-  padding:8px 14px;
-  margin-top:10px;
-  font-size:12px;
-}
-.card {
-  margin:15px 0;
-  padding:18px;
-  border-radius:20px;
-  border:1px solid #b8d7ff20;
-  background:linear-gradient(145deg,#0c2d4d,#092442);
-}
-.grid {
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:9px;
-}
-.btn {
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  min-height:46px;
-  padding:11px 9px;
-  border-radius:12px;
-  border:1px solid #ffffff20;
-  background:var(--blue);
-  color:white;
-  text-decoration:none;
-  font:600 14px system-ui,Arial,sans-serif;
-  cursor:pointer;
-  overflow-wrap:anywhere;
-}
-.primary {
-  background:linear-gradient(135deg,#ffe49a,#e6b637);
-  color:#071a36;
-  border:0;
-}
-input,textarea,select {
-  display:block;
-  width:100%;
-  padding:12px;
-  border-radius:10px;
-  border:1px solid #ffffff35;
-  background:#061a30;
-  color:white;
-  font:inherit;
-  margin:6px 0 13px;
-}
-label { font-size:14px; color:#e4edfa; }
-small,.note { color:var(--muted); font-size:12px; line-height:1.7; }
-.resource {
-  display:block;
-  color:white;
-  text-decoration:none;
-  padding:13px 0;
-  border-bottom:1px solid #ffffff20;
-}
-.resource:last-child { border:0; }
-.time { color:var(--gold); font-weight:bold; }
-.zoom {
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  padding:12px 0;
-  border-bottom:1px solid #ffffff20;
-}
-.profile-link { margin:8px 0; }
-.hidden { display:none; }
-footer { text-align:center; padding:24px 8px; color:var(--muted); font-size:12px; }
-@media(max-width:360px) {
-  .wrap { padding:10px; }
-  .card { padding:14px; }
-  .btn { font-size:12px; }
-}
+:root{--bg:#03233c;--panel:#073451;--gold:#ffce50;--text:#f3f8ff;--muted:#b9cede}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(160deg,#02172d,#064568);
+font-family:Arial,sans-serif;color:var(--text);line-height:1.5}
+header{text-align:center;padding:25px 15px;background:#031a30;border-bottom:2px solid var(--gold)}
+.logo{width:68px;height:68px;margin:auto;border:2px solid var(--gold);
+border-radius:50%;display:grid;place-items:center;font-weight:bold;color:var(--gold);font-size:20px}
+h1{font-size:24px;margin:10px 0 0;color:var(--gold)}
+header p{margin:5px 0;color:var(--muted)}
+main{max-width:720px;margin:auto;padding:14px}
+.card{background:#052c47;border:1px solid #174966;border-radius:20px;
+padding:18px;margin:14px 0;box-shadow:0 8px 24px #00152544}
+h2{font-size:20px;color:var(--gold);margin:0 0 12px}
+h3{font-size:17px;margin:10px 0}
+label{display:block;margin:13px 0 5px;color:#d9e8f5}
+input,textarea{display:block;width:100%;padding:14px;margin:0;
+border:1px solid #35566d;border-radius:12px;background:#021d32;
+color:white;font:inherit;min-width:0}
+input::placeholder,textarea::placeholder{color:#879baa}
+button,.btn{border:0;border-radius:13px;padding:13px 15px;
+font-size:15px;font-weight:600;cursor:pointer;text-align:center;
+text-decoration:none;display:block;width:100%;color:white;background:#075078}
+.gold{background:linear-gradient(110deg,#ffe28b,#ffbd08);color:#142536}
+.secondary{background:#075078;border:1px solid #286487}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.small{font-size:13px;color:var(--muted)}
+.linklist{display:grid;gap:9px}
+.linkitem{display:block;padding:13px;border:1px solid #245574;
+border-radius:12px;background:#063c5b;color:white;text-decoration:none;
+overflow-wrap:anywhere}
+.hidden{display:none!important}
+.profile{text-align:center}
+.avatar{width:90px;height:90px;border-radius:50%;object-fit:cover;
+border:2px solid var(--gold);margin:5px auto}
+footer{text-align:center;color:var(--muted);padding:20px;font-size:13px}
+a{color:inherit}
+@media(max-width:380px){.grid3{grid-template-columns:1fr 1fr}}
 </style>
 </head>
-
 <body>
-<main class="wrap">
-
 <header>
-  <img class="logo" src="./logo.png"
-       alt="GS Digital Academy official logo">
+  <div class="logo">GS</div>
   <h1>GS DIGITAL ACADEMY</h1>
-  <p class="subtitle">Global Learning • Blockchain • Web3</p>
-  <div class="pill">B-TITAN CHAMPIONS HUB</div>
+  <p>B-TITAN CHAMPIONS HUB</p>
+  <p>Learn • Connect • Promote</p>
 </header>
 
+<main>
 <section class="card">
-  <h2>Welcome! स्वागत है 🌍</h2>
-  <p>अपना Personal Promotion Hub बनाइए। अपने सोशल मीडिया लिंक जोड़ें, सेव करें और अपना प्रमोशनल मैसेज शेयर करें।</p>
-  <a class="btn primary"
-     href="https://tinyurl.com/GSdigitalacademy"
-     target="_blank" rel="noopener">
-     🌐 Official Website खोलें
-  </a>
+  <h2>🌐 Official Academy</h2>
+  <p>Digital Knowledge | Blockchain | Web3</p>
+  <a class="btn gold" href="https://tinyurl.com/GSdigitalacademy"
+     target="_blank" rel="noopener">Visit Official Website ↗</a>
 </section>
 
-<section class="card" id="profile">
-  <h2>👤 My Promotion Profile</h2>
-  <p class="note">अपनी जानकारी भरें। Save करने पर यह इसी डिवाइस के ब्राउज़र में सेव होगी।</p>
-
+<section class="card" id="profileEditor">
+  <h2>👤 My Social Media Profile</h2>
+  <p class="small">अपनी जानकारी भरें और अपना शेयर करने योग्य प्रोफाइल लिंक बनाएँ।</p>
   <form id="profileForm">
-    <label for="userName">आपका नाम / Your Name</label>
-    <input id="userName" maxlength="80"
-           placeholder="अपना नाम लिखें">
+    <label for="name">आपका नाम</label>
+    <input id="name" placeholder="अपना नाम लिखें" maxlength="80">
 
-    <label for="userBio">आपका परिचय / Short Bio</label>
-    <textarea id="userBio" rows="2" maxlength="300"
-      placeholder="अपने बारे में छोटा परिचय लिखें"></textarea>
+    <label for="photo">प्रोफाइल फोटो का सार्वजनिक URL (वैकल्पिक)</label>
+    <input id="photo" type="url" placeholder="https://example.com/photo.jpg">
 
-    <label for="userWebsite">Website लिंक</label>
-    <input id="userWebsite" type="url"
-      placeholder="https://example.com">
+    <label for="website">Website लिंक</label>
+    <input id="website" type="url" placeholder="https://example.com">
 
-    <label for="userWhatsApp">WhatsApp लिंक</label>
-    <input id="userWhatsApp" type="url"
-      placeholder="https://wa.me/91XXXXXXXXXX">
+    <label for="whatsapp">WhatsApp लिंक</label>
+    <input id="whatsapp" type="url" placeholder="https://wa.me/91XXXXXXXXXX">
 
-    <label for="userFacebook">Facebook लिंक</label>
-    <input id="userFacebook" type="url"
-      placeholder="https://facebook.com/yourprofile">
+    <label for="facebook">Facebook लिंक</label>
+    <input id="facebook" type="url" placeholder="https://facebook.com/yourprofile">
 
-    <label for="userInstagram">Instagram लिंक</label>
-    <input id="userInstagram" type="url"
-      placeholder="https://instagram.com/yourprofile">
+    <label for="instagram">Instagram लिंक</label>
+    <input id="instagram" type="url" placeholder="https://instagram.com/yourprofile">
 
-    <label for="userTelegram">Telegram लिंक</label>
-    <input id="userTelegram" type="url"
-      placeholder="https://t.me/yourusername">
+    <label for="telegram">Telegram लिंक</label>
+    <input id="telegram" type="url" placeholder="https://t.me/yourusername">
 
-    <label for="userYouTube">YouTube लिंक</label>
-    <input id="userYouTube" type="url"
-      placeholder="https://youtube.com/@yourchannel">
+    <label for="youtube">YouTube लिंक</label>
+    <input id="youtube" type="url" placeholder="https://youtube.com/@yourchannel">
 
-    <label for="userOther">अन्य लिंक (वैकल्पिक)</label>
-    <input id="userOther" type="url"
-      placeholder="https://example.com">
+    <label for="other">अन्य लिंक (वैकल्पिक)</label>
+    <input id="other" type="url" placeholder="https://example.com">
 
     <div class="grid">
-      <button class="btn primary" type="submit">
-        💾 Save Profile
-      </button>
-      <button class="btn" type="button" id="clearBtn">
-        🗑️ Clear Profile
-      </button>
+      <button class="gold" type="submit">💾 Save Profile</button>
+      <button class="secondary" type="button" id="clearBtn">🗑 Clear Profile</button>
     </div>
   </form>
-
-  <p id="profileStatus" class="note" role="status" aria-live="polite"></p>
+  <p id="status" class="small" aria-live="polite"></p>
+  <button class="secondary" id="shareProfile" type="button">🔗 Create / Share My Profile Link</button>
+  <label for="shareUrl">आपका प्रोफाइल शेयर लिंक</label>
+  <input id="shareUrl" readonly placeholder="पहले Save Profile करें">
+  <button class="secondary" id="copyProfile" type="button">📋 Copy Profile Link</button>
 </section>
 
 <section class="card">
   <h2>🔗 My Social Media Links</h2>
-  <p class="note">आपके सेव किए गए लिंक यहाँ दिखाई देंगे।</p>
-  <div id="myLinks">
-    <p class="note">पहले अपनी प्रोफाइल सेव करें।</p>
-  </div>
+  <p class="small">आपके सेव किए गए सोशल मीडिया लिंक यहाँ दिखाई देंगे।</p>
+  <div id="myLinks" class="linklist"></div>
 </section>
 
 <section class="card">
-  <h2>📢 My Promotion Message</h2>
-  <textarea id="promo" rows="9">🚀 WELCOME TO GS DIGITAL ACADEMY
+  <h2>📢 Promotion Center</h2>
+  <label for="promo">प्रमोशनल मैसेज</label>
+  <textarea id="promo" rows="5">🚀 Welcome to GS DIGITAL ACADEMY!
 
-💙 Digital Knowledge | Blockchain | Web3 💛
+🎓 Explore digital learning, technical guides and educational resources.
 
-🎓 Explore learning resources
-🌐 Visit our official website
-🤝 Connect with our community
-
+🌐 Official Website:
 https://tinyurl.com/GSdigitalacademy
 
-📌 Learn first. Verify information. Make informed decisions.</textarea>
-
+✨ Learn first. Verify information. Make informed decisions.</textarea>
   <div class="grid">
-    <button class="btn primary" id="copyBtn" type="button">
-      📋 Copy Message
-    </button>
-    <button class="btn" id="shareBtn" type="button">
-      📤 Share Message
-    </button>
+    <button class="gold" id="copyPromo" type="button">📋 Copy Message</button>
+    <button id="sharePromo" type="button">📲 Share Message</button>
   </div>
-  <p id="shareStatus" class="note" role="status" aria-live="polite"></p>
+  <a class="btn secondary" style="margin-top:10px"
+     href="https://wa.me/?text=Welcome%20to%20GS%20Digital%20Academy%20https%3A%2F%2Ftinyurl.com%2FGSdigitalacademy"
+     target="_blank" rel="noopener">WhatsApp पर शेयर करें</a>
 </section>
 
 <section class="card">
-  <h2>🌐 Social Media Shortcuts</h2>
+  <h2>📱 Social Media Shortcuts</h2>
   <div class="grid">
-    <a class="btn" href="https://www.facebook.com/"
-       target="_blank" rel="noopener">📘 Facebook</a>
-    <a class="btn" href="https://www.instagram.com/"
-       target="_blank" rel="noopener">📸 Instagram</a>
-    <a class="btn" href="https://www.whatsapp.com/"
-       target="_blank" rel="noopener">💬 WhatsApp</a>
-    <a class="btn" href="https://web.telegram.org/"
-       target="_blank" rel="noopener">✈️ Telegram</a>
-    <a class="btn" href="https://www.youtube.com/"
-       target="_blank" rel="noopener">▶️ YouTube</a>
-    <a class="btn" href="https://www.linkedin.com/"
-       target="_blank" rel="noopener">💼 LinkedIn</a>
+    <a class="btn" href="https://www.facebook.com/" target="_blank" rel="noopener">Facebook ↗</a>
+    <a class="btn" href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram ↗</a>
+    <a class="btn" href="https://wa.me/" target="_blank" rel="noopener">WhatsApp ↗</a>
+    <a class="btn" href="https://t.me/" target="_blank" rel="noopener">Telegram ↗</a>
+    <a class="btn" href="https://www.youtube.com/" target="_blank" rel="noopener">YouTube ↗</a>
+    <a class="btn" href="https://tinyurl.com/GSdigitalacademy" target="_blank" rel="noopener">Academy ↗</a>
   </div>
-  <p class="note">ये सामान्य platform links हैं। अपनी प्रोफाइल के लिंक ऊपर सेव करें।</p>
 </section>
 
 <section class="card">
-  <h2>📚 Learning Resources</h2>
-  <a class="resource" href="https://tinyurl.com/4u6jnrrw"
-     target="_blank" rel="noopener">
-    🆔 How to Activate ID
-    <small>Activation guide</small>
-  </a>
-  <a class="resource" href="https://youtu.be/HIxNEUneKYs"
-     target="_blank" rel="noopener">
-    ⚙️ 2×2 Matrix – Technical Guide
-    <small>YouTube video</small>
-  </a>
-  <a class="resource" href="https://youtu.be/MCNicgjFkxA"
-     target="_blank" rel="noopener">
-    🌐 B-TITAN Decentralized System
-    <small>YouTube video</small>
-  </a>
+  <h2>🎓 Learning Resources</h2>
+  <div class="linklist">
+    <a class="linkitem" href="https://tinyurl.com/GSdigitalacademy" target="_blank" rel="noopener">🌐 GS Digital Academy Website</a>
+    <a class="linkitem" href="https://www.youtube.com/" target="_blank" rel="noopener">🎬 Educational Videos</a>
+    <a class="linkitem" href="https://ethereum.org/en/learn/" target="_blank" rel="noopener">📘 Blockchain Learning Resources</a>
+  </div>
+  <p class="small">किसी भी निवेश या Web3 प्रोजेक्ट में भाग लेने से पहले स्वतंत्र रूप से जाँच करें। कमाई की गारंटी नहीं है।</p>
 </section>
 
 <section class="card">
-  <h2>📅 Daily Zoom Sessions</h2>
-  <div class="zoom">
-    <span>🌅 Morning Zoom</span>
-    <span class="time">9:00 AM IST</span>
-  </div>
-  <div class="zoom">
-    <span>🌙 Night Zoom</span>
-    <span class="time">9:00 PM IST</span>
-  </div>
-  <p class="note">मीटिंग में शामिल होने के लिए आयोजक से वर्तमान Zoom लिंक लें।</p>
+  <h2>🤝 Meeting & Team</h2>
+  <p>Morning Zoom: 9:00 AM IST</p>
+  <p>Night Zoom: 9:00 PM IST</p>
+  <label for="zoomLink">अपना वास्तविक Zoom Meeting URL यहाँ डालें</label>
+  <input id="zoomLink" type="url" placeholder="https://zoom.us/j/...">
+  <button class="gold" id="saveZoom" type="button" style="margin-top:10px">Save Zoom Link</button>
+  <a id="openZoom" class="btn secondary hidden" style="margin-top:10px" target="_blank" rel="noopener">Join Zoom Meeting ↗</a>
+  <p class="small">मीटिंग का लिंक आयोजक से प्राप्त करें। केवल समय देखकर मीटिंग में शामिल नहीं हुआ जा सकता।</p>
 </section>
-
-<section class="card">
-  <h2>🔐 Privacy & Security</h2>
-  <p class="note">आपकी प्रोफाइल इस डिवाइस के ब्राउज़र में सेव होती है। यह अभी सार्वजनिक प्रोफाइल या ऑनलाइन अकाउंट नहीं बनाती। दूसरे डिवाइस पर लिंक पाने और सार्वजनिक प्रोफाइल बनाने के लिए भविष्य में सुरक्षित अकाउंट और डेटाबेस की जरूरत होगी। अपना पासवर्ड, OTP, private key या seed phrase यहाँ न डालें।</p>
-</section>
-
-<footer>
-  © <span id="year"></span> GS Digital Academy<br>
-  Learn • Connect • Promote
-</footer>
-
 </main>
 
+<footer>© GS DIGITAL ACADEMY • Learn • Connect • Promote</footer>
+
 <script>
-const fields = [
-  "userName", "userBio", "userWebsite", "userWhatsApp",
-  "userFacebook", "userInstagram", "userTelegram",
-  "userYouTube", "userOther"
-];
+const $ = id => document.getElementById(id);
+const fields = ['name','photo','website','whatsapp','facebook','instagram','telegram','youtube','other'];
+const labels = {
+ website:'🌐 Website', whatsapp:'🟢 WhatsApp', facebook:'📘 Facebook',
+ instagram:'📸 Instagram', telegram:'✈️ Telegram', youtube:'▶️ YouTube', other:'🔗 Other'
+};
+const key = 'gsAcademyProfileV1';
 
-const storageKey = "gsDigitalAcademyPromotionProfile";
-const form = document.getElementById("profileForm");
-const profileStatus = document.getElementById("profileStatus");
-const shareStatus = document.getElementById("shareStatus");
-document.getElementById("year").textContent =
-  new Date().getFullYear();
-
-function readProfile() {
-  const profile = {};
-  fields.forEach(id => {
-    profile[id] = document.getElementById(id).value.trim();
+function getProfile() {
+ const p = {};
+ fields.forEach(id => p[id] = $(id).value.trim());
+ return p;
+}
+function validUrl(value) {
+ try {
+  const u = new URL(value);
+  return u.protocol === 'https:' || u.protocol === 'http:';
+ } catch { return false; }
+}
+function renderLinks(p) {
+ const box = $('myLinks');
+ box.replaceChildren();
+ fields.filter(id => id !== 'name' && id !== 'photo').forEach(id => {
+  if (!p[id] || !validUrl(p[id])) return;
+  const a = document.createElement('a');
+  a.className = 'linkitem';
+  a.href = p[id];
+  a.target = '_blank';
+  a.rel = 'noopener noreferrer';
+  a.textContent = labels[id] + ' खोलें ↗';
+  box.appendChild(a);
+ });
+ if (!box.children.length) box.textContent = 'अभी कोई लिंक सेव नहीं है।';
+}
+function fillForm(p) {
+ fields.forEach(id => $(id).value = p[id] || '');
+ renderLinks(p);
+}
+function loadLocal() {
+ try {
+  const p = JSON.parse(localStorage.getItem(key) || '{}');
+  fillForm(p);
+ } catch { renderLinks({}); }
+}
+function makeShareUrl() {
+ const p = getProfile();
+ if (!p.name && !fields.some(id => id !== 'name' && p[id])) {
+  $('status').textContent = 'पहले अपना नाम या कोई सोशल लिंक भरें।';
+  return '';
+ }
+ // Profile data is encoded in the URL fragment, not uploaded to a server.
+ const encoded = encodeURIComponent(JSON.stringify(p));
+ const url = location.href.split('#')[0] + '#profile=' + encoded;
+ $('shareUrl').value = url;
+ return url;
+}
+function showSharedProfile() {
+ const match = location.hash.match(/^#profile=(.*)$/);
+ if (!match) return;
+ try {
+  const p = JSON.parse(decodeURIComponent(match[1]));
+  if (!p || typeof p !== 'object') return;
+  $('profileEditor').classList.add('hidden');
+  const section = document.createElement('section');
+  section.className = 'card profile';
+  const title = document.createElement('h2');
+  title.textContent = '👤 Shared Profile';
+  section.appendChild(title);
+  if (typeof p.photo === 'string' && validUrl(p.photo)) {
+   const img = document.createElement('img');
+   img.className = 'avatar';
+   img.src = p.photo;
+   img.alt = 'Profile photo';
+   img.referrerPolicy = 'no-referrer';
+   section.appendChild(img);
+  }
+  const name = document.createElement('h3');
+  name.textContent = typeof p.name === 'string' ? p.name : 'GS Digital Academy User';
+  section.appendChild(name);
+  const links = document.createElement('div');
+  links.className = 'linklist';
+  fields.filter(id => id !== 'name' && id !== 'photo').forEach(id => {
+   if (typeof p[id] !== 'string' || !validUrl(p[id])) return;
+   const a = document.createElement('a');
+   a.className = 'linkitem';
+   a.href = p[id];
+   a.target = '_blank';
+   a.rel = 'noopener noreferrer';
+   a.textContent = labels[id] + ' खोलें ↗';
+   links.appendChild(a);
   });
-  return profile;
+  section.appendChild(links);
+  const btn = document.createElement('button');
+  btn.className = 'gold';
+  btn.textContent = '🌐 Visit GS Digital Academy';
+  btn.style.marginTop = '12px';
+  btn.onclick = () => window.open('https://tinyurl.com/GSdigitalacademy','_blank','noopener');
+  section.appendChild(btn);
+  $('profileEditor').before(section);
+ } catch {
+  $('status').textContent = 'यह शेयर प्रोफाइल लिंक सही नहीं है।';
+ }
 }
-
-function loadProfile() {
-  try {
-    const saved = JSON.parse(localStorage.getItem(storageKey) || "{}");
-    fields.forEach(id => {
-      document.getElementById(id).value = saved[id] || "";
-    });
-    renderLinks(saved);
-    if (saved.userName) {
-      profileStatus.textContent = "आपकी सेव की गई प्रोफाइल लोड हो गई।";
-    }
-  } catch (error) {
-    profileStatus.textContent = "प्रोफाइल लोड नहीं हो सकी।";
+$('profileForm').addEventListener('submit', e => {
+ e.preventDefault();
+ const p = getProfile();
+ for (const id of fields) {
+  if (p[id] && id !== 'name' && id !== 'photo' && !validUrl(p[id])) {
+   $('status').textContent = 'कृपया सही URL डालें: ' + labels[id];
+   $(id).focus();
+   return;
   }
-}
-
-function safeUrl(value) {
-  if (!value) return "";
-  try {
-    const url = new URL(value);
-    if (url.protocol === "https:" || url.protocol === "http:") {
-      return url.href;
-    }
-  } catch (error) {}
-  return "";
-}
-
-const linkFields = [
-  ["userWebsite", "🌐 Website"],
-  ["userWhatsApp", "💬 WhatsApp"],
-  ["userFacebook", "📘 Facebook"],
-  ["userInstagram", "📸 Instagram"],
-  ["userTelegram", "✈️ Telegram"],
-  ["userYouTube", "▶️ YouTube"],
-  ["userOther", "🔗 Other Link"]
-];
-
-function renderLinks(profile) {
-  const box = document.getElementById("myLinks");
-  box.replaceChildren();
-  let count = 0;
-
-  linkFields.forEach(([id, label]) => {
-    const url = safeUrl(profile[id] || "");
-    if (!url) return;
-
-    const a = document.createElement("a");
-    a.className = "btn profile-link";
-    a.href = url;
-    a.target = "_blank";
-    a.rel = "noopener noreferrer";
-    a.textContent = label + " खोलें";
-    box.appendChild(a);
-    count++;
-  });
-
-  if (!count) {
-    const p = document.createElement("p");
-    p.className = "note";
-    p.textContent = "अभी कोई सही लिंक सेव नहीं है।";
-    box.appendChild(p);
-  }
-}
-
-form.addEventListener("submit", event => {
-  event.preventDefault();
-  const profile = readProfile();
-
-  const urlIds = [
-    "userWebsite", "userWhatsApp", "userFacebook",
-    "userInstagram", "userTelegram", "userYouTube", "userOther"
-  ];
-
-  for (const id of urlIds) {
-    if (profile[id] && !safeUrl(profile[id])) {
-      profileStatus.textContent =
-        "गलत लिंक: " + id + "। कृपया https:// से शुरू होने वाला सही लिंक डालें।";
-      document.getElementById(id).focus();
-      return;
-    }
-  }
-
-  try {
-    localStorage.setItem(storageKey, JSON.stringify(profile));
-    renderLinks(profile);
-    profileStatus.textContent =
-      "प्रोफाइल इस डिवाइस में सेव हो गई। आप इसे बाद में बदल सकते हैं।";
-  } catch (error) {
-    profileStatus.textContent =
-      "सेव नहीं हो पाया। ब्राउज़र की storage settings जाँचें।";
-  }
+ }
+ if (p.photo && !validUrl(p.photo)) {
+  $('status').textContent = 'फोटो का सही सार्वजनिक URL डालें।';
+  return;
+ }
+ try {
+  localStorage.setItem(key, JSON.stringify(p));
+  renderLinks(p);
+  $('status').textContent = '✅ प्रोफाइल इस ब्राउज़र में सेव हो गई।';
+ } catch {
+  $('status').textContent = 'सेव नहीं हुआ। ब्राउज़र स्टोरेज की जगह जाँचें।';
+ }
 });
-
-document.getElementById("clearBtn").addEventListener("click", () => {
-  if (!confirm("क्या आप इस डिवाइस से अपनी सेव की गई प्रोफाइल हटाना चाहते हैं?")) {
-    return;
+$('clearBtn').onclick = () => {
+ if (!confirm('क्या आप इस डिवाइस से सेव प्रोफाइल हटाना चाहते हैं?')) return;
+ localStorage.removeItem(key);
+ fillForm({});
+ $('shareUrl').value = '';
+ $('status').textContent = 'इस डिवाइस की प्रोफाइल हटा दी गई।';
+};
+$('shareProfile').onclick = async () => {
+ const url = makeShareUrl();
+ if (!url) return;
+ try {
+  if (navigator.share) await navigator.share({title:'My GS Digital Academy Profile',url});
+  else {
+   await navigator.clipboard.writeText(url);
+   $('status').textContent = 'शेयर लिंक कॉपी हो गया।';
   }
-
-  localStorage.removeItem(storageKey);
-  form.reset();
-  renderLinks({});
-  profileStatus.textContent = "इस डिवाइस से प्रोफाइल हटा दी गई।";
-});
-
-function makeMessage() {
-  const p = readProfile();
-  const lines = [
-    "🚀 GS DIGITAL ACADEMY",
-    "",
-    p.userName ? "👤 Name: " + p.userName : "",
-    p.userBio ? "✨ " + p.userBio : "",
-    "",
-    "🌐 Official Website:",
-    "https://tinyurl.com/GSdigitalacademy",
-    ""
-  ];
-
-  linkFields.forEach(([id, label]) => {
-    const url = safeUrl(p[id]);
-    if (url) lines.push(label + ": " + url);
-  });
-
-  lines.push(
-    "",
-    "📌 Learn first. Verify information. Make informed decisions."
-  );
-
-  return lines.filter((line, index, arr) =>
-    line !== "" || (index > 0 && arr[index - 1] !== "")
-  ).join("\n");
+ } catch(e) {
+  if (e.name !== 'AbortError') $('status').textContent = 'शेयर लिंक नीचे दिया गया है। उसे कॉपी करें।';
+ }
+};
+$('copyProfile').onclick = async () => {
+ const url = $('shareUrl').value || makeShareUrl();
+ if (!url) return;
+ try {
+  await navigator.clipboard.writeText(url);
+  $('status').textContent = '✅ प्रोफाइल लिंक कॉपी हो गया।';
+ } catch {
+  $('shareUrl').focus();
+  $('shareUrl').select();
+  $('status').textContent = 'लिंक को चुनकर Copy करें।';
+ }
+};
+$('copyPromo').onclick = async () => {
+ try {
+  await navigator.clipboard.writeText($('promo').value);
+  alert('प्रमोशनल मैसेज कॉपी हो गया।');
+ } catch { $('promo').select(); alert('मैसेज चुनकर Copy करें।'); }
+};
+$('sharePromo').onclick = async () => {
+ const data = {title:'GS Digital Academy',text:$('promo').value};
+ try {
+  if (navigator.share) await navigator.share(data);
+  else {
+   await navigator.clipboard.writeText(data.text);
+   alert('मैसेज कॉपी हो गया।');
+  }
+ } catch(e) { if(e.name !== 'AbortError') alert('मैसेज कॉपी करके शेयर करें।'); }
+};
+$('saveZoom').onclick = () => {
+ const url = $('zoomLink').value.trim();
+ if (url && !validUrl(url)) { alert('सही Zoom URL डालें।'); return; }
+ try {
+  localStorage.setItem('gsAcademyZoom',url);
+  updateZoom(url);
+  alert('Zoom लिंक इस ब्राउज़र में सेव हो गया।');
+ } catch { alert('Zoom लिंक सेव नहीं हुआ।'); }
+};
+function updateZoom(url) {
+ const a = $('openZoom');
+ if (url && validUrl(url)) {
+  a.href = url;
+  a.classList.remove('hidden');
+ } else a.classList.add('hidden');
 }
+try {
+ $('zoomLink').value = localStorage.getItem('gsAcademyZoom') || '';
+ updateZoom($('zoomLink').value);
+} catch {}
+loadLocal();
+showSharedProfile();
 
-async function copyText(text) {
-  try {
-    await navigator.clipboard.writeText(text);
-    return true;
-  } catch (error) {
-    return false;
-  }
-}
-
-document.getElementById("copyBtn").addEventListener("click", async () => {
-  const text = document.getElementById("promo").value;
-  if (await copyText(text)) {
-    shareStatus.textContent = "मैसेज कॉपी हो गया। अब इसे कहीं भी Paste करें।";
-  } else {
-    const area = document.getElementById("promo");
-    area.focus();
-    area.select();
-    shareStatus.textContent = "टेक्स्ट select किया गया है। Copy चुनें।";
-  }
-});
-
-document.getElementById("shareBtn").addEventListener("click", async () => {
-  const text = makeMessage();
-  try {
-    if (navigator.share) {
-      await navigator.share({
-        title: "GS Digital Academy",
-        text: text
-      });
-      shareStatus.textContent = "Share menu खुल गया।";
-    } else if (await copyText(text)) {
-      shareStatus.textContent = "आपका प्रोफाइल मैसेज कॉपी हो गया।";
-    } else {
-      shareStatus.textContent =
-        "Share उपलब्ध नहीं है। अपना प्रमोशनल मैसेज Copy करें।";
-    }
-  } catch (error) {
-    if (error.name !== "AbortError") {
-      shareStatus.textContent = "अभी शेयर नहीं हो सका। दोबारा कोशिश करें।";
-    }
-  }
-});
-
-loadProfile();
-
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("./service-worker.js")
-      .catch(() => {});
-  });
+if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+ window.addEventListener('load', () => {
+  navigator.serviceWorker.register('./service-worker.js').catch(()=>{});
+ });
 }
 </script>
 </body>
