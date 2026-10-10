@@ -1,0 +1,12 @@
+
+{
+  "name": "GS Digital Academy",
+  "short_name": "GS Academy",
+  "description": "GS Digital Academy and B-TITAN Champions Hub",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#071a36",
+  "theme_color": "#071a36",
+  "orientation": "portrait"
+}
