@@ -5,288 +5,181 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#071a36">
-<meta name="description" content="GS Digital Academy — Digital Knowledge, Blockchain and Web3 learning resources.">
+<meta name="description" content="GS Digital Academy - Digital Knowledge, Blockchain and Web3">
 <link rel="manifest" href="./manifest.json">
+<link rel="icon" href="./icon-192.png" type="image/png">
 <title>GS Digital Academy | B-TITAN Champions Hub</title>
-
 <style>
 :root {
-  --navy: #06172d;
-  --blue: #0b3157;
-  --gold: #f4c95d;
-  --text: #f7f8fc;
-  --muted: #c7d6e9;
+  --navy:#06172d;
+  --gold:#f4c95d;
+  --text:#f7f8fc;
+  --muted:#c7d6e9;
 }
-
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
 body {
-  margin: 0;
-  min-height: 100vh;
-  font-family: system-ui, Arial, sans-serif;
-  background: linear-gradient(160deg, #041225, #0b2b4c 55%, #06172d);
-  color: var(--text);
+  margin:0;
+  min-height:100vh;
+  font-family:system-ui,Arial,sans-serif;
+  background:linear-gradient(160deg,#041225,#0b2b4c 55%,#06172d);
+  color:var(--text);
 }
-
 .wrap {
-  width: 100%;
-  max-width: 760px;
-  margin: auto;
-  padding: 16px 14px 36px;
+  max-width:760px;
+  margin:auto;
+  padding:16px 14px 36px;
 }
-
 .brand {
-  text-align: center;
-  padding: 30px 16px 26px;
-  margin-bottom: 16px;
-  border: 1px solid #f4c95d40;
-  border-radius: 24px;
-  background:
-    radial-gradient(ellipse at 50% 0%, #174777, transparent 68%),
-    linear-gradient(145deg, #0d2d50, #06172d);
-  box-shadow: 0 12px 30px #0004;
+  text-align:center;
+  padding:24px 14px;
+  margin-bottom:16px;
+  border:1px solid #f4c95d55;
+  border-radius:24px;
+  background:radial-gradient(ellipse at top,#174777,transparent 70%),
+             linear-gradient(145deg,#0d2d50,#06172d);
+  box-shadow:0 12px 30px #0004;
 }
-
 .logo {
-  width: 104px;
-  height: 104px;
-  margin: 0 auto 18px;
-  border-radius: 26px;
-  overflow: hidden;
-  background: #071a36;
-  box-shadow: 0 0 22px #f4c95d35;
+  display:block;
+  width:clamp(120px,35vw,190px);
+  height:auto;
+  aspect-ratio:1;
+  object-fit:contain;
+  margin:0 auto 16px;
+  filter:drop-shadow(0 7px 16px #0008);
 }
-
-.logo svg {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
 h1 {
-  font-size: clamp(23px, 6vw, 34px);
-  margin: 8px 0;
-  color: var(--gold);
-  line-height: 1.2;
-  font-weight: 850;
+  font-size:clamp(23px,6vw,34px);
+  margin:8px 0;
+  color:var(--gold);
+  line-height:1.2;
+  font-weight:850;
 }
-
 .subtitle {
-  color: #d5e2f5;
-  margin: 10px 0 0;
-  font-size: clamp(13px, 3.6vw, 17px);
-  line-height: 1.5;
+  color:#d5e2f5;
+  margin:10px 0 0;
+  font-size:clamp(13px,3.6vw,17px);
+  line-height:1.5;
 }
-
 .pill {
-  display: inline-block;
-  margin-top: 18px;
-  padding: 8px 15px;
-  border: 1px solid #f4c95d99;
-  border-radius: 99px;
-  color: #ffdf83;
-  background: #061a30;
-  font-size: 12px;
-  font-weight: 700;
+  display:inline-block;
+  margin-top:16px;
+  padding:8px 15px;
+  border:1px solid #f4c95d99;
+  border-radius:99px;
+  color:#ffdf83;
+  background:#061a30;
+  font-size:12px;
+  font-weight:700;
 }
-
 .card {
-  background: linear-gradient(145deg, #0c2d4d, #092442);
-  border: 1px solid #b8d7ff20;
-  border-radius: 20px;
-  padding: 19px;
-  margin: 15px 0;
-  box-shadow: 0 8px 24px #0002;
+  background:linear-gradient(145deg,#0c2d4d,#092442);
+  border:1px solid #b8d7ff20;
+  border-radius:20px;
+  padding:19px;
+  margin:15px 0;
+  box-shadow:0 8px 24px #0002;
 }
-
 .card h2 {
-  font-size: 19px;
-  margin: 0 0 13px;
-  color: var(--gold);
+  font-size:19px;
+  margin:0 0 13px;
+  color:var(--gold);
 }
-
-p {
-  line-height: 1.7;
-}
-
+p { line-height:1.7; }
 .grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
 }
-
 .btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  min-height: 49px;
-  padding: 12px 10px;
-  border-radius: 13px;
-  background: #10436b;
-  border: 1px solid #ffffff20;
-  color: white;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 700;
-  cursor: pointer;
-  font-family: inherit;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  min-height:49px;
+  padding:12px 10px;
+  border-radius:13px;
+  background:#10436b;
+  border:1px solid #ffffff20;
+  color:white;
+  text-decoration:none;
+  font-size:14px;
+  font-weight:700;
+  cursor:pointer;
+  font-family:inherit;
 }
-
 .btn.primary {
-  background: linear-gradient(135deg, #ffe49a, #e6b637);
-  color: #071a36;
-  border: 0;
+  background:linear-gradient(135deg,#ffe49a,#e6b637);
+  color:#071a36;
+  border:0;
 }
-
 .resource {
-  display: block;
-  padding: 13px 0;
-  color: white;
-  text-decoration: none;
-  border-bottom: 1px solid #ffffff17;
-  line-height: 1.5;
+  display:block;
+  padding:13px 0;
+  color:white;
+  text-decoration:none;
+  border-bottom:1px solid #ffffff17;
+  line-height:1.5;
 }
-
-.resource:last-child {
-  border-bottom: 0;
-}
-
+.resource:last-child { border-bottom:0; }
 .resource small {
-  display: block;
-  color: var(--muted);
-  margin-top: 3px;
+  display:block;
+  color:var(--muted);
+  margin-top:3px;
 }
-
 .zoom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  padding: 13px 0;
-  border-bottom: 1px solid #ffffff17;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  padding:13px 0;
+  border-bottom:1px solid #ffffff17;
 }
-
 .time {
-  color: var(--gold);
-  font-weight: 850;
-  white-space: nowrap;
+  color:var(--gold);
+  font-weight:850;
+  white-space:nowrap;
 }
-
 .note {
-  font-size: 12px;
-  line-height: 1.7;
-  color: var(--muted);
+  font-size:12px;
+  line-height:1.7;
+  color:var(--muted);
 }
-
 textarea {
-  width: 100%;
-  min-height: 155px;
-  resize: vertical;
-  border-radius: 13px;
-  border: 1px solid #ffffff30;
-  background: #061a30;
-  color: white;
-  padding: 13px;
-  font: inherit;
-  line-height: 1.6;
+  width:100%;
+  min-height:155px;
+  resize:vertical;
+  border-radius:13px;
+  border:1px solid #ffffff30;
+  background:#061a30;
+  color:white;
+  padding:13px;
+  font:inherit;
+  line-height:1.6;
 }
-
 footer {
-  text-align: center;
-  color: #b9c7dc;
-  font-size: 12px;
-  padding: 24px 8px 10px;
+  text-align:center;
+  color:#b9c7dc;
+  font-size:12px;
+  padding:24px 8px 10px;
 }
-
-@media (max-width: 380px) {
-  .wrap {
-    padding: 12px 10px 28px;
-  }
-
-  .brand {
-    padding: 24px 12px 22px;
-  }
-
-  .logo {
-    width: 88px;
-    height: 88px;
-  }
-
-  .grid {
-    gap: 8px;
-  }
-
-  .card {
-    padding: 15px;
-  }
-
-  .btn {
-    font-size: 13px;
-    padding: 11px 7px;
-  }
+@media(max-width:380px) {
+  .wrap { padding:12px 10px 28px; }
+  .brand { padding:20px 12px; }
+  .card { padding:15px; }
+  .grid { gap:8px; }
+  .btn { font-size:13px; padding:11px 7px; }
 }
 </style>
 </head>
-
 <body>
 <main class="wrap">
 
 <header class="brand">
-  <div class="logo" role="img" aria-label="GS Digital Academy Logo">
-    <svg viewBox="0 0 100 100"
-         xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#fff1b5"/>
-          <stop offset="48%" stop-color="#f4c95d"/>
-          <stop offset="100%" stop-color="#c88b13"/>
-        </linearGradient>
-        <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#174777"/>
-          <stop offset="100%" stop-color="#06172d"/>
-        </linearGradient>
-      </defs>
-
-      <rect x="2" y="2" width="96" height="96" rx="25"
-            fill="url(#blue)" stroke="url(#gold)" stroke-width="2.5"/>
-
-      <circle cx="50" cy="50" r="39"
-              fill="none" stroke="url(#gold)"
-              stroke-width="1.2" opacity=".55"/>
-
-      <path d="M16 36H24M76 36H84M16 64H24M76 64H84"
-            stroke="url(#gold)" stroke-width="2"
-            stroke-linecap="round"/>
-
-      <circle cx="18" cy="25" r="2.2" fill="#f4c95d"/>
-      <circle cx="82" cy="25" r="2.2" fill="#f4c95d"/>
-
-      <text x="50" y="59"
-            text-anchor="middle"
-            font-size="35"
-            font-weight="900"
-            font-family="Arial,sans-serif"
-            font-style="italic"
-            letter-spacing="-2"
-            fill="url(#gold)">GS</text>
-
-      <path d="M29 70H71"
-            stroke="url(#gold)"
-            stroke-width="2.5"
-            stroke-linecap="round"/>
-
-      <circle cx="25" cy="70" r="2" fill="#f4c95d"/>
-      <circle cx="75" cy="70" r="2" fill="#f4c95d"/>
-    </svg>
-  </div>
-
+  <img class="logo"
+       src="./logo.png"
+       alt="GS Digital Academy official logo">
   <h1>GS DIGITAL ACADEMY</h1>
   <p class="subtitle">Digital Knowledge • Blockchain • Web3</p>
   <div class="pill">B-TITAN CHAMPIONS HUB</div>
@@ -298,7 +191,7 @@ footer {
   <a class="btn primary"
      href="https://tinyurl.com/GSdigitalacademy"
      target="_blank" rel="noopener">
-    🌐 Official Website खोलें
+     🌐 Official Website खोलें
   </a>
 </section>
 
@@ -312,22 +205,19 @@ footer {
     <a class="btn" href="https://www.youtube.com/" target="_blank" rel="noopener">▶️ YouTube</a>
     <button class="btn" id="shareBtn" type="button">↗️ App Share करें</button>
   </div>
-  <p class="note">ये सामान्य platform links हैं। अपने official account links बाद में जोड़े जा सकते हैं।</p>
+  <p class="note">ये सामान्य platform links हैं। अपने official account links मिलने पर इन्हें बदला जा सकता है।</p>
 </section>
 
 <section class="card" id="resources">
   <h2>Learning Resources</h2>
-
   <a class="resource" href="https://tinyurl.com/4u6jnrrw" target="_blank" rel="noopener">
     🆔 How to Activate ID
     <small>Activation guide</small>
   </a>
-
   <a class="resource" href="https://youtu.be/HIxNEUneKYs" target="_blank" rel="noopener">
     ⚙️ 2×2 Matrix – Technical Guide
     <small>YouTube video</small>
   </a>
-
   <a class="resource" href="https://youtu.be/MCNicgjFkxA" target="_blank" rel="noopener">
     🌐 B-TITAN Decentralized System
     <small>YouTube video</small>
@@ -336,23 +226,19 @@ footer {
 
 <section class="card">
   <h2>Daily Zoom Sessions</h2>
-
   <div class="zoom">
     <div>🌅 Morning Zoom<small class="note">India Standard Time</small></div>
     <div class="time">9:00 AM</div>
   </div>
-
   <div class="zoom">
     <div>🌙 Night Zoom<small class="note">India Standard Time</small></div>
     <div class="time">9:00 PM</div>
   </div>
-
   <p class="note">Meeting में शामिल होने के लिए आयोजक से वर्तमान Zoom link प्राप्त करें।</p>
 </section>
 
 <section class="card">
   <h2>Share Promotional Message</h2>
-
   <textarea id="promo" aria-label="Promotional message">🚀 WELCOME TO GS DIGITAL ACADEMY
 
 💙 Digital Knowledge | Blockchain | Web3 💛
@@ -371,7 +257,6 @@ https://tinyurl.com/GSdigitalacademy
     <button class="btn primary" id="copyBtn" type="button">📋 Copy Message</button>
     <button class="btn" id="shareMsgBtn" type="button">📤 Share Message</button>
   </div>
-
   <p id="status" class="note" role="status" aria-live="polite"></p>
 </section>
 
