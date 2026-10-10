@@ -1,12 +1,22 @@
 
 {
+  "id": "./",
   "name": "GS Digital Academy",
   "short_name": "GS Academy",
-  "description": "GS Digital Academy and B-TITAN Champions Hub",
+  "description": "GS Digital Academy Promotion App",
+  "lang": "hi",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#071a36",
-  "theme_color": "#071a36",
-  "orientation": "portrait"
+  "orientation": "portrait",
+  "background_color": "#031c32",
+  "theme_color": "#021a30",
+  "icons": [
+    {
+      "src": "./logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
 }
