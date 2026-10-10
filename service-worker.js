@@ -1,50 +1,62 @@
 
-const CACHE_NAME = "gs-digital-academy-v1";
+const CACHE_NAME = "gs-academy-v1";
+
 const APP_FILES = [
   "./",
   "./index.html",
-  "./manifest.json"
+  "./manifest.json",
+  "./logo.png"
 ];
 
-self.addEventListener("install", (event) => {
+self.addEventListener("install", event => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(APP_FILES))
+    caches.open(CACHE_NAME)
+      .then(cache => cache.addAll(APP_FILES))
+      .then(() => self.skipWaiting())
   );
-  self.skipWaiting();
 });
 
-self.addEventListener("activate", (event) => {
+self.addEventListener("activate", event => {
   event.waitUntil(
-    caches.keys().then((keys) =>
+    caches.keys().then(keys =>
       Promise.all(
         keys
-          .filter((key) => key !== CACHE_NAME)
-          .map((key) => caches.delete(key))
+          .filter(key => key !== CACHE_NAME)
+          .map(key => caches.delete(key))
       )
-    )
+    ).then(() => self.clients.claim())
   );
-  self.clients.claim();
 });
 
-self.addEventListener("fetch", (event) => {
-  if (event.request.method !== "GET") return;
+self.addEventListener("fetch", event => {
+  const request = event.request;
+
+  if (request.method !== "GET") return;
+
+  const url = new URL(request.url);
+
+  if (url.origin !== self.location.origin) return;
 
   event.respondWith(
-    fetch(event.request)
-      .then((response) => {
-        if (response.ok && new URL(event.request.url).origin === self.location.origin) {
+    fetch(request)
+      .then(response => {
+        if (response && response.ok) {
           const copy = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
+          caches.open(CACHE_NAME)
+            .then(cache => cache.put(request, copy));
         }
         return response;
       })
       .catch(async () => {
-        const cached = await caches.match(event.request);
+        const cached = await caches.match(request);
         if (cached) return cached;
-        if (event.request.mode === "navigate") {
-          return caches.match("./index.html");
+
+        if (request.mode === "navigate") {
+          const home = await caches.match("./index.html");
+          if (home) return home;
         }
-        return new Response("Offline: यह सामग्री अभी उपलब्ध नहीं है।", {
+
+        return new Response("Offline: यह पेज अभी उपलब्ध नहीं है।", {
           status: 503,
           headers: { "Content-Type": "text/plain; charset=utf-8" }
         });
