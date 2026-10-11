@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#101638">
-<meta name="description" content="GS Digital Academy — Create, Connect and Promote.">
+<meta name="description" content="GS Digital Academy - Create, Connect and Promote">
 <title>GS Digital Academy</title>
 
 <link rel="manifest" href="./manifest.json">
@@ -13,30 +13,25 @@
 
 <style>
 :root{
-  --bg:#080d22;
-  --blue:#123b78;
-  --purple:#47246f;
-  --gold:#ffcf52;
+  --gold:#ffcf45;
   --gold-light:#fff0b2;
   --text:#f6f5ff;
-  --muted:#bfc9e0;
+  --muted:#bdc9e0;
   --border:#394267;
-  --panel:#111c3a;
-  --panel2:#19264a;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
   margin:0;
+  min-height:100vh;
+  font-family:Arial,Helvetica,sans-serif;
   color:var(--text);
   background:
     radial-gradient(ellipse at 5% 0%,#183b76 0%,transparent 36%),
     radial-gradient(ellipse at 100% 25%,#432064 0%,transparent 34%),
     radial-gradient(ellipse at 5% 70%,#102f63 0%,transparent 30%),
-    linear-gradient(150deg,#080d22 0%,#10132d 48%,#160e2b 100%);
+    linear-gradient(150deg,#080d22,#10132d 48%,#160e2b);
   background-attachment:fixed;
-  font-family:Arial,Helvetica,sans-serif;
-  min-height:100vh;
   padding-bottom:env(safe-area-inset-bottom);
 }
 button,input,textarea{font:inherit}
@@ -44,17 +39,14 @@ button,a{-webkit-tap-highlight-color:transparent}
 button{cursor:pointer}
 [hidden]{display:none!important}
 a{color:inherit}
-button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{
-  outline:2px solid var(--gold);outline-offset:3px
-}
 
-/* Top navigation */
+/* Top bar */
 .topbar{
   position:sticky;top:0;z-index:1000;
   display:flex;align-items:center;gap:10px;
   padding:10px 12px;
   padding-top:max(10px,env(safe-area-inset-top));
-  background:rgba(8,13,34,.94);
+  background:rgba(8,13,34,.95);
   border-bottom:1px solid #3b3c63;
   backdrop-filter:blur(16px);
 }
@@ -67,16 +59,17 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{
 .brand{
   flex:1;min-width:0;
   font-size:12px;font-weight:800;
-  letter-spacing:.4px;color:var(--gold-light);
+  letter-spacing:.3px;color:var(--gold-light);
 }
 .download-btn{
-  padding:11px 12px;border:0;border-radius:12px;
+  padding:11px 10px;border:0;border-radius:12px;
   background:linear-gradient(115deg,#fff0b2,#ffcb36,#f5ac16);
   color:#1c2036;font-size:12px;font-weight:800;
-  white-space:nowrap;box-shadow:0 4px 16px #ffcf5225;
+  white-space:nowrap;
+  box-shadow:0 4px 16px #ffcf5225;
 }
 
-/* Drawer */
+/* Side menu */
 .backdrop{position:fixed;inset:0;z-index:1090;background:#000b}
 .drawer{
   position:fixed;top:0;bottom:0;left:0;z-index:1100;
@@ -94,7 +87,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{
 }
 .menu-link.active{border-color:var(--gold);color:var(--gold-light);background:#242348}
 
-/* Layout */
+/* Common layout */
 .container{width:min(100% - 20px,680px);margin:14px auto 28px}
 .page{animation:fadeIn .2s ease}
 @keyframes fadeIn{from{opacity:.55;transform:translateY(4px)}to{opacity:1;transform:none}}
@@ -121,9 +114,9 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{
 .small{font-size:11px;color:var(--muted);line-height:1.5}
 label{display:block;margin:14px 0 7px;color:var(--gold-light);font-size:13px}
 input,textarea{
-  width:100%;padding:12px;
-  color:white;background:#0a122b;
-  border:1px solid #3a456c;border-radius:10px;outline:none;
+  width:100%;padding:12px;color:white;
+  background:#0a122b;border:1px solid #3a456c;
+  border-radius:10px;outline:none;
 }
 input:focus,textarea:focus{border-color:var(--gold)}
 textarea{min-height:100px;resize:vertical;line-height:1.6}
@@ -133,10 +126,11 @@ input[type=file]{font-size:12px}
 .heading-row strong{font-size:15px;color:var(--gold-light)}
 .heading-row small{font-size:10px;color:var(--muted)}
 
-/* Premium social home */
+/* Premium gradient hero */
 .social-home{display:grid;gap:13px}
 .hero{
-  padding:18px 15px;border:1px solid #8c7540;border-radius:21px;
+  padding:18px 15px;
+  border:1px solid #8c7540;border-radius:21px;
   background:
     radial-gradient(ellipse at 100% 0%,#472a72 0%,transparent 54%),
     radial-gradient(ellipse at 0% 100%,#153f7a 0%,transparent 55%),
@@ -151,17 +145,29 @@ input[type=file]{font-size:12px}
 }
 .hero h1{margin:0 0 5px;color:var(--gold-light);font-size:17px}
 .hero p{margin:4px 0;color:#d1d9ec;font-size:12px;line-height:1.5}
+
+/* Main heading is deliberately kept on ONE line */
 .hero-headline{
-  margin:19px 0 7px;font-size:clamp(25px,6.5vw,35px);
-  line-height:1.12;letter-spacing:.2px;font-weight:850;
+  display:block;
+  width:100%;
+  margin:22px 0 12px;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:clamp(15px,4.7vw,28px);
+  font-weight:800;
+  line-height:1.3;
+  letter-spacing:-.5px;
+  white-space:nowrap;
   color:var(--gold);
+  text-shadow:none;
 }
-.hero-description{max-width:470px}
+.hero-description{font-size:13px!important;line-height:1.6!important}
 .search-look{
   margin-top:14px;padding:11px 13px;border-radius:25px;
   background:#0a132d;border:1px solid #3b4567;
   color:#b9c6df;font-size:12px;
 }
+
+/* Stories and social links */
 .stories{display:flex;gap:14px;overflow-x:auto;padding:3px 0 8px}
 .story{
   min-width:61px;max-width:72px;padding:0;
@@ -214,9 +220,17 @@ input[type=file]{font-size:12px}
   background:radial-gradient(ellipse at 100% 0%,#48296e,transparent 60%),linear-gradient(145deg,#16396a,#14132e);
 }
 footer{text-align:center;padding:18px 12px 26px;color:#9ca9c9;font-size:11px;line-height:1.8}
+
+@media(max-width:360px){
+  .brand{font-size:10px}
+  .download-btn{font-size:10px;padding:10px 7px}
+  .hero{padding:15px 11px}
+  .hero h1{font-size:15px}
+  .hero-headline{font-size:15px;letter-spacing:-.6px}
+}
 @media(min-width:520px){
   .hero{padding:23px}
-  .hero-headline{font-size:37px}
+  .hero-headline{font-size:28px}
 }
 </style>
 </head>
@@ -243,7 +257,6 @@ footer{text-align:center;padding:18px 12px 26px;color:#9ca9c9;font-size:11px;lin
 
 <!-- HOME FEED -->
 <section class="page social-home" id="page-home">
-
   <div class="hero">
     <div class="hero-row">
       <img class="logo" src="./logo.png" alt="GS Digital Academy Logo">
@@ -253,13 +266,21 @@ footer{text-align:center;padding:18px 12px 26px;color:#9ca9c9;font-size:11px;lin
         <p>✨ Create · Connect · Promote</p>
       </div>
     </div>
-    <div class="hero-headline">YOUR DIGITAL<br>WORLD</div>
-    <p class="hero-description">Apni digital identity banayein, ideas share karein aur apne business ya services ko promote karein.</p>
-    <div class="search-look">🔎 Create. Connect. Promote.</div>
+
+    <div class="hero-headline">Create. Connect. Promote.</div>
+
+    <p class="hero-description">
+      Apni digital identity banayein, ideas share karein
+      aur apne business ya services ko promote karein.
+    </p>
+
+    <div class="search-look">🔎 Your digital world, all in one place</div>
   </div>
 
   <div class="card">
-    <div class="heading-row"><strong>✨ Quick Connect</strong><small>Social shortcuts</small></div>
+    <div class="heading-row">
+      <strong>✨ Quick Connect</strong><small>Social shortcuts</small>
+    </div>
     <div class="stories">
       <button class="story" id="storyProfile">
         <div class="story-ring"><img id="storyAvatar" src="./logo.png" alt="My profile"></div>
@@ -290,7 +311,10 @@ footer{text-align:center;padding:18px 12px 26px;color:#9ca9c9;font-size:11px;lin
     <div class="heading-row"><strong>👤 My Digital Identity</strong><small id="profileStatusHome">Profile setup</small></div>
     <div class="user-row">
       <img class="avatar" id="homeProfilePhoto" src="./logo.png" alt="Profile photo">
-      <div><strong id="homeProfileName">Create Your Profile</strong><small id="homeProfileAbout">Add your name and details</small></div>
+      <div>
+        <strong id="homeProfileName">Create Your Profile</strong>
+        <small id="homeProfileAbout">Add your name and details</small>
+      </div>
     </div>
     <button class="btn gold" id="homeProfileBtn">👤 Create / Edit My Profile</button>
   </div>
@@ -447,7 +471,6 @@ footer{text-align:center;padding:18px 12px 26px;color:#9ca9c9;font-size:11px;lin
     <button class="btn gold" id="editSocialBtn">✏️ Edit My Social Links</button>
   </div>
 </section>
-
 </main>
 
 <footer>
@@ -477,8 +500,10 @@ function saveProfile(p){
 }
 function showPage(name){
   if(!pages.includes(name))name="home";
-  pages.forEach(n=>$("page-"+n).hidden=n!==name);
-  document.querySelectorAll(".menu-link").forEach(b=>b.classList.toggle("active",b.dataset.page===name));
+  pages.forEach(n=> $("page-"+n).hidden=n!==name);
+  document.querySelectorAll(".menu-link").forEach(b=>
+    b.classList.toggle("active",b.dataset.page===name)
+  );
   closeMenu();
   window.scrollTo({top:0,behavior:"smooth"});
   if(name==="profile")loadProfile();
@@ -486,28 +511,35 @@ function showPage(name){
   if(name==="promotion")$("promoCustom").value=getProfile().message||"";
 }
 function openMenu(){
-  $("drawer").hidden=false;$("backdrop").hidden=false;
+  $("drawer").hidden=false;
+  $("backdrop").hidden=false;
   $("menuBtn").setAttribute("aria-expanded","true");
 }
 function closeMenu(){
-  $("drawer").hidden=true;$("backdrop").hidden=true;
+  $("drawer").hidden=true;
+  $("backdrop").hidden=true;
   $("menuBtn").setAttribute("aria-expanded","false");
 }
 $("menuBtn").addEventListener("click",()=> $("drawer").hidden?openMenu():closeMenu());
 $("closeMenu").addEventListener("click",closeMenu);
 $("backdrop").addEventListener("click",closeMenu);
-document.querySelectorAll(".menu-link").forEach(b=>b.addEventListener("click",()=>showPage(b.dataset.page)));
+document.querySelectorAll(".menu-link").forEach(b=>
+  b.addEventListener("click",()=>showPage(b.dataset.page))
+);
 
 function safeUrl(value){
   if(!value)return "";
-  try{const u=new URL(value);return ["https:","http:"].includes(u.protocol)?u.href:""}
-  catch(e){return ""}
+  try{
+    const u=new URL(value);
+    return ["https:","http:"].includes(u.protocol)?u.href:"";
+  }catch(e){return ""}
 }
 function setLink(id,url,fallback){$(id).href=safeUrl(url)||fallback}
 
 function formProfile(){
   return {
-    name:$("personName").value.trim(),photo:photoData,
+    name:$("personName").value.trim(),
+    photo:photoData,
     website:$("personWebsite").value.trim(),
     facebook:$("personFacebook").value.trim(),
     instagram:$("personInstagram").value.trim(),
@@ -541,14 +573,23 @@ function loadProfile(){
   photoData=p.photo||"";
   updatePreview(p);
 }
-$("personName").addEventListener("input",()=> $("previewName").textContent=$("personName").value||"Your Name");
-$("personAbout").addEventListener("input",()=> $("previewAbout").textContent=$("personAbout").value||"Your digital profile");
+$("personName").addEventListener("input",()=>
+  $("previewName").textContent=$("personName").value||"Your Name"
+);
+$("personAbout").addEventListener("input",()=>
+  $("previewAbout").textContent=$("personAbout").value||"Your digital profile"
+);
 
 $("personPhoto").addEventListener("change",e=>{
   const file=e.target.files&&e.target.files[0];
   if(!file)return;
-  if(!file.type.startsWith("image/")){alert("Image file select karein.");e.target.value="";return}
-  if(file.size>700*1024){alert("Photo 700 KB se chhoti rakhein.");e.target.value="";return}
+  if(!file.type.startsWith("image/")){
+    alert("Image file select karein.");e.target.value="";return;
+  }
+  if(file.size>700*1024){
+    alert("Photo 700 KB se chhoti rakhein.");
+    e.target.value="";return;
+  }
   const reader=new FileReader();
   reader.onload=()=>{
     photoData=String(reader.result||"");
@@ -567,8 +608,10 @@ $("profileForm").addEventListener("submit",e=>{
 });
 $("clearProfileBtn").addEventListener("click",()=>{
   if(!confirm("Kya saved profile delete karni hai?"))return;
-  localStorage.removeItem(PROFILE_KEY);photoData="";
-  $("profileForm").reset();loadProfile();refreshHome();updateSocialLinks();
+  localStorage.removeItem(PROFILE_KEY);
+  photoData="";
+  $("profileForm").reset();
+  loadProfile();refreshHome();updateSocialLinks();
   $("profileStatus").textContent="Saved profile delete kar di gayi.";
 });
 
@@ -581,8 +624,11 @@ function updateSocialLinks(){
   setLink("socialLinkedIn",p.linkedin,"https://linkedin.com/");
   setLink("socialWebsite",p.website,ACADEMY_URL);
   setLink("socialOther",p.other,ACADEMY_URL);
-  $("socialWhatsApp").href=p.whatsapp?"https://wa.me/"+p.whatsapp:"https://whatsapp.com/";
+  $("socialWhatsApp").href=p.whatsapp
+    ?"https://wa.me/"+p.whatsapp
+    :"https://whatsapp.com/";
 }
+
 function refreshHome(){
   const p=getProfile(),photo=p.photo||"./logo.png";
   $("homeProfileName").textContent=p.name||"Create Your Profile";
@@ -600,11 +646,14 @@ function refreshHome(){
   setLink("homeTelegram",p.telegram,"https://telegram.org/");
   setLink("homeYouTube",p.youtube,"https://youtube.com/");
   setLink("homeWebsite",p.website,ACADEMY_URL);
-  $("homeWhatsApp").href=p.whatsapp?"https://wa.me/"+p.whatsapp:"https://whatsapp.com/";
+  $("homeWhatsApp").href=p.whatsapp
+    ?"https://wa.me/"+p.whatsapp
+    :"https://whatsapp.com/";
 
   $("feedText").textContent=localStorage.getItem(POST_KEY)||
     "Welcome! Apni profile banayein aur pehli promotional post likhein.";
 }
+
 $("homeProfileBtn").addEventListener("click",()=>showPage("profile"));
 $("storyProfile").addEventListener("click",()=>showPage("profile"));
 $("homeSocialBtn").addEventListener("click",()=>showPage("social"));
@@ -616,7 +665,10 @@ function currentPost(){
 }
 $("createPostBtn").addEventListener("click",()=>{
   const message=$("homePostInput").value.trim();
-  if(!message){alert("Pehle apna post likhein.");$("homePostInput").focus();return}
+  if(!message){
+    alert("Pehle apna post likhein.");
+    $("homePostInput").focus();return;
+  }
   localStorage.setItem(POST_KEY,message);
   $("feedText").textContent=message;
   $("feedStatus").textContent="✅ Post is device par save ho gayi.";
@@ -626,16 +678,23 @@ $("editPostBtn").addEventListener("click",()=>{
   $("homePostInput").scrollIntoView({behavior:"smooth",block:"center"});
   $("homePostInput").focus();
 });
+
 async function copyText(text){
   if(!text)return false;
-  try{await navigator.clipboard.writeText(text);return true}
-  catch(e){
+  try{
+    await navigator.clipboard.writeText(text);
+    return true;
+  }catch(e){
     const ta=document.createElement("textarea");
-    ta.value=text;ta.style.position="fixed";ta.style.opacity="0";
-    document.body.appendChild(ta);ta.select();
+    ta.value=text;
+    ta.style.position="fixed";
+    ta.style.opacity="0";
+    document.body.appendChild(ta);
+    ta.select();
     let ok=false;
     try{ok=document.execCommand("copy")}catch(err){}
-    ta.remove();return ok;
+    ta.remove();
+    return ok;
   }
 }
 async function shareText(text,title){
@@ -644,14 +703,22 @@ async function shareText(text,title){
     try{await navigator.share({title:title||"My Promotion",text})}
     catch(e){if(e.name!=="AbortError")alert("Share nahi ho saka.")}
   }else{
-    alert(await copyText(text)?"Message copy ho gaya. Ab kisi app mein paste karein.":"Copy nahi ho saka.");
+    alert(await copyText(text)
+      ?"Message copy ho gaya. Ab kisi app mein paste karein."
+      :"Copy nahi ho saka.");
   }
 }
 $("copyPostBtn").addEventListener("click",async()=>{
-  $("feedStatus").textContent=await copyText($("feedText").textContent)?"Post copy ho gayi.":"Copy nahi ho saka.";
+  $("feedStatus").textContent=
+    await copyText($("feedText").textContent)
+    ?"Post copy ho gayi.":"Copy nahi ho saka.";
 });
-$("shareFeedBtn").addEventListener("click",()=>shareText($("feedText").textContent,"My Promotion"));
-$("sharePostBtn").addEventListener("click",()=>shareText(currentPost(),"My Promotion"));
+$("shareFeedBtn").addEventListener("click",()=>
+  shareText($("feedText").textContent,"My Promotion")
+);
+$("sharePostBtn").addEventListener("click",()=>
+  shareText(currentPost(),"My Promotion")
+);
 
 function buildPromotion(){
   const p=getProfile();
@@ -678,7 +745,9 @@ $("generatePromoBtn").addEventListener("click",()=>{
 });
 $("copyPromoBtn").addEventListener("click",async()=>{
   if(!$("promoOutput").value)$("promoOutput").value=buildPromotion();
-  $("promoStatus").textContent=await copyText($("promoOutput").value)?"Message copy ho gaya.":"Copy nahi ho saka.";
+  $("promoStatus").textContent=
+    await copyText($("promoOutput").value)
+    ?"Message copy ho gaya.":"Copy nahi ho saka.";
 });
 $("sharePromoBtn").addEventListener("click",()=>{
   if(!$("promoOutput").value)$("promoOutput").value=buildPromotion();
@@ -687,15 +756,21 @@ $("sharePromoBtn").addEventListener("click",()=>{
 $("whatsappPromoBtn").addEventListener("click",()=>{
   const text=$("promoOutput").value||buildPromotion();
   $("promoOutput").value=text;
-  window.open("https://wa.me/?text="+encodeURIComponent(text),"_blank","noopener,noreferrer");
+  window.open(
+    "https://wa.me/?text="+encodeURIComponent(text),
+    "_blank","noopener,noreferrer"
+  );
 });
 $("copyAcademyBtn").addEventListener("click",async()=>{
-  alert(await copyText(ACADEMY_URL)?"Website link copy ho gaya.":"Copy nahi ho saka.");
+  alert(await copyText(ACADEMY_URL)
+    ?"Website link copy ho gaya."
+    :"Copy nahi ho saka.");
 });
 
-/* PWA installation */
+/* PWA install */
 window.addEventListener("beforeinstallprompt",event=>{
-  event.preventDefault();installPrompt=event;
+  event.preventDefault();
+  installPrompt=event;
 });
 $("downloadBtn").addEventListener("click",async()=>{
   if(installPrompt){
@@ -710,7 +785,7 @@ window.addEventListener("appinstalled",()=>{
   $("downloadBtn").textContent="✅ App Installed";
 });
 
-/* Register existing service worker */
+/* Keep the existing service worker */
 if("serviceWorker" in navigator && location.protocol!=="file:"){
   window.addEventListener("load",()=>{
     navigator.serviceWorker.register("./service-worker.js")
@@ -718,7 +793,7 @@ if("serviceWorker" in navigator && location.protocol!=="file:"){
   });
 }
 
-/* Start app */
+/* Initial app setup */
 loadProfile();
 updateSocialLinks();
 refreshHome();
