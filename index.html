@@ -2,647 +2,1143 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#031c32">
-<meta name="description" content="GS Digital Academy Personal Promotion Platform">
-<title>GS Digital Academy App</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#061b31">
+  <meta name="description" content="GS Digital Academy — Create your digital identity, connect your social media and promote your business.">
 
-<link rel="manifest" href="./manifest.json">
-<link rel="icon" href="./logo.png" type="image/png">
-<link rel="apple-touch-icon" href="./logo.png">
+  <title>GS Digital Academy | Promotion App</title>
 
-<style>
-:root {
-  --bg:#031c32;
-  --card:#062c43;
-  --gold:#ffc928;
-  --border:#12516a;
-  --text:#f4f8fc;
-  --muted:#b4d0df;
-}
-* {box-sizing:border-box}
-html {scroll-behavior:smooth}
-body {
-  margin:0;
-  background:var(--bg);
-  color:var(--text);
-  font-family:Arial,"Noto Sans Devanagari",sans-serif;
-  line-height:1.6;
-}
-header {
-  text-align:center;
-  padding:20px 16px;
-  border-bottom:2px solid var(--gold);
-}
-.logo {
-  width:100px;
-  height:100px;
-  object-fit:contain;
-  border-radius:50%;
-}
-h1,h2,h3 {color:var(--gold)}
-h1 {font-size:23px;margin:8px 0}
-h2 {font-size:21px;margin:0 0 12px}
-p {overflow-wrap:anywhere}
-.muted,.status {color:var(--muted);font-size:14px}
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" href="./logo.png" type="image/png">
 
-.topbar {
-  position:sticky;
-  top:0;
-  z-index:100;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  padding:10px 12px;
-  background:#041f34;
-  border-bottom:1px solid var(--border);
-}
-.brand-small {
-  font-size:13px;
-  font-weight:bold;
-  color:var(--gold);
-}
-button,.button {
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  text-decoration:none;
-  border:1px solid var(--border);
-  border-radius:12px;
-  background:#07415c;
-  color:white;
-  padding:11px 13px;
-  min-height:44px;
-  font:inherit;
-  font-size:14px;
-  font-weight:bold;
-  cursor:pointer;
-}
-.gold {
-  background:linear-gradient(100deg,#ffe28a,#ffbd00);
-  color:#102333;
-  border:0;
-}
-.menu-button {
-  font-size:20px;
-  min-width:46px;
-}
-.download-button {
-  background:linear-gradient(100deg,#ffe28a,#ffbd00);
-  color:#102333;
-  border:0;
-  border-radius:25px;
-  padding:9px 12px;
-  font-size:12px;
-}
-main {max-width:720px;margin:auto;padding:14px}
-.page {
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:18px;
-  padding:20px;
-  margin:12px 0;
-  animation:appear .18s ease-out;
-}
-@keyframes appear {
-  from {opacity:.6;transform:translateY(4px)}
-  to {opacity:1;transform:translateY(0)}
-}
-[hidden] {display:none !important}
+  <style>
+    :root {
+      --navy: #061b31;
+      --navy2: #0b2c49;
+      --panel: #0c2942;
+      --gold: #ffc928;
+      --gold-light: #fff0b0;
+      --text: #f5f8fc;
+      --muted: #b9ccdd;
+      --border: #294b66;
+      --green: #28b77a;
+    }
 
-.drawer-backdrop {
-  position:fixed;
-  inset:0;
-  background:#0009;
-  z-index:200;
-}
-.drawer {
-  position:fixed;
-  top:0;
-  bottom:0;
-  left:0;
-  width:min(290px,85vw);
-  overflow-y:auto;
-  padding:20px 14px;
-  background:#041f34;
-  border-right:2px solid var(--gold);
-  z-index:201;
-}
-.drawer h2 {padding:10px 8px}
-.menu-link {
-  display:flex;
-  align-items:center;
-  width:100%;
-  gap:12px;
-  padding:13px;
-  margin:6px 0;
-  border-radius:12px;
-  border:1px solid var(--border);
-  background:#062c43;
-  color:white;
-  text-align:left;
-  font-size:15px;
-}
-.menu-link.active {
-  color:var(--gold);
-  border-color:var(--gold);
-}
-label {display:block;margin:12px 0 5px}
-input,textarea {
-  display:block;
-  width:100%;
-  min-width:0;
-  padding:12px;
-  border:1px solid var(--border);
-  border-radius:10px;
-  background:var(--bg);
-  color:white;
-  font:inherit;
-}
-textarea {min-height:110px;resize:vertical}
-.buttons {
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:10px;
-  margin-top:14px;
-}
-.full {width:100%}
-.social-list {
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:10px;
-}
-.photo {
-  display:none;
-  width:85px;
-  height:85px;
-  object-fit:cover;
-  border-radius:50%;
-  border:2px solid var(--gold);
-}
-footer {
-  text-align:center;
-  padding:20px;
-  color:var(--muted);
-  border-top:1px solid var(--border);
-}
-</style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(ellipse at top, #103756 0%, transparent 55%),
+        var(--navy);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      min-height: 100vh;
+    }
+
+    button, input, textarea, select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px;
+      background: rgba(3, 18, 32, .96);
+      border-bottom: 1px solid #34536a;
+      backdrop-filter: blur(12px);
+    }
+
+    .menu-button,
+    .download-button {
+      border-radius: 11px;
+      padding: 11px 13px;
+      font-weight: bold;
+      border: 1px solid #8c702e;
+      background: #102d45;
+      color: var(--gold-light);
+    }
+
+    .menu-button {
+      font-size: 21px;
+      min-width: 45px;
+    }
+
+    .brand-small {
+      flex: 1;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .7px;
+      color: var(--gold-light);
+    }
+
+    .download-button {
+      background: linear-gradient(135deg, #ffe79a, #ffc928);
+      color: #182331;
+      white-space: nowrap;
+      font-size: 12px;
+    }
+
+    .drawer-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 1090;
+      background: #0009;
+    }
+
+    .drawer {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1100;
+      width: min(310px, 86vw);
+      padding: 24px 17px;
+      overflow-y: auto;
+      background: #061b31;
+      border-right: 1px solid #8c702e;
+      box-shadow: 15px 0 35px #0006;
+    }
+
+    .drawer h2 {
+      color: var(--gold-light);
+      font-size: 20px;
+      margin: 8px 0 25px;
+    }
+
+    .menu-link {
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 15px 13px;
+      margin: 9px 0;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #0c2942;
+      color: white;
+    }
+
+    .menu-link.active {
+      color: var(--gold-light);
+      border-color: var(--gold);
+      background: #173650;
+    }
+
+    .container {
+      width: min(100% - 24px, 680px);
+      margin: 20px auto 35px;
+    }
+
+    .page {
+      animation: appear .22s ease;
+    }
+
+    @keyframes appear {
+      from { opacity: .5; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card {
+      padding: 20px;
+      margin-bottom: 17px;
+      background: linear-gradient(150deg, #0c2942, #071d31);
+      border: 1px solid var(--border);
+      border-radius: 19px;
+      box-shadow: 0 8px 24px #0002;
+    }
+
+    h2, h3 {
+      line-height: 1.3;
+    }
+
+    .section-title {
+      color: var(--gold-light);
+      margin: 0 0 8px;
+      font-size: 24px;
+    }
+
+    .muted {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .gold {
+      background: linear-gradient(135deg, #fff0b0, #ffc928);
+      color: #182331;
+      border: 0;
+    }
+
+    .primary {
+      background: #123d5c;
+      color: white;
+      border: 1px solid #41647e;
+    }
+
+    .full {
+      width: 100%;
+    }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 7px;
+      width: 100%;
+      padding: 14px;
+      margin-top: 10px;
+      border-radius: 12px;
+      font-weight: 750;
+      text-decoration: none;
+      text-align: center;
+      border: 1px solid #34536a;
+      background: #123d5c;
+      color: white;
+    }
+
+    .btn.gold {
+      border: 0;
+      background: linear-gradient(135deg, #fff0b0, #ffc928);
+      color: #182331;
+    }
+
+    .btn.outline {
+      background: transparent;
+      color: var(--gold-light);
+      border-color: #8c702e;
+    }
+
+    .btn:active,
+    .menu-link:active {
+      transform: scale(.99);
+    }
+
+    .home-hero {
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      padding: 30px 18px;
+      border: 1px solid #8c702e;
+      border-radius: 24px;
+      background:
+        radial-gradient(ellipse at 50% 0%, #174568 0%, transparent 65%),
+        linear-gradient(155deg, #0b2e4b, #031326 78%);
+      box-shadow: 0 12px 35px #0005;
+    }
+
+    .home-kicker {
+      display: inline-block;
+      color: #ffe28a;
+      border: 1px solid #8c702e;
+      background: #142e43;
+      padding: 7px 12px;
+      border-radius: 30px;
+      font-size: 11px;
+      letter-spacing: 1px;
+    }
+
+    .home-hero h2 {
+      font-size: clamp(27px, 7vw, 38px);
+      line-height: 1.2;
+      margin: 18px 0 12px;
+      background: linear-gradient(90deg, #fff0b0, #ffc928, #fff0b0);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .home-logo {
+      width: 118px;
+      height: 118px;
+      object-fit: contain;
+      border-radius: 50%;
+      border: 2px solid #ffc928;
+      padding: 5px;
+      background: #031c32;
+      box-shadow: 0 0 25px #ffc92835;
+    }
+
+    .home-description {
+      color: #cfdeeb;
+      font-size: 14px;
+      line-height: 1.7;
+      max-width: 400px;
+      margin: 12px auto 22px;
+    }
+
+    .home-actions {
+      display: grid;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .home-feature {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      text-align: left;
+      padding: 15px;
+      margin-top: 12px;
+      border: 1px solid #31516a;
+      border-radius: 15px;
+      background: #08233a;
+    }
+
+    .home-feature-icon {
+      font-size: 25px;
+    }
+
+    .home-feature strong {
+      display: block;
+      color: #ffe28a;
+      margin-bottom: 4px;
+    }
+
+    .home-feature span {
+      display: block;
+      color: #b4d0df;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .home-tagline {
+      margin-top: 25px;
+      color: #f6d477;
+      font-size: 11px;
+      letter-spacing: 2px;
+    }
+
+    label {
+      display: block;
+      color: #ffe28a;
+      font-size: 13px;
+      margin: 15px 0 7px;
+    }
+
+    input, textarea, select {
+      display: block;
+      width: 100%;
+      padding: 13px;
+      border-radius: 10px;
+      border: 1px solid #35546d;
+      outline: none;
+      background: #04192b;
+      color: white;
+    }
+
+    input:focus, textarea:focus {
+      border-color: var(--gold);
+    }
+
+    input[type="file"] {
+      padding: 10px;
+      font-size: 12px;
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+      line-height: 1.55;
+    }
+
+    .profile-preview {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin: 15px 0;
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: #061a2b;
+    }
+
+    .profile-photo {
+      width: 76px;
+      height: 76px;
+      flex-shrink: 0;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      background: #102d45;
+    }
+
+    .profile-preview strong {
+      color: var(--gold-light);
+    }
+
+    .status {
+      min-height: 20px;
+      margin-top: 12px;
+      color: #a7f3ca;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .social-link {
+      display: block;
+      text-decoration: none;
+      text-align: center;
+      padding: 14px 8px;
+      border: 1px solid #35546d;
+      border-radius: 12px;
+      background: #0b2c49;
+      color: white;
+      font-size: 13px;
+    }
+
+    .social-link span {
+      display: block;
+      font-size: 23px;
+      margin-bottom: 7px;
+    }
+
+    .academy-panel {
+      padding: 24px 18px;
+      text-align: center;
+      border: 1px solid #8c702e;
+      border-radius: 20px;
+      background: linear-gradient(145deg, #103653, #061b31);
+    }
+
+    footer {
+      padding: 22px 12px 30px;
+      text-align: center;
+      color: #8ea9bd;
+      font-size: 11px;
+      line-height: 1.8;
+    }
+
+    @media (min-width: 520px) {
+      .home-actions {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .home-actions button:last-child {
+        grid-column: 1 / -1;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- TOP BAR -->
-<div class="topbar">
-  <button class="menu-button" id="menuBtn"
-          aria-label="Open menu" aria-expanded="false"
-          aria-controls="drawer">☰</button>
+  <!-- Top navigation -->
+  <nav class="topbar">
+    <button class="menu-button" id="menuBtn"
+      aria-label="Open menu" aria-expanded="false">☰</button>
 
-  <span class="brand-small">GS DIGITAL ACADEMY</span>
+    <span class="brand-small">GS DIGITAL ACADEMY</span>
 
-  <button class="download-button" id="downloadBtn">
-    📲 Download
-  </button>
-</div>
+    <button class="download-button" id="downloadBtn">
+      📲 Download App
+    </button>
+  </nav>
 
-<!-- MENU DRAWER -->
-<div id="drawerBackdrop" class="drawer-backdrop" hidden></div>
+  <!-- Menu background -->
+  <div id="drawerBackdrop" class="drawer-backdrop" hidden></div>
 
-<aside id="drawer" class="drawer" hidden>
-  <h2>☰ Main Menu</h2>
+  <!-- Hidden menu -->
+  <aside id="drawer" class="drawer" hidden>
+    <h2>☰ Main Menu</h2>
 
-  <button class="menu-link" data-page="home">🏠 Home</button>
-  <button class="menu-link" data-page="academy">🌐 Academy Landing Page</button>
-  <button class="menu-link" data-page="profile">👤 My Profile</button>
-  <button class="menu-link" data-page="promotion">📢 Promotion</button>
-  <button class="menu-link" data-page="social">🔗 Social Media</button>
+    <button class="menu-link" data-page="home">🏠 Home</button>
+    <button class="menu-link" data-page="academy">🌐 Academy Landing Page</button>
+    <button class="menu-link" data-page="profile">👤 My Profile</button>
+    <button class="menu-link" data-page="promotion">📢 Promotion</button>
+    <button class="menu-link" data-page="social">🔗 Social Media</button>
 
-  <button id="closeMenuBtn" class="full" style="margin-top:16px">
-    ✖ Close Menu
-  </button>
-</aside>
+    <button class="btn gold" id="closeMenuBtn">✖ Close Menu</button>
+  </aside>
 
-<!-- HOME HEADER -->
-<header>
-  <img src="./logo.png" class="logo" alt="GS Digital Academy Logo"
-       onerror="this.style.display='none'">
-  <h1>GS DIGITAL ACADEMY</h1>
-  <p>Learn • Connect • Promote</p>
-  <p class="muted">Your Personal Social Media Promotion Platform</p>
-</header>
+  <main class="container">
 
-<main>
+    <!-- HOME -->
+    <section class="page home-hero" id="page-home">
+      <p class="home-kicker">WELCOME TO YOUR DIGITAL WORLD</p>
 
-<!-- HOME: ONLY WELCOME SCREEN -->
-<section class="page" id="page-home">
-  <h2>Welcome to GS Digital Academy 💙💛</h2>
-  <p>
-    Apni digital identity banayein, social media links manage karein
-    aur apne business, services ya plan ka promotion karein.
-  </p>
-  <p class="muted">
-    Shuru karne ke liye upar ☰ Menu par click karein aur
-    apna pasandida option chunein.
-  </p>
-  <button class="gold full" id="homeMenuBtn">
-    ☰ Explore Menu
-  </button>
-</section>
+      <div style="margin:22px 0 12px">
+        <img src="./logo.png" class="home-logo"
+          alt="GS Digital Academy Logo">
+      </div>
 
-<!-- ACADEMY LANDING PAGE -->
-<section class="page" id="page-academy" hidden>
-  <h2>🌐 GS Digital Academy</h2>
-  <p>
-    Digital knowledge aur personal online promotion ke liye
-    aapka digital platform.
-  </p>
-  <a class="button gold full"
-     href="https://tinyurl.com/GSdigitalacademy"
-     target="_blank" rel="noopener">
-    Visit Official Landing Page ↗
-  </a>
-</section>
+      <h2>CREATE. CONNECT.<br>PROMOTE.</h2>
 
-<!-- PROFILE -->
-<section class="page" id="page-profile" hidden>
-  <h2>👤 My Social Media Profile</h2>
-  <p class="muted">
-    Apni details save karein. Data is browser mein locally save hoga.
-  </p>
+      <p class="home-description">
+        Apni digital identity banayein, apne social media
+        links manage karein aur apne business ya services
+        ka promotion ek hi jagah se karein.
+      </p>
 
-  <img id="photoPreview" class="photo" alt="Profile photo preview">
+      <div class="home-actions">
+        <button class="btn gold" id="homeProfileBtn">
+          👤 Create My Profile
+        </button>
 
-  <label for="personName">Name / Business Name</label>
-  <input id="personName" maxlength="100" placeholder="Apna naam">
+        <button class="btn" id="homePromotionBtn">
+          🚀 Start Promotion
+        </button>
 
-  <label for="personPhoto">Photo URL (Optional)</label>
-  <input id="personPhoto" type="url" placeholder="https://example.com/photo.jpg">
+        <button class="btn outline" id="homeAcademyBtn">
+          🌐 Visit Official Academy
+        </button>
+      </div>
 
-  <label for="personWebsite">Website</label>
-  <input id="personWebsite" type="url" placeholder="https://example.com">
+      <div class="home-feature">
+        <div class="home-feature-icon">👤</div>
+        <div>
+          <strong>My Digital Identity</strong>
+          <span>Apna naam, photo aur links manage karein.</span>
+        </div>
+      </div>
 
-  <label for="personFacebook">Facebook</label>
-  <input id="personFacebook" type="url" placeholder="https://facebook.com/...">
+      <div class="home-feature">
+        <div class="home-feature-icon">🔗</div>
+        <div>
+          <strong>All Social Links</strong>
+          <span>Apne social media accounts ek jagah rakhein.</span>
+        </div>
+      </div>
 
-  <label for="personInstagram">Instagram</label>
-  <input id="personInstagram" type="url" placeholder="https://instagram.com/...">
+      <div class="home-feature">
+        <div class="home-feature-icon">📢</div>
+        <div>
+          <strong>Promote & Share</strong>
+          <span>Apna message copy karein aur share karein.</span>
+        </div>
+      </div>
 
-  <label for="personYouTube">YouTube</label>
-  <input id="personYouTube" type="url" placeholder="https://youtube.com/...">
+      <p class="home-tagline">LEARN • CONNECT • GROW</p>
+    </section>
 
-  <label for="personWhatsApp">WhatsApp Number (Country Code)</label>
-  <input id="personWhatsApp" type="tel" placeholder="919876543210">
+    <!-- OFFICIAL ACADEMY -->
+    <section class="page" id="page-academy" hidden>
+      <div class="academy-panel">
+        <p class="home-kicker">OFFICIAL WEBSITE</p>
+        <h2 class="section-title" style="margin-top:18px">
+          GS DIGITAL ACADEMY
+        </h2>
 
-  <label for="personTelegram">Telegram</label>
-  <input id="personTelegram" type="url" placeholder="https://t.me/...">
+        <p class="muted">
+          Hamari official website visit karein aur available
+          digital learning resources explore karein.
+        </p>
 
-  <label for="personLinkedIn">LinkedIn</label>
-  <input id="personLinkedIn" type="url" placeholder="https://linkedin.com/in/...">
+        <a class="btn gold" href="https://tinyurl.com/GSdigitalacademy"
+          target="_blank" rel="noopener noreferrer">
+          🌐 Open Official Website
+        </a>
 
-  <label for="personOther">Other Social Media Link</label>
-  <input id="personOther" type="url" placeholder="https://...">
+        <button class="btn outline" id="copyAcademyBtn">
+          📋 Copy Website Link
+        </button>
+      </div>
+    </section>
 
-  <label for="personAbout">Business / Plan / Service</label>
-  <textarea id="personAbout" placeholder="Aap kya promote karna chahte hain?"></textarea>
+    <!-- PROFILE -->
+    <section class="page" id="page-profile" hidden>
+      <div class="card">
+        <h2 class="section-title">👤 My Digital Profile</h2>
+        <p class="muted">
+          Apni details bharein. Aapki information is browser
+          mein save hogi.
+        </p>
 
-  <label for="personMessage">Promotion Message</label>
-  <textarea id="personMessage" placeholder="Apna promotional message likhein"></textarea>
+        <div class="profile-preview">
+          <img id="previewPhoto" class="profile-photo"
+            src="./logo.png" alt="Profile photo">
+          <div>
+            <strong id="previewName">Your Name</strong>
+            <p class="muted" id="previewAbout">Your digital profile</p>
+          </div>
+        </div>
 
-  <div class="buttons">
-    <button class="gold" id="saveProfileBtn">💾 Save Profile</button>
-    <button id="loadProfileBtn">↻ Load Profile</button>
-    <button id="copyProfileBtn">📋 Copy Promotion</button>
-    <button class="gold" id="shareProfileBtn">📲 Share Profile</button>
-    <button id="whatsappProfileBtn">🟢 WhatsApp</button>
-    <button id="clearProfileBtn">🗑️ Clear Form</button>
-  </div>
+        <form id="profileForm">
+          <label for="personName">Your Name *</label>
+          <input id="personName" required maxlength="80"
+            placeholder="Apna poora naam likhein">
 
-  <p id="profileStatus" class="status" role="status" aria-live="polite"></p>
-</section>
+          <label for="personPhoto">Profile Photo (optional)</label>
+          <input id="personPhoto" type="file"
+            accept="image/*">
+          <p class="muted">
+            Chhoti image use karein. Photo isi device ke browser mein save hogi.
+          </p>
 
-<!-- PROMOTION -->
-<section class="page" id="page-promotion" hidden>
-  <h2>📢 My Promotion</h2>
-  <p>
-    Apne profile links aur promotional message ko
-    copy karein ya mobile ke share menu se share karein.
-  </p>
-  <button class="gold full" id="promotionOpenProfile">
-    👤 Open My Profile
-  </button>
-  <div class="buttons">
-    <button id="copyPromotionBtn">📋 Copy Message</button>
-    <button class="gold" id="sharePromotionBtn">📲 Share Everywhere</button>
-    <button id="whatsappPromotionBtn">🟢 WhatsApp</button>
-  </div>
-  <p id="promotionStatus" class="status" role="status" aria-live="polite"></p>
-</section>
+          <label for="personWebsite">Website / Business Link</label>
+          <input id="personWebsite" type="url"
+            placeholder="https://example.com">
 
-<!-- SOCIAL MEDIA -->
-<section class="page" id="page-social" hidden>
-  <h2>🔗 Social Media Platforms</h2>
-  <p class="muted">
-    Apne social media accounts kholein. Apne personal links
-    Profile section mein add karein.
-  </p>
+          <label for="personFacebook">Facebook Profile/Page URL</label>
+          <input id="personFacebook" type="url"
+            placeholder="https://facebook.com/yourprofile">
 
-  <div class="social-list">
-    <a class="button" href="https://www.facebook.com/"
-       target="_blank" rel="noopener">🔵 Facebook</a>
-    <a class="button" href="https://www.instagram.com/"
-       target="_blank" rel="noopener">📸 Instagram</a>
-    <a class="button" href="https://www.whatsapp.com/"
-       target="_blank" rel="noopener">🟢 WhatsApp</a>
-    <a class="button" href="https://www.youtube.com/"
-       target="_blank" rel="noopener">▶️ YouTube</a>
-    <a class="button" href="https://t.me/"
-       target="_blank" rel="noopener">✈️ Telegram</a>
-    <a class="button" href="https://www.linkedin.com/"
-       target="_blank" rel="noopener">💼 LinkedIn</a>
-    <a class="button" href="https://beacons.ai/"
-       target="_blank" rel="noopener">🌐 Beacons</a>
-  </div>
+          <label for="personInstagram">Instagram URL</label>
+          <input id="personInstagram" type="url"
+            placeholder="https://instagram.com/yourprofile">
 
-  <button class="gold full" id="socialOpenProfile" style="margin-top:16px">
-    ➕ Add My Social Links
-  </button>
-</section>
+          <label for="personYouTube">YouTube URL</label>
+          <input id="personYouTube" type="url"
+            placeholder="https://youtube.com/@yourchannel">
 
-</main>
+          <label for="personWhatsApp">WhatsApp Number</label>
+          <input id="personWhatsApp" inputmode="tel"
+            placeholder="Country code ke saath number, jaise 919876543210">
 
-<footer>
-  <strong>GS DIGITAL ACADEMY</strong>
-  <p>Learn • Connect • Promote</p>
-</footer>
+          <label for="personTelegram">Telegram URL</label>
+          <input id="personTelegram" type="url"
+            placeholder="https://t.me/yourusername">
 
-<script>
-"use strict";
+          <label for="personLinkedIn">LinkedIn URL</label>
+          <input id="personLinkedIn" type="url"
+            placeholder="https://linkedin.com/in/yourprofile">
 
-const $ = id => document.getElementById(id);
-const STORAGE_KEY = "gsda_menu_promotion_v1";
-const pages = ["home","academy","profile","promotion","social"];
-let currentPage = "home";
-let installPrompt = null;
+          <label for="personOther">Other Social / Business Link</label>
+          <input id="personOther" type="url"
+            placeholder="https://...">
 
-function openMenu() {
-  $("drawer").hidden = false;
-  $("drawerBackdrop").hidden = false;
-  $("menuBtn").setAttribute("aria-expanded","true");
-}
-function closeMenu() {
-  $("drawer").hidden = true;
-  $("drawerBackdrop").hidden = true;
-  $("menuBtn").setAttribute("aria-expanded","false");
-}
+          <label for="personAbout">About You / Your Business</label>
+          <textarea id="personAbout" maxlength="500"
+            placeholder="Aap kya karte hain? Apni service ya business ke baare mein likhein."></textarea>
 
-function showPage(name) {
-  if (!pages.includes(name)) name = "home";
-  currentPage = name;
+          <label for="personMessage">Promotion Message</label>
+          <textarea id="personMessage" maxlength="1000"
+            placeholder="Apna promotion message likhein..."></textarea>
 
-  pages.forEach(page => {
-    $("page-" + page).hidden = page !== name;
-  });
+          <button class="btn gold" type="submit">
+            💾 Save My Profile
+          </button>
+        </form>
 
-  document.querySelectorAll(".menu-link").forEach(btn => {
-    const active = btn.dataset.page === name;
-    btn.classList.toggle("active",active);
-    if (active) btn.setAttribute("aria-current","page");
-    else btn.removeAttribute("aria-current");
-  });
+        <button class="btn" id="profilePromotionBtn">
+          🚀 Create Promotion
+        </button>
 
-  closeMenu();
-  window.scrollTo({top:0,behavior:"smooth"});
+        <button class="btn outline" id="clearProfileBtn">
+          🗑️ Clear Saved Profile
+        </button>
 
-  if (name === "profile") loadProfile();
-}
+        <p id="profileStatus" class="status" aria-live="polite"></p>
+      </div>
+    </section>
 
-$("menuBtn").addEventListener("click",() => {
-  if ($("drawer").hidden) openMenu();
-  else closeMenu();
-});
-$("closeMenuBtn").addEventListener("click",closeMenu);
-$("drawerBackdrop").addEventListener("click",closeMenu);
-$("homeMenuBtn").addEventListener("click",openMenu);
+    <!-- PROMOTION -->
+    <section class="page" id="page-promotion" hidden>
+      <div class="card">
+        <h2 class="section-title">📢 Promotion Studio</h2>
 
-document.querySelectorAll(".menu-link").forEach(btn => {
-  btn.addEventListener("click",() => showPage(btn.dataset.page));
-});
+        <p class="muted">
+          Apni profile save karein, phir promotion message
+          generate karke copy ya share karein.
+        </p>
 
-function validUrl(value) {
-  if (!value) return "";
-  try {
-    const url = new URL(value.trim());
-    return ["https:","http:"].includes(url.protocol) ? url.href : "";
-  } catch {
-    return "";
-  }
-}
+        <label for="promoHeading">Promotion Heading</label>
+        <input id="promoHeading" maxlength="100"
+          value="Welcome to My Digital Profile">
 
-const fields = [
-  "personName","personPhoto","personWebsite","personFacebook",
-  "personInstagram","personYouTube","personWhatsApp",
-  "personTelegram","personLinkedIn","personOther",
-  "personAbout","personMessage"
-];
+        <label for="promoCustom">Your Message</label>
+        <textarea id="promoCustom" maxlength="1000"
+          placeholder="Apne business, service ya offer ke baare mein likhein..."></textarea>
 
-function profileData() {
-  const data = {};
-  fields.forEach(id => data[id] = $(id).value.trim());
+        <button class="btn gold" id="generatePromoBtn">
+          ✨ Generate Promotion
+        </button>
 
-  [
-    "personPhoto","personWebsite","personFacebook","personInstagram",
-    "personYouTube","personTelegram","personLinkedIn","personOther"
-  ].forEach(id => data[id] = validUrl(data[id]));
+        <label for="promoOutput">Your Ready-to-Share Message</label>
+        <textarea id="promoOutput" readonly
+          placeholder="Aapka promotion message yahan dikhega..."></textarea>
 
-  data.personWhatsApp = data.personWhatsApp.replace(/\D/g,"");
-  return data;
-}
+        <button class="btn" id="copyPromoBtn">
+          📋 Copy Promotion
+        </button>
 
-function setProfileStatus(text) {
-  $("profileStatus").textContent = text;
-}
+        <button class="btn" id="sharePromoBtn">
+          📲 Share Promotion
+        </button>
 
-function saveProfile() {
-  try {
-    localStorage.setItem(STORAGE_KEY,JSON.stringify(profileData()));
-    setProfileStatus("✅ Profile isi browser mein save ho gayi.");
-  } catch {
-    setProfileStatus("Profile save nahi hui. Browser storage check karein.");
-  }
-}
+        <button class="btn outline" id="openWhatsAppBtn">
+          🟢 Share on WhatsApp
+        </button>
 
-function loadProfile() {
-  try {
-    const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
-    fields.forEach(id => $(id).value = data[id] || "");
-    updatePhoto();
-    setProfileStatus("Profile load ho gayi.");
-  } catch {
-    setProfileStatus("Saved profile load nahi hui.");
-  }
-}
+        <p id="promoStatus" class="status" aria-live="polite"></p>
+      </div>
+    </section>
 
-function updatePhoto() {
-  const url = validUrl($("personPhoto").value);
-  const img = $("photoPreview");
+    <!-- SOCIAL MEDIA -->
+    <section class="page" id="page-social" hidden>
+      <div class="card">
+        <h2 class="section-title">🔗 Social Media</h2>
 
-  if (url) {
-    img.onerror = () => img.style.display = "none";
-    img.src = url;
-    img.style.display = "block";
-  } else {
-    img.removeAttribute("src");
-    img.style.display = "none";
-  }
-}
+        <p class="muted">
+          Apni profile mein social media links save karne ke
+          baad yahan se apne accounts open karein.
+        </p>
 
-function makeMessage() {
-  const d = profileData();
-  const items = [
-    "🚀 MY SOCIAL MEDIA PROMOTION",
-    "",
-    "👤 " + (d.personName || "My Profile"),
-    d.personAbout ? "\n✨ About:\n" + d.personAbout : "",
-    d.personMessage ? "\n📢 Message:\n" + d.personMessage : "",
-    "\n🔗 MY LINKS",
-    d.personWebsite ? "🌐 Website: " + d.personWebsite : "",
-    d.personFacebook ? "🔵 Facebook: " + d.personFacebook : "",
-    d.personInstagram ? "📸 Instagram: " + d.personInstagram : "",
-    d.personYouTube ? "▶️ YouTube: " + d.personYouTube : "",
-    d.personTelegram ? "✈️ Telegram: " + d.personTelegram : "",
-    d.personLinkedIn ? "💼 LinkedIn: " + d.personLinkedIn : "",
-    d.personOther ? "🔗 Other: " + d.personOther : "",
-    d.personWhatsApp ? "🟢 WhatsApp: https://wa.me/" + d.personWhatsApp : "",
-    "\nPowered by GS DIGITAL ACADEMY",
-    "https://tinyurl.com/GSdigitalacademy"
-  ];
-  return items.filter(Boolean).join("\n").trim();
-}
+        <div class="social-grid">
+          <a class="social-link" id="socialFacebook"
+            href="https://facebook.com/" target="_blank"
+            rel="noopener noreferrer">
+            <span>📘</span>Facebook
+          </a>
 
-async function copyText(text) {
-  try {
-    if (navigator.clipboard && window.isSecureContext) {
-      await navigator.clipboard.writeText(text);
-      return true;
-    }
-    const el = document.createElement("textarea");
-    el.value = text;
-    el.style.position = "fixed";
-    el.style.opacity = "0";
-    document.body.appendChild(el);
-    el.select();
-    const ok = document.execCommand("copy");
-    el.remove();
-    return ok;
-  } catch {
-    return false;
-  }
-}
+          <a class="social-link" id="socialInstagram"
+            href="https://instagram.com/" target="_blank"
+            rel="noopener noreferrer">
+            <span>📸</span>Instagram
+          </a>
 
-async function copyPromotion() {
-  const ok = await copyText(makeMessage());
-  $("promotionStatus").textContent = ok
-    ? "✅ Promotion message copied."
-    : "Copy nahi hua. Dobara try karein.";
-  if (currentPage === "profile") {
-    setProfileStatus(ok ? "Promotion message copied." : "Copy nahi hua.");
-  }
-}
+          <a class="social-link" id="socialWhatsApp"
+            href="https://whatsapp.com/" target="_blank"
+            rel="noopener noreferrer">
+            <span>🟢</span>WhatsApp
+          </a>
 
-async function sharePromotion() {
-  const text = makeMessage();
-  if (navigator.share) {
-    try {
-      await navigator.share({title:"My Social Media Promotion",text});
-      $("promotionStatus").textContent = "Share menu khol diya gaya.";
-    } catch (e) {
-      if (e.name !== "AbortError") {
-        $("promotionStatus").textContent = "Share nahi ho saka.";
+          <a class="social-link" id="socialTelegram"
+            href="https://telegram.org/" target="_blank"
+            rel="noopener noreferrer">
+            <span>✈️</span>Telegram
+          </a>
+
+          <a class="social-link" id="socialYouTube"
+            href="https://youtube.com/" target="_blank"
+            rel="noopener noreferrer">
+            <span>▶️</span>YouTube
+          </a>
+
+          <a class="social-link" id="socialLinkedIn"
+            href="https://linkedin.com/" target="_blank"
+            rel="noopener noreferrer">
+            <span>💼</span>LinkedIn
+          </a>
+
+          <a class="social-link" id="socialWebsite"
+            href="https://tinyurl.com/GSdigitalacademy"
+            target="_blank" rel="noopener noreferrer">
+            <span>🌐</span>My Website
+          </a>
+
+          <a class="social-link" id="socialOther"
+            href="https://example.com/" target="_blank"
+            rel="noopener noreferrer">
+            <span>🔗</span>Other Link
+          </a>
+        </div>
+
+        <button class="btn gold" id="editSocialProfileBtn">
+          ✏️ Edit My Social Links
+        </button>
+      </div>
+    </section>
+
+    <p id="installHelp" class="muted" hidden>
+      Install karne ke liye Chrome ke ⋮ menu mein
+      “Install app” ya “Add to Home screen” chunein.
+    </p>
+  </main>
+
+  <footer>
+    <strong>GS DIGITAL ACADEMY</strong><br>
+    Learn • Connect • Promote<br>
+    <a href="https://tinyurl.com/GSdigitalacademy"
+      target="_blank" rel="noopener noreferrer"
+      style="color:#ffe28a">Official Website</a>
+  </footer>
+
+  <script>
+    "use strict";
+
+    const $ = id => document.getElementById(id);
+    const STORAGE_KEY = "gsda_menu_promotion_v1";
+    const ACADEMY_URL = "https://tinyurl.com/GSdigitalacademy";
+
+    let currentPage = "home";
+    let installPrompt = null;
+    let photoData = "";
+
+    const pageNames = [
+      "home", "academy", "profile", "promotion", "social"
+    ];
+
+    function showPage(name) {
+      if (!pageNames.includes(name)) name = "home";
+
+      currentPage = name;
+
+      pageNames.forEach(page => {
+        const section = $("page-" + page);
+        section.hidden = page !== name;
+      });
+
+      document.querySelectorAll(".menu-link").forEach(button => {
+        button.classList.toggle("active", button.dataset.page === name);
+      });
+
+      closeMenu();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+
+      if (name === "profile") loadProfileIntoForm();
+      if (name === "social") updateSocialLinks();
+      if (name === "promotion") {
+        $("promoCustom").value = getProfile().message || "";
       }
     }
-  } else {
-    const ok = await copyText(text);
-    $("promotionStatus").textContent = ok
-      ? "Message copied. Ab apne pasandida app mein paste karein."
-      : "Message copy nahi hua.";
-  }
-}
 
-function shareWhatsApp() {
-  window.open(
-    "https://wa.me/?text=" + encodeURIComponent(makeMessage()),
-    "_blank","noopener,noreferrer"
-  );
-}
-
-$("saveProfileBtn").addEventListener("click",saveProfile);
-$("loadProfileBtn").addEventListener("click",loadProfile);
-$("personPhoto").addEventListener("input",updatePhoto);
-$("copyProfileBtn").addEventListener("click",async () => {
-  const ok = await copyText(makeMessage());
-  setProfileStatus(ok ? "Promotion message copied." : "Copy nahi hua.");
-});
-$("shareProfileBtn").addEventListener("click",sharePromotion);
-$("whatsappProfileBtn").addEventListener("click",shareWhatsApp);
-$("promotionOpenProfile").addEventListener("click",() => showPage("profile"));
-$("socialOpenProfile").addEventListener("click",() => showPage("profile"));
-$("copyPromotionBtn").addEventListener("click",copyPromotion);
-$("sharePromotionBtn").addEventListener("click",sharePromotion);
-$("whatsappPromotionBtn").addEventListener("click",shareWhatsApp);
-
-$("clearProfileBtn").addEventListener("click",() => {
-  if (!confirm("Form ki sabhi fields clear karein?")) return;
-  fields.forEach(id => $(id).value = "");
-  updatePhoto();
-  setProfileStatus("Form clear ho gaya. Saved data delete nahi hua.");
-});
-
-// Browser PWA install prompt
-window.addEventListener("beforeinstallprompt",event => {
-  event.preventDefault();
-  installPrompt = event;
-});
-
-$("downloadBtn").addEventListener("click",async () => {
-  if (installPrompt) {
-    installPrompt.prompt();
-    try {
-      const result = await installPrompt.userChoice;
-      $("installHelp").textContent = result.outcome === "accepted"
-        ? "Install request accept hui."
-        : "Install cancel hua.";
-    } catch {
-      $("installHelp").textContent = "Chrome menu se install try karein.";
+    function openMenu() {
+      $("drawer").hidden = false;
+      $("drawerBackdrop").hidden = false;
+      $("menuBtn").setAttribute("aria-expanded", "true");
     }
-    installPrompt = null;
-  } else {
-    $("installHelp").textContent =
-      "Chrome ke ⋮ menu mein Install app ya Add to Home screen chunein.";
-    if (currentPage !== "home") showPage("home");
-    $("installHelp").scrollIntoView({behavior:"smooth",block:"center"});
-  }
-});
 
-window.addEventListener("appinstalled",() => {
-  $("downloadBtn").textContent = "✅ App Installed";
-});
+    function closeMenu() {
+      $("drawer").hidden = true;
+      $("drawerBackdrop").hidden = true;
+      $("menuBtn").setAttribute("aria-expanded", "false");
+    }
 
-document.addEventListener("keydown",event => {
-  if (event.key === "Escape") closeMenu();
-});
+    $("menuBtn").addEventListener("click", () => {
+      if ($("drawer").hidden) openMenu();
+      else closeMenu();
+    });
 
-if ("serviceWorker" in navigator && location.protocol === "https:") {
-  window.addEventListener("load",() => {
-    navigator.serviceWorker.register("./service-worker.js")
-      .catch(error => console.error("Service worker error:",error));
-  });
-}
+    $("closeMenuBtn").addEventListener("click", closeMenu);
+    $("drawerBackdrop").addEventListener("click", closeMenu);
 
-// Always start on the clean Home page.
-showPage("home");
-</script>
+    document.querySelectorAll(".menu-link").forEach(button => {
+      button.addEventListener("click", () => showPage(button.dataset.page));
+    });
 
+    $("homeProfileBtn").addEventListener("click", () => showPage("profile"));
+    $("homePromotionBtn").addEventListener("click", () => showPage("promotion"));
+    $("homeAcademyBtn").addEventListener("click", () => showPage("academy"));
+    $("profilePromotionBtn").addEventListener("click", () => showPage("promotion"));
+    $("editSocialProfileBtn").addEventListener("click", () => showPage("profile"));
+
+    function getProfile() {
+      try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+      } catch (error) {
+        return {};
+      }
+    }
+
+    function saveProfile(profile) {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(profile));
+        return true;
+      } catch (error) {
+        alert("Storage full ho sakta hai. Chhoti photo choose karein aur phir save karein.");
+        return false;
+      }
+    }
+
+    function formProfile() {
+      return {
+        name: $("personName").value.trim(),
+        photo: photoData,
+        website: $("personWebsite").value.trim(),
+        facebook: $("personFacebook").value.trim(),
+        instagram: $("personInstagram").value.trim(),
+        youtube: $("personYouTube").value.trim(),
+        whatsapp: $("personWhatsApp").value.trim().replace(/\D/g, ""),
+        telegram: $("personTelegram").value.trim(),
+        linkedin: $("personLinkedIn").value.trim(),
+        other: $("personOther").value.trim(),
+        about: $("personAbout").value.trim(),
+        message: $("personMessage").value.trim()
+      };
+    }
+
+    function loadProfileIntoForm() {
+      const p = getProfile();
+
+      $("personName").value = p.name || "";
+      $("personWebsite").value = p.website || "";
+      $("personFacebook").value = p.facebook || "";
+      $("personInstagram").value = p.instagram || "";
+      $("personYouTube").value = p.youtube || "";
+      $("personWhatsApp").value = p.whatsapp || "";
+      $("personTelegram").value = p.telegram || "";
+      $("personLinkedIn").value = p.linkedin || "";
+      $("personOther").value = p.other || "";
+      $("personAbout").value = p.about || "";
+      $("personMessage").value = p.message || "";
+
+      photoData = p.photo || "";
+      updateProfilePreview(p);
+    }
+
+    function updateProfilePreview(profile) {
+      $("previewName").textContent = profile.name || "Your Name";
+      $("previewAbout").textContent = profile.about || "Your digital profile";
+      $("previewPhoto").src = profile.photo || "./logo.png";
+    }
+
+    $("personName").addEventListener("input", () => {
+      $("previewName").textContent = $("personName").value || "Your Name";
+    });
+
+    $("personAbout").addEventListener("input", () => {
+      $("previewAbout").textContent = $("personAbout").value || "Your digital profile";
+    });
+
+    $("personPhoto").addEventListener("change", event => {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+
+      if (!file.type.startsWith("image/")) {
+        alert("Kripya image file select karein.");
+        event.target.value = "";
+        return;
+      }
+
+      if (file.size > 700 * 1024) {
+        alert("Photo 700 KB se chhoti rakhein. Photo ko compress karke dobara select karein.");
+        event.target.value = "";
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        photoData = String(reader.result || "");
+        $("previewPhoto").src = photoData;
+      };
+      reader.readAsDataURL(file);
+    });
+
+    $("profileForm").addEventListener("submit", event => {
+      event.preventDefault();
+      const profile = formProfile();
+
+      if (saveProfile(profile)) {
+        updateProfilePreview(profile);
+        $("profileStatus").textContent =
+          "✅ Profile is device ke browser mein save ho gayi.";
+        updateSocialLinks();
+      }
+    });
+
+    $("clearProfileBtn").addEventListener("click", () => {
+      if (!confirm("Kya aap apni saved profile delete karna chahte hain?")) return;
+
+      localStorage.removeItem(STORAGE_KEY);
+      photoData = "";
+      $("profileForm").reset();
+      loadProfileIntoForm();
+      updateSocialLinks();
+      $("profileStatus").textContent = "Saved profile delete kar di gayi.";
+    });
+
+    function validHttpUrl(value) {
+      if (!value) return "";
+      try {
+        const url = new URL(value);
+        return ["https:", "http:"].includes(url.protocol) ? url.href : "";
+      } catch (error) {
+        return "";
+      }
+    }
+
+    function setSocialLink(id, url, fallback) {
+      const link = $(id);
+      link.href = validHttpUrl(url) || fallback;
+    }
+
+    function updateSocialLinks() {
+      const p = getProfile();
+
+      setSocialLink("socialFacebook", p.facebook, "https://facebook.com/");
+      setSocialLink("socialInstagram", p.instagram, "https://instagram.com/");
+      setSocialLink("socialTelegram", p.telegram, "https://telegram.org/");
+      setSocialLink("socialYouTube", p.youtube, "https://youtube.com/");
+      setSocialLink("socialLinkedIn", p.linkedin, "https://linkedin.com/");
+      setSocialLink("socialWebsite", p.website, ACADEMY_URL);
+      setSocialLink("socialOther", p.other, ACADEMY_URL);
+
+      const phone = (p.whatsapp || "").replace(/\D/g, "");
+      $("socialWhatsApp").href = phone
+        ? "https://wa.me/" + phone
+        : "https://whatsapp.com/";
+    }
+
+    function buildPromotion() {
+      const p = getProfile();
+      const heading = $("promoHeading").value.trim() ||
+        "Welcome to My Digital Profile";
+      const custom = $("promoCustom").value.trim() || p.message || "";
+      const lines = [
+        "✨ " + heading + " ✨",
+        "",
+        p.name ? "👤 Name: " + p.name : "",
+        p.about ? "💼 About: " + p.about : "",
+        custom,
+        p.website ? "🌐 Website: " + p.website : "",
+        p.facebook ? "📘 Facebook: " + p.facebook : "",
+        p.instagram ? "📸 Instagram: " + p.instagram : "",
+        p.youtube ? "▶️ YouTube: " + p.youtube : "",
+        p.telegram ? "✈️ Telegram: " + p.telegram : "",
+        p.linkedin ? "💼 LinkedIn: " + p.linkedin : "",
+        p.whatsapp ? "🟢 WhatsApp: https://wa.me/" + p.whatsapp : "",
+        p.other ? "🔗 More: " + p.other : "",
+        "",
+        "Created with GS Digital Academy Promotion App"
+      ];
+
+      return lines.filter((line, index) =>
+        line !== "" || (index > 0 && lines[index - 1] !== "")
+      ).join("\n");
+    }
+
+    $("generatePromoBtn").addEventListener("click", () => {
+      $("promoOutput").value = buildPromotion();
+      $("promoStatus").textContent = "✅ Promotion message ready hai.";
+    });
+
+    async function copyText(value) {
+      if (!value) {
+        alert("Pehle promotion message generate karein.");
+        return false;
+      }
+
+      try {
+        await navigator.clipboard.writeText(value);
+        return true;
+      } catch (error) {
+        const area = document.createElement("textarea");
+        area.value = value;
+        area.style.position = "fixed";
+        area.style.opacity = "0";
+        document.body.appendChild(area);
+        area.select();
+
+        let success = false;
+        try {
+          success = document.execCommand("copy");
+        } catch (e) {
+          success = false;
+        }
+        area.remove();
+        return success;
+      }
+    }
+
+    $("copyPromoBtn").addEventListener("click", async () => {
+      if (!$("promoOutput").value) {
+        $("promoOutput").value = buildPromotion();
+      }
+
+      const success = await copyText($("promoOutput").value);
+      $("promoStatus").textContent = success
+        ? "✅ Promotion copy ho gaya."
+        : "Copy nahi hua. Message ko select karke copy karein.";
+    });
+
+    $("sharePromoBtn").addEventListener("click", async () => {
+      const message = $("promoOutput").value || buildPromotion();
+      $("promoOutput").value = message;
+
+      if (navigator.share) {
+        try {
+          await navigator.share({
+            title: $("promoHeading").value || "My Promotion",
+            text: message
+          });
+          $("promoStatus").textContent = "Share menu open ho gaya.";
+        } catch (error) {
+          if (error.name !== "AbortError") {
+            $("promoStatus").textContent = "Share nahi ho saka. Copy option use karein.";
+          }
+        }
+      } else {
+        const success = await copyText(message);
+        $("promoStatus").textContent = success
+          ? "Share feature available nahi hai. Message copy ho gaya; ab kisi app mein paste karein."
+          : "Message copy nahi ho saka.";
+      }
+    });
+
+    $("openWhatsAppBtn").addEventListener("click", () => {
+      const message = $("promoOutput").value || buildPromotion();
+      window.open(
+        "https://wa.me/?text=" + encodeURIComponent(message),
+        "_blank",
+        "noopener,noreferrer"
+      );
+    });
+
+    $("copyAcademyBtn").addEventListener("click", async () => {
+      const success = await copyText(ACADEMY_URL);
+      alert(success ? "Website link copy ho gaya." : "Link copy nahi ho saka.");
+    });
+
+    // PWA installation
+    window.addEventListener("beforeinstallprompt", event => {
+      event.preventDefault();
+      installPrompt = event;
+    });
+
+    $("downloadBtn").addEventListener("click", async () => {
+      if (installPrompt) {
+        installPrompt.prompt();
+        try {
+          await installPrompt.userChoice;
+        } catch (error) {
+          // User may close the prompt.
+        }
+        installPrompt = null;
+        return;
+      }
+
+      $("installHelp").hidden = false;
+      $("installHelp").scrollIntoView({ behavior: "smooth", block: "center" });
+
+      alert(
+        "App install karne ke liye Chrome ke ⋮ menu par tap karein, " +
+        "phir 'Install app' ya 'Add to Home screen' option dekhein."
+      );
+    });
+
+    window.addEventListener("appinstalled", () => {
+      $("downloadBtn").textContent = "✅ App Installed";
+    });
+
+    // Register the existing service worker.
+    if ("serviceWorker" in navigator && location.protocol !== "file:") {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./service-worker.js")
+          .catch(error => console.log("Service worker registration failed:", error));
+      });
+    }
+
+    // Initial setup
+    loadProfileIntoForm();
+    updateSocialLinks();
+    showPage("home");
+  </script>
 </body>
 </html>
