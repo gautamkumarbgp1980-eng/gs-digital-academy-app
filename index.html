@@ -9,7 +9,7 @@
 <title>GS Digital Academy | Promotion App</title>
 
 <link rel="manifest" href="./manifest.json">
-<link rel="icon" href="./logo.png" type="image/png">
+<link rel="icon" type="image/png" href="./logo.png">
 <link rel="apple-touch-icon" href="./logo.png">
 
 <style>
@@ -32,7 +32,7 @@ body {
 }
 header {
   text-align:center;
-  padding:28px 16px;
+  padding:25px 16px;
   border-bottom:3px solid var(--gold);
 }
 .logo {
@@ -44,16 +44,18 @@ header {
 h1,h2 {color:var(--gold)}
 h1 {font-size:25px;margin:8px 0}
 h2 {font-size:21px;margin:0 0 12px}
+h3 {color:var(--gold);margin:0 0 8px}
 p {overflow-wrap:anywhere}
 .muted,.status {color:var(--muted);font-size:14px}
+
 nav {
-  position:sticky;
-  top:0;
-  z-index:5;
   display:flex;
   gap:8px;
   padding:12px;
   overflow-x:auto;
+  position:sticky;
+  top:0;
+  z-index:10;
   background:#041f34;
   border-bottom:1px solid var(--border);
 }
@@ -61,9 +63,13 @@ nav a {
   flex-shrink:0;
   color:white;
   background:#07415c;
-  padding:9px 15px;
+  border:1px solid var(--border);
   border-radius:25px;
+  padding:9px 15px;
   text-decoration:none;
+}
+nav a:focus,nav a:hover {
+  border-color:var(--gold);
 }
 main {max-width:720px;margin:auto;padding:14px}
 .card {
@@ -72,7 +78,7 @@ main {max-width:720px;margin:auto;padding:14px}
   border-radius:20px;
   padding:20px;
   margin:16px 0;
-  scroll-margin-top:75px;
+  scroll-margin-top:80px;
 }
 label {display:block;margin:12px 0 5px}
 input,textarea {
@@ -86,7 +92,7 @@ input,textarea {
   color:white;
   font:inherit;
 }
-textarea {min-height:125px;resize:vertical}
+textarea {min-height:120px;resize:vertical}
 button,.button {
   display:inline-flex;
   align-items:center;
@@ -115,6 +121,13 @@ button,.button {
   gap:10px;
   margin-top:14px;
 }
+.service-card {
+  background:var(--bg);
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:16px;
+  margin-top:14px;
+}
 .photo {
   display:none;
   width:90px;
@@ -123,6 +136,7 @@ button,.button {
   object-fit:cover;
   border:2px solid var(--gold);
 }
+[hidden] {display:none !important}
 footer {
   text-align:center;
   padding:22px;
@@ -145,33 +159,37 @@ footer {
   <p>Learn • Connect • Promote</p>
   <p class="muted">Your Personal Social Media Promotion Platform</p>
 
-  <button id="installBtn" class="gold"
-          style="max-width:320px;width:100%" hidden>
-    📲 Install App
+  <button id="installBtn" class="gold full"
+          style="max-width:320px" hidden>
+    📲 Install GS Academy App
   </button>
-  <p id="installHelp" class="muted"></p>
+  <p id="installHelp" class="muted" aria-live="polite">
+    Mobile browser menu se app install kar sakte hain.
+  </p>
 </header>
 
 <nav aria-label="Main navigation">
   <a href="#home">🏠 Home</a>
   <a href="#academy">🌐 Academy</a>
-  <a href="#promotion">📢 My Promotion</a>
+  <a href="#profile">👤 Profile</a>
+  <a href="#promotion">📢 Promotion</a>
 </nav>
 
 <main>
 
-<!-- SECTION 1: OFFICIAL LANDING PAGE -->
+<!-- 1. OFFICIAL LANDING PAGE -->
 <section class="card" id="academy">
   <h2>🌐 GS Digital Academy</h2>
 
   <p>
-    Digital knowledge, online presence aur social media
-    promotion ke liye aapka digital platform.
+    Digital knowledge aur online promotion ke liye
+    aapka digital platform.
   </p>
 
   <p class="muted">
-    Apni digital identity banayein, apne social media links
-    share karein aur apne business ya services ka promotion karein.
+    Apni digital identity banayein, apne social media
+    links share karein aur apne business ya services
+    ka promotion karein.
   </p>
 
   <a class="button gold full"
@@ -181,77 +199,102 @@ footer {
   </a>
 </section>
 
-<!-- SECTION 2: PERSONAL PROMOTION TOOL -->
-<section class="card" id="promotion">
-  <h2>📢 My Social Media Promotion</h2>
-
+<!-- PROFILE MENU: FORM IS HIDDEN INITIALLY -->
+<section class="card" id="profile">
+  <h2>👤 My Profile</h2>
   <p class="muted">
-    Apni details bharein. Aapki profile isi device ke browser
-    mein save hogi. Share karne par aapke links message mein
-    shamil honge.
+    Apni personal details aur social media links manage karein.
+  </p>
+  <button class="gold full" id="openProfileBtn">
+    Open My Profile
+  </button>
+</section>
+
+<!-- PROFILE FORM: OPENS ONLY AFTER USER ACTION -->
+<section class="card" id="profileForm" hidden>
+  <h2>👤 My Social Media Profile</h2>
+  <p class="muted">
+    Apni details bharein. Data is browser mein locally save hoga.
   </p>
 
-  <img id="photoPreview" class="photo" alt="Profile photo">
+  <img id="photoPreview" class="photo" alt="Profile photo preview">
 
   <label for="name">Your Name / Business Name</label>
-  <input id="name" maxlength="100"
-         placeholder="Apna naam ya business name">
+  <input id="name" maxlength="100" placeholder="Apna naam likhein">
 
   <label for="photo">Profile Photo URL (Optional)</label>
-  <input id="photo" type="url"
-         placeholder="https://example.com/photo.jpg">
+  <input id="photo" type="url" placeholder="https://example.com/photo.jpg">
 
-  <label for="website">Your Website / Landing Page</label>
-  <input id="website" type="url"
-         placeholder="https://example.com">
+  <label for="website">Website / Landing Page</label>
+  <input id="website" type="url" placeholder="https://example.com">
 
   <label for="facebook">Facebook Profile / Page</label>
-  <input id="facebook" type="url"
-         placeholder="https://facebook.com/...">
+  <input id="facebook" type="url" placeholder="https://facebook.com/...">
 
   <label for="instagram">Instagram</label>
-  <input id="instagram" type="url"
-         placeholder="https://instagram.com/...">
+  <input id="instagram" type="url" placeholder="https://instagram.com/...">
 
   <label for="youtube">YouTube</label>
-  <input id="youtube" type="url"
-         placeholder="https://youtube.com/...">
+  <input id="youtube" type="url" placeholder="https://youtube.com/...">
 
   <label for="whatsapp">WhatsApp Number (Country Code)</label>
-  <input id="whatsapp" type="tel"
-         placeholder="919876543210">
+  <input id="whatsapp" type="tel" placeholder="919876543210">
 
   <label for="telegram">Telegram</label>
-  <input id="telegram" type="url"
-         placeholder="https://t.me/...">
+  <input id="telegram" type="url" placeholder="https://t.me/...">
 
   <label for="linkedin">LinkedIn</label>
-  <input id="linkedin" type="url"
-         placeholder="https://linkedin.com/in/...">
+  <input id="linkedin" type="url" placeholder="https://linkedin.com/in/...">
 
   <label for="other">Other Social Media / Promotion Link</label>
-  <input id="other" type="url"
-         placeholder="https://...">
+  <input id="other" type="url" placeholder="https://...">
 
-  <label for="about">Your Business / Plan / Service</label>
-  <textarea id="about"
-    placeholder="Aap kya promote karna chahte hain? Apni details likhein."></textarea>
+  <label for="about">Business / Plan / Service Description</label>
+  <textarea id="about" placeholder="Aap kya promote karna chahte hain?"></textarea>
 
-  <label for="promoMessage">Your Promotion Message</label>
-  <textarea id="promoMessage"
-    placeholder="Apna promotional message yahan likhein."></textarea>
+  <label for="promoMessage">Promotion Message</label>
+  <textarea id="promoMessage" placeholder="Apna promotional message likhein"></textarea>
 
   <div class="buttons">
     <button class="gold" id="saveBtn">💾 Save Profile</button>
     <button id="loadBtn">↻ Load Profile</button>
     <button id="copyBtn">📋 Copy Promotion</button>
-    <button class="gold" id="shareBtn">📲 Share Promotion</button>
-    <button id="whatsappBtn">🟢 Share on WhatsApp</button>
-    <button id="clearBtn">🗑️ Clear Form</button>
+    <button class="gold" id="shareBtn">📲 Share Profile</button>
+    <button id="whatsappBtn">🟢 WhatsApp Share</button>
+    <button id="closeProfileBtn">✖ Close Profile</button>
   </div>
 
-  <p id="status" class="status" role="status"
-     aria-live="polite"></p>
+  <p id="profileStatus" class="status" role="status" aria-live="polite"></p>
+</section>
+
+<!-- PROMOTION TOOLS -->
+<section class="card" id="promotion">
+  <h2>📢 Social Media Promotion</h2>
+  <p>
+    Apni saved profile ke links aur message ko
+    ek promotional message mein share karein.
+  </p>
+
+  <div class="service-card">
+    <h3>📲 Share Your Promotion</h3>
+    <p class="muted">
+      Profile mein details add karne ke baad apna
+      promotion message copy ya share karein.
+    </p>
+    <button class="gold full" id="openProfileFromPromotion">
+      Open My Profile
+    </button>
+    <button class="full" id="copyPromotionFromSection" style="margin-top:10px">
+      📋 Copy My Promotion
+    </button>
+    <button class="full" id="sharePromotionFromSection" style="margin-top:10px">
+      📲 Share Everywhere
+    </button>
+  </div>
+  <p class="muted">
+    Sharing se message share menu mein khulta hai.
+    Social media par final post aapko khud confirm karna hoga.
+  </p>
 </section>
 
 </main>
@@ -259,9 +302,7 @@ footer {
 <footer>
   <strong>GS DIGITAL ACADEMY</strong>
   <p>Learn • Connect • Promote</p>
-  <p class="muted">
-    Your identity. Your links. Your promotion.
-  </p>
+  <p class="muted">Your identity. Your links. Your promotion.</p>
   <a href="#home" style="color:#ffc928">↑ Back to Top</a>
 </footer>
 
@@ -269,24 +310,22 @@ footer {
 "use strict";
 
 const $ = id => document.getElementById(id);
-const STORAGE_KEY = "gsda_personal_promotion_v1";
+const STORAGE_KEY = "gsda_personal_promotion_v2";
 
 const fieldIds = [
-  "name", "photo", "website", "facebook", "instagram",
-  "youtube", "whatsapp", "telegram", "linkedin", "other",
-  "about", "promoMessage"
+  "name","photo","website","facebook","instagram","youtube",
+  "whatsapp","telegram","linkedin","other","about","promoMessage"
 ];
 
-function status(message) {
-  $("status").textContent = message;
+function showStatus(message) {
+  $("profileStatus").textContent = message;
 }
 
 function safeUrl(value) {
   if (!value) return "";
   try {
     const u = new URL(value.trim());
-    return ["https:", "http:"].includes(u.protocol)
-      ? u.href : "";
+    return ["https:","http:"].includes(u.protocol) ? u.href : "";
   } catch {
     return "";
   }
@@ -294,44 +333,43 @@ function safeUrl(value) {
 
 function getProfile() {
   const p = {};
+
   fieldIds.forEach(id => {
     p[id] = $(id).value.trim();
   });
 
-  ["photo","website","facebook","instagram",
-   "youtube","telegram","linkedin","other"].forEach(id => {
+  [
+    "photo","website","facebook","instagram",
+    "youtube","telegram","linkedin","other"
+  ].forEach(id => {
     p[id] = safeUrl(p[id]);
   });
 
-  p.whatsapp = p.whatsapp.replace(/\D/g, "");
+  p.whatsapp = p.whatsapp.replace(/\D/g,"");
   return p;
 }
 
 function saveProfile() {
   try {
-    localStorage.setItem(
-      STORAGE_KEY, JSON.stringify(getProfile())
-    );
-    status("✅ Profile is device ke browser mein save ho gayi.");
+    localStorage.setItem(STORAGE_KEY,JSON.stringify(getProfile()));
+    showStatus("✅ Profile is browser mein save ho gayi.");
   } catch {
-    status("Profile save nahi hui. Browser storage check karein.");
+    showStatus("Profile save nahi hui. Browser storage check karein.");
   }
 }
 
 function loadProfile() {
   try {
-    const p = JSON.parse(
-      localStorage.getItem(STORAGE_KEY) || "{}"
-    );
+    const p = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
 
     fieldIds.forEach(id => {
       $(id).value = p[id] || "";
     });
 
     updatePhoto();
-    status("Profile load ho gayi.");
+    showStatus("Profile load ho gayi.");
   } catch {
-    status("Koi saved profile nahi mili.");
+    showStatus("Profile load nahi hui.");
   }
 }
 
@@ -342,41 +380,38 @@ function updatePhoto() {
   if (url) {
     img.src = url;
     img.style.display = "block";
+    img.onerror = () => {
+      img.style.display = "none";
+      showStatus("Photo URL load nahi hua. Link check karein.");
+    };
   } else {
     img.removeAttribute("src");
     img.style.display = "none";
   }
 }
 
-$("photo").addEventListener("input", updatePhoto);
-
 function buildPromotion() {
   const p = getProfile();
   const lines = [
-    "🚀 MY DIGITAL PROMOTION",
+    "🚀 MY SOCIAL MEDIA PROMOTION",
     "",
-    "👤 Name / Business: " + (p.name || "My Profile"),
-    "",
-    p.about ? "✨ About:\n" + p.about : "",
+    "👤 Name: " + (p.name || "My Profile"),
+    p.about ? "\n✨ About:\n" + p.about : "",
     p.promoMessage ? "\n📢 Message:\n" + p.promoMessage : "",
-    "",
-    "🔗 MY LINKS",
+    "\n🔗 MY SOCIAL LINKS",
     p.website ? "🌐 Website: " + p.website : "",
     p.facebook ? "🔵 Facebook: " + p.facebook : "",
     p.instagram ? "📸 Instagram: " + p.instagram : "",
     p.youtube ? "▶️ YouTube: " + p.youtube : "",
     p.telegram ? "✈️ Telegram: " + p.telegram : "",
     p.linkedin ? "💼 LinkedIn: " + p.linkedin : "",
-    p.other ? "🔗 Other Link: " + p.other : "",
+    p.other ? "🔗 Other: " + p.other : "",
     p.whatsapp ? "🟢 WhatsApp: https://wa.me/" + p.whatsapp : "",
-    "",
-    "Powered by GS DIGITAL ACADEMY",
+    "\nPowered by GS DIGITAL ACADEMY",
     "https://tinyurl.com/GSdigitalacademy"
   ];
 
-  return lines.filter((line, i) =>
-    line !== "" || (i > 0 && lines[i - 1] !== "")
-  ).join("\n").trim();
+  return lines.filter(Boolean).join("\n").trim();
 }
 
 async function copyText(text) {
@@ -400,68 +435,94 @@ async function copyText(text) {
   }
 }
 
-$("saveBtn").addEventListener("click", saveProfile);
-$("loadBtn").addEventListener("click", loadProfile);
-
-$("copyBtn").addEventListener("click", async () => {
+async function copyPromotion() {
   const ok = await copyText(buildPromotion());
-  status(ok
-    ? "✅ Promotion message copied. Ab paste karein."
-    : "Copy nahi hua. Dobara koshish karein.");
-});
+  showStatus(ok
+    ? "✅ Promotion message copied."
+    : "Copy nahi hua. Dobara try karein.");
+}
 
-$("shareBtn").addEventListener("click", async () => {
+async function sharePromotion() {
   const text = buildPromotion();
 
   if (navigator.share) {
     try {
       await navigator.share({
-        title: "My Social Media Promotion",
-        text: text
+        title:"My Social Media Promotion",
+        text
       });
-      status("Share menu khol diya gaya.");
+      showStatus("Share menu khol diya gaya.");
     } catch (e) {
       if (e.name !== "AbortError") {
-        status("Share nahi hua. Copy Promotion try karein.");
+        showStatus("Share nahi ho saka. Copy Promotion try karein.");
       }
     }
   } else {
     const ok = await copyText(text);
-    status(ok
-      ? "Share menu available nahi hai. Message copied."
+    showStatus(ok
+      ? "Share menu nahi mila. Message copied."
       : "Message copy nahi hua.");
   }
-});
+}
 
-$("whatsappBtn").addEventListener("click", () => {
+function shareWhatsApp() {
   const url = "https://wa.me/?text=" +
     encodeURIComponent(buildPromotion());
 
-  window.open(url, "_blank", "noopener,noreferrer");
-});
+  window.open(url,"_blank","noopener,noreferrer");
+}
 
-$("clearBtn").addEventListener("click", () => {
-  if (!confirm("Form ki sabhi fields clear karein?")) return;
+function openProfile() {
+  $("profileForm").hidden = false;
+  loadProfile();
 
-  fieldIds.forEach(id => $(id).value = "");
-  updatePhoto();
-  status("Form clear ho gaya. Saved profile delete nahi hui.");
-});
+  $("profileForm").scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
+}
+
+function closeProfile() {
+  $("profileForm").hidden = true;
+  $("profile").scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
+}
+
+$("openProfileBtn").addEventListener("click",openProfile);
+$("openProfileFromPromotion").addEventListener("click",openProfile);
+$("closeProfileBtn").addEventListener("click",closeProfile);
+
+document.querySelector('nav a[href="#profile"]')
+  .addEventListener("click",() => {
+    $("profileForm").hidden = false;
+    loadProfile();
+  });
+
+$("saveBtn").addEventListener("click",saveProfile);
+$("loadBtn").addEventListener("click",loadProfile);
+$("copyBtn").addEventListener("click",copyPromotion);
+$("shareBtn").addEventListener("click",sharePromotion);
+$("whatsappBtn").addEventListener("click",shareWhatsApp);
+$("copyPromotionFromSection").addEventListener("click",copyPromotion);
+$("sharePromotionFromSection").addEventListener("click",sharePromotion);
+$("photo").addEventListener("input",updatePhoto);
 
 // PWA installation
 let installPrompt = null;
 
-window.addEventListener("beforeinstallprompt", event => {
+window.addEventListener("beforeinstallprompt",event => {
   event.preventDefault();
   installPrompt = event;
   $("installBtn").hidden = false;
-  $("installHelp").textContent = "Install App button dabayein.";
+  $("installHelp").textContent = "Button dabakar app install karein.";
 });
 
-$("installBtn").addEventListener("click", async () => {
+$("installBtn").addEventListener("click",async () => {
   if (!installPrompt) {
     $("installHelp").textContent =
-      "Chrome menu ⋮ se Install app ya Add to Home screen chunein.";
+      "Chrome menu ⋮ mein Install app ya Add to Home screen chunein.";
     return;
   }
 
@@ -471,8 +532,8 @@ $("installBtn").addEventListener("click", async () => {
     const result = await installPrompt.userChoice;
     $("installHelp").textContent =
       result.outcome === "accepted"
-      ? "Install request accept ho gayi."
-      : "Install cancel ho gaya.";
+      ? "Install request accept hui."
+      : "Install cancel hua.";
   } catch {
     $("installHelp").textContent =
       "Chrome menu se Install app try karein.";
@@ -482,20 +543,17 @@ $("installBtn").addEventListener("click", async () => {
   $("installBtn").hidden = true;
 });
 
-window.addEventListener("appinstalled", () => {
-  $("installHelp").textContent = "GS Digital Academy installed!";
+window.addEventListener("appinstalled",() => {
+  $("installHelp").textContent = "GS Academy app install ho gaya!";
   $("installBtn").hidden = true;
 });
-
-// Restore profile on this device
-loadProfile();
 
 // Register existing service worker
 if ("serviceWorker" in navigator &&
     location.protocol === "https:") {
-  window.addEventListener("load", () => {
+  window.addEventListener("load",() => {
     navigator.serviceWorker.register("./service-worker.js")
-      .catch(err => console.error("Service worker error:", err));
+      .catch(err => console.error("Service worker error:",err));
   });
 }
 </script>
