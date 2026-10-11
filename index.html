@@ -3,219 +3,267 @@
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#06172b">
-<meta name="description" content="GS Digital Academy Personal Social Media Promotion App">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#101638">
+<meta name="description" content="GS Digital Academy — Create, Connect and Promote.">
 <title>GS Digital Academy</title>
+
 <link rel="manifest" href="./manifest.json">
 <link rel="icon" href="./logo.png" type="image/png">
 
 <style>
 :root{
-  --bg:#06172b;--panel:#0c2740;--panel2:#102f4a;
-  --gold:#ffcf45;--gold2:#fff0b0;--text:#f5f8fc;
-  --muted:#b5c9da;--border:#294861;--green:#25b879;
+  --bg:#080d22;
+  --blue:#123b78;
+  --purple:#47246f;
+  --gold:#ffcf52;
+  --gold-light:#fff0b2;
+  --text:#f6f5ff;
+  --muted:#bfc9e0;
+  --border:#394267;
+  --panel:#111c3a;
+  --panel2:#19264a;
 }
 *{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
-  margin:0;background:var(--bg);color:var(--text);
-  font-family:Arial,Helvetica,sans-serif;min-height:100vh;
+  margin:0;
+  color:var(--text);
+  background:
+    radial-gradient(ellipse at 5% 0%,#183b76 0%,transparent 36%),
+    radial-gradient(ellipse at 100% 25%,#432064 0%,transparent 34%),
+    radial-gradient(ellipse at 5% 70%,#102f63 0%,transparent 30%),
+    linear-gradient(150deg,#080d22 0%,#10132d 48%,#160e2b 100%);
+  background-attachment:fixed;
+  font-family:Arial,Helvetica,sans-serif;
+  min-height:100vh;
+  padding-bottom:env(safe-area-inset-bottom);
 }
 button,input,textarea{font:inherit}
 button,a{-webkit-tap-highlight-color:transparent}
 button{cursor:pointer}
 [hidden]{display:none!important}
-a{color:var(--gold2)}
+a{color:inherit}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{
+  outline:2px solid var(--gold);outline-offset:3px
+}
+
+/* Top navigation */
 .topbar{
   position:sticky;top:0;z-index:1000;
   display:flex;align-items:center;gap:10px;
-  padding:11px 12px;
-  background:#06172bf5;border-bottom:1px solid var(--border);
-  backdrop-filter:blur(12px);
+  padding:10px 12px;
+  padding-top:max(10px,env(safe-area-inset-top));
+  background:rgba(8,13,34,.94);
+  border-bottom:1px solid #3b3c63;
+  backdrop-filter:blur(16px);
 }
-.menu-btn,.download-btn{
-  border:1px solid #94752a;border-radius:11px;
-  padding:11px 12px;font-weight:bold;
+.menu-btn{
+  width:43px;height:42px;flex-shrink:0;
+  color:var(--gold);font-size:21px;
+  background:linear-gradient(145deg,#172d57,#171536);
+  border:1px solid #8d7539;border-radius:12px;
 }
-.menu-btn{background:#102d45;color:var(--gold);font-size:20px}
+.brand{
+  flex:1;min-width:0;
+  font-size:12px;font-weight:800;
+  letter-spacing:.4px;color:var(--gold-light);
+}
 .download-btn{
-  background:linear-gradient(135deg,#fff0b0,#ffca36);
-  color:#172537;font-size:12px;white-space:nowrap;
+  padding:11px 12px;border:0;border-radius:12px;
+  background:linear-gradient(115deg,#fff0b2,#ffcb36,#f5ac16);
+  color:#1c2036;font-size:12px;font-weight:800;
+  white-space:nowrap;box-shadow:0 4px 16px #ffcf5225;
 }
-.brand{flex:1;color:var(--gold2);font-size:12px;font-weight:800}
-.backdrop{position:fixed;inset:0;z-index:1090;background:#000a}
+
+/* Drawer */
+.backdrop{position:fixed;inset:0;z-index:1090;background:#000b}
 .drawer{
   position:fixed;top:0;bottom:0;left:0;z-index:1100;
-  width:min(310px,87vw);padding:23px 16px;
-  overflow-y:auto;background:#06172b;border-right:1px solid #a18132;
+  width:min(310px,87vw);overflow-y:auto;padding:22px 16px;
+  background:linear-gradient(160deg,#111d42,#17102f);
+  border-right:1px solid #917538;
+  box-shadow:15px 0 35px #0005;
 }
-.drawer h2{color:var(--gold2);font-size:21px}
+.drawer h2{color:var(--gold-light);font-size:21px;margin:8px 0 24px}
 .menu-link{
-  width:100%;display:block;text-align:left;padding:15px 13px;
-  margin:9px 0;border:1px solid var(--border);border-radius:12px;
-  background:#0d2942;color:white;
+  width:100%;display:block;text-align:left;
+  padding:14px;margin:8px 0;
+  border:1px solid var(--border);border-radius:12px;
+  background:#141e3c;color:white;
 }
-.menu-link.active{border-color:var(--gold);color:var(--gold2)}
-.container{width:min(100% - 20px,680px);margin:15px auto 28px}
-.page{animation:fade .2s ease}
-@keyframes fade{from{opacity:.5;transform:translateY(4px)}to{opacity:1;transform:none}}
-.card{
-  padding:16px;margin-bottom:14px;border-radius:18px;
-  border:1px solid var(--border);
-  background:linear-gradient(145deg,#0d2942,#081d30);
-  box-shadow:0 7px 22px #0002;
+.menu-link.active{border-color:var(--gold);color:var(--gold-light);background:#242348}
+
+/* Layout */
+.container{width:min(100% - 20px,680px);margin:14px auto 28px}
+.page{animation:fadeIn .2s ease}
+@keyframes fadeIn{from{opacity:.55;transform:translateY(4px)}to{opacity:1;transform:none}}
+.card,.composer{
+  border:1px solid #343d63;
+  border-radius:17px;
+  background:linear-gradient(145deg,rgba(23,34,69,.96),rgba(14,18,44,.96));
+  box-shadow:0 7px 24px #0002;
+  padding:15px;margin-bottom:13px;
 }
 .btn{
   display:block;width:100%;padding:13px;margin-top:10px;
-  border:1px solid #355570;border-radius:12px;
-  background:#123751;color:white;font-weight:bold;text-align:center;
-  text-decoration:none;
+  border:1px solid #485174;border-radius:12px;
+  background:linear-gradient(120deg,#1b315a,#29204e);
+  color:white;font-weight:750;text-align:center;text-decoration:none;
 }
-.btn.gold{background:linear-gradient(135deg,#fff0b0,#ffca36);color:#172537;border:0}
-.btn.outline{background:transparent;color:var(--gold2);border-color:#8d712d}
-.title{color:var(--gold2);font-size:22px;margin:0 0 8px}
-.muted{color:var(--muted);font-size:13px;line-height:1.65}
-label{display:block;color:var(--gold2);font-size:13px;margin:14px 0 7px}
+.btn.gold{
+  background:linear-gradient(110deg,#fff0b2,#ffce49,#f3ae20);
+  color:#1b2036;border:0;
+}
+.btn.outline{background:transparent;color:var(--gold-light);border-color:#8b7540}
+.title{margin:0 0 8px;font-size:22px;color:var(--gold-light)}
+.muted{font-size:13px;line-height:1.65;color:var(--muted)}
+.small{font-size:11px;color:var(--muted);line-height:1.5}
+label{display:block;margin:14px 0 7px;color:var(--gold-light);font-size:13px}
 input,textarea{
-  width:100%;padding:12px;border-radius:10px;
-  border:1px solid #355570;background:#04182a;color:white;
-  outline:none;
+  width:100%;padding:12px;
+  color:white;background:#0a122b;
+  border:1px solid #3a456c;border-radius:10px;outline:none;
 }
 input:focus,textarea:focus{border-color:var(--gold)}
 textarea{min-height:100px;resize:vertical;line-height:1.6}
 input[type=file]{font-size:12px}
-.status{font-size:12px;color:#a7f3ca;line-height:1.6}
-.small{font-size:11px;color:var(--muted)}
-/* Social-style home */
-.social-home{display:grid;gap:14px}
+.status{color:#a9f0c8;font-size:12px;line-height:1.6;overflow-wrap:anywhere}
+.heading-row{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:12px}
+.heading-row strong{font-size:15px;color:var(--gold-light)}
+.heading-row small{font-size:10px;color:var(--muted)}
+
+/* Premium social home */
+.social-home{display:grid;gap:13px}
 .hero{
-  position:relative;overflow:hidden;padding:22px 16px;
-  border:1px solid #95752c;border-radius:22px;
-  background:radial-gradient(ellipse at 100% 0,#1d4d70,transparent 65%),
-  linear-gradient(150deg,#0d3452,#031326);
-  box-shadow:0 12px 30px #0004;
+  padding:18px 15px;border:1px solid #8c7540;border-radius:21px;
+  background:
+    radial-gradient(ellipse at 100% 0%,#472a72 0%,transparent 54%),
+    radial-gradient(ellipse at 0% 100%,#153f7a 0%,transparent 55%),
+    linear-gradient(140deg,#112b55,#151333 85%);
+  box-shadow:0 12px 32px #0003;
 }
 .hero-row{display:flex;align-items:center;gap:12px}
 .logo{
-  width:65px;height:65px;object-fit:contain;flex-shrink:0;
-  border-radius:50%;border:2px solid var(--gold);padding:3px;
-  background:#06172b;
+  width:60px;height:60px;flex-shrink:0;object-fit:contain;
+  border-radius:50%;border:2px solid var(--gold);
+  padding:3px;background:#09132c;
 }
-.hero h1{font-size:18px;color:var(--gold2);margin:0 0 5px}
-.hero p{margin:4px 0;color:#c6d9e8;font-size:12px;line-height:1.5}
+.hero h1{margin:0 0 5px;color:var(--gold-light);font-size:17px}
+.hero p{margin:4px 0;color:#d1d9ec;font-size:12px;line-height:1.5}
 .hero-headline{
-  margin:22px 0 8px;font-size:31px;line-height:1.15;
-  color:var(--gold);letter-spacing:.3px;
+  margin:19px 0 7px;font-size:clamp(25px,6.5vw,35px);
+  line-height:1.12;letter-spacing:.2px;font-weight:850;
+  color:var(--gold);
 }
+.hero-description{max-width:470px}
 .search-look{
-  padding:12px 14px;margin-top:17px;border-radius:25px;
-  background:#06172b;border:1px solid #34546c;
-  color:#a9bfd0;font-size:13px;
+  margin-top:14px;padding:11px 13px;border-radius:25px;
+  background:#0a132d;border:1px solid #3b4567;
+  color:#b9c6df;font-size:12px;
 }
-.heading-row{
-  display:flex;align-items:center;justify-content:space-between;
-  gap:8px;margin-bottom:12px;
-}
-.heading-row strong{color:var(--gold2);font-size:16px}
-.heading-row small{color:var(--muted);font-size:11px}
-.stories{display:flex;gap:14px;overflow-x:auto;padding:4px 0 9px}
+.stories{display:flex;gap:14px;overflow-x:auto;padding:3px 0 8px}
 .story{
-  min-width:65px;max-width:75px;text-align:center;
-  font-size:11px;color:#dce8f1;text-decoration:none;
-  background:transparent;border:0;padding:0;
+  min-width:61px;max-width:72px;padding:0;
+  background:none;border:0;color:#e2e6f4;
+  text-decoration:none;text-align:center;font-size:10px;
 }
 .story-ring{
-  width:59px;height:59px;margin:0 auto 7px;border-radius:50%;
+  width:57px;height:57px;margin:0 auto 6px;
   display:flex;align-items:center;justify-content:center;
-  font-size:24px;border:2px solid var(--gold);
-  background:linear-gradient(145deg,#17466a,#071a2c);
+  border:2px solid var(--gold);border-radius:50%;
+  background:linear-gradient(145deg,#193f7b,#482568);
+  font-size:23px;overflow:hidden;
 }
 .story-ring img{width:100%;height:100%;object-fit:cover;border-radius:50%}
-.user-row{display:flex;align-items:center;gap:11px}
 .avatar{
-  width:45px;height:45px;border-radius:50%;object-fit:cover;
-  border:2px solid var(--gold);background:#102d45;flex-shrink:0;
+  width:43px;height:43px;flex-shrink:0;object-fit:cover;
+  border-radius:50%;border:2px solid var(--gold);background:#101a37;
 }
-.user-row strong{display:block;font-size:14px;color:var(--gold2)}
-.user-row small{display:block;color:var(--muted);font-size:11px;margin-top:4px}
-.composer{
-  padding:14px;border:1px solid var(--border);border-radius:18px;
-  background:#0b263d;
-}
+.user-row{display:flex;align-items:center;gap:10px}
+.user-row strong{display:block;color:var(--gold-light);font-size:13px;overflow-wrap:anywhere}
+.user-row small{display:block;color:var(--muted);font-size:10px;margin-top:4px}
+.composer{margin-bottom:0;padding:14px}
 .composer-top{display:flex;align-items:center;gap:10px;margin-bottom:12px}
-.composer-top strong{font-size:13px;color:var(--gold2)}
+.composer-top strong{font-size:13px;color:var(--gold-light)}
+.composer textarea{min-height:82px}
 .quick-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
 .quick-link{
-  padding:12px 4px;text-align:center;text-decoration:none;
-  border:1px solid var(--border);border-radius:12px;
-  background:#0b2942;color:#f8e7ae;font-size:11px;
+  display:block;padding:12px 4px;text-align:center;
+  border:1px solid #3a4164;border-radius:12px;
+  background:linear-gradient(145deg,#18294e,#21183f);
+  color:#f5e9bd;text-decoration:none;font-size:10px;
   overflow-wrap:anywhere;
 }
-.quick-link span{display:block;font-size:23px;margin-bottom:7px}
-.post-text{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.7;font-size:14px;color:#e2edf5}
-.post-actions{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:14px;padding-top:12px;border-top:1px solid var(--border)}
-.post-actions button{border:1px solid var(--border);border-radius:9px;background:#102d45;color:var(--gold2);padding:10px 3px;font-size:11px}
-.feature-row{display:flex;gap:12px;align-items:center;margin-top:12px;padding:13px;background:#08233a;border:1px solid #294861;border-radius:13px}
-.feature-row span{font-size:23px}
-.feature-row strong{display:block;color:var(--gold2);font-size:13px}
-.feature-row small{display:block;color:var(--muted);font-size:11px;line-height:1.5;margin-top:4px}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:9px}
-.profile-preview{display:flex;align-items:center;gap:13px;padding:13px;background:#061a2b;border:1px solid var(--border);border-radius:13px;margin:13px 0}
-.profile-preview img{width:70px;height:70px;object-fit:cover;border-radius:50%;border:2px solid var(--gold)}
-.academy{
-  padding:25px 17px;text-align:center;border-radius:20px;
-  border:1px solid #94752a;
-  background:linear-gradient(145deg,#103653,#06172b);
+.quick-link span{display:block;font-size:22px;margin-bottom:6px}
+.post-text{white-space:pre-wrap;overflow-wrap:anywhere;color:#e7eaf6;font-size:13px;line-height:1.7}
+.post-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-top:12px;padding-top:11px;border-top:1px solid #353e60}
+.post-actions button{
+  padding:10px 3px;background:#1a2548;color:var(--gold-light);
+  border:1px solid #394568;border-radius:9px;font-size:11px;
 }
-footer{text-align:center;padding:20px 12px 28px;color:#91aabd;font-size:11px;line-height:1.8}
+.feature-row{display:flex;align-items:center;gap:11px;padding:12px;margin-top:9px;border:1px solid #343e60;border-radius:12px;background:#141e3b}
+.feature-row span{font-size:22px}
+.feature-row strong{display:block;color:var(--gold-light);font-size:12px}
+.feature-row small{display:block;color:var(--muted);font-size:11px;line-height:1.5;margin-top:3px}
+.profile-preview{display:flex;align-items:center;gap:12px;padding:12px;border:1px solid #3a456c;border-radius:12px;background:#0a122b;margin:13px 0}
+.profile-preview img{width:66px;height:66px;object-fit:cover;border:2px solid var(--gold);border-radius:50%}
+.academy{
+  padding:23px 17px;text-align:center;border-radius:20px;
+  border:1px solid #8c7540;
+  background:radial-gradient(ellipse at 100% 0%,#48296e,transparent 60%),linear-gradient(145deg,#16396a,#14132e);
+}
+footer{text-align:center;padding:18px 12px 26px;color:#9ca9c9;font-size:11px;line-height:1.8}
 @media(min-width:520px){
- .hero{padding:25px}
- .hero-headline{font-size:38px}
+  .hero{padding:23px}
+  .hero-headline{font-size:37px}
 }
 </style>
 </head>
 
 <body>
 <nav class="topbar">
-  <button id="menuBtn" class="menu-btn" aria-label="Open menu" aria-expanded="false">☰</button>
+  <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">☰</button>
   <div class="brand">GS DIGITAL ACADEMY</div>
-  <button id="downloadBtn" class="download-btn">📲 Download App</button>
+  <button class="download-btn" id="downloadBtn">📲 Download App</button>
 </nav>
 
-<div id="backdrop" class="backdrop" hidden></div>
-<aside id="drawer" class="drawer" hidden>
-  <h2>☰ Main Menu</h2>
+<div class="backdrop" id="backdrop" hidden></div>
+<aside class="drawer" id="drawer" hidden>
+  <h2>✦ Main Menu</h2>
   <button class="menu-link" data-page="home">🏠 Home Feed</button>
   <button class="menu-link" data-page="academy">🌐 Academy Landing Page</button>
   <button class="menu-link" data-page="profile">👤 My Profile</button>
   <button class="menu-link" data-page="promotion">📢 Promotion Studio</button>
   <button class="menu-link" data-page="social">🔗 Social Media</button>
-  <button class="btn gold" id="closeMenu">✖ Close Menu</button>
+  <button class="btn gold" id="closeMenu">✕ Close Menu</button>
 </aside>
 
 <main class="container">
 
 <!-- HOME FEED -->
 <section class="page social-home" id="page-home">
+
   <div class="hero">
     <div class="hero-row">
-      <img class="logo" src="./logo.png" alt="GS Digital Academy logo">
+      <img class="logo" src="./logo.png" alt="GS Digital Academy Logo">
       <div>
         <h1>GS DIGITAL ACADEMY</h1>
         <p>Your Personal Social Media Platform</p>
-        <p>✨ Create • Connect • Promote</p>
+        <p>✨ Create · Connect · Promote</p>
       </div>
     </div>
-    <div class="hero-headline">CREATE.<br>CONNECT.<br>PROMOTE.</div>
-    <p>Apni digital identity banayein aur apne business ya services ka promotion karein.</p>
-    <div class="search-look">🔎 Your digital world, all in one place</div>
+    <div class="hero-headline">YOUR DIGITAL<br>WORLD</div>
+    <p class="hero-description">Apni digital identity banayein, ideas share karein aur apne business ya services ko promote karein.</p>
+    <div class="search-look">🔎 Create. Connect. Promote.</div>
   </div>
 
   <div class="card">
     <div class="heading-row"><strong>✨ Quick Connect</strong><small>Social shortcuts</small></div>
     <div class="stories">
       <button class="story" id="storyProfile">
-        <div class="story-ring"><img id="storyAvatar" src="./logo.png" alt="Profile"></div>My Profile
+        <div class="story-ring"><img id="storyAvatar" src="./logo.png" alt="My profile"></div>
+        My Profile
       </button>
       <a class="story" href="https://facebook.com/" target="_blank" rel="noopener noreferrer"><div class="story-ring">📘</div>Facebook</a>
       <a class="story" href="https://instagram.com/" target="_blank" rel="noopener noreferrer"><div class="story-ring">📸</div>Instagram</a>
@@ -227,19 +275,19 @@ footer{text-align:center;padding:20px 12px 28px;color:#91aabd;font-size:11px;lin
 
   <div class="composer">
     <div class="composer-top">
-      <img class="avatar" id="composerAvatar" src="./logo.png" alt="Your profile">
+      <img class="avatar" id="composerAvatar" src="./logo.png" alt="Profile">
       <div>
         <strong id="composerName">What's on your mind?</strong>
         <div class="small">Create your promotional post</div>
       </div>
     </div>
-    <textarea id="homePostInput" maxlength="2000" placeholder="Apne business, service, product ya idea ke baare mein likhein..."></textarea>
+    <textarea id="homePostInput" maxlength="2000" placeholder="Apne business, service ya idea ke baare mein likhein..."></textarea>
     <button class="btn gold" id="createPostBtn">✨ Create My Post</button>
     <button class="btn" id="sharePostBtn">📲 Share My Post</button>
   </div>
 
   <div class="card">
-    <div class="heading-row"><strong>👤 My Digital Identity</strong><small id="profileStatusHome">Set up profile</small></div>
+    <div class="heading-row"><strong>👤 My Digital Identity</strong><small id="profileStatusHome">Profile setup</small></div>
     <div class="user-row">
       <img class="avatar" id="homeProfilePhoto" src="./logo.png" alt="Profile photo">
       <div><strong id="homeProfileName">Create Your Profile</strong><small id="homeProfileAbout">Add your name and details</small></div>
@@ -262,11 +310,11 @@ footer{text-align:center;padding:20px 12px 28px;color:#91aabd;font-size:11px;lin
 
   <div class="card">
     <div class="heading-row"><strong>📢 Promotion Feed</strong><small>My latest post</small></div>
-    <div class="user-row" style="margin-bottom:14px">
+    <div class="user-row" style="margin-bottom:13px">
       <img class="avatar" id="feedAvatar" src="./logo.png" alt="Post author">
       <div><strong id="feedName">GS Digital Academy Member</strong><small>Personal promotion</small></div>
     </div>
-    <div class="post-text" id="feedText">Welcome! Create your profile and write your first promotional post.</div>
+    <div class="post-text" id="feedText">Welcome! Apni profile banayein aur pehli promotional post likhein.</div>
     <div class="post-actions">
       <button id="editPostBtn">✏️ Edit</button>
       <button id="copyPostBtn">📋 Copy</button>
@@ -283,11 +331,11 @@ footer{text-align:center;padding:20px 12px 28px;color:#91aabd;font-size:11px;lin
   </div>
 
   <div class="card" style="text-align:center">
-    <strong style="color:var(--gold2)">GS DIGITAL ACADEMY</strong>
-    <p class="muted">Learn • Connect • Promote</p>
+    <strong style="color:var(--gold-light)">GS DIGITAL ACADEMY</strong>
+    <p class="muted">Learn · Connect · Promote</p>
     <a class="btn gold" href="https://tinyurl.com/GSdigitalacademy" target="_blank" rel="noopener noreferrer">🌐 Visit Official Academy</a>
   </div>
-  <p class="small" style="text-align:center;letter-spacing:2px">LEARN • CONNECT • GROW</p>
+  <p class="small" style="text-align:center;letter-spacing:2px">LEARN · CONNECT · GROW</p>
 </section>
 
 <!-- ACADEMY -->
@@ -305,18 +353,19 @@ footer{text-align:center;padding:20px 12px 28px;color:#91aabd;font-size:11px;lin
 <section class="page" id="page-profile" hidden>
   <div class="card">
     <h2 class="title">👤 My Digital Profile</h2>
-    <p class="muted">Apni details bharein. Ye profile abhi isi device/browser mein save hogi.</p>
+    <p class="muted">Details bharein. Profile isi browser mein save hogi.</p>
     <div class="profile-preview">
       <img id="previewPhoto" src="./logo.png" alt="Profile preview">
       <div><strong id="previewName">Your Name</strong><p class="muted" id="previewAbout">Your digital profile</p></div>
     </div>
+
     <form id="profileForm">
       <label for="personName">Your Name *</label>
-      <input id="personName" maxlength="80" required placeholder="Apna naam likhein">
+      <input id="personName" required maxlength="80" placeholder="Apna naam likhein">
 
       <label for="personPhoto">Profile Photo</label>
       <input id="personPhoto" type="file" accept="image/*">
-      <p class="small">700 KB se chhoti photo select karein.</p>
+      <p class="small">Photo 700 KB se chhoti honi chahiye.</p>
 
       <label for="personWebsite">Website / Business Link</label>
       <input id="personWebsite" type="url" placeholder="https://example.com">
@@ -360,14 +409,19 @@ footer{text-align:center;padding:20px 12px 28px;color:#91aabd;font-size:11px;lin
 <section class="page" id="page-promotion" hidden>
   <div class="card">
     <h2 class="title">📢 Promotion Studio</h2>
-    <p class="muted">Apna message banayein, phir copy ya share karein.</p>
+    <p class="muted">Apna message banayein, copy karein ya share karein.</p>
+
     <label for="promoHeading">Promotion Heading</label>
     <input id="promoHeading" maxlength="100" value="Welcome to My Digital Profile">
+
     <label for="promoCustom">Your Message</label>
     <textarea id="promoCustom" maxlength="1000" placeholder="Apne business, product ya service ke baare mein likhein"></textarea>
+
     <button class="btn gold" id="generatePromoBtn">✨ Generate Promotion</button>
+
     <label for="promoOutput">Ready-to-Share Message</label>
     <textarea id="promoOutput" readonly placeholder="Aapka message yahan dikhega"></textarea>
+
     <button class="btn" id="copyPromoBtn">📋 Copy Promotion</button>
     <button class="btn" id="sharePromoBtn">📲 Share Promotion</button>
     <button class="btn outline" id="whatsappPromoBtn">🟢 Share on WhatsApp</button>
@@ -394,76 +448,66 @@ footer{text-align:center;padding:20px 12px 28px;color:#91aabd;font-size:11px;lin
   </div>
 </section>
 
-<p id="installHelp" class="muted" hidden>Chrome ke ⋮ menu mein “Install app” ya “Add to Home screen” option chunein.</p>
 </main>
 
 <footer>
   <strong>GS DIGITAL ACADEMY</strong><br>
-  Learn • Connect • Promote<br>
-  <a href="https://tinyurl.com/GSdigitalacademy" target="_blank" rel="noopener noreferrer">Official Website</a>
+  Learn · Connect · Promote<br>
+  <a href="https://tinyurl.com/GSdigitalacademy" target="_blank" rel="noopener noreferrer" style="color:var(--gold-light)">Official Website</a>
 </footer>
 
 <script>
 "use strict";
+
 const $ = id => document.getElementById(id);
-const KEY = "gsda_menu_promotion_v1";
+const PROFILE_KEY = "gsda_menu_promotion_v1";
 const POST_KEY = "gsda_home_post_v1";
 const ACADEMY_URL = "https://tinyurl.com/GSdigitalacademy";
 const pages = ["home","academy","profile","promotion","social"];
-let currentPage = "home";
 let installPrompt = null;
 let photoData = "";
 
 function getProfile(){
-  try { return JSON.parse(localStorage.getItem(KEY)) || {}; }
-  catch(e){ return {}; }
+  try{return JSON.parse(localStorage.getItem(PROFILE_KEY))||{}}
+  catch(e){return {}}
 }
 function saveProfile(p){
-  try { localStorage.setItem(KEY, JSON.stringify(p)); return true; }
-  catch(e){ alert("Storage full ho sakta hai. Chhoti photo select karein."); return false; }
+  try{localStorage.setItem(PROFILE_KEY,JSON.stringify(p));return true}
+  catch(e){alert("Storage full ho sakta hai. Chhoti photo select karein.");return false}
 }
 function showPage(name){
-  if(!pages.includes(name)) name="home";
-  currentPage=name;
-  pages.forEach(n => $("page-"+n).hidden = n!==name);
-  document.querySelectorAll(".menu-link").forEach(b =>
-    b.classList.toggle("active", b.dataset.page===name)
-  );
+  if(!pages.includes(name))name="home";
+  pages.forEach(n=>$("page-"+n).hidden=n!==name);
+  document.querySelectorAll(".menu-link").forEach(b=>b.classList.toggle("active",b.dataset.page===name));
   closeMenu();
   window.scrollTo({top:0,behavior:"smooth"});
-  if(name==="profile") loadProfile();
-  if(name==="social") updateSocialLinks();
-  if(name==="promotion") $("promoCustom").value=getProfile().message||"";
+  if(name==="profile")loadProfile();
+  if(name==="social")updateSocialLinks();
+  if(name==="promotion")$("promoCustom").value=getProfile().message||"";
 }
 function openMenu(){
-  $("drawer").hidden=false;
-  $("backdrop").hidden=false;
+  $("drawer").hidden=false;$("backdrop").hidden=false;
   $("menuBtn").setAttribute("aria-expanded","true");
 }
 function closeMenu(){
-  $("drawer").hidden=true;
-  $("backdrop").hidden=true;
+  $("drawer").hidden=true;$("backdrop").hidden=true;
   $("menuBtn").setAttribute("aria-expanded","false");
 }
-$("menuBtn").addEventListener("click",()=> $("drawer").hidden ? openMenu() : closeMenu());
+$("menuBtn").addEventListener("click",()=> $("drawer").hidden?openMenu():closeMenu());
 $("closeMenu").addEventListener("click",closeMenu);
 $("backdrop").addEventListener("click",closeMenu);
 document.querySelectorAll(".menu-link").forEach(b=>b.addEventListener("click",()=>showPage(b.dataset.page)));
 
 function safeUrl(value){
-  if(!value) return "";
-  try {
-    const u=new URL(value);
-    return ["https:","http:"].includes(u.protocol)?u.href:"";
-  } catch(e){return "";}
+  if(!value)return "";
+  try{const u=new URL(value);return ["https:","http:"].includes(u.protocol)?u.href:""}
+  catch(e){return ""}
 }
-function setLink(id,url,fallback){
-  $(id).href=safeUrl(url)||fallback;
-}
+function setLink(id,url,fallback){$(id).href=safeUrl(url)||fallback}
+
 function formProfile(){
   return {
-    name:$("personName").value.trim(),
-    photo:photoData,
+    name:$("personName").value.trim(),photo:photoData,
     website:$("personWebsite").value.trim(),
     facebook:$("personFacebook").value.trim(),
     instagram:$("personInstagram").value.trim(),
@@ -499,11 +543,12 @@ function loadProfile(){
 }
 $("personName").addEventListener("input",()=> $("previewName").textContent=$("personName").value||"Your Name");
 $("personAbout").addEventListener("input",()=> $("previewAbout").textContent=$("personAbout").value||"Your digital profile");
+
 $("personPhoto").addEventListener("change",e=>{
-  const file=e.target.files && e.target.files[0];
+  const file=e.target.files&&e.target.files[0];
   if(!file)return;
-  if(!file.type.startsWith("image/")){alert("Image file select karein.");return;}
-  if(file.size>700*1024){alert("Photo 700 KB se chhoti honi chahiye.");e.target.value="";return;}
+  if(!file.type.startsWith("image/")){alert("Image file select karein.");e.target.value="";return}
+  if(file.size>700*1024){alert("Photo 700 KB se chhoti rakhein.");e.target.value="";return}
   const reader=new FileReader();
   reader.onload=()=>{
     photoData=String(reader.result||"");
@@ -511,20 +556,22 @@ $("personPhoto").addEventListener("change",e=>{
   };
   reader.readAsDataURL(file);
 });
+
 $("profileForm").addEventListener("submit",e=>{
   e.preventDefault();
   const p=formProfile();
   if(saveProfile(p)){
-    $("profileStatus").textContent="✅ Profile is device par save ho gayi.";
+    $("profileStatus").textContent="✅ Profile is device ke browser mein save ho gayi.";
     updatePreview(p);refreshHome();updateSocialLinks();
   }
 });
 $("clearProfileBtn").addEventListener("click",()=>{
   if(!confirm("Kya saved profile delete karni hai?"))return;
-  localStorage.removeItem(KEY);photoData="";$("profileForm").reset();
-  loadProfile();refreshHome();updateSocialLinks();
-  $("profileStatus").textContent="Profile delete kar di gayi.";
+  localStorage.removeItem(PROFILE_KEY);photoData="";
+  $("profileForm").reset();loadProfile();refreshHome();updateSocialLinks();
+  $("profileStatus").textContent="Saved profile delete kar di gayi.";
 });
+
 function updateSocialLinks(){
   const p=getProfile();
   setLink("socialFacebook",p.facebook,"https://facebook.com/");
@@ -534,28 +581,29 @@ function updateSocialLinks(){
   setLink("socialLinkedIn",p.linkedin,"https://linkedin.com/");
   setLink("socialWebsite",p.website,ACADEMY_URL);
   setLink("socialOther",p.other,ACADEMY_URL);
-  $("socialWhatsApp").href=p.whatsapp
-    ?"https://wa.me/"+p.whatsapp:"https://whatsapp.com/";
+  $("socialWhatsApp").href=p.whatsapp?"https://wa.me/"+p.whatsapp:"https://whatsapp.com/";
 }
 function refreshHome(){
   const p=getProfile(),photo=p.photo||"./logo.png";
   $("homeProfileName").textContent=p.name||"Create Your Profile";
   $("homeProfileAbout").textContent=p.about||"Add your name and details";
-  $("profileStatusHome").textContent=p.name?"Profile ready":"Set up profile";
+  $("profileStatusHome").textContent=p.name?"Profile ready":"Profile setup";
   $("homeProfilePhoto").src=photo;
   $("storyAvatar").src=photo;
   $("composerAvatar").src=photo;
   $("feedAvatar").src=photo;
   $("composerName").textContent=p.name?"Post as "+p.name:"What's on your mind?";
   $("feedName").textContent=p.name||"GS Digital Academy Member";
+
   setLink("homeFacebook",p.facebook,"https://facebook.com/");
   setLink("homeInstagram",p.instagram,"https://instagram.com/");
   setLink("homeTelegram",p.telegram,"https://telegram.org/");
   setLink("homeYouTube",p.youtube,"https://youtube.com/");
   setLink("homeWebsite",p.website,ACADEMY_URL);
   $("homeWhatsApp").href=p.whatsapp?"https://wa.me/"+p.whatsapp:"https://whatsapp.com/";
-  const saved=localStorage.getItem(POST_KEY);
-  $("feedText").textContent=saved||"Welcome! Apni profile banayein aur pehli promotional post likhein.";
+
+  $("feedText").textContent=localStorage.getItem(POST_KEY)||
+    "Welcome! Apni profile banayein aur pehli promotional post likhein.";
 }
 $("homeProfileBtn").addEventListener("click",()=>showPage("profile"));
 $("storyProfile").addEventListener("click",()=>showPage("profile"));
@@ -568,10 +616,10 @@ function currentPost(){
 }
 $("createPostBtn").addEventListener("click",()=>{
   const message=$("homePostInput").value.trim();
-  if(!message){alert("Pehle apna post likhein.");$("homePostInput").focus();return;}
+  if(!message){alert("Pehle apna post likhein.");$("homePostInput").focus();return}
   localStorage.setItem(POST_KEY,message);
   $("feedText").textContent=message;
-  $("feedStatus").textContent="✅ Aapki post is device par save ho gayi.";
+  $("feedStatus").textContent="✅ Post is device par save ho gayi.";
 });
 $("editPostBtn").addEventListener("click",()=>{
   $("homePostInput").value=localStorage.getItem(POST_KEY)||"";
@@ -580,21 +628,21 @@ $("editPostBtn").addEventListener("click",()=>{
 });
 async function copyText(text){
   if(!text)return false;
-  try{await navigator.clipboard.writeText(text);return true;}
+  try{await navigator.clipboard.writeText(text);return true}
   catch(e){
     const ta=document.createElement("textarea");
     ta.value=text;ta.style.position="fixed";ta.style.opacity="0";
     document.body.appendChild(ta);ta.select();
     let ok=false;
-    try{ok=document.execCommand("copy");}catch(err){}
+    try{ok=document.execCommand("copy")}catch(err){}
     ta.remove();return ok;
   }
 }
 async function shareText(text,title){
-  if(!text){alert("Pehle message likhein.");return;}
+  if(!text){alert("Pehle message likhein.");return}
   if(navigator.share){
-    try{await navigator.share({title:title||"My Promotion",text});}
-    catch(e){if(e.name!=="AbortError")alert("Share nahi ho saka.");}
+    try{await navigator.share({title:title||"My Promotion",text})}
+    catch(e){if(e.name!=="AbortError")alert("Share nahi ho saka.")}
   }else{
     alert(await copyText(text)?"Message copy ho gaya. Ab kisi app mein paste karein.":"Copy nahi ho saka.");
   }
@@ -610,7 +658,6 @@ function buildPromotion(){
   const custom=$("promoCustom").value.trim()||p.message||"";
   return [
     "✨ "+($("promoHeading").value.trim()||"Welcome to My Digital Profile")+" ✨",
-    "",
     p.name?"👤 Name: "+p.name:"",
     p.about?"💼 About: "+p.about:"",
     custom,
@@ -622,9 +669,8 @@ function buildPromotion(){
     p.linkedin?"💼 LinkedIn: "+p.linkedin:"",
     p.whatsapp?"🟢 WhatsApp: https://wa.me/"+p.whatsapp:"",
     p.other?"🔗 More: "+p.other:"",
-    "",
     "Created with GS Digital Academy"
-  ].filter(Boolean).join("\n");
+  ].filter(Boolean).join("\n\n");
 }
 $("generatePromoBtn").addEventListener("click",()=>{
   $("promoOutput").value=buildPromotion();
@@ -647,31 +693,32 @@ $("copyAcademyBtn").addEventListener("click",async()=>{
   alert(await copyText(ACADEMY_URL)?"Website link copy ho gaya.":"Copy nahi ho saka.");
 });
 
-/* PWA install button */
+/* PWA installation */
 window.addEventListener("beforeinstallprompt",event=>{
   event.preventDefault();installPrompt=event;
 });
 $("downloadBtn").addEventListener("click",async()=>{
   if(installPrompt){
     installPrompt.prompt();
-    try{await installPrompt.userChoice;}catch(e){}
+    try{await installPrompt.userChoice}catch(e){}
     installPrompt=null;
   }else{
-    alert("Chrome ke ⋮ menu mein 'Install app' ya 'Add to Home screen' option dekhein. Agar option nahi hai, to pehle website aur PWA setup check karein.");
+    alert("Chrome ke ⋮ menu mein 'Install app' ya 'Add to Home screen' dekhein. Option na mile to PWA setup check karein.");
   }
 });
 window.addEventListener("appinstalled",()=>{
   $("downloadBtn").textContent="✅ App Installed";
 });
 
-/* Existing service worker */
+/* Register existing service worker */
 if("serviceWorker" in navigator && location.protocol!=="file:"){
   window.addEventListener("load",()=>{
     navigator.serviceWorker.register("./service-worker.js")
-      .catch(err=>console.log("Service worker registration:",err));
+      .catch(err=>console.log("Service worker registration failed:",err));
   });
 }
 
+/* Start app */
 loadProfile();
 updateSocialLinks();
 refreshHome();
