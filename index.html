@@ -3,370 +3,405 @@
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#10184f">
-<meta name="description" content="GS Digital Academy - Your Digital World">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#07165b">
+<meta name="description" content="GS Digital Academy — Learn Today, Grow Tomorrow">
 <link rel="manifest" href="manifest.json">
-<title>GS Digital Academy</title>
+<title>GS DIGITAL ACADEMY | Learn Today, Grow Tomorrow</title>
+
 <style>
-:root{--navy:#080d32;--blue:#182b83;--purple:#6b2bd9;--gold:#ffd36a;--gold2:#fff0b0;--white:#f8f9ff;--muted:#bdc6ef;--glass:rgba(255,255,255,.09);--line:rgba(255,255,255,.16)}
+:root{
+  --navy:#07165b;
+  --blue:#1257d9;
+  --purple:#6200dc;
+  --gold:#ffcb35;
+  --white:#fff;
+  --ink:#101b42;
+  --muted:#65718d;
+  --line:#e5e9f5;
+  --soft:#f3f6ff;
+}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;color:var(--white);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:radial-gradient(ellipse at 15% 0%,#342078 0%,transparent 38%),radial-gradient(ellipse at 95% 20%,#123d8c 0%,transparent 34%),linear-gradient(145deg,#070b2b,#11144b 48%,#24104c);min-height:100vh;overflow-x:hidden}
-body:before,body:after{content:"";position:fixed;pointer-events:none;z-index:-1;border-radius:50%;filter:blur(2px);opacity:.38;animation:floatOrb 15s ease-in-out infinite alternate}
-body:before{width:270px;height:270px;top:18%;left:-130px;background:radial-gradient(circle,#7d42ff,transparent 70%)}
-body:after{width:340px;height:340px;right:-170px;bottom:4%;background:radial-gradient(circle,#008dff,transparent 70%);animation-delay:-6s}
-@keyframes floatOrb{from{transform:translate3d(0,-20px,0) scale(.9)}to{transform:translate3d(45px,35px,0) scale(1.18)}}
-@keyframes gradientMove{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-@keyframes glow{0%,100%{box-shadow:0 0 14px rgba(255,211,106,.18)}50%{box-shadow:0 0 28px rgba(255,211,106,.48)}}
-@keyframes shimmer{0%{background-position:180% 0}100%{background-position:-180% 0}}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;background:#f3f6ff;color:var(--ink)}
 button,input,textarea{font:inherit}
+button,a{-webkit-tap-highlight-color:transparent}
 button{cursor:pointer}
-.app{width:min(1120px,100%);margin:auto;padding:14px 15px 95px}
-.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 2px 17px;animation:fadeUp .55s ease both}
-.brand{display:flex;align-items:center;gap:10px;min-width:0}
-.logo{width:48px;height:48px;flex-shrink:0;border-radius:16px;display:grid;place-items:center;overflow:hidden;background:linear-gradient(135deg,#fff3b8,#f5b82d 48%,#fff0a0);border:1px solid #fff4c7;animation:glow 3s ease-in-out infinite}
-.logo img{width:100%;height:100%;object-fit:contain;border-radius:inherit;display:block}
-.brand h1{font-size:17px;line-height:1.15;margin:0;letter-spacing:.35px}
-.brand p{font-size:11px;margin:4px 0 0;color:#c7d0ff;letter-spacing:1.2px}
-.top-actions{display:flex;gap:7px}
-.icon-btn,.btn{border:1px solid var(--line);color:white;background:rgba(255,255,255,.08);border-radius:13px;padding:10px 13px;transition:transform .2s,background .2s,border-color .2s}
-.icon-btn{font-size:18px;min-width:43px}
-.btn:hover,.icon-btn:hover{transform:translateY(-2px);background:rgba(255,255,255,.15);border-color:rgba(255,211,106,.65)}
-.btn.gold{color:#201538;font-weight:800;border:0;background:linear-gradient(110deg,#fff0a8,#ffca4f,#fff0a8);background-size:200% 100%;animation:shimmer 5s linear infinite}
-.btn.primary{background:linear-gradient(120deg,#6b2bd9,#2c63d7);border:0;font-weight:750}
-.btn.small{padding:8px 11px;font-size:13px}
-.hero{position:relative;overflow:hidden;border:1px solid rgba(255,224,139,.35);border-radius:28px;padding:27px 22px 23px;background:linear-gradient(125deg,rgba(28,39,113,.95),rgba(74,30,129,.9),rgba(15,66,135,.92));background-size:200% 200%;animation:gradientMove 12s ease infinite,fadeUp .7s ease both;box-shadow:0 22px 60px rgba(0,0,0,.22)}
-.hero:after{content:"";position:absolute;width:230px;height:230px;border:1px solid rgba(255,255,255,.13);border-radius:50%;right:-90px;top:-95px;box-shadow:0 0 0 24px rgba(255,255,255,.035),0 0 0 50px rgba(255,255,255,.025)}
-.eyebrow{display:inline-flex;align-items:center;gap:7px;border:1px solid rgba(255,222,127,.38);background:rgba(255,211,106,.09);padding:7px 11px;border-radius:99px;color:var(--gold2);font-size:11px;font-weight:800;letter-spacing:1.1px}
-.dot{width:7px;height:7px;background:#76ffbb;border-radius:50%;box-shadow:0 0 10px #76ffbb}
-.hero h2{font-size:clamp(30px,7vw,58px);line-height:1.04;letter-spacing:-1.5px;max-width:700px;margin:19px 0 12px}
-.hero h2 span{display:block;background:linear-gradient(90deg,#fff7d0,#ffd15c,#fff);background-size:180% auto;background-clip:text;-webkit-background-clip:text;color:transparent;animation:shimmer 6s linear infinite}
-.hero p{color:#e0e5ff;line-height:1.65;max-width:610px;margin:0 0 20px;font-size:14px}
-.hero-buttons{display:flex;flex-wrap:wrap;gap:10px;position:relative;z-index:1}
-.hero-note{font-size:11px!important;color:#c7d2ff!important;margin:17px 0 0!important}
-.section{margin-top:26px;animation:fadeUp .65s ease both}
-.section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:13px}
-.section-head h3{font-size:19px;margin:0}
-.section-head p{margin:4px 0 0;color:var(--muted);font-size:12px}
-.text-link{border:0;background:none;color:var(--gold);font-size:12px;font-weight:750;padding:6px}
-.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-.quick-card,.panel,.social-card,.resource{border:1px solid var(--line);background:var(--glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:18px}
-.quick-card{padding:14px 10px;text-align:center;transition:transform .25s,border-color .25s,background .25s;animation:fadeUp .65s both;color:white}
-.quick-card:nth-child(2){animation-delay:.07s}
-.quick-card:nth-child(3){animation-delay:.14s}
-.quick-card:nth-child(4){animation-delay:.21s}
-.quick-card:hover{transform:translateY(-5px);border-color:rgba(255,211,106,.6);background:rgba(255,255,255,.13)}
-.quick-icon{font-size:25px;display:block;margin-bottom:8px}
-.quick-card strong{display:block;font-size:12px}
-.quick-card small{display:block;color:var(--muted);font-size:10px;margin-top:4px}
-.two-col{display:grid;grid-template-columns:1.1fr .9fr;gap:13px}
-.panel{padding:17px}
-.panel h3{font-size:16px;margin:0 0 6px}
-.panel p{color:var(--muted);font-size:12px;line-height:1.55;margin:0 0 13px}
-.feature-list{display:grid;gap:10px}
-.feature{display:flex;align-items:center;gap:10px;font-size:12px;color:#e6eaff}
-.feature b{width:30px;height:30px;display:grid;place-items:center;background:rgba(255,211,106,.12);border:1px solid rgba(255,211,106,.25);border-radius:10px}
-.resource-list{display:grid;gap:9px}
-.resource{padding:12px;display:flex;align-items:center;gap:10px;color:white;text-decoration:none;transition:transform .2s,border-color .2s}
-.resource:hover{transform:translateX(3px);border-color:rgba(255,211,106,.5)}
-.resource .r-icon{font-size:20px}
-.resource strong{display:block;font-size:12px}
-.resource small{display:block;font-size:10px;color:var(--muted);margin-top:2px}
-.page{display:none;animation:fadeUp .35s ease both}
+a{text-decoration:none;color:inherit}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #ffc928;outline-offset:3px}
+.app{max-width:1400px;margin:auto;padding-bottom:85px}
+.header{background:linear-gradient(110deg,#06134d,#102d93 70%,#25116d);color:white;padding:15px 4% 0}
+.header-top{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap;padding-bottom:14px}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.logo{width:55px;height:55px;flex-shrink:0;display:grid;place-items:center}
+.logo img{width:100%;height:100%;object-fit:contain}
+.brand-name{font-size:clamp(15px,2vw,25px);font-weight:900;line-height:1.2;color:#fff}
+.brand-name span{color:var(--gold)}
+.brand-tag{font-size:12px;color:#d9e2ff;margin-top:5px}
+.search{display:flex;align-items:center;gap:8px;flex:1;max-width:450px;background:white;border-radius:30px;padding:11px 15px;color:#14205b}
+.search input{border:0;outline:0;width:100%;min-width:0;color:#14205b;background:transparent;font-size:13px}
+.header-actions{display:flex;gap:8px;align-items:center}
+.round-btn{width:42px;height:42px;border:1px solid #ffffff30;border-radius:50%;color:white;background:#ffffff14;font-size:19px}
+.install-btn{border:0;border-radius:12px;padding:11px 15px;background:linear-gradient(120deg,#fff0a2,#ffc42b);color:#111a43;font-weight:850;font-size:12px}
+.nav{display:flex;align-items:center;gap:5px;overflow-x:auto;padding:0 0 10px;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav button{white-space:nowrap;border:0;border-radius:10px;padding:11px 13px;color:#eaf0ff;background:transparent;font-size:12px;font-weight:750}
+.nav button.active,.nav button:hover{background:linear-gradient(110deg,#ffe17c,#ffbf24);color:#111945}
+.hero{position:relative;overflow:hidden;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:20px;min-height:385px;padding:40px 5%;color:white;background:radial-gradient(ellipse at 85% 10%,#8a18e9 0%,transparent 40%),linear-gradient(115deg,#07175d 5%,#1128a0 55%,#4d0aa8)}
+.hero:before{content:"";position:absolute;width:360px;height:360px;border:1px solid #ffffff22;border-radius:50%;right:2%;top:0;box-shadow:0 0 0 30px #ffffff08,0 0 0 70px #ffffff05;pointer-events:none}
+.hero-copy{position:relative;z-index:2}
+.pill{display:inline-flex;align-items:center;gap:7px;padding:8px 13px;border:1px solid #ffda684a;background:#ffcf2718;color:#ffe69a;border-radius:30px;font-size:12px;font-weight:800}
+.hero h1{font-size:clamp(33px,5vw,65px);line-height:1.03;letter-spacing:-1.5px;margin:18px 0 12px;font-weight:950}
+.hero h1 span{color:var(--gold)}
+.hero-sub{font-size:clamp(18px,2.4vw,26px);margin:0 0 22px;color:#edf0ff}
+.benefits{display:flex;flex-wrap:wrap;gap:12px 18px;margin:0 0 24px;font-size:12px;color:#f2f4ff}
+.benefits span:before{content:"✓";display:inline-grid;place-items:center;background:var(--gold);color:#13205b;border-radius:50%;width:17px;height:17px;margin-right:6px;font-weight:900}
+.actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border-radius:12px;padding:13px 18px;border:1px solid #ffffff66;background:#ffffff0c;color:white;font-size:13px;font-weight:800}
+.btn.gold{background:linear-gradient(110deg,#ffe78c,#ffbe20);color:#151d4a;border:0}
+.btn.blue{background:linear-gradient(110deg,#1559d8,#4621c5);border:0;color:white}
+.hero-note{font-size:11px;color:#cdd7ff;margin-top:19px}
+.hero-art{min-height:290px;position:relative;display:flex;align-items:center;justify-content:center}
+.student-emoji{font-size:clamp(125px,19vw,220px);filter:drop-shadow(0 20px 22px #0005);position:relative;z-index:1}
+.dream-badge{position:absolute;right:0;top:8px;width:105px;height:105px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;border:3px solid #ffdf75;border-radius:50%;background:linear-gradient(145deg,#08174f,#43118b);box-shadow:0 0 0 6px #ffc93520;color:#fff3bd;font-size:11px}
+.dream-badge strong{font-size:16px;color:white}
+.quote{position:absolute;left:0;top:22%;font-size:16px;line-height:1.6;font-style:italic;color:#ffe9a0;transform:rotate(-5deg)}
+.shortcut-wrap{position:relative;margin:-12px 2% 0;padding:15px;background:white;border:1px solid #e1e7ff;border-radius:20px;box-shadow:0 12px 32px #16256b14;z-index:3}
+.shortcut-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:10px}
+.shortcut{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:110px;padding:12px 5px;text-align:center;border:1px solid #e6ebf8;border-radius:14px;background:linear-gradient(145deg,#f9faff,#eff3ff);transition:transform .2s,border-color .2s}
+.shortcut:hover{transform:translateY(-4px);border-color:#b3c5ff}
+.shortcut .emoji{font-size:26px;margin-bottom:8px}
+.shortcut strong{font-size:12px}
+.shortcut small{font-size:10px;color:#5266a8;margin-top:4px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:22px 4%;background:linear-gradient(110deg,#07165b,#0c2a8c,#350c82);color:white;margin-top:0}
+.stat{display:flex;align-items:center;justify-content:center;gap:12px;padding:7px;border-right:1px solid #ffffff25}
+.stat:last-child{border:0}
+.stat-icon{font-size:28px;color:var(--gold)}
+.stat strong{display:block;font-size:clamp(18px,2.5vw,28px)}
+.stat small{font-size:12px;color:#dbe2ff}
+.section{padding:28px 3.5%}
+.section-head{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:18px}
+.section-head h2{font-size:clamp(21px,3vw,28px);margin:0;color:#111c45}
+.section-head p{margin:5px 0 0;font-size:13px;color:var(--muted)}
+.view-all{border:1px solid #2457dc;background:white;color:#174bc4;border-radius:10px;padding:10px 13px;font-weight:800;font-size:12px;white-space:nowrap}
+.course-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px}
+.course{background:white;border:1px solid #e4e9f8;border-radius:17px;overflow:hidden;box-shadow:0 7px 20px #12275e0b;transition:transform .2s,box-shadow .2s}
+.course:hover{transform:translateY(-4px);box-shadow:0 12px 26px #12275e18}
+.course-cover{min-height:135px;padding:18px 12px;display:flex;flex-direction:column;justify-content:space-between;color:white;background:linear-gradient(135deg,#a20c21,#e84344)}
+.course-cover.rail{background:linear-gradient(135deg,#064b98,#12a8ce)}
+.course-cover.bank{background:linear-gradient(135deg,#065c3c,#12a76d)}
+.course-cover.upsc{background:linear-gradient(135deg,#4813aa,#922bdf)}
+.course-cover h3{font-size:23px;line-height:1.1;margin:0;font-weight:950}
+.course-cover p{font-size:11px;font-weight:750;margin:0}
+.cover-icon{font-size:35px;align-self:flex-end}
+.course-info{padding:13px}
+.course-info h4{margin:0 0 7px;font-size:13px}
+.course-info p{margin:0 0 12px;color:#64708b;font-size:11px}
+.enroll{display:block;text-align:center;padding:10px;border-radius:9px;color:white;background:linear-gradient(110deg,#1258d5,#2045bc);font-size:12px;font-weight:800}
+.why{color:white;background:radial-gradient(ellipse at 90% 40%,#5216a1,transparent 45%),linear-gradient(110deg,#071343,#160957);padding:30px 4%}
+.why h2{font-size:clamp(22px,3vw,30px);margin:0 0 7px}
+.why-intro{font-size:13px;color:#d6ddff;margin:0 0 23px}
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.why-item{padding:14px;border-right:1px solid #ffffff20}
+.why-item:last-child{border:0}
+.why-icon{width:43px;height:43px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#ffda66,#f6a80d);color:#182055;font-size:22px;margin-bottom:11px}
+.why-item h3{font-size:14px;margin:0 0 7px}
+.why-item p{font-size:12px;line-height:1.5;color:#d5dcff;margin:0}
+.app-banner{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:24px 4%;background:linear-gradient(110deg,#fff,#fff3ce)}
+.app-banner h2{font-size:clamp(18px,3vw,25px);margin:0 0 7px;color:#101b49}
+.app-banner p{margin:0;color:#44527e;font-size:13px}
+.download-btn{border:0;border-radius:13px;background:#081447;color:white;padding:15px 19px;font-weight:800;box-shadow:0 8px 18px #09144825;white-space:nowrap}
+.footer{text-align:center;background:#071343;color:#d0d9ff;padding:20px;font-size:11px}
+.page{display:none;padding:25px 4%;min-height:45vh;animation:fade .25s ease}
 .page.active{display:block}
-.page-title{font-size:25px;margin:10px 0 4px}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.panel{background:white;padding:18px;border:1px solid var(--line);border-radius:16px;margin-bottom:15px}
+.page-title{font-size:25px;margin:0 0 6px}
 .sub{font-size:13px;color:var(--muted);margin:0 0 18px}
 .form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 .field{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
-.field label{font-size:12px;color:#dce3ff;font-weight:700}
-.field input,.field textarea{width:100%;padding:12px 13px;border:1px solid var(--line);border-radius:12px;background:rgba(5,9,39,.65);color:white;outline:none}
-.field input:focus,.field textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(255,211,106,.1)}
-.field textarea{resize:vertical;min-height:85px}
-.social-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.social-card{padding:12px;display:flex;align-items:center;gap:10px;min-width:0}
-.social-card .social-emoji{font-size:22px}
-.social-card .social-name{font-size:12px;font-weight:800;min-width:0;overflow-wrap:anywhere}
-.social-card .social-url{display:block;color:var(--muted);font-size:10px;overflow-wrap:anywhere;margin-top:3px}
-.social-card a{color:var(--gold);text-decoration:none;font-size:11px;font-weight:800}
-.social-card .right{margin-left:auto;flex-shrink:0}
-.check-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
-.check-item{display:flex;align-items:center;gap:8px;padding:10px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.045);font-size:12px}
-.check-item input{accent-color:#ffd36a;width:17px;height:17px}
-.media-preview{display:none;width:100%;max-height:270px;object-fit:contain;border:1px solid var(--line);border-radius:15px;margin:10px 0;background:rgba(0,0,0,.2)}
-.notice{font-size:12px;line-height:1.55;color:#e5e9ff;background:rgba(255,211,106,.08);border:1px solid rgba(255,211,106,.22);padding:12px;border-radius:13px;margin:12px 0}
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:20;display:flex;justify-content:center;padding:9px 10px calc(9px + env(safe-area-inset-bottom));background:rgba(7,10,39,.88);border-top:1px solid var(--line);backdrop-filter:blur(18px)}
-.nav-inner{width:min(700px,100%);display:grid;grid-template-columns:repeat(5,1fr);gap:5px}
-.nav-btn{border:0;border-radius:12px;background:transparent;color:#bfc8f4;padding:7px 2px;font-size:10px;display:flex;flex-direction:column;align-items:center;gap:4px}
-.nav-btn span{font-size:19px}
-.nav-btn.active{background:rgba(255,211,106,.12);color:var(--gold2);box-shadow:inset 0 0 0 1px rgba(255,211,106,.16)}
-.footer{text-align:center;color:#aab4e6;font-size:10px;margin:25px 0 0}
-.toast{position:fixed;left:50%;bottom:90px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#fff0b0;color:#201438;font-size:12px;font-weight:800;padding:11px 16px;border-radius:99px;z-index:40;transition:.25s;box-shadow:0 10px 30px #0005;max-width:90%;text-align:center}
+.field label{font-size:12px;font-weight:750}
+.field input,.field textarea{width:100%;padding:12px;border:1px solid #dbe2f2;border-radius:10px;background:#fafbff;color:#14204a}
+.field textarea{min-height:120px;resize:vertical}
+.social-grid,.check-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.social-card,.check-item{border:1px solid var(--line);border-radius:12px;background:white;padding:12px}
+.social-card{display:flex;align-items:center;gap:10px}
+.social-card .emoji{font-size:23px}
+.social-card .url{font-size:10px;color:#66718c;overflow-wrap:anywhere}
+.social-card a{font-size:11px;color:#1653cf;font-weight:800}
+.check-item{display:flex;align-items:center;gap:8px;font-size:12px}
+.check-item input{accent-color:#164fd0;width:17px;height:17px}
+.preview{display:none;width:100%;max-height:270px;object-fit:contain;border-radius:12px;background:#edf0f8;margin:10px 0}
+.notice{background:#fff8df;border:1px solid #f5dfa0;border-radius:12px;padding:12px;font-size:12px;line-height:1.6;margin:12px 0;color:#55451c}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:20;background:#fff;border-top:1px solid #dfe5f4;box-shadow:0 -5px 20px #10265b12;padding:7px 7px calc(7px + env(safe-area-inset-bottom))}
+.nav-inner{max-width:700px;margin:auto;display:grid;grid-template-columns:repeat(5,1fr);gap:5px}
+.nav-btn{border:0;background:transparent;border-radius:10px;padding:6px 2px;display:flex;flex-direction:column;align-items:center;gap:3px;color:#66718c;font-size:10px}
+.nav-btn span{font-size:20px}
+.nav-btn.active{color:#124fcb;background:#edf2ff;font-weight:850}
+.toast{position:fixed;bottom:90px;left:50%;transform:translate(-50%,15px);opacity:0;pointer-events:none;background:#10205e;color:white;border-radius:30px;padding:12px 17px;font-size:12px;z-index:50;transition:.2s;max-width:90%;text-align:center}
 .toast.show{opacity:1;transform:translate(-50%,0)}
-.modal{display:none;position:fixed;inset:0;background:#03051dcc;z-index:50;align-items:center;justify-content:center;padding:18px}
+.modal{display:none;position:fixed;inset:0;background:#06103dcc;z-index:40;align-items:center;justify-content:center;padding:18px}
 .modal.show{display:flex}
-.modal-card{width:min(520px,100%);max-height:85vh;overflow:auto;background:#111744;border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:0 25px 80px #0008}
-.modal-card h3{margin:0 0 8px}
-.modal-card p{color:var(--muted);font-size:13px;line-height:1.55}
-.modal-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}
-@media(min-width:760px){.app{padding-top:22px}.hero{padding:40px 38px}.quick-grid{gap:13px}.social-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media(max-width:560px){.app{padding:10px 12px 95px}.brand h1{font-size:14px}.logo{width:42px;height:42px;border-radius:14px}.hero{padding:23px 17px;border-radius:23px}.hero h2{font-size:clamp(31px,9vw,45px)}.quick-grid{grid-template-columns:repeat(2,1fr)}.two-col{grid-template-columns:1fr}.form-grid,.social-grid,.check-grid{grid-template-columns:1fr}.section-head h3{font-size:17px}.btn{padding:10px 12px;font-size:13px}.top-actions .install-label{font-size:10px;padding:8px 9px;white-space:nowrap}}
-@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+.modal-card{width:min(500px,100%);max-height:85vh;overflow:auto;background:white;color:#13204a;border-radius:18px;padding:20px}
+.resource{display:flex;gap:12px;align-items:center;padding:12px;border:1px solid var(--line);border-radius:11px;margin-top:8px}
+@media(max-width:900px){.shortcut-grid{grid-template-columns:repeat(4,1fr)}.course-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{padding:30px 4%}.hero-art{min-height:240px}.quote{display:none}}
+@media(max-width:560px){
+ .header{padding:12px 12px 0}.header-top{gap:10px}.brand{flex:1}.logo{width:43px;height:43px}.brand-name{font-size:14px}.brand-tag{font-size:10px}
+ .search{order:3;flex-basis:100%;max-width:none;padding:10px 13px}.header-actions{gap:5px}.round-btn{width:35px;height:35px}.install-btn{font-size:10px;padding:10px}
+ .nav{gap:3px}.nav button{padding:10px 11px;font-size:11px}
+ .hero{grid-template-columns:1fr;gap:0;padding:25px 19px 15px;min-height:0}.hero h1{font-size:clamp(35px,10vw,49px)}.hero-art{min-height:130px;max-height:160px;overflow:hidden}.student-emoji{font-size:125px}.dream-badge{width:78px;height:78px;right:3%;top:0;font-size:9px}.dream-badge strong{font-size:13px}
+ .benefits{gap:10px;font-size:11px}.hero-sub{font-size:19px}.btn{padding:12px;font-size:12px}
+ .shortcut-wrap{margin:-9px 10px 0;padding:9px}.shortcut-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.shortcut{min-height:95px;padding:9px 3px}.shortcut .emoji{font-size:23px}.shortcut strong{font-size:10px}.shortcut small{font-size:9px}
+ .stats{grid-template-columns:repeat(2,1fr);padding:15px 9px;gap:6px}.stat{justify-content:flex-start;padding:10px 8px}.stat:nth-child(2){border-right:0}.stat-icon{font-size:23px}.stat strong{font-size:20px}.stat small{font-size:10px}
+ .section{padding:24px 12px}.section-head h2{font-size:21px}.section-head p{font-size:11px}.view-all{font-size:10px;padding:9px}
+ .course-grid{gap:9px}.course-cover{min-height:112px;padding:12px 9px}.course-cover h3{font-size:18px}.course-cover p{font-size:9px}.cover-icon{font-size:28px}.course-info{padding:10px}.course-info h4{font-size:11px}.course-info p{font-size:10px}.enroll{font-size:10px;padding:9px}
+ .why{padding:25px 14px}.why-grid{grid-template-columns:repeat(2,1fr);gap:7px}.why-item{padding:10px;border-right:0;border-bottom:1px solid #ffffff20}.why-item h3{font-size:12px}.why-item p{font-size:11px}
+ .app-banner{align-items:flex-start;flex-direction:column;padding:23px 15px}.download-btn{width:100%}.form-grid,.social-grid,.check-grid{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
 </style>
 </head>
 <body>
 <div class="app">
-<header class="topbar">
-  <div class="brand"><div class="logo"><img src="logo.png" alt="GS Digital Academy Logo"></div><div><h1>GS DIGITAL ACADEMY</h1><p>YOUR DIGITAL WORLD</p></div></div>
-  <div class="top-actions"><button class="icon-btn" aria-label="Share app" onclick="shareApp()">↗</button><button class="btn gold small install-label" id="installBtn" onclick="installApp()">＋ Install App</button></div>
+<header class="header">
+ <div class="header-top">
+  <a class="brand" href="#" onclick="showPage('home');return false">
+   <div class="logo"><img src="logo.png" alt="GS Digital Academy logo" onerror="this.style.display='none';this.parentElement.innerHTML='🎓'"></div>
+   <div><div class="brand-name">GS DIGITAL <span>ACADEMY</span></div><div class="brand-tag">Learn Today&nbsp; | &nbsp;Grow Tomorrow</div></div>
+  </a>
+  <div class="search"><span>🔎</span><input id="courseSearch" placeholder="Search Courses, PDFs, Tests..." aria-label="Search courses" oninput="filterCourses(this.value)"></div>
+  <div class="header-actions"><button class="round-btn" aria-label="Share app" onclick="shareApp()">↗</button><button class="install-btn" id="installBtn" onclick="installApp()">＋ Install App</button></div>
+ </div>
+ <nav class="nav" aria-label="Main menu">
+  <button class="active" data-page="home" onclick="showPage('home')">⌂ Home</button>
+  <button onclick="goPromotion()">▣ Courses</button>
+  <button onclick="goPromotion()">🔴 Live Classes</button>
+  <button onclick="goPromotion()">☑ Test Series</button>
+  <button onclick="goPromotion()">▤ Free PDFs</button>
+  <button onclick="goPromotion()">▤ Notes</button>
+  <button onclick="goPromotion()">☷ More →</button>
+ </nav>
 </header>
 
 <main>
-<section id="home" class="page active">
-  <div class="hero">
-    <div class="eyebrow"><span class="dot"></span> LEARN • CONNECT • GROW</div>
-    <h2>Your Digital World<span>Starts Here.</span></h2>
-    <p>अपने digital presence को एक जगह से manage करें। अपने social links जोड़ें, promotional message तैयार करें और आसानी से share करें।</p>
-    <div class="hero-buttons"><button class="btn gold" onclick="showPage('promotion')">✦ Create Promotion</button><button class="btn" onclick="showPage('profile')">＋ Add My Links</button></div>
-    <p class="hero-note">✨ Premium digital experience • Mobile friendly • Installable PWA</p>
+<section id="home" class="page active" style="padding:0">
+ <div class="hero">
+  <div class="hero-copy">
+   <div class="pill">👑 India's Trusted Learning Platform</div>
+   <h1>GS DIGITAL <span>ACADEMY</span></h1>
+   <p class="hero-sub">Your Success Begins Here</p>
+   <div class="benefits"><span>Quality Content</span><span>Expert Faculty</span><span>Live + Recorded Classes</span><span>PDF Notes</span><span>Mock Tests</span><span>Exam Oriented Study</span></div>
+   <div class="actions"><button class="btn gold" onclick="showPage('promotion')">▶ Start Learning Now　→</button><button class="btn" onclick="document.getElementById('courses').scrollIntoView({behavior:'smooth'})">▦ Explore Courses</button></div>
+   <div class="hero-note">✨ Learn • Connect • Grow • Build Your Future</div>
   </div>
+  <div class="hero-art" aria-label="Student learning illustration">
+   <div class="quote">Study<br>Practice<br>Improve<br>Succeed!</div>
+   <div class="student-emoji" role="img" aria-label="Student">👩🏻‍🎓</div>
+   <div class="dream-badge">♛<strong>Your Dream</strong>Our Support<br>↓</div>
+  </div>
+ </div>
 
-  <section class="section">
-    <div class="section-head"><div><h3>Quick Access</h3><p>अपने जरूरी tools एक tap में खोलें</p></div></div>
-    <div class="quick-grid">
-      <button class="quick-card" onclick="showPage('profile')"><span class="quick-icon">👤</span><strong>My Profile</strong><small>Social links जोड़ें</small></button>
-      <button class="quick-card" onclick="showPage('promotion')"><span class="quick-icon">🚀</span><strong>Promotion</strong><small>Message तैयार करें</small></button>
-      <button class="quick-card" onclick="showPage('social')"><span class="quick-icon">🌐</span><strong>Social Hub</strong><small>सभी links देखें</small></button>
-      <button class="quick-card" onclick="shareApp()"><span class="quick-icon">📲</span><strong>Share App</strong><small>दोस्तों तक पहुँचाएँ</small></button>
-    </div>
-  </section>
+ <div class="shortcut-wrap"><div class="shortcut-grid">
+  <button class="shortcut" onclick="showPage('promotion')"><span class="emoji">📚</span><strong>All Courses</strong><small>Explore Now →</small></button>
+  <button class="shortcut" onclick="showPage('promotion')"><span class="emoji">🎬</span><strong>Live Classes</strong><small>Join Live →</small></button>
+  <button class="shortcut" onclick="showPage('promotion')"><span class="emoji">☑️</span><strong>Test Series</strong><small>Practice →</small></button>
+  <button class="shortcut" onclick="showPage('promotion')"><span class="emoji">📥</span><strong>Free PDFs</strong><small>Download →</small></button>
+  <button class="shortcut" onclick="showPage('promotion')"><span class="emoji">📝</span><strong>Handwritten Notes</strong><small>Study →</small></button>
+  <button class="shortcut" onclick="showPage('promotion')"><span class="emoji">📰</span><strong>Current Affairs</strong><small>Latest →</small></button>
+  <button class="shortcut" onclick="showPage('social')"><span class="emoji">💬</span><strong>Doubt Support</strong><small>Ask Now →</small></button>
+ </div></div>
 
-  <section class="section two-col">
-    <div class="panel"><h3>✨ Make Your Digital Presence Shine</h3><p>अपने social media profiles को व्यवस्थित रखें और promotional content को तेजी से share करें।</p><div class="feature-list"><div class="feature"><b>🔗</b><span>9 अलग-अलग social profile links</span></div><div class="feature"><b>🎬</b><span>Photo या video चुनकर share sheet खोलें</span></div><div class="feature"><b>💫</b><span>Animated premium blue-purple-gold theme</span></div></div><button class="btn primary" style="margin-top:15px;width:100%" onclick="showPage('profile')">Set Up My Profile →</button></div>
-    <div class="panel"><h3>📚 Useful Resources</h3><p>अपनी website और learning resources यहाँ जोड़ें।</p><div class="resource-list"><a class="resource" id="websiteResource" href="https://tinyurl.com/GSdigitalacademy" target="_blank" rel="noopener"><span class="r-icon">🌍</span><span><strong>GS Digital Academy Website</strong><small>Official website खोलें</small></span></a><button class="resource" style="text-align:left;color:white;width:100%" onclick="showPage('social')"><span class="r-icon">🔗</span><span><strong>My Social Media Links</strong><small>अपनी profile links देखें</small></span></button></div></div>
-  </section>
+ <div class="stats">
+  <div class="stat"><span class="stat-icon">👥</span><div><strong>Learn</strong><small>Every Day</small></div></div>
+  <div class="stat"><span class="stat-icon">🎬</span><div><strong>Video</strong><small>Learning Resources</small></div></div>
+  <div class="stat"><span class="stat-icon">📑</span><div><strong>Practice</strong><small>Build Your Skills</small></div></div>
+  <div class="stat"><span class="stat-icon">🏆</span><div><strong>Grow</strong><small>Achieve Your Goals</small></div></div>
+ </div>
+
+ <section class="section" id="courses">
+  <div class="section-head"><div><h2>🔥 Popular Courses</h2><p>Explore learning categories and build your preparation plan.</p></div><button class="view-all" onclick="showPage('promotion')">View All →</button></div>
+  <div class="course-grid" id="courseGrid">
+   <article class="course" data-search="ssc exams cgl chsl mts gd">
+    <div class="course-cover"><h3>SSC EXAMS</h3><p>CGL | CHSL | MTS | GD</p><span class="cover-icon">🏛️</span></div>
+    <div class="course-info"><h4>SSC Exam Preparation</h4><p>● Learning resources</p><button class="enroll" onclick="courseAction('SSC Exam Preparation')">Explore Course →</button></div>
+   </article>
+   <article class="course" data-search="railway exams ntpc group d alp rpf">
+    <div class="course-cover rail"><h3>RAILWAY EXAMS</h3><p>NTPC | GROUP D | ALP | RPF</p><span class="cover-icon">🚆</span></div>
+    <div class="course-info"><h4>Railway Exam Preparation</h4><p>● Learning resources</p><button class="enroll" onclick="courseAction('Railway Exam Preparation')">Explore Course →</button></div>
+   </article>
+   <article class="course" data-search="bank exams ibps sbi rrb rbi">
+    <div class="course-cover bank"><h3>BANK EXAMS</h3><p>IBPS | SBI | RRB | RBI</p><span class="cover-icon">🏦</span></div>
+    <div class="course-info"><h4>Bank Exam Preparation</h4><p>● Learning resources</p><button class="enroll" onclick="courseAction('Bank Exam Preparation')">Explore Course →</button></div>
+   </article>
+   <article class="course" data-search="upsc state pcs bpsc uppcs mppcs">
+    <div class="course-cover upsc"><h3>UPSC & STATE PCS</h3><p>UPSC | BPSC | UPPCS</p><span class="cover-icon">🏛️</span></div>
+    <div class="course-info"><h4>UPSC & State PCS</h4><p>● Learning resources</p><button class="enroll" onclick="courseAction('UPSC & State PCS')">Explore Course →</button></div>
+   </article>
+  </div>
+  <p id="noCourses" style="display:none;color:#65718d;font-size:13px">कोई course नहीं मिला। दूसरा शब्द खोजें।</p>
+ </section>
+
+ <section class="why">
+  <h2>♛ Why Choose GS <span style="color:#ffd34f">DIGITAL ACADEMY?</span></h2>
+  <p class="why-intro">Your learning journey, your goals, your future.</p>
+  <div class="why-grid">
+   <div class="why-item"><div class="why-icon">👥</div><h3>Quality Learning</h3><p>Organize your learning resources in one place.</p></div>
+   <div class="why-item"><div class="why-icon">📚</div><h3>Structured Resources</h3><p>Explore study categories and learning materials.</p></div>
+   <div class="why-item"><div class="why-icon">☑️</div><h3>Practice & Improve</h3><p>Build a consistent study and revision routine.</p></div>
+   <div class="why-item"><div class="why-icon">📄</div><h3>Study Notes</h3><p>Keep useful educational resources organized.</p></div>
+  </div>
+ </section>
+
+ <section class="app-banner">
+  <div><h2>Download GS DIGITAL ACADEMY App</h2><p>Learn Anytime, Anywhere | Fast | Secure | Easy to Use</p></div>
+  <button class="download-btn" onclick="installApp()">▶　Install Academy App　→</button>
+ </section>
 </section>
 
 <section id="profile" class="page">
-  <h2 class="page-title">👤 My Social Profile</h2><p class="sub">अपने सभी social links save करें। Link आपके इसी browser में रहेंगे।</p>
-  <div class="panel">
-    <div class="form-grid"><div class="field"><label for="profileName">आपका नाम / Brand Name</label><input id="profileName" placeholder="GS Digital Academy"></div><div class="field"><label for="profileBio">Short Bio</label><input id="profileBio" placeholder="Your Digital World"></div></div>
-    <div id="profileFields" class="form-grid"></div>
-    <button class="btn gold" style="width:100%" onclick="saveProfile()">💾 Save My Profile</button>
-    <p style="margin:12px 0 0;font-size:11px;color:var(--muted)">Tip: पूरा URL डालें, जैसे https://instagram.com/yourname</p>
-  </div>
+ <h1 class="page-title">👤 My Social Profile</h1><p class="sub">अपने social media links जोड़ें। ये links इसी browser में सेव होंगे।</p>
+ <div class="panel">
+  <div class="form-grid"><div class="field"><label for="profileName">नाम / Brand Name</label><input id="profileName" placeholder="GS Digital Academy"></div><div class="field"><label for="profileBio">Short Bio</label><input id="profileBio" placeholder="Your Digital World"></div></div>
+  <div id="profileFields" class="form-grid"></div>
+  <button class="btn blue" style="width:100%" onclick="saveProfile()">💾 Save My Profile</button>
+ </div>
 </section>
 
 <section id="social" class="page">
-  <h2 class="page-title">🌐 Social Media Hub</h2><p class="sub">आपके saved links यहाँ अलग-अलग दिखाई देंगे। पहले Profile में links save करें।</p>
-  <div id="socialList" class="social-grid"></div>
-  <div class="notice">🔐 यह app आपके account में अपने-आप post नहीं करता। Social platforms पर publishing उनके official features, API और permissions पर निर्भर करती है।</div>
-  <button class="btn primary" onclick="showPage('profile')">✏️ Edit My Links</button>
+ <h1 class="page-title">🌐 Social Media Hub</h1><p class="sub">अपने सेव किए गए social links खोलें और ऐप शेयर करें।</p>
+ <div id="socialList" class="social-grid"></div>
+ <div class="panel" style="margin-top:14px"><h3>GS Digital Academy Website</h3><p>हमारी वेबसाइट खोलें या दूसरों के साथ साझा करें।</p><a class="btn blue" href="https://tinyurl.com/GSDIGITALACADEMYAPP" target="_blank" rel="noopener">Open Website ↗</a> <button class="btn" onclick="shareApp()" style="color:#14204a;border-color:#ccd5eb">Share App</button></div>
 </section>
 
 <section id="promotion" class="page">
-  <h2 class="page-title">🚀 Promotion Studio</h2><p class="sub">Message लिखें, photo/video चुनें और अपने phone के share menu से भेजें।</p>
-  <div class="panel">
-    <div class="field"><label for="postTitle">Promotion Title (optional)</label><input id="postTitle" placeholder="Welcome to GS Digital Academy"></div>
-    <div class="field"><label for="postText">आपका promotional message</label><textarea id="postText" placeholder="अपना message यहाँ लिखें...">🚀 WELCOME TO GS DIGITAL ACADEMY
+ <h1 class="page-title">🚀 Promotion Studio</h1><p class="sub">अपना संदेश लिखें, फोटो/वीडियो चुनें और अपने डिवाइस के share menu से भेजें।</p>
+ <div class="panel">
+  <div class="field"><label for="postTitle">Promotion Title (optional)</label><input id="postTitle" placeholder="Welcome to GS Digital Academy"></div>
+  <div class="field"><label for="postText">Promotional Message</label><textarea id="postText">🚀 WELCOME TO GS DIGITAL ACADEMY
 
 🌐 Visit our website:
-https://tinyurl.com/GSdigitalacademy
+https://tinyurl.com/GSDIGITALACADEMYAPP
 
-✨ Understand. Decide. Build Your Future.</textarea></div>
-    <div class="field"><label for="mediaFile">Photo या Video चुनें (optional)</label><input id="mediaFile" type="file" accept="image/*,video/*"><img id="imagePreview" class="media-preview" alt="Selected media preview"><video id="videoPreview" class="media-preview" controls playsinline></video></div>
-    <div class="section-head"><div><h3>Share Destinations</h3><p>एक या अधिक platform select करें</p></div><button class="text-link" onclick="selectAllPlatforms(true)">Select all</button></div>
-    <div id="destinationChecks" class="check-grid"></div>
-    <div class="modal-actions"><button class="btn gold" onclick="sharePromotion()">📲 Share Message / Media</button><button class="btn" onclick="copyPromotion()">Copy Message</button></div>
-    <div class="notice">ध्यान दें: चयनित platforms की list app में रखी जाती है, लेकिन Android/iPhone share menu में कौन-सा app दिखाई देगा यह आपके device पर निर्भर है। एक ही tap में सभी platforms पर automatic posting इस PWA से संभव नहीं है।</div>
-  </div>
+✨ Learn Today | Grow Tomorrow</textarea></div>
+  <div class="field"><label for="mediaFile">Photo / Video (optional)</label><input id="mediaFile" type="file" accept="image/*,video/*"><img id="imagePreview" class="preview" alt="Image preview"><video id="videoPreview" class="preview" controls playsinline></video></div>
+  <div class="section-head"><h3>Share Destinations</h3><button class="view-all" onclick="selectAllPlatforms(true)">Select All</button></div>
+  <div id="destinationChecks" class="check-grid"></div>
+  <div class="actions" style="margin-top:15px"><button class="btn blue" onclick="sharePromotion()">📲 Share Message / Media</button><button class="btn" style="color:#15204a;border-color:#d7dfef" onclick="copyPromotion()">Copy Message</button></div>
+  <div class="notice">नोट: यह सुविधा आपके डिवाइस का share menu खोलती है। सभी platforms पर एक साथ automatic posting के लिए अलग सुरक्षित backend और official API permissions चाहिए।</div>
+ </div>
 </section>
 </main>
 
-<div class="footer">© <span id="year"></span> GS Digital Academy • Learn • Connect • Grow</div>
+<footer class="footer">© <span id="year"></span> GS DIGITAL ACADEMY · Learn Today · Grow Tomorrow</footer>
 </div>
 
-<nav class="bottom-nav" aria-label="Main navigation"><div class="nav-inner">
-<button class="nav-btn active" data-page="home" onclick="showPage('home')"><span>⌂</span>Home</button>
-<button class="nav-btn" data-page="profile" onclick="showPage('profile')"><span>👤</span>Profile</button>
-<button class="nav-btn" data-page="promotion" onclick="showPage('promotion')"><span>🚀</span>Promote</button>
-<button class="nav-btn" data-page="social" onclick="showPage('social')"><span>🌐</span>Social</button>
-<button class="nav-btn" onclick="shareApp()"><span>↗</span>Share</button>
+<nav class="bottom-nav" aria-label="App navigation"><div class="nav-inner">
+ <button class="nav-btn active" data-page="home" onclick="showPage('home')"><span>⌂</span>Home</button>
+ <button class="nav-btn" data-page="profile" onclick="showPage('profile')"><span>👤</span>Profile</button>
+ <button class="nav-btn" data-page="promotion" onclick="showPage('promotion')"><span>🚀</span>Promote</button>
+ <button class="nav-btn" data-page="social" onclick="showPage('social')"><span>🌐</span>Social</button>
+ <button class="nav-btn" onclick="shareApp()"><span>↗</span>Share</button>
 </div></nav>
-
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
-<div id="shareModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="shareModalTitle">
-  <div class="modal-card">
-    <h3 id="shareModalTitle">📲 Continue Sharing</h3>
-    <p id="shareModalText">Message share menu से भेजें या नीचे अपने selected profile links खोलें।</p>
-    <div id="selectedLinks" class="resource-list"></div>
-    <div class="modal-actions"><button class="btn gold" onclick="closeShareModal()">Done</button></div>
-  </div>
-</div>
+<div id="shareModal" class="modal" role="dialog" aria-modal="true"><div class="modal-card"><h3>📲 Continue Sharing</h3><p id="shareModalText">अपने चुने हुए profile links खोलें।</p><div id="selectedLinks"></div><button class="btn blue" style="margin-top:15px" onclick="closeShareModal()">Done</button></div></div>
 
 <script>
 const PLATFORMS=[
- {id:'facebook',name:'Facebook Profile',emoji:'📘',placeholder:'https://facebook.com/yourprofile'},
- {id:'facebookPage',name:'Facebook Page',emoji:'📄',placeholder:'https://facebook.com/yourpage'},
- {id:'facebookGroup',name:'Facebook Group',emoji:'👥',placeholder:'https://facebook.com/groups/yourgroup'},
- {id:'whatsappGroup',name:'WhatsApp Group',emoji:'🟢',placeholder:'https://chat.whatsapp.com/yourinvite'},
- {id:'whatsappCommunity',name:'WhatsApp Community',emoji:'🫂',placeholder:'WhatsApp Community invite link'},
- {id:'instagram',name:'Instagram',emoji:'📸',placeholder:'https://instagram.com/yourname'},
- {id:'telegramGroup',name:'Telegram Group',emoji:'✈️',placeholder:'https://t.me/yourgroup'},
- {id:'telegramChannel',name:'Telegram Channel',emoji:'📣',placeholder:'https://t.me/yourchannel'},
- {id:'youtube',name:'YouTube',emoji:'▶️',placeholder:'https://youtube.com/@yourchannel'}
+{id:'facebook',name:'Facebook Profile',emoji:'📘',placeholder:'https://facebook.com/yourprofile'},
+{id:'facebookPage',name:'Facebook Page',emoji:'📄',placeholder:'https://facebook.com/yourpage'},
+{id:'facebookGroup',name:'Facebook Group',emoji:'👥',placeholder:'https://facebook.com/groups/yourgroup'},
+{id:'whatsappGroup',name:'WhatsApp Group',emoji:'🟢',placeholder:'https://chat.whatsapp.com/yourinvite'},
+{id:'whatsappCommunity',name:'WhatsApp Community',emoji:'🫂',placeholder:'WhatsApp invite link'},
+{id:'instagram',name:'Instagram',emoji:'📸',placeholder:'https://instagram.com/yourname'},
+{id:'telegramGroup',name:'Telegram Group',emoji:'✈️',placeholder:'https://t.me/yourgroup'},
+{id:'telegramChannel',name:'Telegram Channel',emoji:'📣',placeholder:'https://t.me/yourchannel'},
+{id:'youtube',name:'YouTube',emoji:'▶️',placeholder:'https://youtube.com/@yourchannel'}
 ];
-
 const PROFILE_KEY='gsda_profile_v4';
-let chosenMedia=null, chosenMediaUrl=null;
-const defaultProfile={name:'GS Digital Academy',bio:'Your Digital World',links:{}};
-
-function getProfile(){
-  try{
-    const saved=JSON.parse(localStorage.getItem(PROFILE_KEY)||'{}');
-    return {...defaultProfile,...saved,links:{...defaultProfile.links,...(saved.links||{})}};
-  }catch(e){return {...defaultProfile,links:{}}}
+let chosenMedia=null,chosenMediaUrl=null,deferredInstall=null,toastTimer=null;
+const $=id=>document.getElementById(id);
+function getProfile(){try{const p=JSON.parse(localStorage.getItem(PROFILE_KEY)||'{}');return{name:'GS Digital Academy',bio:'Your Digital World',...p,links:{...(p.links||{})}}}catch(e){return{name:'GS Digital Academy',bio:'Your Digital World',links:{}}}}
+function safeUrl(v){v=(v||'').trim();if(!v)return '';if(!/^https?:\/\//i.test(v))v='https://'+v;try{const u=new URL(v);return ['https:','http:'].includes(u.protocol)?u.href:''}catch(e){return ''}}
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')}
+function toast(msg){$('toast').textContent=msg;$('toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').classList.remove('show'),2600)}
+function showPage(id){
+ document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));
+ document.querySelectorAll('.nav-btn[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===id));
+ document.querySelectorAll('.nav button[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===id));
+ window.scrollTo({top:0,behavior:'smooth'});
+ if(id==='profile')buildProfileFields();
+ if(id==='social')renderSocial();
 }
-function cleanUrl(v){
-  v=(v||'').trim();
-  if(!v)return '';
-  if(!/^https?:\/\//i.test(v))v='https://'+v;
-  try{const u=new URL(v);return ['http:','https:'].includes(u.protocol)?u.href:''}
-  catch(e){return ''}
-}
-function escapeAttr(s){
-  return String(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
-function escapeHtml(s){
-  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+function goPromotion(){showPage('promotion')}
+function courseAction(name){$('postTitle').value=name;$('postText').value='मैं GS DIGITAL ACADEMY पर '+name+' के बारे में जानकारी चाहता/चाहती हूँ।\n\nWebsite: https://tinyurl.com/GSDIGITALACADEMYAPP';showPage('promotion');toast('Course interest message तैयार है।')}
+function filterCourses(q){
+ q=q.trim().toLowerCase();let shown=0;
+ document.querySelectorAll('.course').forEach(c=>{const ok=(c.dataset.search+' '+c.innerText).toLowerCase().includes(q);c.style.display=ok?'':'none';if(ok)shown++});
+ $('noCourses').style.display=shown?'none':'block';
 }
 function buildProfileFields(){
-  const p=getProfile();
-  document.getElementById('profileName').value=p.name||'';
-  document.getElementById('profileBio').value=p.bio||'';
-  document.getElementById('profileFields').innerHTML=PLATFORMS.map(x=>`<div class="field"><label for="link_${x.id}">${x.emoji} ${x.name}</label><input id="link_${x.id}" type="url" inputmode="url" placeholder="${x.placeholder}" value="${escapeAttr(p.links[x.id]||'')}"></div>`).join('');
+ const p=getProfile();$('profileName').value=p.name||'';$('profileBio').value=p.bio||'';
+ $('profileFields').innerHTML=PLATFORMS.map(x=>`<div class="field"><label for="link_${x.id}">${x.emoji} ${x.name}</label><input id="link_${x.id}" type="url" inputmode="url" placeholder="${x.placeholder}" value="${esc(p.links[x.id]||'')}"></div>`).join('');
 }
 function saveProfile(){
-  const links={};
-  PLATFORMS.forEach(x=>{links[x.id]=cleanUrl(document.getElementById('link_'+x.id).value)});
-  const p={name:document.getElementById('profileName').value.trim()||'GS Digital Academy',bio:document.getElementById('profileBio').value.trim()||'Your Digital World',links};
-  localStorage.setItem(PROFILE_KEY,JSON.stringify(p));
-  renderSocial();
-  buildDestinationChecks();
-  toast('Profile successfully save हो गया ✓');
+ const links={};PLATFORMS.forEach(x=>links[x.id]=safeUrl($('link_'+x.id).value));
+ const p={name:$('profileName').value.trim()||'GS Digital Academy',bio:$('profileBio').value.trim()||'Your Digital World',links};
+ try{localStorage.setItem(PROFILE_KEY,JSON.stringify(p));renderSocial();buildDestinationChecks();toast('Profile save हो गया ✓')}catch(e){toast('Browser storage में जगह उपलब्ध नहीं है')}
 }
 function renderSocial(){
-  const p=getProfile();
-  const el=document.getElementById('socialList');
-  el.innerHTML=PLATFORMS.map(x=>{
-    const u=p.links[x.id];
-    return `<div class="social-card"><span class="social-emoji">${x.emoji}</span><div style="min-width:0;flex:1"><div class="social-name">${x.name}</div><span class="social-url">${u?escapeHtml(u):'अभी link add नहीं किया गया'}</span></div><div class="right">${u?`<a href="${escapeAttr(u)}" target="_blank" rel="noopener">OPEN ↗</a>`:'<span style="font-size:10px;color:#aeb9e9">Not set</span>'}</div></div>`;
-  }).join('');
+ const p=getProfile();
+ $('socialList').innerHTML=PLATFORMS.map(x=>{const u=p.links[x.id];return `<div class="social-card"><span class="emoji">${x.emoji}</span><div style="min-width:0;flex:1"><strong>${x.name}</strong><div class="url">${u?esc(u):'Link अभी add नहीं किया'}</div></div>${u?`<a href="${esc(u)}" target="_blank" rel="noopener">OPEN ↗</a>`:''}</div>`}).join('');
 }
 function buildDestinationChecks(){
-  const p=getProfile();
-  document.getElementById('destinationChecks').innerHTML=PLATFORMS.map(x=>`<label class="check-item"><input type="checkbox" class="destination" value="${x.id}" ${p.links[x.id]?'checked':''}><span>${x.emoji} ${x.name}</span></label>`).join('');
+ const p=getProfile();
+ $('destinationChecks').innerHTML=PLATFORMS.map(x=>`<label class="check-item"><input type="checkbox" class="destination" value="${x.id}" ${p.links[x.id]?'checked':''}><span>${x.emoji} ${x.name}</span></label>`).join('');
 }
 function selectAllPlatforms(on){document.querySelectorAll('.destination').forEach(c=>c.checked=on)}
-function showPage(id){
-  document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));
-  document.querySelectorAll('.nav-btn[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===id));
-  window.scrollTo({top:0,behavior:'smooth'});
-  if(id==='social')renderSocial();
-  if(id==='profile')buildProfileFields();
-}
-let toastTimer;
-function toast(msg){
-  const t=document.getElementById('toast');
-  t.textContent=msg;t.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer=setTimeout(()=>t.classList.remove('show'),2600);
-}
-function selectedPlatforms(){
-  return [...document.querySelectorAll('.destination:checked')].map(c=>PLATFORMS.find(x=>x.id===c.value)).filter(Boolean);
-}
-function getMessage(){
-  const title=document.getElementById('postTitle').value.trim();
-  const body=document.getElementById('postText').value.trim();
-  return [title,body].filter(Boolean).join('\n\n');
-}
-document.getElementById('mediaFile').addEventListener('change',e=>{
-  const f=e.target.files&&e.target.files[0];
-  chosenMedia=f||null;
-  if(chosenMediaUrl)URL.revokeObjectURL(chosenMediaUrl);
-  chosenMediaUrl=null;
-  const im=document.getElementById('imagePreview'),vid=document.getElementById('videoPreview');
-  im.style.display='none';vid.style.display='none';
-  if(!f)return;
-  chosenMediaUrl=URL.createObjectURL(f);
-  if(f.type.startsWith('image/')){im.src=chosenMediaUrl;im.style.display='block'}
-  else if(f.type.startsWith('video/')){vid.src=chosenMediaUrl;vid.style.display='block'}
+function selectedPlatforms(){return [...document.querySelectorAll('.destination:checked')].map(c=>PLATFORMS.find(p=>p.id===c.value)).filter(Boolean)}
+function getMessage(){return [$('postTitle').value.trim(),$('postText').value.trim()].filter(Boolean).join('\n\n')}
+$('mediaFile').addEventListener('change',e=>{
+ const f=e.target.files&&e.target.files[0];chosenMedia=f||null;
+ if(chosenMediaUrl)URL.revokeObjectURL(chosenMediaUrl);chosenMediaUrl=null;
+ const im=$('imagePreview'),vid=$('videoPreview');im.style.display='none';vid.style.display='none';
+ if(!f)return;chosenMediaUrl=URL.createObjectURL(f);
+ if(f.type.startsWith('image/')){im.src=chosenMediaUrl;im.style.display='block'}
+ else if(f.type.startsWith('video/')){vid.src=chosenMediaUrl;vid.style.display='block'}
 });
 async function sharePromotion(){
-  const text=getMessage();
-  if(!text&&!chosenMedia){toast('पहले message या photo/video चुनें');return}
-  const selected=selectedPlatforms();
-  const data={title:document.getElementById('postTitle').value.trim()||'GS Digital Academy',text};
-  if(chosenMedia&&navigator.canShare&&navigator.canShare({files:[chosenMedia]})){data.files=[chosenMedia]}
-  else if(chosenMedia&&!navigator.share){toast('इस browser में media sharing support नहीं है');return}
-  try{
-    if(navigator.share&&(!data.files||navigator.canShare({files:data.files}))){
-      await navigator.share(data);toast('Share menu खुल गया');
-    }else{
-      await navigator.clipboard.writeText(text);toast('Message copy हो गया; अब app में paste करें');
-    }
-  }catch(err){
-    if(err&&err.name==='AbortError'){toast('Sharing cancel किया गया')}
-    else{
-      try{await navigator.clipboard.writeText(text);toast('Message copy हो गया')}
-      catch(e){showShareLinks(selected);toast('Selected links नीचे दिए हैं')}
-    }
-  }
-  if(selected.length)showShareLinks(selected);
+ const text=getMessage();if(!text&&!chosenMedia){toast('पहले message या media चुनें');return}
+ const selected=selectedPlatforms();const data={title:$('postTitle').value.trim()||'GS Digital Academy',text};
+ if(chosenMedia&&navigator.canShare&&navigator.canShare({files:[chosenMedia]}))data.files=[chosenMedia];
+ try{
+  if(navigator.share&&(!data.files||navigator.canShare({files:data.files}))){await navigator.share(data);toast('Share menu खुल गया')}
+  else{await copyText(text);toast('Message copy हो गया; paste करके share करें')}
+ }catch(e){if(e.name!=='AbortError')toast('Sharing उपलब्ध नहीं हुआ; Copy Message इस्तेमाल करें')}
+ if(selected.length)showShareLinks(selected);
 }
 function showShareLinks(selected){
-  const p=getProfile();
-  const valid=selected.filter(x=>p.links[x.id]);
-  document.getElementById('shareModalText').textContent=valid.length?'आपके selected profile links नीचे हैं। हर link खोलकर post/share करें।':'आपने कोई saved profile link select नहीं किया है। पहले Profile में links save करें।';
-  document.getElementById('selectedLinks').innerHTML=valid.map(x=>`<a class="resource" href="${escapeAttr(p.links[x.id])}" target="_blank" rel="noopener"><span class="r-icon">${x.emoji}</span><span><strong>${x.name}</strong><small>Open selected destination ↗</small></span></a>`).join('');
-  document.getElementById('shareModal').classList.add('show');
+ const p=getProfile(),valid=selected.filter(x=>p.links[x.id]);
+ $('shareModalText').textContent=valid.length?'हर चुने हुए destination को खोलकर message share करें।':'पहले Profile में अपने social links save करें।';
+ $('selectedLinks').innerHTML=valid.map(x=>`<a class="resource" href="${esc(p.links[x.id])}" target="_blank" rel="noopener"><span>${x.emoji}</span><strong>${x.name} ↗</strong></a>`).join('');
+ $('shareModal').classList.add('show');
 }
-function closeShareModal(){document.getElementById('shareModal').classList.remove('show')}
-async function copyPromotion(){
-  const text=getMessage();
-  if(!text){toast('पहले message लिखें');return}
-  try{await navigator.clipboard.writeText(text);toast('Promotion message copy हो गया ✓')}
-  catch(e){
-    const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();toast('Promotion message copy हो गया ✓');
-  }
+function closeShareModal(){$('shareModal').classList.remove('show')}
+async function copyText(text){
+ try{await navigator.clipboard.writeText(text)}
+ catch(e){const t=document.createElement('textarea');t.value=text;document.body.appendChild(t);t.select();document.execCommand('copy');t.remove()}
 }
+async function copyPromotion(){const t=getMessage();if(!t){toast('पहले message लिखें');return}await copyText(t);toast('Promotion message copy हो गया ✓')}
 async function shareApp(){
-  const text='🚀 GS DIGITAL ACADEMY\nYour Digital World\nVisit: https://tinyurl.com/GSdigitalacademy';
-  try{
-    if(navigator.share)await navigator.share({title:'GS Digital Academy',text,url:'https://tinyurl.com/GSdigitalacademy'});
-    else{await navigator.clipboard.writeText(text);toast('App link copy हो गया ✓')}
-  }catch(e){if(e.name!=='AbortError')toast('Website: tinyurl.com/GSdigitalacademy')}
+ const url='https://tinyurl.com/GSDIGITALACADEMYAPP',text='🚀 GS DIGITAL ACADEMY\nLearn Today | Grow Tomorrow\n'+url;
+ try{if(navigator.share)await navigator.share({title:'GS Digital Academy',text,url});else{await copyText(text);toast('App link copy हो गया ✓')}}catch(e){if(e.name!=='AbortError')toast('Website: '+url)}
 }
-let deferredInstall=null;
-window.addEventListener('beforeinstallprompt',e=>{
-  e.preventDefault();deferredInstall=e;
-  document.getElementById('installBtn').style.display='inline-block';
-});
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstall=e;$('installBtn').style.display='inline-block'});
 async function installApp(){
-  if(deferredInstall){deferredInstall.prompt();await deferredInstall.userChoice;deferredInstall=null}
-  else{toast('Chrome menu ⋮ खोलें और Add to Home screen / Install app चुनें')}
+ if(deferredInstall){deferredInstall.prompt();await deferredInstall.userChoice;deferredInstall=null}
+ else toast('Chrome menu ⋮ खोलें और Install app / Add to Home screen चुनें');
 }
-document.getElementById('year').textContent=new Date().getFullYear();
-buildProfileFields();
-renderSocial();
-buildDestinationChecks();
-if('serviceWorker' in navigator && location.protocol.startsWith('http')){
-  window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}));
-}
-document.getElementById('shareModal').addEventListener('click',e=>{
-  if(e.target.id==='shareModal')closeShareModal();
-});
+$('year').textContent=new Date().getFullYear();
+buildProfileFields();renderSocial();buildDestinationChecks();
+$('shareModal').addEventListener('click',e=>{if(e.target===$('shareModal'))closeShareModal()});
+if('serviceWorker' in navigator&&location.protocol.startsWith('http'))window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}));
 </script>
 </body>
 </html>
