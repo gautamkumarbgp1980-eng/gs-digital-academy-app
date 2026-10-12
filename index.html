@@ -11,599 +11,229 @@
 
 <style>
 :root {
-  --navy:#080d32;
   --blue:#182b83;
   --purple:#6b2bd9;
   --gold:#ffd36a;
-  --gold2:#fff0b0;
   --white:#f8f9ff;
   --muted:#bdc6ef;
-  --glass:rgba(255,255,255,.09);
-  --line:rgba(255,255,255,.16);
+  --line:rgba(255,255,255,.17);
 }
-
-* { box-sizing:border-box; }
-html { scroll-behavior:smooth; }
-
-body {
-  margin:0;
-  color:var(--white);
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;color:var(--white);
   font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
   background:
-    radial-gradient(ellipse at 15% 0%,#342078 0%,transparent 38%),
-    radial-gradient(ellipse at 95% 20%,#123d8c 0%,transparent 34%),
+    radial-gradient(ellipse at 15% 0%,#342078,transparent 38%),
+    radial-gradient(ellipse at 95% 20%,#123d8c,transparent 34%),
     linear-gradient(145deg,#070b2b,#11144b 48%,#24104c);
-  min-height:100vh;
-  overflow-x:hidden;
+  min-height:100vh;overflow-x:hidden
 }
-
-body:before,body:after {
-  content:"";
-  position:fixed;
-  pointer-events:none;
-  z-index:-1;
-  border-radius:50%;
-  filter:blur(2px);
-  opacity:.38;
-  animation:floatOrb 15s ease-in-out infinite alternate;
-}
-
-body:before {
-  width:270px;
-  height:270px;
-  top:18%;
-  left:-130px;
+body:before,body:after{
+  content:"";position:fixed;z-index:-1;pointer-events:none;
+  width:270px;height:270px;border-radius:50%;
+  filter:blur(3px);opacity:.35;
   background:radial-gradient(circle,#7d42ff,transparent 70%);
+  animation:float 12s ease-in-out infinite alternate
 }
-
-body:after {
-  width:340px;
-  height:340px;
-  right:-170px;
-  bottom:4%;
+body:before{top:18%;left:-130px}
+body:after{
+  width:340px;height:340px;right:-170px;bottom:4%;
   background:radial-gradient(circle,#008dff,transparent 70%);
-  animation-delay:-6s;
+  animation-delay:-5s
 }
-
-@keyframes floatOrb {
-  from { transform:translate3d(0,-20px,0) scale(.9); }
-  to { transform:translate3d(45px,35px,0) scale(1.18); }
+@keyframes float{
+  from{transform:translate(0,-20px) scale(.9)}
+  to{transform:translate(40px,35px) scale(1.15)}
 }
-
-@keyframes gradientMove {
-  0% { background-position:0% 50%; }
-  50% { background-position:100% 50%; }
-  100% { background-position:0% 50%; }
+@keyframes gradientMove{
+  0%,100%{background-position:0% 50%}
+  50%{background-position:100% 50%}
 }
-
-@keyframes fadeUp {
-  from { opacity:0; transform:translateY(18px); }
-  to { opacity:1; transform:translateY(0); }
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(15px)}
+  to{opacity:1;transform:translateY(0)}
 }
-
-@keyframes glow {
-  0%,100% { box-shadow:0 0 14px rgba(255,211,106,.18); }
-  50% { box-shadow:0 0 28px rgba(255,211,106,.48); }
+@keyframes glow{
+  0%,100%{box-shadow:0 0 12px #ffd36a30}
+  50%{box-shadow:0 0 25px #ffd36a80}
 }
-
-@keyframes shimmer {
-  0% { background-position:180% 0; }
-  100% { background-position:-180% 0; }
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+.app{width:min(1120px,100%);margin:auto;padding:12px 15px 100px}
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:10px;padding:10px 2px 18px;animation:fadeUp .5s ease
 }
-
-button,input,textarea { font:inherit; }
-button { cursor:pointer; }
-
-.app {
-  width:min(1120px,100%);
-  margin:auto;
-  padding:14px 15px 95px;
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.logo{
+  width:48px;height:48px;flex-shrink:0;overflow:hidden;
+  border-radius:16px;display:grid;place-items:center;
+  background:linear-gradient(135deg,#fff3b8,#f5b82d,#fff0a0);
+  border:1px solid #fff4c7;animation:glow 3s infinite
 }
-
-.topbar {
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  padding:10px 2px 17px;
-  animation:fadeUp .55s ease both;
+.logo img{width:100%;height:100%;object-fit:contain;display:block;border-radius:inherit}
+.brand h1{font-size:16px;line-height:1.2;margin:0}
+.brand p{font-size:11px;margin:4px 0 0;color:#c7d0ff;letter-spacing:1.2px}
+.top-actions{display:flex;align-items:center;gap:6px}
+.btn,.icon-btn{
+  border:1px solid var(--line);border-radius:13px;padding:10px 12px;
+  color:white;background:#ffffff12;transition:.2s
 }
-
-.brand {
-  display:flex;
-  align-items:center;
-  gap:10px;
-  min-width:0;
-}
-
-.logo {
-  width:48px;
-  height:48px;
-  flex-shrink:0;
-  border-radius:16px;
-  display:grid;
-  place-items:center;
-  font-size:23px;
-  font-weight:900;
-  color:#20143c;
-  background:linear-gradient(135deg,#fff3b8,#f5b82d 48%,#fff0a0);
-  border:1px solid #fff4c7;
-  animation:glow 3s ease-in-out infinite;
-}
-
-.brand h1 {
-  font-size:17px;
-  line-height:1.15;
-  margin:0;
-  letter-spacing:.35px;
-}
-
-.brand p {
-  font-size:11px;
-  margin:4px 0 0;
-  color:#c7d0ff;
-  letter-spacing:1.2px;
-}
-
-.top-actions { display:flex; gap:7px; }
-
-.icon-btn,.btn {
-  border:1px solid var(--line);
-  color:white;
-  background:rgba(255,255,255,.08);
-  border-radius:13px;
-  padding:10px 13px;
-  transition:transform .2s,background .2s,border-color .2s;
-}
-
-.icon-btn { font-size:18px; min-width:43px; }
-
-.btn:hover,.icon-btn:hover {
-  transform:translateY(-2px);
-  background:rgba(255,255,255,.15);
-  border-color:rgba(255,211,106,.65);
-}
-
-.btn.gold {
-  color:#201538;
-  font-weight:800;
-  border:0;
+.btn:hover,.icon-btn:hover{transform:translateY(-2px);border-color:var(--gold)}
+.btn.gold{
+  color:#201538;font-weight:800;border:0;
   background:linear-gradient(110deg,#fff0a8,#ffca4f,#fff0a8);
-  background-size:200% 100%;
-  animation:shimmer 5s linear infinite;
+  background-size:200% 100%;animation:gradientMove 5s linear infinite
 }
-
-.btn.primary {
-  background:linear-gradient(120deg,#6b2bd9,#2c63d7);
-  border:0;
-  font-weight:750;
-}
-
-.btn.small { padding:8px 11px; font-size:13px; }
-
-.hero {
-  position:relative;
-  overflow:hidden;
-  border:1px solid rgba(255,224,139,.35);
-  border-radius:28px;
-  padding:27px 22px 23px;
-  background:linear-gradient(125deg,rgba(28,39,113,.95),rgba(74,30,129,.9),rgba(15,66,135,.92));
+.btn.primary{background:linear-gradient(120deg,#6b2bd9,#2c63d7);border:0;font-weight:750}
+.btn.small{font-size:12px;padding:9px 10px;white-space:nowrap}
+.hero{
+  position:relative;overflow:hidden;border:1px solid #ffe08b55;
+  border-radius:27px;padding:28px 22px;
+  background:linear-gradient(125deg,#1c2771f2,#4a1e81e8,#0f428be8);
   background-size:200% 200%;
-  animation:gradientMove 12s ease infinite,fadeUp .7s ease both;
-  box-shadow:0 22px 60px rgba(0,0,0,.22);
+  animation:gradientMove 12s ease infinite,fadeUp .7s ease;
+  box-shadow:0 22px 60px #0004
 }
-
-.hero:after {
-  content:"";
-  position:absolute;
-  width:230px;
-  height:230px;
-  border:1px solid rgba(255,255,255,.13);
-  border-radius:50%;
-  right:-90px;
-  top:-95px;
-  box-shadow:0 0 0 24px rgba(255,255,255,.035),0 0 0 50px rgba(255,255,255,.025);
-  pointer-events:none;
+.hero:after{
+  content:"";position:absolute;width:230px;height:230px;
+  border:1px solid #ffffff20;border-radius:50%;
+  right:-90px;top:-95px;box-shadow:0 0 0 25px #ffffff08,0 0 0 50px #ffffff05
 }
-
-.eyebrow {
-  display:inline-flex;
-  align-items:center;
-  gap:7px;
-  border:1px solid rgba(255,222,127,.38);
-  background:rgba(255,211,106,.09);
-  padding:7px 11px;
-  border-radius:99px;
-  color:var(--gold2);
-  font-size:11px;
-  font-weight:800;
-  letter-spacing:1.1px;
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1px solid #ffde7f55;background:#ffd36a17;
+  padding:7px 11px;border-radius:99px;color:#fff0b0;
+  font-size:11px;font-weight:800;letter-spacing:1px
 }
-
-.dot {
-  width:7px;
-  height:7px;
-  background:#76ffbb;
-  border-radius:50%;
-  box-shadow:0 0 10px #76ffbb;
+.dot{width:7px;height:7px;background:#76ffbb;border-radius:50%;box-shadow:0 0 10px #76ffbb}
+.hero h2{
+  font-size:clamp(32px,7vw,58px);line-height:1.06;
+  letter-spacing:-1.5px;max-width:700px;margin:20px 0 14px
 }
-
-.hero h2 {
-  font-size:clamp(30px,7vw,58px);
-  line-height:1.04;
-  letter-spacing:-1.5px;
-  max-width:700px;
-  margin:19px 0 12px;
+.hero h2 span{display:block;color:var(--gold)}
+.hero p{color:#e0e5ff;line-height:1.7;max-width:650px;font-size:14px}
+.hero-buttons{display:flex;flex-wrap:wrap;gap:10px;position:relative;z-index:1}
+.hero-note{font-size:11px!important;color:#c7d2ff!important;margin-top:17px}
+.section{margin-top:26px;animation:fadeUp .6s ease}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:10px;margin-bottom:13px}
+.section-head h3{font-size:19px;margin:0}
+.section-head p{margin:4px 0 0;color:var(--muted);font-size:12px}
+.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.quick-card,.panel,.social-card,.resource{
+  border:1px solid var(--line);background:#ffffff10;
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-radius:18px
 }
-
-.hero h2 span {
-  display:block;
-  background:linear-gradient(90deg,#fff7d0,#ffd15c,#fff);
-  background-size:180% auto;
-  background-clip:text;
-  -webkit-background-clip:text;
-  color:transparent;
-  animation:shimmer 6s linear infinite;
+.quick-card{
+  padding:15px 8px;text-align:center;color:white;
+  transition:.25s;animation:fadeUp .6s both
 }
-
-.hero p {
-  color:#e0e5ff;
-  line-height:1.65;
-  max-width:610px;
-  margin:0 0 20px;
-  font-size:14px;
+.quick-card:hover{transform:translateY(-5px);border-color:#ffd36a99;background:#ffffff1c}
+.quick-icon{font-size:25px;display:block;margin-bottom:8px}
+.quick-card strong{display:block;font-size:12px}
+.quick-card small{display:block;color:var(--muted);font-size:10px;margin-top:4px}
+.two-col{display:grid;grid-template-columns:1.1fr .9fr;gap:13px}
+.panel{padding:17px}
+.panel h3{font-size:16px;margin:0 0 7px}
+.panel p{color:var(--muted);font-size:12px;line-height:1.6}
+.feature-list,.resource-list{display:grid;gap:10px}
+.feature{display:flex;align-items:center;gap:10px;font-size:12px}
+.feature b{
+  width:30px;height:30px;display:grid;place-items:center;
+  background:#ffd36a1c;border:1px solid #ffd36a44;border-radius:10px
 }
-
-.hero-buttons {
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  position:relative;
-  z-index:1;
+.resource{
+  padding:12px;display:flex;align-items:center;gap:10px;
+  color:white;text-decoration:none;width:100%;text-align:left
 }
-
-.hero-note {
-  font-size:11px!important;
-  color:#c7d2ff!important;
-  margin:17px 0 0!important;
+.resource:hover{border-color:#ffd36a99}
+.resource strong{display:block;font-size:12px}
+.resource small{display:block;font-size:10px;color:var(--muted);margin-top:3px}
+.page{display:none;animation:fadeUp .35s ease}
+.page.active{display:block}
+.page-title{font-size:25px;margin:12px 0 5px}
+.sub{font-size:13px;color:var(--muted);margin:0 0 18px}
+.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+.field label{font-size:12px;color:#dce3ff;font-weight:700}
+.field input,.field textarea{
+  width:100%;padding:12px;border:1px solid var(--line);
+  border-radius:12px;background:#050927a6;color:white;outline:none
 }
-
-.section {
-  margin-top:26px;
-  animation:fadeUp .65s ease both;
+.field input:focus,.field textarea:focus{border-color:var(--gold)}
+.field textarea{resize:vertical;min-height:100px}
+.social-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.social-card{padding:12px;display:flex;align-items:center;gap:9px;min-width:0}
+.social-emoji{font-size:22px}
+.social-name{font-size:12px;font-weight:800;overflow-wrap:anywhere}
+.social-url{display:block;color:var(--muted);font-size:10px;overflow-wrap:anywhere;margin-top:3px}
+.social-card a{color:var(--gold);text-decoration:none;font-size:11px;font-weight:800}
+.social-right{margin-left:auto;flex-shrink:0}
+.check-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.check-item{
+  display:flex;align-items:center;gap:8px;padding:10px;
+  border:1px solid var(--line);border-radius:12px;
+  background:#ffffff08;font-size:12px
 }
-
-.section-head {
-  display:flex;
-  align-items:end;
-  justify-content:space-between;
-  gap:12px;
-  margin-bottom:13px;
+.check-item input{accent-color:var(--gold);width:17px;height:17px}
+.media-preview{
+  display:none;width:100%;max-height:270px;object-fit:contain;
+  border:1px solid var(--line);border-radius:15px;margin:10px 0
 }
-
-.section-head h3 { font-size:19px; margin:0; }
-
-.section-head p {
-  margin:4px 0 0;
-  color:var(--muted);
-  font-size:12px;
+.notice{
+  font-size:12px;line-height:1.6;color:#e5e9ff;
+  background:#ffd36a12;border:1px solid #ffd36a38;
+  padding:12px;border-radius:13px;margin:12px 0
 }
-
-.text-link {
-  border:0;
-  background:none;
-  color:var(--gold);
-  font-size:12px;
-  font-weight:750;
-  padding:6px;
-}
-
-.quick-grid {
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:10px;
-}
-
-.quick-card,.panel,.social-card,.resource {
-  border:1px solid var(--line);
-  background:var(--glass);
-  backdrop-filter:blur(14px);
-  -webkit-backdrop-filter:blur(14px);
-  border-radius:18px;
-}
-
-.quick-card {
-  padding:14px 10px;
-  text-align:center;
-  color:white;
-  transition:transform .25s,border-color .25s,background .25s;
-  animation:fadeUp .65s both;
-}
-
-.quick-card:nth-child(2) { animation-delay:.07s; }
-.quick-card:nth-child(3) { animation-delay:.14s; }
-.quick-card:nth-child(4) { animation-delay:.21s; }
-
-.quick-card:hover {
-  transform:translateY(-5px);
-  border-color:rgba(255,211,106,.6);
-  background:rgba(255,255,255,.13);
-}
-
-.quick-icon { font-size:25px; display:block; margin-bottom:8px; }
-.quick-card strong { display:block; font-size:12px; }
-.quick-card small { display:block; color:var(--muted); font-size:10px; margin-top:4px; }
-
-.two-col {
-  display:grid;
-  grid-template-columns:1.1fr .9fr;
-  gap:13px;
-}
-
-.panel { padding:17px; }
-.panel h3 { font-size:16px; margin:0 0 6px; }
-
-.panel p {
-  color:var(--muted);
-  font-size:12px;
-  line-height:1.55;
-  margin:0 0 13px;
-}
-
-.feature-list { display:grid; gap:10px; }
-
-.feature {
-  display:flex;
-  align-items:center;
-  gap:10px;
-  font-size:12px;
-  color:#e6eaff;
-}
-
-.feature b {
-  width:30px;
-  height:30px;
-  display:grid;
-  place-items:center;
-  background:rgba(255,211,106,.12);
-  border:1px solid rgba(255,211,106,.25);
-  border-radius:10px;
-}
-
-.resource-list { display:grid; gap:9px; }
-
-.resource {
-  padding:12px;
-  display:flex;
-  align-items:center;
-  gap:10px;
-  color:white;
-  text-decoration:none;
-  transition:transform .2s,border-color .2s;
-}
-
-.resource:hover {
-  transform:translateX(3px);
-  border-color:rgba(255,211,106,.5);
-}
-
-.resource .r-icon { font-size:20px; }
-.resource strong { display:block; font-size:12px; }
-.resource small { display:block; font-size:10px; color:var(--muted); margin-top:2px; }
-
-.page { display:none; animation:fadeUp .35s ease both; }
-.page.active { display:block; }
-
-.page-title { font-size:25px; margin:10px 0 4px; }
-.sub { font-size:13px; color:var(--muted); margin:0 0 18px; }
-
-.form-grid {
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:12px;
-}
-
-.field { display:flex; flex-direction:column; gap:6px; margin-bottom:12px; }
-.field label { font-size:12px; color:#dce3ff; font-weight:700; }
-
-.field input,.field textarea {
-  width:100%;
-  padding:12px 13px;
-  border:1px solid var(--line);
-  border-radius:12px;
-  background:rgba(5,9,39,.65);
-  color:white;
-  outline:none;
-}
-
-.field input:focus,.field textarea:focus {
-  border-color:var(--gold);
-  box-shadow:0 0 0 3px rgba(255,211,106,.1);
-}
-
-.field textarea { resize:vertical; min-height:85px; }
-
-.social-grid {
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:10px;
-}
-
-.social-card {
-  padding:12px;
-  display:flex;
-  align-items:center;
-  gap:10px;
-  min-width:0;
-}
-
-.social-card .social-emoji { font-size:22px; }
-.social-card .social-name { font-size:12px; font-weight:800; min-width:0; overflow-wrap:anywhere; }
-.social-card .social-url { display:block; color:var(--muted); font-size:10px; overflow-wrap:anywhere; margin-top:3px; }
-.social-card a { color:var(--gold); text-decoration:none; font-size:11px; font-weight:800; }
-.social-card .right { margin-left:auto; flex-shrink:0; }
-
-.check-grid {
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:8px;
-}
-
-.check-item {
-  display:flex;
-  align-items:center;
-  gap:8px;
-  padding:10px;
-  border:1px solid var(--line);
-  border-radius:12px;
-  background:rgba(255,255,255,.045);
-  font-size:12px;
-}
-
-.check-item input { accent-color:#ffd36a; width:17px; height:17px; }
-
-.media-preview {
-  display:none;
-  width:100%;
-  max-height:270px;
-  object-fit:contain;
-  border:1px solid var(--line);
-  border-radius:15px;
-  margin:10px 0;
-  background:rgba(0,0,0,.2);
-}
-
-.notice {
-  font-size:12px;
-  line-height:1.55;
-  color:#e5e9ff;
-  background:rgba(255,211,106,.08);
-  border:1px solid rgba(255,211,106,.22);
-  padding:12px;
-  border-radius:13px;
-  margin:12px 0;
-}
-
-.bottom-nav {
-  position:fixed;
-  bottom:0;
-  left:0;
-  right:0;
-  z-index:20;
-  display:flex;
-  justify-content:center;
+.bottom-nav{
+  position:fixed;bottom:0;left:0;right:0;z-index:20;
+  display:flex;justify-content:center;
   padding:9px 10px calc(9px + env(safe-area-inset-bottom));
-  background:rgba(7,10,39,.88);
-  border-top:1px solid var(--line);
-  backdrop-filter:blur(18px);
+  background:#070a27ed;border-top:1px solid var(--line);backdrop-filter:blur(18px)
 }
-
-.nav-inner {
-  width:min(700px,100%);
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:5px;
+.nav-inner{width:min(700px,100%);display:grid;grid-template-columns:repeat(5,1fr);gap:5px}
+.nav-btn{
+  border:0;border-radius:12px;background:transparent;color:#bfc8f4;
+  padding:7px 2px;font-size:10px;display:flex;flex-direction:column;align-items:center;gap:4px
 }
-
-.nav-btn {
-  border:0;
-  border-radius:12px;
-  background:transparent;
-  color:#bfc8f4;
-  padding:7px 2px;
-  font-size:10px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:4px;
+.nav-btn span{font-size:19px}
+.nav-btn.active{background:#ffd36a1c;color:#fff0b0;box-shadow:inset 0 0 0 1px #ffd36a30}
+.footer{text-align:center;color:#aab4e6;font-size:10px;margin:25px 0 0}
+.toast{
+  position:fixed;left:50%;bottom:90px;transform:translate(-50%,20px);
+  opacity:0;pointer-events:none;background:#fff0b0;color:#201438;
+  font-size:12px;font-weight:800;padding:11px 16px;border-radius:99px;
+  z-index:40;transition:.25s;max-width:90%;text-align:center
 }
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.modal{display:none;position:fixed;inset:0;background:#03051dcc;z-index:50;align-items:center;justify-content:center;padding:20px}
+.modal.show{display:flex}
+.modal-card{width:min(420px,100%);padding:22px;border-radius:22px;background:linear-gradient(145deg,#202a71,#2e1558);border:1px solid var(--line)}
+.modal-card p{color:var(--muted);font-size:13px;line-height:1.6}
+.modal-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}
 
-.nav-btn span { font-size:19px; }
-
-.nav-btn.active {
-  background:rgba(255,211,106,.12);
-  color:var(--gold2);
-  box-shadow:inset 0 0 0 1px rgba(255,211,106,.16);
+@media(min-width:760px){
+  .app{padding-top:22px}.hero{padding:40px 38px}
+  .social-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
-
-.footer { text-align:center; color:#aab4e6; font-size:10px; margin:25px 0 0; }
-
-.toast {
-  position:fixed;
-  left:50%;
-  bottom:90px;
-  transform:translate(-50%,20px);
-  opacity:0;
-  pointer-events:none;
-  background:#fff0b0;
-  color:#201438;
-  font-size:12px;
-  font-weight:800;
-  padding:11px 16px;
-  border-radius:99px;
-  z-index:40;
-  transition:.25s;
-  box-shadow:0 10px 30px #0005;
-  max-width:90%;
-  text-align:center;
+@media(max-width:560px){
+  .app{padding:10px 12px 100px}
+  .brand h1{font-size:13px}.brand p{font-size:9px}
+  .logo{width:42px;height:42px;border-radius:14px}
+  .topbar{gap:5px}.top-actions{gap:4px}
+  .top-actions .install-label{display:inline-block;font-size:10px;padding:8px 7px}
+  .icon-btn{min-width:36px;padding:8px}
+  .hero{padding:23px 17px;border-radius:23px}
+  .hero h2{font-size:clamp(31px,9vw,45px)}
+  .quick-grid{grid-template-columns:repeat(2,1fr)}
+  .two-col,.form-grid,.social-grid,.check-grid{grid-template-columns:1fr}
+  .section-head h3{font-size:17px}
+  .btn{padding:10px;font-size:12px}
 }
-
-.toast.show { opacity:1; transform:translate(-50%,0); }
-
-.modal {
-  display:none;
-  position:fixed;
-  inset:0;
-  background:#03051dcc;
-  z-index:50;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-}
-
-.modal.show { display:flex; }
-
-.modal-card {
-  width:min(420px,100%);
-  padding:22px;
-  border-radius:22px;
-  background:linear-gradient(145deg,#202a71,#2e1558);
-  border:1px solid var(--line);
-  box-shadow:0 25px 80px #0008;
-}
-
-.modal-card h3 { margin:0 0 8px; }
-.modal-card p { color:var(--muted); font-size:13px; line-height:1.55; }
-.modal-actions { display:flex; flex-wrap:wrap; gap:8px; margin-top:15px; }
-
-@media(min-width:760px) {
-  .app { padding-top:22px; }
-  .hero { padding:40px 38px; }
-  .quick-grid { gap:13px; }
-  .social-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
-}
-
-@media(max-width:560px) {
-  .app { padding:10px 12px 95px; }
-  .brand h1 { font-size:14px; }
-  .logo { width:42px; height:42px; border-radius:14px; }
-  .top-actions .install-label { display:none; }
-  .hero { padding:23px 17px; border-radius:23px; }
-  .hero h2 { font-size:clamp(31px,9vw,45px); }
-  .quick-grid { grid-template-columns:repeat(2,1fr); }
-  .two-col { grid-template-columns:1fr; }
-  .form-grid,.social-grid,.check-grid { grid-template-columns:1fr; }
-  .section-head h3 { font-size:17px; }
-  .btn { padding:10px 12px; font-size:13px; }
-}
-
-@media(prefers-reduced-motion:reduce) {
-  *,*:before,*:after {
-    animation-duration:.01ms!important;
-    animation-iteration-count:1!important;
-    scroll-behavior:auto!important;
-    transition-duration:.01ms!important;
-  }
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }
 </style>
 </head>
@@ -612,12 +242,12 @@ button { cursor:pointer; }
 <div class="app">
 <header class="topbar">
   <div class="brand">
-    <div class="logo" aria-label="GS Digital Academy logo">GS</div>
+    <div class="logo"><img src="logo.png" alt="GS Digital Academy Logo" onerror="this.style.display='none';this.parentElement.textContent='GS'"></div>
     <div><h1>GS DIGITAL ACADEMY</h1><p>YOUR DIGITAL WORLD</p></div>
   </div>
   <div class="top-actions">
     <button class="icon-btn" aria-label="Share app" onclick="shareApp()">↗</button>
-    <button class="btn gold small install-label" id="installBtn" onclick="installApp()">＋ Install App</button>
+    <button class="btn gold small install-label" id="installBtn" onclick="installApp()">⬇ Install</button>
   </div>
 </header>
 
@@ -659,12 +289,8 @@ button { cursor:pointer; }
       <h3>📚 Useful Resources</h3>
       <p>अपनी website और learning resources यहाँ जोड़ें।</p>
       <div class="resource-list">
-        <a class="resource" href="https://tinyurl.com/GSdigitalacademy" target="_blank" rel="noopener">
-          <span class="r-icon">🌍</span><span><strong>GS Digital Academy Website</strong><small>Official website खोलें</small></span>
-        </a>
-        <button class="resource" style="text-align:left;color:white;width:100%" onclick="showPage('social')">
-          <span class="r-icon">🔗</span><span><strong>My Social Media Links</strong><small>अपनी profile links देखें</small></span>
-        </button>
+        <a class="resource" href="https://tinyurl.com/GSdigitalacademy" target="_blank" rel="noopener"><span>🌍</span><span><strong>GS Digital Academy Website</strong><small>Official website खोलें</small></span></a>
+        <button class="resource" onclick="showPage('social')"><span>🔗</span><span><strong>My Social Media Links</strong><small>अपनी profile links देखें</small></span></button>
       </div>
     </div>
   </section>
@@ -672,53 +298,50 @@ button { cursor:pointer; }
 
 <section id="profile" class="page">
   <h2 class="page-title">👤 My Social Profile</h2>
-  <p class="sub">अपने सभी 11 social links save करें। Links इसी browser में रहेंगे।</p>
+  <p class="sub">अपने सभी 11 social links save करें।</p>
   <div class="panel">
     <div class="form-grid">
-      <div class="field"><label for="profileName">आपका नाम / Brand Name</label><input id="profileName" placeholder="GS Digital Academy"></div>
+      <div class="field"><label for="profileName">नाम / Brand Name</label><input id="profileName" placeholder="GS Digital Academy"></div>
       <div class="field"><label for="profileBio">Short Bio</label><input id="profileBio" placeholder="Your Digital World"></div>
     </div>
     <div id="profileFields" class="form-grid"></div>
     <button class="btn gold" style="width:100%" onclick="saveProfile()">💾 Save My Profile</button>
-    <p style="margin:12px 0 0;font-size:11px;color:var(--muted)">Tip: पूरा URL डालें, जैसे https://instagram.com/yourname</p>
+    <p>Links इसी browser में save रहेंगे। पूरा URL डालें, जैसे https://instagram.com/yourname</p>
   </div>
 </section>
 
 <section id="social" class="page">
   <h2 class="page-title">🌐 Social Media Hub</h2>
-  <p class="sub">आपके saved links यहाँ अलग-अलग दिखाई देंगे। पहले Profile में links save करें।</p>
+  <p class="sub">आपके saved links अलग-अलग दिखाई देंगे।</p>
   <div id="socialList" class="social-grid"></div>
-  <div class="notice">🔐 यह app आपके account में अपने-आप post नहीं करता। Social platforms पर publishing उनके official features, API और permissions पर निर्भर करती है।</div>
+  <div class="notice">यह app अपने-आप आपके accounts पर post नहीं करता। Automatic publishing के लिए संबंधित platform की official API और permissions चाहिए।</div>
   <button class="btn primary" onclick="showPage('profile')">✏️ Edit My Links</button>
 </section>
 
 <section id="promotion" class="page">
   <h2 class="page-title">🚀 Promotion Studio</h2>
-  <p class="sub">Message लिखें, photo/video चुनें और अपने phone के share menu से भेजें।</p>
+  <p class="sub">Message लिखें, photo/video चुनें और share करें।</p>
   <div class="panel">
     <div class="field"><label for="postTitle">Promotion Title (optional)</label><input id="postTitle" placeholder="Welcome to GS Digital Academy"></div>
-    <div class="field"><label for="postText">आपका promotional message</label><textarea id="postText" placeholder="अपना message यहाँ लिखें...">🚀 WELCOME TO GS DIGITAL ACADEMY
+    <div class="field"><label for="postText">Promotional Message</label><textarea id="postText">🚀 WELCOME TO GS DIGITAL ACADEMY
 
 🌐 Visit our website:
 https://tinyurl.com/GSdigitalacademy
 
 ✨ Understand. Decide. Build Your Future.</textarea></div>
     <div class="field">
-      <label for="mediaFile">Photo या Video चुनें (optional)</label>
+      <label for="mediaFile">Photo या Video चुनें</label>
       <input id="mediaFile" type="file" accept="image/*,video/*">
-      <img id="imagePreview" class="media-preview" alt="Selected media preview">
+      <img id="imagePreview" class="media-preview" alt="Selected photo preview">
       <video id="videoPreview" class="media-preview" controls playsinline></video>
     </div>
-    <div class="section-head">
-      <div><h3>Share Destinations</h3><p>एक या अधिक platform select करें</p></div>
-      <button class="text-link" onclick="selectAllPlatforms(true)">Select all</button>
-    </div>
+    <div class="section-head"><div><h3>Share Destinations</h3><p>एक या अधिक platforms select करें</p></div><button class="btn small" onclick="selectAll(true)">Select all</button></div>
     <div id="destinationChecks" class="check-grid"></div>
     <div class="modal-actions">
       <button class="btn gold" onclick="sharePromotion()">📲 Share Message / Media</button>
       <button class="btn" onclick="copyPromotion()">Copy Message</button>
     </div>
-    <div class="notice">ध्यान दें: चयनित platforms की list app में रखी जाती है, लेकिन share menu में कौन-सा app दिखाई देगा यह आपके device पर निर्भर है। एक ही tap में सभी platforms पर automatic posting इस PWA से संभव नहीं है।</div>
+    <div class="notice">Selected platforms की list यहाँ बनेगी। Share menu में कौन-सा app आएगा यह आपके phone पर निर्भर है। एक tap में सभी platforms पर automatic posting उपलब्ध नहीं है।</div>
   </div>
 </section>
 </main>
@@ -727,301 +350,199 @@ https://tinyurl.com/GSdigitalacademy
 </div>
 
 <nav class="bottom-nav" aria-label="Main navigation">
-  <div class="nav-inner">
-    <button class="nav-btn active" data-page="home" onclick="showPage('home')"><span>⌂</span>Home</button>
-    <button class="nav-btn" data-page="profile" onclick="showPage('profile')"><span>👤</span>Profile</button>
-    <button class="nav-btn" data-page="promotion" onclick="showPage('promotion')"><span>🚀</span>Promote</button>
-    <button class="nav-btn" data-page="social" onclick="showPage('social')"><span>🌐</span>Social</button>
-    <button class="nav-btn" onclick="shareApp()"><span>↗</span>Share</button>
-  </div>
+<div class="nav-inner">
+  <button class="nav-btn active" data-page="home" onclick="showPage('home')"><span>⌂</span>Home</button>
+  <button class="nav-btn" data-page="profile" onclick="showPage('profile')"><span>👤</span>Profile</button>
+  <button class="nav-btn" data-page="promotion" onclick="showPage('promotion')"><span>🚀</span>Promote</button>
+  <button class="nav-btn" data-page="social" onclick="showPage('social')"><span>🌐</span>Social</button>
+  <button class="nav-btn" onclick="shareApp()"><span>↗</span>Share</button>
+</div>
 </nav>
 
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
-<div id="shareModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="shareModalTitle">
+<div id="shareModal" class="modal" role="dialog" aria-modal="true">
   <div class="modal-card">
-    <h3 id="shareModalTitle">📲 Continue Sharing</h3>
-    <p id="shareModalText">अपने selected profile links खोलें।</p>
+    <h3>📲 Selected Social Links</h3>
+    <p id="shareModalText"></p>
     <div id="selectedLinks" class="resource-list"></div>
-    <div class="modal-actions"><button class="btn gold" onclick="closeShareModal()">Done</button></div>
+    <div class="modal-actions"><button class="btn gold" onclick="closeModal()">Done</button></div>
   </div>
 </div>
 
 <script>
-const PLATFORMS = [
- {id:'facebook',name:'Facebook Profile',emoji:'📘',placeholder:'https://facebook.com/yourprofile'},
- {id:'facebookPage',name:'Facebook Page',emoji:'📄',placeholder:'https://facebook.com/yourpage'},
- {id:'facebookGroup',name:'Facebook Group',emoji:'👥',placeholder:'https://facebook.com/groups/yourgroup'},
- {id:'whatsappGroup',name:'WhatsApp Group',emoji:'🟢',placeholder:'https://chat.whatsapp.com/yourinvite'},
- {id:'whatsappCommunity',name:'WhatsApp Community',emoji:'🫂',placeholder:'WhatsApp Community invite link'},
- {id:'instagram',name:'Instagram',emoji:'📸',placeholder:'https://instagram.com/yourname'},
- {id:'telegramGroup',name:'Telegram Group',emoji:'✈️',placeholder:'https://t.me/yourgroup'},
- {id:'telegramChannel',name:'Telegram Channel',emoji:'📣',placeholder:'https://t.me/yourchannel'},
- {id:'linkedin',name:'LinkedIn',emoji:'💼',placeholder:'https://linkedin.com/in/yourname'},
- {id:'twitter',name:'Twitter / X',emoji:'𝕏',placeholder:'https://x.com/yourname'},
- {id:'youtube',name:'YouTube',emoji:'▶️',placeholder:'https://youtube.com/@yourchannel'}
+const PLATFORMS=[
+{id:'facebook',name:'Facebook Profile',emoji:'📘',placeholder:'https://facebook.com/yourprofile'},
+{id:'facebookPage',name:'Facebook Page',emoji:'📄',placeholder:'https://facebook.com/yourpage'},
+{id:'facebookGroup',name:'Facebook Group',emoji:'👥',placeholder:'https://facebook.com/groups/yourgroup'},
+{id:'whatsappGroup',name:'WhatsApp Group',emoji:'🟢',placeholder:'https://chat.whatsapp.com/yourinvite'},
+{id:'whatsappCommunity',name:'WhatsApp Community',emoji:'🫂',placeholder:'Community invite link'},
+{id:'instagram',name:'Instagram',emoji:'📸',placeholder:'https://instagram.com/yourname'},
+{id:'telegramGroup',name:'Telegram Group',emoji:'✈️',placeholder:'https://t.me/yourgroup'},
+{id:'telegramChannel',name:'Telegram Channel',emoji:'📣',placeholder:'https://t.me/yourchannel'},
+{id:'linkedin',name:'LinkedIn',emoji:'💼',placeholder:'https://linkedin.com/in/yourname'},
+{id:'twitter',name:'Twitter / X',emoji:'𝕏',placeholder:'https://x.com/yourname'},
+{id:'youtube',name:'YouTube',emoji:'▶️',placeholder:'https://youtube.com/@yourchannel'}
 ];
 
-const PROFILE_KEY = 'gsda_profile_v4';
-let chosenMedia = null;
-let chosenMediaUrl = null;
-let toastTimer;
+const KEY='gsda_profile_v4';
+let mediaFile=null,mediaURL=null,toastTimer;
+const defaults={name:'GS Digital Academy',bio:'Your Digital World',links:{}};
 
-const defaultProfile = {
-  name:'GS Digital Academy',
-  bio:'Your Digital World',
-  links:{}
-};
-
-function getProfile(){
-  try {
-    const saved = JSON.parse(localStorage.getItem(PROFILE_KEY) || '{}');
-    return {...defaultProfile,...saved,links:{...(saved.links || {})}};
-  } catch(e) {
-    return {...defaultProfile,links:{}};
-  }
+function profile(){
+  try{
+    const saved=JSON.parse(localStorage.getItem(KEY)||'{}');
+    return {...defaults,...saved,links:{...(saved.links||{})}};
+  }catch(e){return {...defaults,links:{}}}
 }
-
-function cleanUrl(value){
-  let v = (value || '').trim();
-  if(!v) return '';
-  if(!/^https?:\/\//i.test(v)) v = 'https://' + v;
-  try {
-    const u = new URL(v);
-    return ['http:','https:'].includes(u.protocol) ? u.href : '';
-  } catch(e) { return ''; }
+function cleanURL(v){
+  v=(v||'').trim();if(!v)return '';
+  if(!/^https?:\/\//i.test(v))v='https://'+v;
+  try{const u=new URL(v);return ['http:','https:'].includes(u.protocol)?u.href:''}
+  catch(e){return ''}
 }
-
-function escapeAttr(value){
-  return String(value || '').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+function esc(v){
+  return String(v||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
-
-function escapeHtml(value){
-  return String(value || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
-}
-
-function buildProfileFields(){
-  const p = getProfile();
-  document.getElementById('profileName').value = p.name || '';
-  document.getElementById('profileBio').value = p.bio || '';
-  document.getElementById('profileFields').innerHTML = PLATFORMS.map(x =>
-    `<div class="field"><label for="link_${x.id}">${x.emoji} ${x.name}</label><input id="link_${x.id}" type="url" inputmode="url" placeholder="${x.placeholder}" value="${escapeAttr(p.links[x.id] || '')}"></div>`
+function buildFields(){
+  const p=profile();
+  document.getElementById('profileName').value=p.name||'';
+  document.getElementById('profileBio').value=p.bio||'';
+  document.getElementById('profileFields').innerHTML=PLATFORMS.map(x=>
+    `<div class="field"><label for="link_${x.id}">${x.emoji} ${x.name}</label><input id="link_${x.id}" type="url" inputmode="url" placeholder="${x.placeholder}" value="${esc(p.links[x.id]||'')}"></div>`
   ).join('');
 }
-
 function saveProfile(){
-  const links = {};
-  PLATFORMS.forEach(x => {
-    links[x.id] = cleanUrl(document.getElementById('link_' + x.id).value);
-  });
-  const p = {
-    name:document.getElementById('profileName').value.trim() || 'GS Digital Academy',
-    bio:document.getElementById('profileBio').value.trim() || 'Your Digital World',
+  const links={};
+  PLATFORMS.forEach(x=>links[x.id]=cleanURL(document.getElementById('link_'+x.id).value));
+  localStorage.setItem(KEY,JSON.stringify({
+    name:document.getElementById('profileName').value.trim()||defaults.name,
+    bio:document.getElementById('profileBio').value.trim()||defaults.bio,
     links
-  };
-  localStorage.setItem(PROFILE_KEY,JSON.stringify(p));
-  renderSocial();
-  buildDestinationChecks();
-  toast('Profile successfully save हो गया ✓');
+  }));
+  renderSocial();buildChecks();toast('Profile save हो गया ✓');
 }
-
 function renderSocial(){
-  const p = getProfile();
-  document.getElementById('socialList').innerHTML = PLATFORMS.map(x => {
-    const u = p.links[x.id];
-    return `<div class="social-card">
-      <span class="social-emoji">${x.emoji}</span>
-      <div style="min-width:0;flex:1">
-        <div class="social-name">${x.name}</div>
-        <span class="social-url">${u ? escapeHtml(u) : 'अभी link add नहीं किया गया'}</span>
-      </div>
-      <div class="right">${u ? `<a href="${escapeAttr(u)}" target="_blank" rel="noopener">OPEN ↗</a>` : '<span style="font-size:10px;color:#aeb9e9">Not set</span>'}</div>
-    </div>`;
+  const p=profile();
+  document.getElementById('socialList').innerHTML=PLATFORMS.map(x=>{
+    const u=p.links[x.id];
+    return `<div class="social-card"><span class="social-emoji">${x.emoji}</span><div style="min-width:0;flex:1"><div class="social-name">${x.name}</div><span class="social-url">${u?esc(u):'Link अभी add नहीं किया गया'}</span></div><div class="social-right">${u?`<a href="${esc(u)}" target="_blank" rel="noopener">OPEN ↗</a>`:'<small>Not set</small>'}</div></div>`;
   }).join('');
 }
-
-function buildDestinationChecks(){
-  const p = getProfile();
-  document.getElementById('destinationChecks').innerHTML = PLATFORMS.map(x =>
-    `<label class="check-item"><input type="checkbox" class="destination" value="${x.id}" ${p.links[x.id] ? 'checked' : ''}><span>${x.emoji} ${x.name}</span></label>`
+function buildChecks(){
+  const p=profile();
+  document.getElementById('destinationChecks').innerHTML=PLATFORMS.map(x=>
+    `<label class="check-item"><input type="checkbox" class="destination" value="${x.id}" ${p.links[x.id]?'checked':''}><span>${x.emoji} ${x.name}</span></label>`
   ).join('');
 }
-
-function selectAllPlatforms(on){
-  document.querySelectorAll('.destination').forEach(c => c.checked = on);
-}
-
+function selectAll(value){document.querySelectorAll('.destination').forEach(c=>c.checked=value)}
 function showPage(id){
-  document.querySelectorAll('.page').forEach(p => p.classList.toggle('active',p.id === id));
-  document.querySelectorAll('.nav-btn[data-page]').forEach(b => b.classList.toggle('active',b.dataset.page === id));
+  document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));
+  document.querySelectorAll('.nav-btn[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===id));
   window.scrollTo({top:0,behavior:'smooth'});
-  if(id === 'social') renderSocial();
-  if(id === 'profile') buildProfileFields();
+  if(id==='profile')buildFields();
+  if(id==='social')renderSocial();
 }
-
-function toast(message){
-  const t = document.getElementById('toast');
-  t.textContent = message;
-  t.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => t.classList.remove('show'),2600);
+function toast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>t.classList.remove('show'),2600);
 }
-
-function selectedPlatforms(){
-  return [...document.querySelectorAll('.destination:checked')]
-    .map(c => PLATFORMS.find(x => x.id === c.value))
-    .filter(Boolean);
-}
-
-function getMessage(){
-  const title = document.getElementById('postTitle').value.trim();
-  const body = document.getElementById('postText').value.trim();
+function messageText(){
+  const title=document.getElementById('postTitle').value.trim();
+  const body=document.getElementById('postText').value.trim();
   return [title,body].filter(Boolean).join('\n\n');
 }
-
-document.getElementById('mediaFile').addEventListener('change',e => {
-  const f = e.target.files && e.target.files[0];
-  chosenMedia = f || null;
-  if(chosenMediaUrl) URL.revokeObjectURL(chosenMediaUrl);
-  chosenMediaUrl = null;
-  const im = document.getElementById('imagePreview');
-  const vid = document.getElementById('videoPreview');
-  im.style.display = 'none';
-  vid.style.display = 'none';
-  if(!f) return;
-  chosenMediaUrl = URL.createObjectURL(f);
-  if(f.type.startsWith('image/')){
-    im.src = chosenMediaUrl;
-    im.style.display = 'block';
-  } else if(f.type.startsWith('video/')){
-    vid.src = chosenMediaUrl;
-    vid.style.display = 'block';
+function selectedPlatforms(){
+  return [...document.querySelectorAll('.destination:checked')]
+    .map(c=>PLATFORMS.find(x=>x.id===c.value)).filter(Boolean);
+}
+document.getElementById('mediaFile').addEventListener('change',e=>{
+  mediaFile=e.target.files&&e.target.files[0]||null;
+  if(mediaURL)URL.revokeObjectURL(mediaURL);
+  mediaURL=null;
+  const img=document.getElementById('imagePreview');
+  const vid=document.getElementById('videoPreview');
+  img.style.display='none';vid.style.display='none';
+  if(!mediaFile)return;
+  mediaURL=URL.createObjectURL(mediaFile);
+  if(mediaFile.type.startsWith('image/')){
+    img.src=mediaURL;img.style.display='block';
+  }else if(mediaFile.type.startsWith('video/')){
+    vid.src=mediaURL;vid.style.display='block';
   }
 });
-
 async function sharePromotion(){
-  const text = getMessage();
-  if(!text && !chosenMedia){
-    toast('पहले message या photo/video चुनें');
-    return;
-  }
-
-  const selected = selectedPlatforms();
-  const data = {
-    title:document.getElementById('postTitle').value.trim() || 'GS Digital Academy',
-    text
-  };
-
-  if(chosenMedia && navigator.canShare && navigator.canShare({files:[chosenMedia]})){
-    data.files = [chosenMedia];
-  }
-
-  try {
-    if(navigator.share && (!data.files || navigator.canShare({files:data.files}))){
+  const text=messageText();
+  if(!text&&!mediaFile){toast('पहले message या photo/video चुनें');return}
+  const selected=selectedPlatforms();
+  const data={title:document.getElementById('postTitle').value.trim()||'GS Digital Academy',text};
+  if(mediaFile&&navigator.canShare&&navigator.canShare({files:[mediaFile]}))data.files=[mediaFile];
+  try{
+    if(navigator.share&&(!data.files||navigator.canShare({files:data.files}))){
       await navigator.share(data);
       toast('Share menu खुल गया');
-    } else {
+    }else{
       await copyPromotion();
     }
-  } catch(err) {
-    if(err && err.name === 'AbortError'){
-      toast('Sharing cancel किया गया');
-    } else {
-      try {
-        await navigator.clipboard.writeText(text);
-        toast('Message copy हो गया');
-      } catch(e) {
-        toast('Message copy नहीं हो पाया; text select करके copy करें');
-      }
-    }
+  }catch(e){
+    if(e.name==='AbortError')toast('Sharing cancel किया गया');
+    else toast('Share उपलब्ध नहीं हुआ; Copy Message दबाएँ');
   }
-
-  if(selected.length) showShareLinks(selected);
+  if(selected.length)showSelectedLinks(selected);
 }
-
-function showShareLinks(selected){
-  const p = getProfile();
-  const valid = selected.filter(x => p.links[x.id]);
-  document.getElementById('shareModalText').textContent = valid.length
-    ? 'आपके selected profile links नीचे हैं। हर link खोलकर post/share करें।'
-    : 'Selected platforms के लिए पहले Profile में links save करें।';
-  document.getElementById('selectedLinks').innerHTML = valid.map(x =>
-    `<a class="resource" href="${escapeAttr(p.links[x.id])}" target="_blank" rel="noopener"><span class="r-icon">${x.emoji}</span><span><strong>${x.name}</strong><small>Open selected destination ↗</small></span></a>`
+function showSelectedLinks(selected){
+  const p=profile();
+  const valid=selected.filter(x=>p.links[x.id]);
+  document.getElementById('shareModalText').textContent=valid.length
+    ?'नीचे selected links खोलें और अपने platform पर post करें।'
+    :'Selected platforms के links पहले Profile में save करें।';
+  document.getElementById('selectedLinks').innerHTML=valid.map(x=>
+    `<a class="resource" href="${esc(p.links[x.id])}" target="_blank" rel="noopener"><span>${x.emoji}</span><span><strong>${x.name}</strong><small>Open destination ↗</small></span></a>`
   ).join('');
   document.getElementById('shareModal').classList.add('show');
 }
-
-function closeShareModal(){
-  document.getElementById('shareModal').classList.remove('show');
-}
-
+function closeModal(){document.getElementById('shareModal').classList.remove('show')}
 async function copyPromotion(){
-  const text = getMessage();
-  if(!text){
-    toast('पहले message लिखें');
-    return;
-  }
-  try {
-    await navigator.clipboard.writeText(text);
-    toast('Promotion message copy हो गया ✓');
-  } catch(e) {
-    const ta = document.createElement('textarea');
-    ta.value = text;
-    document.body.appendChild(ta);
-    ta.select();
-    document.execCommand('copy');
-    ta.remove();
-    toast('Promotion message copy हो गया ✓');
+  const text=messageText();if(!text){toast('पहले message लिखें');return}
+  try{await navigator.clipboard.writeText(text);toast('Message copy हो गया ✓')}
+  catch(e){
+    const ta=document.createElement('textarea');ta.value=text;
+    document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();
+    toast('Message copy हो गया ✓');
   }
 }
-
 async function shareApp(){
-  const text = '🚀 GS DIGITAL ACADEMY\nYour Digital World\nVisit: https://tinyurl.com/GSdigitalacademy';
-  try {
-    if(navigator.share){
-      await navigator.share({
-        title:'GS Digital Academy',
-        text,
-        url:'https://tinyurl.com/GSdigitalacademy'
-      });
-    } else {
-      await navigator.clipboard.writeText(text);
-      toast('App link copy हो गया ✓');
-    }
-  } catch(e) {
-    if(e.name !== 'AbortError') toast('Website: tinyurl.com/GSdigitalacademy');
-  }
+  const text='🚀 GS DIGITAL ACADEMY\nYour Digital World\nhttps://tinyurl.com/GSdigitalacademy';
+  try{
+    if(navigator.share)await navigator.share({title:'GS Digital Academy',text,url:'https://tinyurl.com/GSdigitalacademy'});
+    else{await navigator.clipboard.writeText(text);toast('App link copy हो गया ✓')}
+  }catch(e){if(e.name!=='AbortError')toast('Website: tinyurl.com/GSdigitalacademy')}
 }
 
-let deferredInstall = null;
-window.addEventListener('beforeinstallprompt',e => {
-  e.preventDefault();
-  deferredInstall = e;
-  document.getElementById('installBtn').style.display = 'inline-block';
+let installPrompt=null;
+window.addEventListener('beforeinstallprompt',e=>{
+  e.preventDefault();installPrompt=e;
+  document.getElementById('installBtn').style.display='inline-block';
 });
-
 async function installApp(){
-  if(deferredInstall){
-    deferredInstall.prompt();
-    await deferredInstall.userChoice;
-    deferredInstall = null;
-  } else {
-    toast('Chrome menu ⋮ खोलें और Add to Home screen / Install app चुनें');
+  if(installPrompt){
+    installPrompt.prompt();
+    await installPrompt.userChoice;
+    installPrompt=null;
+  }else{
+    toast('Chrome ⋮ menu खोलें और Install app / Add to Home screen चुनें');
   }
 }
-
-document.getElementById('year').textContent = new Date().getFullYear();
-buildProfileFields();
-renderSocial();
-buildDestinationChecks();
+document.getElementById('year').textContent=new Date().getFullYear();
+buildFields();renderSocial();buildChecks();
 
 if('serviceWorker' in navigator && location.protocol.startsWith('http')){
-  window.addEventListener('load',() => {
-    navigator.serviceWorker.register('./service-worker.js').catch(() => {});
+  window.addEventListener('load',()=>{
+    navigator.serviceWorker.register('./service-worker.js').catch(()=>{});
   });
 }
-
-document.getElementById('shareModal').addEventListener('click',e => {
-  if(e.target.id === 'shareModal') closeShareModal();
+document.getElementById('shareModal').addEventListener('click',e=>{
+  if(e.target.id==='shareModal')closeModal();
 });
 </script>
 </body>
