@@ -10,7 +10,7 @@
 <title>GS Digital Academy</title>
 
 <style>
-:root {
+:root{
   --blue:#182b83;
   --purple:#6b2bd9;
   --gold:#ffd36a;
@@ -213,7 +213,6 @@ button{cursor:pointer}
 .modal-card{width:min(420px,100%);padding:22px;border-radius:22px;background:linear-gradient(145deg,#202a71,#2e1558);border:1px solid var(--line)}
 .modal-card p{color:var(--muted);font-size:13px;line-height:1.6}
 .modal-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}
-
 @media(min-width:760px){
   .app{padding-top:22px}.hero{padding:40px 38px}
   .social-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
@@ -237,7 +236,6 @@ button{cursor:pointer}
 }
 </style>
 </head>
-
 <body>
 <div class="app">
 <header class="topbar">
@@ -279,7 +277,7 @@ button{cursor:pointer}
       <h3>✨ Make Your Digital Presence Shine</h3>
       <p>अपने social media profiles को व्यवस्थित रखें और promotional content को तेजी से share करें।</p>
       <div class="feature-list">
-        <div class="feature"><b>🔗</b><span>11 अलग-अलग social profile links</span></div>
+        <div class="feature"><b>🔗</b><span>9 अलग-अलग social profile links</span></div>
         <div class="feature"><b>🎬</b><span>Photo या video चुनकर share sheet खोलें</span></div>
         <div class="feature"><b>💫</b><span>Animated premium blue-purple-gold theme</span></div>
       </div>
@@ -298,7 +296,7 @@ button{cursor:pointer}
 
 <section id="profile" class="page">
   <h2 class="page-title">👤 My Social Profile</h2>
-  <p class="sub">अपने सभी 11 social links save करें।</p>
+  <p class="sub">अपने सभी 9 social links save करें।</p>
   <div class="panel">
     <div class="form-grid">
       <div class="field"><label for="profileName">नाम / Brand Name</label><input id="profileName" placeholder="GS Digital Academy"></div>
@@ -379,8 +377,6 @@ const PLATFORMS=[
 {id:'instagram',name:'Instagram',emoji:'📸',placeholder:'https://instagram.com/yourname'},
 {id:'telegramGroup',name:'Telegram Group',emoji:'✈️',placeholder:'https://t.me/yourgroup'},
 {id:'telegramChannel',name:'Telegram Channel',emoji:'📣',placeholder:'https://t.me/yourchannel'},
-{id:'linkedin',name:'LinkedIn',emoji:'💼',placeholder:'https://linkedin.com/in/yourname'},
-{id:'twitter',name:'Twitter / X',emoji:'𝕏',placeholder:'https://x.com/yourname'},
 {id:'youtube',name:'YouTube',emoji:'▶️',placeholder:'https://youtube.com/@yourchannel'}
 ];
 
@@ -391,7 +387,11 @@ const defaults={name:'GS Digital Academy',bio:'Your Digital World',links:{}};
 function profile(){
   try{
     const saved=JSON.parse(localStorage.getItem(KEY)||'{}');
-    return {...defaults,...saved,links:{...(saved.links||{})}};
+    const links={...(saved.links||{})};
+    // Remove the two platforms that are no longer supported.
+    delete links.linkedin;
+    delete links.twitter;
+    return {...defaults,...saved,links};
   }catch(e){return {...defaults,links:{}}}
 }
 function cleanURL(v){
