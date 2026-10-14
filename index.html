@@ -8,7 +8,6 @@
 <meta name="description" content="GS Digital Academy - Your Digital World">
 <link rel="manifest" href="./manifest.json">
 <title>GS DIGITAL ACADEMY | Social Media Hub</title>
-
 <style>
 :root{--bg:#050b1c;--navy:#081735;--blue:#087cff;--purple:#982aff;--gold:#ffd45b;--text:#f6f8ff;--muted:#aab9dc}
 *{box-sizing:border-box}
@@ -92,160 +91,126 @@ footer{text-align:center;color:#8094be;font-size:10px;margin-top:22px;line-heigh
 @media(max-width:350px){.platform-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.section{padding:11px}.install-header{padding:9px 7px;font-size:11px}.brand-name{font-size:12px}}
 </style>
 </head>
-
 <body>
 <div class="app">
 <header class="topbar">
-  <div class="brand">
-    <img class="logo" src="./logo.png" alt="GS Digital Academy Logo" onerror="this.style.display='none'">
-    <div>
-      <div class="brand-name">GS DIGITAL ACADEMY</div>
-      <div class="brand-tag">YOUR DIGITAL WORLD</div>
-    </div>
-  </div>
-  <div class="header-actions">
-    <button class="install-header" id="headerInstallBtn" type="button">📲 Install</button>
-    <button class="icon-btn" id="settingsTop" type="button" aria-label="Settings">⚙</button>
-  </div>
+<div class="brand">
+<img class="logo" src="./logo.png" alt="GS Digital Academy Logo" onerror="this.style.display='none'">
+<div><div class="brand-name">GS DIGITAL ACADEMY</div><div class="brand-tag">YOUR DIGITAL WORLD</div></div>
+</div>
+<div class="header-actions">
+<button class="install-header" id="headerInstallBtn" type="button">📲 Install</button>
+<button class="icon-btn" id="settingsTop" type="button" aria-label="Settings">⚙</button>
+</div>
 </header>
-
 <main>
 <div class="view active" id="view-home">
-  <section class="hero">
-    <div class="eyebrow">YOUR DIGITAL WORLD</div>
-    <h1>SHARE. GROW.<br><span>CONNECT TOGETHER.</span></h1>
-    <p>Create promotional messages, choose social media destinations and share content from one convenient dashboard.</p>
-  </section>
-
-  <div class="official-website">
-    <a class="official-btn" href="https://tinyurl.com/GSdigitalacademy" target="_blank" rel="noopener noreferrer">
-      <span class="website-icon">🌐</span>
-      <span class="website-text"><strong>OFFICIAL WEBSITE</strong><small>Visit GS Digital Academy ↗</small></span>
-      <span class="website-arrow">➜</span>
-    </a>
-  </div>
-
-  <div class="quick-grid">
-    <div class="quick"><span>✍️</span>Create</div>
-    <div class="quick"><span>🖼️</span>Add Media</div>
-    <div class="quick"><span>☑️</span>Select</div>
-    <div class="quick"><span>🚀</span>Share</div>
-  </div>
-
-  <section class="section" id="studio">
-    <div class="section-head">
-      <div class="section-title">✍️ Create Your Message</div>
-      <button class="btn gold" id="pasteBtn">📋 Paste</button>
-    </div>
-    <textarea id="message" maxlength="2000" placeholder="Write or paste your promotional message here..."></textarea>
-    <div class="counter"><span id="charCount">0</span>/2000 characters</div>
-    <div class="action-row">
-      <button class="btn" id="copyBtn">📄 Copy Message</button>
-      <button class="btn purple" id="clearBtn">✕ Clear</button>
-    </div>
-
-    <div class="section-head" style="margin-top:20px">
-      <div class="section-title">📸 Add Photo / Video</div>
-      <span class="small">Optional</span>
-    </div>
-    <div class="action-row">
-      <label class="file-label">🖼️ Add Photo<input id="photoInput" type="file" accept="image/*"></label>
-      <label class="file-label">🎥 Add Video<input id="videoInput" type="file" accept="video/*"></label>
-    </div>
-    <div id="mediaInfo" class="small" style="margin-top:10px"></div>
-    <img id="imagePreview" class="preview" alt="Selected photo preview">
-    <video id="videoPreview" class="preview" controls playsinline></video>
-    <button id="removeMedia" class="btn ghost hidden" style="margin-top:10px">Remove Media</button>
-  </section>
-
-  <section class="section">
-    <div class="section-head">
-      <div class="section-title">📤 Select Platforms</div>
-      <button class="btn gold" id="selectAllBtn">☑ Select All</button>
-    </div>
-    <div class="small" style="margin-bottom:12px">Select the destinations where you want to share.</div>
-    <div class="platform-grid" id="platformGrid"></div>
-    <button class="post-main" id="postBtn">➤ &nbsp; Post / Share Now</button>
-    <div id="shareStatus" class="status" role="status" aria-live="polite"></div>
-    <div id="shareActions" class="action-row hidden"></div>
-  </section>
-
-  <section class="section">
-    <div class="section-title" style="margin-bottom:12px">⚡ Your Workspace</div>
-    <div class="feature-grid">
-      <button class="feature" data-view="history"><b>📋 Post History</b><span>View local activity</span></button>
-      <button class="feature" data-view="analytics"><b>📊 Analytics</b><span>Local statistics</span></button>
-      <button class="feature" data-view="saved"><b>🔖 Saved Content</b><span>Reuse messages</span></button>
-      <button class="feature" data-view="profile"><b>👤 My Profile</b><span>Manage social links</span></button>
-    </div>
-  </section>
+<section class="hero">
+<div class="eyebrow">YOUR DIGITAL WORLD</div>
+<h1>SHARE. GROW.<br><span>CONNECT TOGETHER.</span></h1>
+<p>Create promotional messages, choose social media destinations and share content from one convenient dashboard.</p>
+</section>
+<div class="official-website">
+<a class="official-btn" href="https://tinyurl.com/GSdigitalacademy" target="_blank" rel="noopener noreferrer">
+<span class="website-icon">🌐</span>
+<span class="website-text"><strong>OFFICIAL WEBSITE</strong><small>Visit GS Digital Academy ↗</small></span>
+<span class="website-arrow">➜</span>
+</a>
 </div>
-
+<div class="quick-grid">
+<div class="quick"><span>✍️</span>Create</div>
+<div class="quick"><span>🖼️</span>Add Media</div>
+<div class="quick"><span>☑️</span>Select</div>
+<div class="quick"><span>🚀</span>Share</div>
+</div>
+<section class="section" id="studio">
+<div class="section-head"><div class="section-title">✍️ Create Your Message</div><button class="btn gold" id="pasteBtn">📋 Paste</button></div>
+<textarea id="message" maxlength="2000" placeholder="Write or paste your promotional message here..."></textarea>
+<div class="counter"><span id="charCount">0</span>/2000 characters</div>
+<div class="action-row"><button class="btn" id="copyBtn">📄 Copy Message</button><button class="btn purple" id="clearBtn">✕ Clear</button></div>
+<div class="section-head" style="margin-top:20px"><div class="section-title">📸 Add Photo / Video</div><span class="small">Optional</span></div>
+<div class="action-row">
+<label class="file-label">🖼️ Add Photo<input id="photoInput" type="file" accept="image/*"></label>
+<label class="file-label">🎥 Add Video<input id="videoInput" type="file" accept="video/*"></label>
+</div>
+<div id="mediaInfo" class="small" style="margin-top:10px"></div>
+<img id="imagePreview" class="preview" alt="Selected photo preview">
+<video id="videoPreview" class="preview" controls playsinline></video>
+<button id="removeMedia" class="btn ghost hidden" style="margin-top:10px">Remove Media</button>
+</section>
+<section class="section">
+<div class="section-head"><div class="section-title">📤 Select Platforms</div><button class="btn gold" id="selectAllBtn">☑ Select All</button></div>
+<div class="small" style="margin-bottom:12px">Select the destinations where you want to share. Platforms open one at a time; you will finish posting manually.</div>
+<div class="platform-grid" id="platformGrid"></div>
+<button class="post-main" id="postBtn">➤ &nbsp; Open Selected Platform</button>
+<div id="shareStatus" class="status" role="status" aria-live="polite"></div>
+<div id="shareActions" class="action-row hidden"></div>
+</section>
+<section class="section">
+<div class="section-title" style="margin-bottom:12px">⚡ Your Workspace</div>
+<div class="feature-grid">
+<button class="feature" data-view="history"><b>📋 Post History</b><span>View local activity</span></button>
+<button class="feature" data-view="analytics"><b>📊 Analytics</b><span>Local statistics</span></button>
+<button class="feature" data-view="saved"><b>🔖 Saved Content</b><span>Reuse messages</span></button>
+<button class="feature" data-view="profile"><b>👤 My Profile</b><span>Manage social links</span></button>
+</div>
+</section>
+</div>
 <div class="view" id="view-history">
-  <section class="section">
-    <div class="section-head"><div class="section-title">📋 Post History</div><button class="btn ghost" id="clearHistoryBtn">Clear History</button></div>
-    <p class="small">यह browser activity का रिकॉर्ड है, प्रकाशित पोस्ट की पुष्टि नहीं।</p>
-    <div id="historyList"></div>
-  </section>
+<section class="section">
+<div class="section-head"><div class="section-title">📋 Post History</div><button class="btn ghost" id="clearHistoryBtn">Clear History</button></div>
+<p class="small">यह browser activity का रिकॉर्ड है, प्रकाशित पोस्ट की पुष्टि नहीं।</p>
+<div id="historyList"></div>
+</section>
 </div>
-
 <div class="view" id="view-analytics">
-  <section class="section">
-    <div class="section-title" style="margin-bottom:15px">📊 Activity Dashboard</div>
-    <div class="stat-grid">
-      <div class="stat"><strong id="totalActions">0</strong><span>Recorded actions</span></div>
-      <div class="stat"><strong id="savedCount">0</strong><span>Saved messages</span></div>
-      <div class="stat"><strong id="platformCount">0</strong><span>Configured links</span></div>
-      <div class="stat"><strong id="mediaCount">0</strong><span>Media selected now</span></div>
-    </div>
-    <p class="small" style="margin-top:15px">ये local आँकड़े हैं, social reach या confirmed published posts नहीं।</p>
-  </section>
+<section class="section">
+<div class="section-title" style="margin-bottom:15px">📊 Activity Dashboard</div>
+<div class="stat-grid">
+<div class="stat"><strong id="totalActions">0</strong><span>Recorded actions</span></div>
+<div class="stat"><strong id="savedCount">0</strong><span>Saved messages</span></div>
+<div class="stat"><strong id="platformCount">0</strong><span>Configured links</span></div>
+<div class="stat"><strong id="mediaCount">0</strong><span>Media selected now</span></div>
 </div>
-
+<p class="small" style="margin-top:15px">ये local आँकड़े हैं, social reach या confirmed published posts नहीं।</p>
+</section>
+</div>
 <div class="view" id="view-saved">
-  <section class="section">
-    <div class="section-head"><div class="section-title">🔖 Saved Content</div><button class="btn gold" id="saveMessageBtn">＋ Save Current</button></div>
-    <div id="savedList"></div>
-  </section>
+<section class="section">
+<div class="section-head"><div class="section-title">🔖 Saved Content</div><button class="btn gold" id="saveMessageBtn">＋ Save Current</button></div>
+<div id="savedList"></div>
+</section>
 </div>
-
 <div class="view" id="view-profile">
-  <section class="section">
-    <div class="section-title">👤 Profile & Social Links</div>
-    <p class="small">अपने links जोड़ें। सेटिंग्स इसी browser में सेव होंगी।</p>
-    <label class="field-label" for="displayName">Display Name</label>
-    <input type="text" id="displayName" placeholder="Your name">
-    <div id="profileFields"></div>
-    <div class="action-row">
-      <button class="btn gold" id="saveProfileBtn">Save Profile</button>
-      <button class="btn ghost" id="exportProfileBtn">Export Settings</button>
-    </div>
-    <div id="profileStatus" class="status"></div>
-  </section>
-  <section class="section">
-    <div class="section-title">🔐 Posting & Privacy</div>
-    <p class="small">इस page में social passwords या API secrets न डालें। Auto Posting के लिए secure backend और platform API permissions आवश्यक हैं।</p>
-    <button class="btn ghost" id="installProfileBtn" style="width:100%;margin-top:10px">📲 Install App</button>
-  </section>
+<section class="section">
+<div class="section-title">👤 Profile & Social Links</div>
+<p class="small">अपने links जोड़ें। सेटिंग्स इसी browser में सेव होंगी।</p>
+<label class="field-label" for="displayName">Display Name</label>
+<input type="text" id="displayName" placeholder="Your name">
+<div id="profileFields"></div>
+<div class="action-row"><button class="btn gold" id="saveProfileBtn">Save Profile</button><button class="btn ghost" id="exportProfileBtn">Export Settings</button></div>
+<div id="profileStatus" class="status"></div>
+</section>
+<section class="section">
+<div class="section-title">🔐 Posting & Privacy</div>
+<p class="small">इस page में social passwords या API secrets न डालें। यह app platform खोलता है; Post/Send आपको खुद करना होगा।</p>
+<button class="btn ghost" id="installProfileBtn" style="width:100%;margin-top:10px">📲 Install App</button>
+</section>
 </div>
 </main>
 <footer>GS DIGITAL ACADEMY · YOUR DIGITAL WORLD<br>Create · Share · Connect</footer>
 </div>
-
 <nav class="bottom-nav" aria-label="Main navigation">
-  <button class="nav-item active" data-view="home"><span class="nav-icon">⌂</span>Home</button>
-  <button class="nav-item" data-view="history"><span class="nav-icon">◷</span>History</button>
-  <button class="nav-item" data-view="studio-nav"><span class="nav-icon">＋</span>Create</button>
-  <button class="nav-item" data-view="analytics"><span class="nav-icon">▥</span>Analytics</button>
-  <button class="nav-item" data-view="profile"><span class="nav-icon">♙</span>Profile</button>
+<button class="nav-item active" data-view="home"><span class="nav-icon">⌂</span>Home</button>
+<button class="nav-item" data-view="history"><span class="nav-icon">◷</span>History</button>
+<button class="nav-item" data-view="studio-nav"><span class="nav-icon">＋</span>Create</button>
+<button class="nav-item" data-view="analytics"><span class="nav-icon">▥</span>Analytics</button>
+<button class="nav-item" data-view="profile"><span class="nav-icon">♙</span>Profile</button>
 </nav>
-
 <script>
 "use strict";
-
 const $=id=>document.getElementById(id);
 const STORAGE={profile:"gsda_profile_v5",history:"gsda_history_v1",saved:"gsda_saved_v1"};
-
 const PLATFORMS=[
 {id:"fbProfile",name:"Facebook Profile",sub:"Profile",icon:"f",color:"blue"},
 {id:"fbPage",name:"Facebook Page",sub:"Page",icon:"⚑",color:"blue"},
@@ -255,481 +220,128 @@ const PLATFORMS=[
 {id:"instagram",name:"Instagram",sub:"Account",icon:"◎",color:"purple"},
 {id:"tgGroup",name:"Telegram Group",sub:"Group",icon:"➤",color:"blue"},
 {id:"tgChannel",name:"Telegram Channel",sub:"Channel",icon:"➤",color:"blue"},
-{id:"youtube",name:"YouTube",sub:"Channel",icon:"▶",color:"red"}
-];
-
+{id:"youtube",name:"YouTube",sub:"Channel",icon:"▶",color:"red"}];
 const DEFAULT_PROFILE={displayName:"",links:{fbProfile:"",fbPage:"",fbGroup:"",waGroup:"",waCommunity:"",instagram:"",tgGroup:"",tgChannel:"",youtube:""}};
-
 function readJSON(k,f){try{const v=localStorage.getItem(k);return v?JSON.parse(v):f}catch(e){return f}}
 function writeJSON(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){alert("Browser storage unavailable or full.");return false}}
-
-let profile=readJSON(STORAGE.profile,DEFAULT_PROFILE);
-let history=readJSON(STORAGE.history,[]);
-let saved=readJSON(STORAGE.saved,[]);
+let profile=readJSON(STORAGE.profile,DEFAULT_PROFILE),history=readJSON(STORAGE.history,[]),saved=readJSON(STORAGE.saved,[]);
 let mediaFile=null,mediaURL=null,installPrompt=null,shareQueue=[],shareIndex=0;
-
 if(!profile.links)profile=JSON.parse(JSON.stringify(DEFAULT_PROFILE));
-
 function renderPlatforms(){
-  $("platformGrid").innerHTML=PLATFORMS.map(p=>`
-    <label class="platform" data-platform="${p.id}" data-color="${p.color}">
-      <input type="checkbox" value="${p.id}" aria-label="${p.name}">
-      <span class="platform-icon">${p.icon}</span>
-      <strong>${p.name}</strong><small>${p.sub}</small>
-    </label>`).join("");
-
-  $("platformGrid").querySelectorAll("input").forEach(i=>{
-    i.addEventListener("change",()=>{
-      i.closest(".platform").classList.toggle("selected",i.checked);
-      updateAnalytics();
-    });
-  });
+$("platformGrid").innerHTML=PLATFORMS.map(p=>`<label class="platform" data-platform="${p.id}" data-color="${p.color}"><input type="checkbox" value="${p.id}" aria-label="${p.name}"><span class="platform-icon">${p.icon}</span><strong>${p.name}</strong><small>${p.sub}</small></label>`).join("");
+$("platformGrid").querySelectorAll("input").forEach(i=>i.addEventListener("change",()=>{i.closest(".platform").classList.toggle("selected",i.checked);updateAnalytics()}));
 }
-
-function selectedPlatforms(){
-  return [...$("platformGrid").querySelectorAll("input:checked")]
-    .map(i=>PLATFORMS.find(p=>p.id===i.value)).filter(Boolean);
-}
-
+function selectedPlatforms(){return [...$("platformGrid").querySelectorAll("input:checked")].map(i=>PLATFORMS.find(p=>p.id===i.value)).filter(Boolean)}
 function showStatus(s){$("shareStatus").textContent=s}
 function updateCounter(){$("charCount").textContent=$("message").value.length}
 function getMessage(){return $("message").value.trim()}
-
 function addHistory(action,message,destinations=[]){
-  history=readJSON(STORAGE.history,[]);
-  history.unshift({
-    id:Date.now()+"-"+Math.random().toString(36).slice(2,7),
-    action,
-    message:(message||"").slice(0,350),
-    destinations:destinations.map(p=>p.name||p),
-    date:new Date().toISOString()
-  });
-  history=history.slice(0,100);
-  writeJSON(STORAGE.history,history);
-  renderHistory();
-  updateAnalytics();
+history=readJSON(STORAGE.history,[]);
+history.unshift({id:Date.now()+"-"+Math.random().toString(36).slice(2,7),action,message:(message||"").slice(0,350),destinations:destinations.map(p=>p.name||p),date:new Date().toISOString()});
+history=history.slice(0,100);writeJSON(STORAGE.history,history);renderHistory();updateAnalytics();
 }
-
 async function copyText(text){
-  if(!text){showStatus("पहले message लिखें।");return false}
-  try{
-    await navigator.clipboard.writeText(text);
-  }catch(e){
-    const a=document.createElement("textarea");
-    a.value=text;a.style.position="fixed";a.style.opacity="0";
-    document.body.appendChild(a);a.select();
-    const ok=document.execCommand("copy");a.remove();
-    if(!ok){showStatus("Message manually copy करें।");return false}
-  }
-  showStatus("Message copied successfully.");
-  addHistory("Copied message",text);
-  return true;
+if(!text){showStatus("पहले message लिखें।");return false}
+try{await navigator.clipboard.writeText(text)}catch(e){const a=document.createElement("textarea");a.value=text;a.style.position="fixed";a.style.opacity="0";document.body.appendChild(a);a.select();const ok=document.execCommand("copy");a.remove();if(!ok){showStatus("Message manually copy करें।");return false}}
+showStatus("Message copied successfully.");addHistory("Copied message",text);return true;
 }
-
 $("copyBtn").addEventListener("click",()=>copyText(getMessage()));
-
-$("pasteBtn").addEventListener("click",async()=>{
-  try{
-    if(!navigator.clipboard?.readText)throw Error();
-    const t=await navigator.clipboard.readText();
-    if(t)$("message").value=t;
-    updateCounter();
-    showStatus(t?"Text pasted.":"Clipboard is empty.");
-  }catch(e){
-    $("message").focus();
-    showStatus("Message box पर long-press करके Paste चुनें।");
-  }
-});
-
+$("pasteBtn").addEventListener("click",async()=>{try{if(!navigator.clipboard?.readText)throw Error();const t=await navigator.clipboard.readText();if(t)$("message").value=t;updateCounter();showStatus(t?"Text pasted.":"Clipboard is empty.")}catch(e){$("message").focus();showStatus("Message box पर long-press करके Paste चुनें।")}});
 $("message").addEventListener("input",updateCounter);
-$("clearBtn").addEventListener("click",()=>{
-  $("message").value="";updateCounter();showStatus("");
-});
-
-function clearMedia(){
-  if(mediaURL)URL.revokeObjectURL(mediaURL);
-  mediaURL=null;mediaFile=null;
-  $("imagePreview").style.display="none";
-  $("videoPreview").style.display="none";
-  $("imagePreview").removeAttribute("src");
-  $("videoPreview").removeAttribute("src");
-  $("mediaInfo").textContent="";
-  $("photoInput").value="";$("videoInput").value="";
-  $("removeMedia").classList.add("hidden");
-  updateAnalytics();
-}
-
-function acceptMedia(f){
-  if(!f)return;
-  if(f.size>25*1024*1024){alert("25 MB से छोटी file चुनें।");return}
-  if(!f.type.startsWith("image/")&&!f.type.startsWith("video/")){
-    alert("Image या video चुनें।");return;
-  }
-  clearMedia();
-  mediaFile=f;mediaURL=URL.createObjectURL(f);
-  $("mediaInfo").textContent=f.name+" · "+(f.size/1048576).toFixed(2)+" MB";
-  if(f.type.startsWith("image/")){
-    $("imagePreview").src=mediaURL;$("imagePreview").style.display="block";
-  }else{
-    $("videoPreview").src=mediaURL;$("videoPreview").style.display="block";
-  }
-  $("removeMedia").classList.remove("hidden");
-  updateAnalytics();
-}
-
+$("clearBtn").addEventListener("click",()=>{$("message").value="";updateCounter();showStatus("")});
+function clearMedia(){if(mediaURL)URL.revokeObjectURL(mediaURL);mediaURL=null;mediaFile=null;$("imagePreview").style.display="none";$("videoPreview").style.display="none";$("imagePreview").removeAttribute("src");$("videoPreview").removeAttribute("src");$("mediaInfo").textContent="";$("photoInput").value="";$("videoInput").value="";$("removeMedia").classList.add("hidden");updateAnalytics()}
+function acceptMedia(f){if(!f)return;if(f.size>25*1024*1024){alert("25 MB से छोटी file चुनें।");return}if(!f.type.startsWith("image/")&&!f.type.startsWith("video/")){alert("Image या video चुनें।");return}clearMedia();mediaFile=f;mediaURL=URL.createObjectURL(f);$("mediaInfo").textContent=f.name+" · "+(f.size/1048576).toFixed(2)+" MB";if(f.type.startsWith("image/")){$("imagePreview").src=mediaURL;$("imagePreview").style.display="block"}else{$("videoPreview").src=mediaURL;$("videoPreview").style.display="block"}$("removeMedia").classList.remove("hidden");updateAnalytics()}
 $("photoInput").addEventListener("change",e=>acceptMedia(e.target.files[0]));
 $("videoInput").addEventListener("change",e=>acceptMedia(e.target.files[0]));
 $("removeMedia").addEventListener("click",clearMedia);
-
-$("selectAllBtn").addEventListener("click",()=>{
-  const inputs=[...$("platformGrid").querySelectorAll("input")];
-  const all=inputs.every(i=>i.checked);
-  inputs.forEach(i=>{
-    i.checked=!all;
-    i.closest(".platform").classList.toggle("selected",!all);
-  });
-  $("selectAllBtn").textContent=all?"☑ Select All":"☐ Deselect All";
-  updateAnalytics();
-});
-
-function validURL(v){
-  if(!v)return "";
-  try{
-    const u=new URL(v);
-    return ["https:","http:"].includes(u.protocol)?u.href:"";
-  }catch(e){return ""}
-}
-
+$("selectAllBtn").addEventListener("click",()=>{const inputs=[...$("platformGrid").querySelectorAll("input")],all=inputs.every(i=>i.checked);inputs.forEach(i=>{i.checked=!all;i.closest(".platform").classList.toggle("selected",!all)});$("selectAllBtn").textContent=all?"☑ Select All":"☐ Deselect All";updateAnalytics()});
+function validURL(v){if(!v)return"";try{const u=new URL(v);return["https:","http:"].includes(u.protocol)?u.href:""}catch(e){return""}}
 function destinationURL(id,message){
-  const t=encodeURIComponent(message);
-  const link=validURL(profile.links[id]||"");
-  switch(id){
-    case "waGroup":
-    case "waCommunity":
-      return "https://wa.me/?text="+t;
-    case "tgGroup":
-    case "tgChannel":
-      return "https://t.me/share/url?url="+encodeURIComponent(link||location.href)+"&text="+t;
-    case "fbProfile":
-    case "fbPage":
-    case "fbGroup":
-      return "https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(link||location.href)+"&quote="+t;
-    case "instagram":
-      return link||"https://www.instagram.com/";
-    case "youtube":
-      return link||"https://www.youtube.com/";
-    default:
-      return link;
-  }
-}
-
+const t=encodeURIComponent(message),link=validURL(profile.links[id]||"");
+switch(id){
+case"waGroup":case"waCommunity":return"https://wa.me/?text="+t;
+case"tgGroup":case"tgChannel":return"https://t.me/share/url?url="+encodeURIComponent(link||location.href)+"&text="+t;
+case"fbProfile":case"fbPage":case"fbGroup":return"https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(link||location.href)+"&quote="+t;
+case"instagram":return link||"https://www.instagram.com/";
+case"youtube":return link||"https://www.youtube.com/";
+default:return link;
+}}
 function renderShareActions(){
-  const c=$("shareActions");
-  c.innerHTML="";
-  if(!shareQueue.length){c.classList.add("hidden");return}
-  c.classList.remove("hidden");
-
-  const p=shareQueue[shareIndex];
-  const n=document.createElement("button");
-  n.className="btn gold";
-  n.textContent="Open "+p.name+" ("+(shareIndex+1)+"/"+shareQueue.length+")";
-  n.addEventListener("click",openNextDestination);
-
-  const f=document.createElement("button");
-  f.className="btn ghost";
-  f.textContent="Finish";
-  f.addEventListener("click",()=>{
-    shareQueue=[];shareIndex=0;renderShareActions();
-    showStatus("Sharing finished. Platform पर post verify करें।");
-  });
-  c.append(n,f);
+const c=$("shareActions");c.innerHTML="";
+if(!shareQueue.length){c.classList.add("hidden");return}
+c.classList.remove("hidden");
+const p=shareQueue[shareIndex];
+const n=document.createElement("button");n.className="btn gold";n.textContent="Open "+p.name+" ("+(shareIndex+1)+"/"+shareQueue.length+")";n.addEventListener("click",openNextDestination);
+const f=document.createElement("button");f.className="btn ghost";f.textContent="Finish";f.addEventListener("click",()=>{shareQueue=[];shareIndex=0;renderShareActions();showStatus("Finished. संबंधित app में post/send खुद verify करें।")});
+c.append(n,f);
 }
-
 function openNextDestination(){
-  if(shareIndex>=shareQueue.length){
-    shareQueue=[];shareIndex=0;renderShareActions();
-    showStatus("Destination links खोल दिए गए। Posts verify करें.");
-    return;
-  }
-
-  const p=shareQueue[shareIndex];
-  const url=destinationURL(p.id,getMessage());
-  if(!url){showStatus(p.name+" का link Profile में जोड़ें।");return}
-
-  showStatus("Opening "+p.name+". वहाँ जाकर sharing पूरी करें।");
-  window.open(url,"_blank","noopener,noreferrer");
-  addHistory("Opened share destination",getMessage(),[p]);
-  shareIndex++;
-
-  if(shareIndex<shareQueue.length){
-    renderShareActions();
-  }else{
-    shareQueue=[];shareIndex=0;renderShareActions();
-  }
+if(shareIndex>=shareQueue.length){shareQueue=[];shareIndex=0;renderShareActions();showStatus("सभी चुने हुए platforms खोलने का प्रयास पूरा हुआ।");return}
+const p=shareQueue[shareIndex],url=destinationURL(p.id,getMessage());
+if(!url){showStatus(p.name+" का सही URL Profile में जोड़ें।");return}
+showStatus(p.name+" खोलने का प्रयास हो रहा है। वहाँ खुद पोस्ट/Send पूरा करें।");
+window.open(url,"_blank");
+addHistory("Opened platform manually",getMessage()||"[Media selected]",[p]);
+shareIndex++;
+if(shareIndex<shareQueue.length)renderShareActions();else{shareQueue=[];shareIndex=0;renderShareActions()}
 }
-
-/*
-  MAIN SHARE BUTTON
-  Opens the phone's native share menu when supported.
-  The selected platform cards are recorded as preferences, but
-  the operating system may allow only one destination per share.
-*/
-$("postBtn").addEventListener("click",async()=>{
-  const m=getMessage();
-  const targets=selectedPlatforms();
-
-  if(!m&&!mediaFile){
-    showStatus("पहले message लिखें या media चुनें।");
-    return;
-  }
-
-  if(!targets.length){
-    showStatus("कम-से-कम एक platform चुनें।");
-    return;
-  }
-
-  addHistory("Share requested",m||"[Media selected]",targets);
-
-  if(typeof navigator.share==="function"){
-    try{
-      const data={};
-      if(m)data.text=m;
-
-      if(mediaFile&&typeof navigator.canShare==="function"){
-        try{
-          if(navigator.canShare({files:[mediaFile]})){
-            data.files=[mediaFile];
-          }
-        }catch(e){}
-      }
-
-      // If combined file+text sharing is not supported,
-      // try text-only sharing instead of failing immediately.
-      if(data.files&&typeof navigator.canShare==="function"){
-        try{
-          if(!navigator.canShare(data)){
-            delete data.files;
-          }
-        }catch(e){
-          delete data.files;
-        }
-      }
-
-      await navigator.share(data);
-
-      showStatus(
-        "Share menu बंद हुआ। यह जरूरी नहीं कि post publish हो गया हो। " +
-        "Selected app में Send/Post पूरा करें और publication verify करें."+
-        (mediaFile&&!data.files
-          ? "\nइस browser ने media share नहीं किया। जरूरत हो तो destination app में photo/video अलग से चुनें."
-          : "")
-      );
-      return;
-
-    }catch(error){
-      if(error&&error.name==="AbortError"){
-        showStatus("Sharing cancel किया गया। कोई publication confirm नहीं हुई।");
-        return;
-      }
-      showStatus("Native Share Menu नहीं खुल सका। नीचे platform links से कोशिश करें।");
-    }
-  }
-
-  // Fallback for browsers without the native share feature.
-  shareQueue=targets;
-  shareIndex=0;
-  showStatus("Native Share Menu उपलब्ध नहीं है। नीचे button से platforms एक-एक करके खोलें।");
-  renderShareActions();
+$("postBtn").addEventListener("click",()=>{
+const m=getMessage(),targets=selectedPlatforms();
+if(!m&&!mediaFile){showStatus("पहले message लिखें या photo/video चुनें।");return}
+if(!targets.length){showStatus("पहले कम-से-कम एक platform चुनें।");return}
+shareQueue=targets;shareIndex=0;
+showStatus("नीचे Open बटन दबाएँ। कोई auto posting नहीं होगी और Android Share Menu नहीं खुलेगा।");
+renderShareActions();
 });
-
 function renderProfileFields(){
-  $("displayName").value=profile.displayName||"";
-  $("profileFields").innerHTML=PLATFORMS.map(p=>`
-    <label class="field-label" for="link-${p.id}">${p.name} URL (optional)</label>
-    <input type="url" id="link-${p.id}" placeholder="https://...">`).join("");
-
-  PLATFORMS.forEach(p=>{
-    $("link-"+p.id).value=profile.links[p.id]||"";
-  });
+$("displayName").value=profile.displayName||"";
+$("profileFields").innerHTML=PLATFORMS.map(p=>`<label class="field-label" for="link-${p.id}">${p.name} URL (optional)</label><input type="url" id="link-${p.id}" placeholder="https://...">`).join("");
+PLATFORMS.forEach(p=>{$("link-"+p.id).value=profile.links[p.id]||""});
 }
-
 $("saveProfileBtn").addEventListener("click",()=>{
-  const links={};
-
-  for(const p of PLATFORMS){
-    const raw=$("link-"+p.id).value.trim();
-    if(raw&&!validURL(raw)){
-      $("profileStatus").textContent="कृपया "+p.name+" का सही URL डालें।";
-      return;
-    }
-    links[p.id]=raw?validURL(raw):"";
-  }
-
-  profile={displayName:$("displayName").value.trim(),links};
-
-  if(writeJSON(STORAGE.profile,profile)){
-    $("profileStatus").textContent="Profile saved in this browser.";
-    updateAnalytics();
-  }
+const links={};
+for(const p of PLATFORMS){const raw=$("link-"+p.id).value.trim();if(raw&&!validURL(raw)){$("profileStatus").textContent="कृपया "+p.name+" का सही URL डालें।";return}links[p.id]=raw?validURL(raw):""}
+profile={displayName:$("displayName").value.trim(),links};
+if(writeJSON(STORAGE.profile,profile)){$("profileStatus").textContent="Profile saved in this browser.";updateAnalytics()}
 });
-
-$("exportProfileBtn").addEventListener("click",()=>{
-  const b=new Blob([JSON.stringify(profile,null,2)],{type:"application/json"});
-  const u=URL.createObjectURL(b);
-  const a=document.createElement("a");
-  a.href=u;a.download="gsda-profile-settings.json";a.click();
-  setTimeout(()=>URL.revokeObjectURL(u),1000);
-});
-
-function escapeHTML(v){
-  return String(v).replace(/[&<>"']/g,c=>({
-    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-  }[c]));
-}
-
+$("exportProfileBtn").addEventListener("click",()=>{const b=new Blob([JSON.stringify(profile,null,2)],{type:"application/json"}),u=URL.createObjectURL(b),a=document.createElement("a");a.href=u;a.download="gsda-profile-settings.json";a.click();setTimeout(()=>URL.revokeObjectURL(u),1000)});
+function escapeHTML(v){return String(v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
 function renderHistory(){
-  history=readJSON(STORAGE.history,[]);
-  if(!history.length){
-    $("historyList").innerHTML='<div class="empty">अभी कोई activity नहीं है।</div>';
-    return;
-  }
-
-  $("historyList").innerHTML=history.map(i=>`
-    <div class="history-item">
-      <b>${escapeHTML(i.action)}</b><br>
-      <time>${escapeHTML(new Date(i.date).toLocaleString())}</time>
-      <p>${escapeHTML(i.message||"")}</p>
-      <div class="small">${escapeHTML((i.destinations||[]).join(", "))}</div>
-    </div>`).join("");
+history=readJSON(STORAGE.history,[]);
+if(!history.length){$("historyList").innerHTML='<div class="empty">अभी कोई activity नहीं है।</div>';return}
+$("historyList").innerHTML=history.map(i=>`<div class="history-item"><b>${escapeHTML(i.action)}</b><br><time>${escapeHTML(new Date(i.date).toLocaleString())}</time><p>${escapeHTML(i.message||"")}</p><div class="small">${escapeHTML((i.destinations||[]).join(", "))}</div></div>`).join("");
 }
-
-$("clearHistoryBtn").addEventListener("click",()=>{
-  if(!confirm("Local history delete करें?"))return;
-  history=[];writeJSON(STORAGE.history,history);
-  renderHistory();updateAnalytics();
-});
-
-$("saveMessageBtn").addEventListener("click",()=>{
-  const m=getMessage();
-  if(!m){alert("पहले message लिखें।");return}
-  saved=readJSON(STORAGE.saved,[]);
-  saved.unshift({id:Date.now(),message:m,date:new Date().toISOString()});
-  saved=saved.slice(0,100);
-  writeJSON(STORAGE.saved,saved);
-  renderSaved();updateAnalytics();
-});
-
+$("clearHistoryBtn").addEventListener("click",()=>{if(!confirm("Local history delete करें?"))return;history=[];writeJSON(STORAGE.history,history);renderHistory();updateAnalytics()});
+$("saveMessageBtn").addEventListener("click",()=>{const m=getMessage();if(!m){alert("पहले message लिखें।");return}saved=readJSON(STORAGE.saved,[]);saved.unshift({id:Date.now(),message:m,date:new Date().toISOString()});saved=saved.slice(0,100);writeJSON(STORAGE.saved,saved);renderSaved();updateAnalytics()});
 function renderSaved(){
-  saved=readJSON(STORAGE.saved,[]);
-  if(!saved.length){
-    $("savedList").innerHTML='<div class="empty">अभी कोई saved message नहीं है।</div>';
-    return;
-  }
-
-  $("savedList").innerHTML=saved.map(i=>`
-    <div class="history-item">
-      <p>${escapeHTML(i.message)}</p>
-      <time>${escapeHTML(new Date(i.date).toLocaleString())}</time>
-      <div class="action-row">
-        <button class="btn" data-use="${i.id}">Use Message</button>
-        <button class="btn ghost" data-copy="${i.id}">Copy</button>
-        <button class="btn danger" data-delete="${i.id}">Delete</button>
-      </div>
-    </div>`).join("");
-
-  $("savedList").querySelectorAll("[data-use]").forEach(b=>{
-    b.addEventListener("click",()=>{
-      const i=saved.find(x=>String(x.id)===b.dataset.use);
-      if(!i)return;
-      $("message").value=i.message;updateCounter();
-      navigate("home");$("message").focus();
-    });
-  });
-
-  $("savedList").querySelectorAll("[data-copy]").forEach(b=>{
-    b.addEventListener("click",()=>{
-      const i=saved.find(x=>String(x.id)===b.dataset.copy);
-      if(i)copyText(i.message);
-    });
-  });
-
-  $("savedList").querySelectorAll("[data-delete]").forEach(b=>{
-    b.addEventListener("click",()=>{
-      saved=saved.filter(x=>String(x.id)!==b.dataset.delete);
-      writeJSON(STORAGE.saved,saved);
-      renderSaved();updateAnalytics();
-    });
-  });
+saved=readJSON(STORAGE.saved,[]);
+if(!saved.length){$("savedList").innerHTML='<div class="empty">अभी कोई saved message नहीं है।</div>';return}
+$("savedList").innerHTML=saved.map(i=>`<div class="history-item"><p>${escapeHTML(i.message)}</p><time>${escapeHTML(new Date(i.date).toLocaleString())}</time><div class="action-row"><button class="btn" data-use="${i.id}">Use Message</button><button class="btn ghost" data-copy="${i.id}">Copy</button><button class="btn danger" data-delete="${i.id}">Delete</button></div></div>`).join("");
+$("savedList").querySelectorAll("[data-use]").forEach(b=>b.addEventListener("click",()=>{const i=saved.find(x=>String(x.id)===b.dataset.use);if(!i)return;$("message").value=i.message;updateCounter();navigate("home");$("message").focus()}));
+$("savedList").querySelectorAll("[data-copy]").forEach(b=>b.addEventListener("click",()=>{const i=saved.find(x=>String(x.id)===b.dataset.copy);if(i)copyText(i.message)}));
+$("savedList").querySelectorAll("[data-delete]").forEach(b=>b.addEventListener("click",()=>{saved=saved.filter(x=>String(x.id)!==b.dataset.delete);writeJSON(STORAGE.saved,saved);renderSaved();updateAnalytics()}));
 }
-
-function updateAnalytics(){
-  $("totalActions").textContent=readJSON(STORAGE.history,[]).length;
-  $("savedCount").textContent=readJSON(STORAGE.saved,[]).length;
-  $("platformCount").textContent=PLATFORMS.filter(p=>profile.links[p.id]).length;
-  $("mediaCount").textContent=mediaFile?"1":"0";
-}
-
+function updateAnalytics(){$("totalActions").textContent=readJSON(STORAGE.history,[]).length;$("savedCount").textContent=readJSON(STORAGE.saved,[]).length;$("platformCount").textContent=PLATFORMS.filter(p=>profile.links[p.id]).length;$("mediaCount").textContent=mediaFile?"1":"0"}
 function navigate(name){
-  if(name==="studio-nav")name="home";
-
-  document.querySelectorAll(".view").forEach(v=>{
-    v.classList.toggle("active",v.id==="view-"+name);
-  });
-
-  document.querySelectorAll(".nav-item").forEach(b=>{
-    b.classList.toggle(
-      "active",
-      b.dataset.view===name||(name==="home"&&b.dataset.view==="studio-nav")
-    );
-  });
-
-  if(name==="history")renderHistory();
-  if(name==="saved")renderSaved();
-  if(name==="analytics")updateAnalytics();
-  if(name==="profile")renderProfileFields();
-
-  window.scrollTo({top:0,behavior:"smooth"});
+if(name==="studio-nav")name="home";
+document.querySelectorAll(".view").forEach(v=>v.classList.toggle("active",v.id==="view-"+name));
+document.querySelectorAll(".nav-item").forEach(b=>b.classList.toggle("active",b.dataset.view===name||(name==="home"&&b.dataset.view==="studio-nav")));
+if(name==="history")renderHistory();if(name==="saved")renderSaved();if(name==="analytics")updateAnalytics();if(name==="profile")renderProfileFields();
+window.scrollTo({top:0,behavior:"smooth"});
 }
-
-document.querySelectorAll("[data-view]").forEach(b=>{
-  b.addEventListener("click",()=>navigate(b.dataset.view));
-});
-
+document.querySelectorAll("[data-view]").forEach(b=>b.addEventListener("click",()=>navigate(b.dataset.view)));
 $("settingsTop").addEventListener("click",()=>navigate("profile"));
-
 async function installGSApp(){
-  if(installPrompt){
-    installPrompt.prompt();
-    const result=await installPrompt.userChoice;
-    installPrompt=null;
-    if(result.outcome==="accepted")alert("GS DIGITAL ACADEMY installation started.");
-    return;
-  }
-  alert("Install prompt अभी उपलब्ध नहीं है। Chrome के ⋮ मेनू में 'Install app' या 'Add to Home screen' चुनें।");
+if(installPrompt){installPrompt.prompt();const result=await installPrompt.userChoice;installPrompt=null;if(result.outcome==="accepted")alert("GS DIGITAL ACADEMY installation started.");return}
+alert("Install prompt अभी उपलब्ध नहीं है। Chrome के ⋮ मेनू में 'Install app' या 'Add to Home screen' चुनें।");
 }
-
 $("headerInstallBtn").addEventListener("click",installGSApp);
 $("installProfileBtn").addEventListener("click",installGSApp);
-
-window.addEventListener("beforeinstallprompt",e=>{
-  e.preventDefault();
-  installPrompt=e;
-});
-
+window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();installPrompt=e});
 window.addEventListener("appinstalled",()=>{installPrompt=null});
-
-renderPlatforms();
-renderProfileFields();
-renderHistory();
-renderSaved();
-updateCounter();
-updateAnalytics();
-
+renderPlatforms();renderProfileFields();renderHistory();renderSaved();updateCounter();updateAnalytics();
 if("serviceWorker" in navigator&&location.protocol==="https:"){
-  window.addEventListener("load",()=>{
-    navigator.serviceWorker.register("./service-worker.js")
-      .catch(e=>console.error("Service worker registration failed",e));
-  });
+window.addEventListener("load",()=>navigator.serviceWorker.register("./service-worker.js").catch(e=>console.error("Service worker registration failed",e)));
 }
 </script>
 </body>
