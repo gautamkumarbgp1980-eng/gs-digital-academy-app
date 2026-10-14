@@ -5,405 +5,239 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#07132e">
-<meta name="description" content="GS Digital Academy - Your Digital World. Create, manage and share social media promotions.">
-
+<meta name="description" content="GS Digital Academy - Your Digital World">
 <link rel="manifest" href="./manifest.json">
-<link rel="icon" href="./logo.png">
 <title>GS DIGITAL ACADEMY | Social Media Hub</title>
 
 <style>
 :root {
-  --bg: #050b1c;
-  --navy: #071633;
-  --blue: #087cff;
-  --purple: #a12aff;
-  --gold: #ffd45b;
-  --gold2: #ffae19;
-  --text: #f7f8ff;
-  --muted: #aab9dc;
-  --card: rgba(9, 25, 58, .94);
-  --line: rgba(49, 144, 255, .65);
+  --bg:#050b1c;
+  --navy:#081735;
+  --blue:#087cff;
+  --purple:#982aff;
+  --gold:#ffd45b;
+  --text:#f6f8ff;
+  --muted:#aab9dc;
 }
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+* { box-sizing:border-box; }
 body {
-  margin: 0;
-  color: var(--text);
+  margin:0;
+  color:var(--text);
   background:
-    radial-gradient(ellipse at 50% 0%, #182c70 0, transparent 48%),
-    linear-gradient(160deg, #030817, #081633 48%, #08091b);
-  font-family: Inter, system-ui, -apple-system, Arial, sans-serif;
-  min-height: 100vh;
+    radial-gradient(ellipse at 50% 0%,#1b3074,transparent 48%),
+    linear-gradient(160deg,#030817,#081633 55%,#09091d);
+  font-family:Arial,system-ui,sans-serif;
+  min-height:100vh;
 }
-button, input, textarea, select { font: inherit; }
-button { cursor: pointer; }
-button:focus-visible, input:focus-visible, textarea:focus-visible {
-  outline: 2px solid var(--gold);
-  outline-offset: 3px;
-}
+button,input,textarea { font:inherit; }
+button { cursor:pointer; }
 .app {
-  width: 100%;
-  max-width: 900px;
-  margin: auto;
-  padding: 12px 12px 105px;
+  max-width:900px;
+  margin:auto;
+  padding:12px 12px 100px;
 }
 .topbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 12px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:15px;
 }
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 11px;
-  min-width: 0;
+.brand { display:flex;align-items:center;gap:10px; }
+.logo {
+  width:58px;height:58px;object-fit:contain;
+  border-radius:50%;border:2px solid var(--gold);
+  background:#07112a;
+  box-shadow:0 0 18px #ffd45b40;
 }
-.brand img {
-  width: 62px;
-  height: 62px;
-  border-radius: 50%;
-  object-fit: contain;
-  background: #07112a;
-  border: 2px solid var(--gold);
-  box-shadow: 0 0 20px #ffce4a55;
-}
-.brand-name {
-  color: var(--gold);
-  font-size: 17px;
-  font-weight: 900;
-  line-height: 1.2;
-}
-.brand-tag {
-  font-size: 10px;
-  letter-spacing: 2px;
-  color: #d4ddff;
-  margin-top: 5px;
-}
+.brand-name { color:var(--gold);font-size:16px;font-weight:900; }
+.brand-tag { color:#c6d5ff;font-size:10px;letter-spacing:2px;margin-top:5px; }
 .icon-btn {
-  background: #0b1d40;
-  border: 1px solid var(--gold);
-  color: var(--gold);
-  border-radius: 13px;
-  width: 44px;
-  height: 44px;
-  font-size: 20px;
+  width:43px;height:43px;border-radius:13px;
+  background:#10234a;color:var(--gold);
+  border:1px solid var(--gold);font-size:20px;
 }
 .hero {
-  position: relative;
-  overflow: hidden;
-  padding: 25px 19px;
-  border: 1px solid #2a8cff;
-  border-radius: 24px;
+  padding:25px 19px;
+  border:1px solid #338cff;border-radius:23px;
   background:
-    radial-gradient(circle at 90% 0%, #a12aff44, transparent 35%),
-    radial-gradient(circle at 0% 100%, #006bff55, transparent 45%),
-    linear-gradient(135deg, #0d2053, #050b20 70%);
-  box-shadow: 0 0 25px #087cff22;
+    radial-gradient(circle at 90% 0%,#982aff50,transparent 35%),
+    linear-gradient(140deg,#10265a,#050b20 75%);
+  box-shadow:0 0 24px #087cff25;
 }
-.hero::after {
-  content: "";
-  position: absolute;
-  height: 2px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(90deg, transparent, #168bff, var(--gold), #a12aff, transparent);
+.eyebrow { color:var(--gold);font-size:11px;font-weight:bold;letter-spacing:3px; }
+.hero h1 { font-size:clamp(25px,6vw,38px);line-height:1.15;margin:12px 0; }
+.hero h1 span { color:var(--gold); }
+.hero p { color:#c4d1f5;font-size:13px;line-height:1.7;margin-bottom:0; }
+
+.official-website { margin:13px 0; }
+.official-btn {
+  display:flex;align-items:center;gap:12px;
+  padding:14px;border-radius:16px;
+  text-decoration:none;color:#fff;
+  border:1px solid var(--gold);
+  background:linear-gradient(110deg,#102b60,#261454);
+  box-shadow:0 0 18px #087cff30;
 }
-.eyebrow {
-  color: var(--gold);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 3px;
+.website-icon {
+  width:44px;height:44px;display:grid;place-items:center;
+  border-radius:13px;font-size:24px;
+  background:linear-gradient(135deg,#ffe985,#ffb51d);
 }
-.hero h1 {
-  font-size: clamp(25px, 6vw, 39px);
-  line-height: 1.13;
-  margin: 10px 0;
-}
-.hero h1 span {
-  color: var(--gold);
-  text-shadow: 0 0 22px #ffc83d44;
-}
-.hero p {
-  color: #c4d1f5;
-  font-size: 13px;
-  line-height: 1.6;
-  max-width: 480px;
-  margin-bottom: 0;
-}
+.website-text { flex:1;display:flex;flex-direction:column;gap:4px; }
+.website-text strong { color:var(--gold);font-size:13px; }
+.website-text small { color:#d4e0ff;font-size:11px; }
+.website-arrow { color:var(--gold);font-size:22px; }
+
 .quick-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
-  margin: 13px 0;
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:8px;margin:13px 0;
 }
 .quick {
-  text-align: center;
-  padding: 13px 4px;
-  background: linear-gradient(150deg, #10275a, #07122a);
-  border: 1px solid #174c98;
-  border-radius: 14px;
-  font-size: 11px;
-  color: #e8eeff;
+  padding:12px 3px;text-align:center;font-size:11px;
+  background:#0c2045;border:1px solid #24539b;border-radius:13px;
 }
-.quick .emoji { display: block; font-size: 23px; margin-bottom: 6px; }
+.quick span { display:block;font-size:22px;margin-bottom:6px; }
+
 .section {
-  margin-top: 14px;
-  padding: 15px;
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 21px;
-  box-shadow: 0 9px 25px #0003;
+  margin-top:14px;padding:15px;
+  background:rgba(8,23,53,.96);
+  border:1px solid #236cc5;border-radius:20px;
+  box-shadow:0 8px 25px #0003;
 }
 .section-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 14px;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:10px;margin-bottom:13px;
 }
-.section-title {
-  font-size: 17px;
-  font-weight: 850;
+.section-title { font-size:16px;font-weight:850; }
+.small { font-size:11px;color:var(--muted);line-height:1.6; }
+
+textarea,input[type="text"],input[type="url"] {
+  width:100%;padding:13px;border-radius:12px;
+  border:1px solid #b7c7e9;background:#f5f7ff;color:#17213c;
 }
-.small { color: var(--muted); font-size: 11px; }
+textarea { min-height:140px;resize:vertical;line-height:1.6; }
+.counter { text-align:right;color:var(--muted);font-size:11px;margin-top:6px; }
+
 .btn {
-  border: 1px solid #318aff;
-  color: white;
-  background: linear-gradient(135deg, #1268ee, #1645a9);
-  border-radius: 12px;
-  padding: 11px 14px;
-  font-weight: 750;
-  font-size: 12px;
+  border:1px solid #318aff;color:white;
+  background:linear-gradient(135deg,#1268ee,#1645a9);
+  border-radius:11px;padding:11px 13px;
+  font-size:12px;font-weight:750;
 }
 .btn.gold {
-  color: #151000;
-  border-color: #fff0a0;
-  background: linear-gradient(120deg, #ffe985, #ffbd28);
-  box-shadow: 0 0 14px #ffca4040;
+  color:#171000;border-color:#fff0a0;
+  background:linear-gradient(120deg,#ffe985,#ffbd28);
 }
-.btn.purple {
-  background: linear-gradient(120deg, #bd35ff, #6d24e8);
-  border-color: #da8cff;
-}
-.btn.ghost { background: #0a1a39; border-color: #344b76; }
-.btn.danger { background: #522034; border-color: #aa4e70; }
-.btn:disabled { opacity: .45; cursor: not-allowed; }
-textarea, input[type="text"], input[type="url"], input[type="password"] {
-  width: 100%;
-  color: #16203c;
-  background: #f5f7ff;
-  border: 1px solid #b9c7e6;
-  border-radius: 14px;
-  padding: 14px;
-}
-textarea {
-  min-height: 145px;
-  resize: vertical;
-  line-height: 1.6;
-}
-textarea::placeholder, input::placeholder { color: #7b88a6; }
-.counter {
-  text-align: right;
-  color: var(--muted);
-  font-size: 11px;
-  margin-top: 6px;
-}
-.action-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 11px;
-}
-.action-row .btn { flex: 1; min-width: 95px; }
+.btn.purple { background:linear-gradient(120deg,#bd35ff,#6d24e8); }
+.btn.ghost { background:#0a1a39;border-color:#344b76; }
+.btn.danger { background:#592239;border-color:#aa4e70; }
+.action-row { display:flex;flex-wrap:wrap;gap:8px;margin-top:11px; }
+.action-row .btn { flex:1; }
 .file-label {
-  display: flex;
-  flex: 1;
-  min-width: 100px;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 12px 8px;
-  border: 1px solid #377fff;
-  border-radius: 12px;
-  background: #0d2450;
-  font-size: 12px;
-  font-weight: 700;
-  cursor: pointer;
+  display:flex;flex:1;min-width:100px;
+  align-items:center;justify-content:center;
+  padding:12px 7px;border:1px solid #377fff;
+  border-radius:12px;background:#0d2450;
+  font-size:12px;font-weight:bold;cursor:pointer;
 }
-.file-label input { display: none; }
+.file-label input { display:none; }
 .preview {
-  display: none;
-  margin-top: 12px;
-  border-radius: 12px;
-  max-width: 100%;
-  max-height: 300px;
-  object-fit: contain;
-  background: #000;
+  display:none;max-width:100%;max-height:280px;
+  margin-top:12px;border-radius:12px;background:#000;
 }
+
 .platform-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 9px;
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;
 }
 .platform {
-  position: relative;
-  min-width: 0;
-  min-height: 116px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-  text-align: center;
-  border-radius: 15px;
-  border: 1px solid #137aff;
-  background: linear-gradient(145deg, #102653, #061128);
-  color: white;
-  padding: 12px 4px;
-  transition: .18s ease;
+  position:relative;min-width:0;min-height:110px;
+  display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:6px;text-align:center;
+  padding:12px 4px;border:1px solid #1768ca;
+  border-radius:14px;background:linear-gradient(145deg,#102653,#061128);
+  color:#fff;
 }
 .platform.selected {
-  border: 2px solid var(--gold);
-  background: linear-gradient(145deg, #3c2a11, #101b3c);
-  box-shadow: 0 0 17px #ffd34b33;
+  border:2px solid var(--gold);
+  background:linear-gradient(145deg,#3c2a11,#101b3c);
+  box-shadow:0 0 15px #ffd34b30;
 }
 .platform input {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  accent-color: #ffd34b;
-  width: 17px;
-  height: 17px;
+  position:absolute;top:7px;right:7px;
+  accent-color:#ffd45b;width:16px;height:16px;
 }
 .platform-icon {
-  width: 42px;
-  height: 42px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background: #1268f6;
-  font-size: 22px;
+  width:40px;height:40px;display:grid;place-items:center;
+  border-radius:50%;background:#1268f6;font-size:22px;
 }
-.platform[data-color="green"] .platform-icon { background: #05b96c; }
-.platform[data-color="purple"] .platform-icon { background: #a329f4; }
-.platform[data-color="red"] .platform-icon { background: #f02b43; }
-.platform[data-color="gold"] .platform-icon { background: #b78a12; }
-.platform strong { font-size: 11px; overflow-wrap: anywhere; }
-.platform small { color: #b9c9eb; font-size: 10px; }
+.platform[data-color="green"] .platform-icon { background:#05a966; }
+.platform[data-color="purple"] .platform-icon { background:#a329f4; }
+.platform[data-color="red"] .platform-icon { background:#ed263e; }
+.platform strong { font-size:11px;overflow-wrap:anywhere; }
+.platform small { color:#b9c9eb;font-size:10px; }
+
 .post-main {
-  width: 100%;
-  margin-top: 14px;
-  padding: 17px;
-  font-size: 19px;
-  border-radius: 15px;
-  color: #161000;
-  font-weight: 900;
-  border: 1px solid #fff0a0;
-  background: linear-gradient(110deg, #ffdc69, #fff0a3, #f8b925);
-  box-shadow: 0 0 22px #ffc53b33;
+  width:100%;margin-top:14px;padding:16px;
+  font-size:17px;font-weight:900;color:#171000;
+  border:1px solid #fff0a0;border-radius:14px;
+  background:linear-gradient(110deg,#ffdc69,#fff0a3,#f8b925);
+  box-shadow:0 0 20px #ffc53b30;
 }
 .status {
-  margin-top: 12px;
-  padding: 12px;
-  border: 1px solid #334a78;
-  border-radius: 12px;
-  background: #07142c;
-  color: #d9e4ff;
-  font-size: 12px;
-  line-height: 1.6;
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
+  margin-top:12px;padding:11px;border-radius:11px;
+  border:1px solid #334a78;background:#07142c;
+  color:#d9e4ff;font-size:12px;line-height:1.7;
+  overflow-wrap:anywhere;white-space:pre-wrap;
 }
-.status:empty { display: none; }
-.feature-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0,1fr));
-  gap: 9px;
-}
+.status:empty { display:none; }
+.feature-grid { display:grid;grid-template-columns:repeat(2,1fr);gap:9px; }
 .feature {
-  border: 1px solid #254c8c;
-  border-radius: 14px;
-  padding: 14px;
-  background: #0a1b3c;
-  color: white;
-  text-align: left;
+  padding:14px;text-align:left;color:white;
+  background:#0a1b3c;border:1px solid #254c8c;border-radius:13px;
 }
-.feature b { display: block; margin-bottom: 6px; font-size: 13px; }
-.feature span { font-size: 11px; color: #aebfe2; }
-.field-label {
-  display: block;
-  margin: 14px 0 6px;
-  color: #d7e3ff;
-  font-size: 12px;
-  font-weight: 700;
-}
-.history-item {
-  padding: 12px 0;
-  border-bottom: 1px solid #253a61;
-  overflow-wrap: anywhere;
-}
-.history-item:last-child { border-bottom: 0; }
-.history-item p { font-size: 12px; line-height: 1.6; color: #d3def7; }
-.history-item time { color: #91a6d5; font-size: 10px; }
+.feature b { display:block;font-size:13px;margin-bottom:6px; }
+.feature span { font-size:11px;color:#aebfe2; }
+
+.view { display:none; }
+.view.active { display:block; }
+.field-label { display:block;margin:13px 0 6px;font-size:12px;font-weight:bold; }
+.history-item { padding:12px 0;border-bottom:1px solid #253a61;overflow-wrap:anywhere; }
+.history-item p { font-size:12px;line-height:1.6;color:#d3def7; }
+.history-item time { font-size:10px;color:#91a6d5; }
+.empty { text-align:center;color:var(--muted);padding:20px;font-size:12px; }
+
+.stat-grid { display:grid;grid-template-columns:repeat(2,1fr);gap:10px; }
+.stat { padding:15px;background:#0b2046;border:1px solid #2858a0;border-radius:14px; }
+.stat strong { display:block;font-size:25px;color:var(--gold); }
+.stat span { color:#bdcbea;font-size:11px; }
+
 .bottom-nav {
-  position: fixed;
-  z-index: 20;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: min(100%, 900px);
-  padding: 9px 5px calc(9px + env(safe-area-inset-bottom));
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  background: rgba(3, 10, 28, .97);
-  border-top: 1px solid #287bff;
-  box-shadow: 0 -8px 25px #0006;
-  backdrop-filter: blur(15px);
+  position:fixed;z-index:20;bottom:0;left:50%;
+  transform:translateX(-50%);width:min(100%,900px);
+  padding:8px 4px calc(8px + env(safe-area-inset-bottom));
+  display:grid;grid-template-columns:repeat(5,1fr);
+  background:rgba(3,10,28,.97);border-top:1px solid #287bff;
+  box-shadow:0 -8px 25px #0006;
 }
 .nav-item {
-  border: 0;
-  border-radius: 12px;
-  background: transparent;
-  color: #a9bce4;
-  font-size: 10px;
-  padding: 7px 1px;
+  border:0;border-radius:11px;background:transparent;
+  color:#a9bce4;font-size:10px;padding:7px 1px;
 }
-.nav-item .nav-icon { display: block; font-size: 20px; margin-bottom: 4px; }
-.nav-item.active { color: var(--gold); background: #152346; }
-.view { display: none; }
-.view.active { display: block; }
-.stat-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-}
-.stat {
-  padding: 16px;
-  background: #0b2046;
-  border: 1px solid #2858a0;
-  border-radius: 15px;
-}
-.stat strong { display: block; font-size: 25px; color: var(--gold); }
-.stat span { color: #bdcbea; font-size: 11px; }
-.empty { color: var(--muted); font-size: 12px; text-align: center; padding: 20px 5px; }
-footer { text-align: center; color: #8094be; font-size: 10px; margin-top: 22px; line-height: 1.7; }
-.hidden { display: none !important; }
+.nav-icon { display:block;font-size:20px;margin-bottom:4px; }
+.nav-item.active { color:var(--gold);background:#152346; }
+footer { text-align:center;color:#8094be;font-size:10px;margin-top:22px;line-height:1.8; }
+.hidden { display:none!important; }
 
-@media (min-width: 600px) {
-  .app { padding: 20px 20px 110px; }
-  .platform-grid { grid-template-columns: repeat(5, minmax(0,1fr)); }
-  .quick-grid { grid-template-columns: repeat(4, 1fr); }
-  .hero { padding: 35px; }
-  .brand-name { font-size: 21px; }
+@media(min-width:600px) {
+  .app { padding:20px 20px 110px; }
+  .platform-grid { grid-template-columns:repeat(5,minmax(0,1fr)); }
+  .hero { padding:35px; }
+  .brand-name { font-size:20px; }
 }
-@media (max-width: 350px) {
-  .platform-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
-  .brand-name { font-size: 14px; }
-  .section { padding: 11px; }
+@media(max-width:350px) {
+  .platform-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .section { padding:11px; }
 }
 </style>
 </head>
@@ -413,30 +247,45 @@ footer { text-align: center; color: #8094be; font-size: 10px; margin-top: 22px; 
 
 <header class="topbar">
   <div class="brand">
-    <img src="./logo.png" alt="GS Digital Academy Logo"
+    <img class="logo" src="./logo.png" alt="GS Digital Academy Logo"
          onerror="this.style.display='none'">
     <div>
       <div class="brand-name">GS DIGITAL ACADEMY</div>
       <div class="brand-tag">YOUR DIGITAL WORLD</div>
     </div>
   </div>
-  <button class="icon-btn" id="settingsTop" aria-label="Profile settings">⚙</button>
+  <button class="icon-btn" id="settingsTop" aria-label="Settings">⚙</button>
 </header>
 
 <main>
 <!-- HOME -->
 <div class="view active" id="view-home">
+
   <section class="hero">
     <div class="eyebrow">YOUR DIGITAL WORLD</div>
     <h1>SHARE. GROW.<br><span>CONNECT TOGETHER.</span></h1>
-    <p>Create your promotional message, choose your social platforms and share your content from one convenient dashboard.</p>
+    <p>Create promotional messages, choose your social media destinations and share content from one convenient dashboard.</p>
   </section>
 
+  <!-- OFFICIAL WEBSITE: CORRECT LINK -->
+  <div class="official-website">
+    <a class="official-btn"
+       href="https://tinyurl.com/GSdigitalacademy"
+       target="_blank" rel="noopener noreferrer">
+      <span class="website-icon">🌐</span>
+      <span class="website-text">
+        <strong>OFFICIAL WEBSITE</strong>
+        <small>Visit GS Digital Academy ↗</small>
+      </span>
+      <span class="website-arrow">➜</span>
+    </a>
+  </div>
+
   <div class="quick-grid">
-    <div class="quick"><span class="emoji">✍️</span>Create</div>
-    <div class="quick"><span class="emoji">🖼️</span>Add Media</div>
-    <div class="quick"><span class="emoji">☑️</span>Select</div>
-    <div class="quick"><span class="emoji">🚀</span>Share</div>
+    <div class="quick"><span>✍️</span>Create</div>
+    <div class="quick"><span>🖼️</span>Add Media</div>
+    <div class="quick"><span>☑️</span>Select</div>
+    <div class="quick"><span>🚀</span>Share</div>
   </div>
 
   <section class="section" id="studio">
@@ -446,7 +295,7 @@ footer { text-align: center; color: #8094be; font-size: 10px; margin-top: 22px; 
     </div>
 
     <textarea id="message" maxlength="2000"
-      placeholder="Write your promotional message here..."></textarea>
+      placeholder="Write or paste your promotional message here..."></textarea>
     <div class="counter"><span id="charCount">0</span>/2000 characters</div>
 
     <div class="action-row">
@@ -480,9 +329,7 @@ footer { text-align: center; color: #8094be; font-size: 10px; margin-top: 22px; 
     <div class="small" style="margin-bottom:12px">
       Select the destinations you want to share your content with.
     </div>
-
     <div class="platform-grid" id="platformGrid"></div>
-
     <button class="post-main" id="postBtn">➤ &nbsp; Post / Share Now</button>
     <div id="shareStatus" class="status" role="status" aria-live="polite"></div>
     <div id="shareActions" class="action-row hidden"></div>
@@ -492,13 +339,13 @@ footer { text-align: center; color: #8094be; font-size: 10px; margin-top: 22px; 
     <div class="section-title" style="margin-bottom:12px">⚡ Your Workspace</div>
     <div class="feature-grid">
       <button class="feature" data-view="history">
-        <b>📋 Post History</b><span>View saved activity</span>
+        <b>📋 Post History</b><span>View local activity</span>
       </button>
       <button class="feature" data-view="analytics">
-        <b>📊 Analytics</b><span>Track local activity</span>
+        <b>📊 Analytics</b><span>Local statistics</span>
       </button>
       <button class="feature" data-view="saved">
-        <b>🔖 Saved Content</b><span>Reuse your messages</span>
+        <b>🔖 Saved Content</b><span>Reuse messages</span>
       </button>
       <button class="feature" data-view="profile">
         <b>👤 My Profile</b><span>Manage social links</span>
@@ -514,7 +361,7 @@ footer { text-align: center; color: #8094be; font-size: 10px; margin-top: 22px; 
       <div class="section-title">📋 Post History</div>
       <button class="btn ghost" id="clearHistoryBtn">Clear History</button>
     </div>
-    <div class="small">This history records actions performed inside this browser. It does not verify publication on a platform.</div>
+    <p class="small">यह browser में की गई गतिविधियों का रिकॉर्ड है। यह किसी platform पर पोस्ट प्रकाशित होने की पुष्टि नहीं करता।</p>
     <div id="historyList"></div>
   </section>
 </div>
@@ -524,16 +371,16 @@ footer { text-align: center; color: #8094be; font-size: 10px; margin-top: 22px; 
   <section class="section">
     <div class="section-title" style="margin-bottom:15px">📊 Activity Dashboard</div>
     <div class="stat-grid">
-      <div class="stat"><strong id="totalActions">0</strong><span>Share actions recorded</span></div>
+      <div class="stat"><strong id="totalActions">0</strong><span>Recorded actions</span></div>
       <div class="stat"><strong id="savedCount">0</strong><span>Saved messages</span></div>
-      <div class="stat"><strong id="platformCount">0</strong><span>Configured platforms</span></div>
+      <div class="stat"><strong id="platformCount">0</strong><span>Configured links</span></div>
       <div class="stat"><strong id="mediaCount">0</strong><span>Media selected now</span></div>
     </div>
-    <p class="small" style="margin-top:15px">These are local app statistics, not platform reach, impressions, clicks or confirmed post counts.</p>
+    <p class="small" style="margin-top:15px">ये local आँकड़े हैं, social reach या confirmed published posts नहीं।</p>
   </section>
 </div>
 
-<!-- SAVED CONTENT -->
+<!-- SAVED -->
 <div class="view" id="view-saved">
   <section class="section">
     <div class="section-head">
@@ -548,13 +395,10 @@ footer { text-align: center; color: #8094be; font-size: 10px; margin-top: 22px; 
 <div class="view" id="view-profile">
   <section class="section">
     <div class="section-title">👤 Profile & Social Links</div>
-    <p class="small">Add the URLs you use. These settings are stored in this browser only.</p>
-
+    <p class="small">अपने social media links यहाँ सेव करें। ये सेटिंग्स इसी browser में रहेंगी।</p>
     <label class="field-label" for="displayName">Display Name</label>
     <input type="text" id="displayName" placeholder="Your name">
-
     <div id="profileFields"></div>
-
     <div class="action-row">
       <button class="btn gold" id="saveProfileBtn">Save Profile</button>
       <button class="btn ghost" id="exportProfileBtn">Export Settings</button>
@@ -565,23 +409,20 @@ footer { text-align: center; color: #8094be; font-size: 10px; margin-top: 22px; 
   <section class="section">
     <div class="section-title">🔐 Posting & Privacy</div>
     <p class="small">
-      Never enter social media passwords, API secrets or private keys in this page.
-      A destination link does not grant permission to publish automatically.
+      इस page में social media passwords, API secrets या private keys न डालें।
+      Link जोड़ने से auto-publishing permission नहीं मिलती।
     </p>
     <p class="small">
-      Automatic publishing requires a secure backend and platform-specific API permissions.
-      This page does not enable or claim automatic publishing by itself.
+      Automatic publishing के लिए secure backend और संबंधित platform की API permissions आवश्यक हैं।
     </p>
-    <button class="btn ghost" id="installBtn" style="width:100%;margin-top:10px">
-      📲 Install App
-    </button>
+    <button class="btn ghost" id="installBtn" style="width:100%;margin-top:10px">📲 Install App</button>
   </section>
 </div>
 </main>
 
 <footer>
   GS DIGITAL ACADEMY · YOUR DIGITAL WORLD<br>
-  Secure sharing tools for your digital workflow
+  Create · Share · Connect
 </footer>
 </div>
 
@@ -599,517 +440,362 @@ footer { text-align: center; color: #8094be; font-size: 10px; margin-top: 22px; 
 const $ = id => document.getElementById(id);
 
 const STORAGE = {
-  profile: "gsda_profile_v4",
-  history: "gsda_history_v1",
-  saved: "gsda_saved_v1"
+  profile:"gsda_profile_v5",
+  history:"gsda_history_v1",
+  saved:"gsda_saved_v1"
 };
 
 const PLATFORMS = [
-  {id:"fbProfile", name:"Facebook Profile", sub:"Profile", icon:"f", color:"blue"},
-  {id:"fbPage", name:"Facebook Page", sub:"Page", icon:"⚑", color:"blue"},
-  {id:"fbGroup", name:"Facebook Group", sub:"Group", icon:"👥", color:"blue"},
-  {id:"waGroup", name:"WhatsApp Group", sub:"Group", icon:"◉", color:"green"},
-  {id:"waCommunity", name:"WhatsApp Community", sub:"Community", icon:"👥", color:"green"},
-  {id:"instagram", name:"Instagram", sub:"Account", icon:"◎", color:"purple"},
-  {id:"tgGroup", name:"Telegram Group", sub:"Group", icon:"➤", color:"blue"},
-  {id:"tgChannel", name:"Telegram Channel", sub:"Channel", icon:"➤", color:"blue"},
-  {id:"youtube", name:"YouTube", sub:"Channel", icon:"▶", color:"red"}
+  {id:"fbProfile",name:"Facebook Profile",sub:"Profile",icon:"f",color:"blue"},
+  {id:"fbPage",name:"Facebook Page",sub:"Page",icon:"⚑",color:"blue"},
+  {id:"fbGroup",name:"Facebook Group",sub:"Group",icon:"👥",color:"blue"},
+  {id:"waGroup",name:"WhatsApp Group",sub:"Group",icon:"◉",color:"green"},
+  {id:"waCommunity",name:"WhatsApp Community",sub:"Community",icon:"👥",color:"green"},
+  {id:"instagram",name:"Instagram",sub:"Account",icon:"◎",color:"purple"},
+  {id:"tgGroup",name:"Telegram Group",sub:"Group",icon:"➤",color:"blue"},
+  {id:"tgChannel",name:"Telegram Channel",sub:"Channel",icon:"➤",color:"blue"},
+  {id:"youtube",name:"YouTube",sub:"Channel",icon:"▶",color:"red"}
 ];
 
 const DEFAULT_PROFILE = {
-  displayName: "",
-  links: {
-    fbProfile: "",
-    fbPage: "",
-    fbGroup: "",
-    waGroup: "",
-    waCommunity: "",
-    instagram: "",
-    tgGroup: "",
-    tgChannel: "",
-    youtube: ""
+  displayName:"",
+  links:{
+    fbProfile:"",fbPage:"",fbGroup:"",
+    waGroup:"",waCommunity:"",instagram:"",
+    tgGroup:"",tgChannel:"",youtube:""
   }
 };
 
-function readJSON(key, fallback) {
+function readJSON(key,fallback) {
   try {
-    const value = localStorage.getItem(key);
+    const value=localStorage.getItem(key);
     return value ? JSON.parse(value) : fallback;
-  } catch (e) {
-    return fallback;
-  }
+  } catch(e) { return fallback; }
 }
-
-function writeJSON(key, value) {
+function writeJSON(key,value) {
   try {
-    localStorage.setItem(key, JSON.stringify(value));
+    localStorage.setItem(key,JSON.stringify(value));
     return true;
-  } catch (e) {
-    alert("Storage full or unavailable. Please export or remove old data.");
+  } catch(e) {
+    alert("Browser storage unavailable or full.");
     return false;
   }
 }
 
-let profile = readJSON(STORAGE.profile, DEFAULT_PROFILE);
-let history = readJSON(STORAGE.history, []);
-let saved = readJSON(STORAGE.saved, []);
-let mediaFile = null;
-let mediaURL = null;
-let installPrompt = null;
-let shareQueue = [];
-let shareIndex = 0;
-
-if (!profile.links) profile = structuredClone(DEFAULT_PROFILE);
+let profile=readJSON(STORAGE.profile,DEFAULT_PROFILE);
+let history=readJSON(STORAGE.history,[]);
+let saved=readJSON(STORAGE.saved,[]);
+let mediaFile=null,mediaURL=null,installPrompt=null;
+let shareQueue=[],shareIndex=0;
+if(!profile.links) profile=JSON.parse(JSON.stringify(DEFAULT_PROFILE));
 
 function renderPlatforms() {
-  $("platformGrid").innerHTML = PLATFORMS.map(p => `
+  $("platformGrid").innerHTML=PLATFORMS.map(p=>`
     <label class="platform" data-platform="${p.id}" data-color="${p.color}">
       <input type="checkbox" value="${p.id}" aria-label="${p.name}">
       <span class="platform-icon">${p.icon}</span>
-      <strong>${p.name}</strong>
-      <small>${p.sub}</small>
-    </label>
-  `).join("");
+      <strong>${p.name}</strong><small>${p.sub}</small>
+    </label>`).join("");
 
-  $("platformGrid").querySelectorAll("input").forEach(input => {
-    input.addEventListener("change", () => {
-      updatePlatformStyle(input);
+  $("platformGrid").querySelectorAll("input").forEach(input=>{
+    input.addEventListener("change",()=>{
+      input.closest(".platform").classList.toggle("selected",input.checked);
       updateAnalytics();
     });
   });
 }
 
-function updatePlatformStyle(input) {
-  input.closest(".platform").classList.toggle("selected", input.checked);
-}
-
 function selectedPlatforms() {
   return [...$("platformGrid").querySelectorAll("input:checked")]
-    .map(input => PLATFORMS.find(p => p.id === input.value))
-    .filter(Boolean);
+    .map(input=>PLATFORMS.find(p=>p.id===input.value)).filter(Boolean);
 }
+function showStatus(message) { $("shareStatus").textContent=message; }
+function updateCounter() { $("charCount").textContent=$("message").value.length; }
+function getMessage() { return $("message").value.trim(); }
 
-function showStatus(message) {
-  $("shareStatus").textContent = message;
-}
-
-function showProfileStatus(message) {
-  $("profileStatus").textContent = message;
-}
-
-function updateCounter() {
-  $("charCount").textContent = $("message").value.length;
-}
-
-function getMessage() {
-  return $("message").value.trim();
-}
-
-function getHistory() {
-  history = readJSON(STORAGE.history, []);
-  return history;
-}
-
-function addHistory(action, message, destinations = []) {
-  history = getHistory();
+function addHistory(action,message,destinations=[]) {
+  history=readJSON(STORAGE.history,[]);
   history.unshift({
-    id: Date.now() + "-" + Math.random().toString(36).slice(2,7),
+    id:Date.now()+"-"+Math.random().toString(36).slice(2,7),
     action,
-    message: message.slice(0, 350),
-    destinations: destinations.map(p => p.name || p),
-    date: new Date().toISOString()
+    message:(message||"").slice(0,350),
+    destinations:destinations.map(p=>p.name||p),
+    date:new Date().toISOString()
   });
-  history = history.slice(0, 100);
-  writeJSON(STORAGE.history, history);
+  history=history.slice(0,100);
+  writeJSON(STORAGE.history,history);
   renderHistory();
   updateAnalytics();
 }
 
 async function copyText(text) {
-  if (!text) {
-    showStatus("Please write a message first.");
-    return false;
-  }
+  if(!text) { showStatus("पहले message लिखें।");return false; }
   try {
     await navigator.clipboard.writeText(text);
-  } catch (e) {
-    const area = document.createElement("textarea");
-    area.value = text;
-    area.style.position = "fixed";
-    area.style.opacity = "0";
+  } catch(e) {
+    const area=document.createElement("textarea");
+    area.value=text;
+    area.style.position="fixed";
+    area.style.opacity="0";
     document.body.appendChild(area);
     area.select();
-    const ok = document.execCommand("copy");
+    const ok=document.execCommand("copy");
     area.remove();
-    if (!ok) {
-      showStatus("Copy failed. Please select and copy the message manually.");
-      return false;
-    }
+    if(!ok) { showStatus("Copy नहीं हुआ। Message को manually copy करें।");return false; }
   }
   showStatus("Message copied successfully.");
-  addHistory("Copied message", text);
+  addHistory("Copied message",text);
   return true;
 }
 
-$("copyBtn").addEventListener("click", () => copyText(getMessage()));
-
-$("pasteBtn").addEventListener("click", async () => {
+$("copyBtn").addEventListener("click",()=>copyText(getMessage()));
+$("pasteBtn").addEventListener("click",async()=>{
   try {
-    if (!navigator.clipboard || !navigator.clipboard.readText) {
-      showStatus("Clipboard access is unavailable. Long-press the message box and choose Paste.");
-      $("message").focus();
-      return;
-    }
-    const text = await navigator.clipboard.readText();
-    if (text) $("message").value = text;
+    if(!navigator.clipboard?.readText) throw new Error("Clipboard unavailable");
+    const text=await navigator.clipboard.readText();
+    if(text) $("message").value=text;
     updateCounter();
-    showStatus(text ? "Text pasted." : "Clipboard is empty.");
-  } catch (e) {
+    showStatus(text?"Text pasted.":"Clipboard is empty.");
+  } catch(e) {
     $("message").focus();
-    showStatus("Allow clipboard access or long-press the message box and choose Paste.");
+    showStatus("Message box में long-press करके Paste चुनें या clipboard permission दें।");
   }
 });
-
-$("message").addEventListener("input", updateCounter);
-
-$("clearBtn").addEventListener("click", () => {
-  $("message").value = "";
+$("message").addEventListener("input",updateCounter);
+$("clearBtn").addEventListener("click",()=>{
+  $("message").value="";
   updateCounter();
   showStatus("");
 });
 
 function clearMedia() {
-  if (mediaURL) URL.revokeObjectURL(mediaURL);
-  mediaURL = null;
-  mediaFile = null;
-  $("imagePreview").style.display = "none";
-  $("videoPreview").style.display = "none";
+  if(mediaURL) URL.revokeObjectURL(mediaURL);
+  mediaURL=null;mediaFile=null;
+  $("imagePreview").style.display="none";
+  $("videoPreview").style.display="none";
   $("imagePreview").removeAttribute("src");
   $("videoPreview").removeAttribute("src");
-  $("mediaInfo").textContent = "";
-  $("photoInput").value = "";
-  $("videoInput").value = "";
+  $("mediaInfo").textContent="";
+  $("photoInput").value="";
+  $("videoInput").value="";
   $("removeMedia").classList.add("hidden");
   updateAnalytics();
 }
-
 function acceptMedia(file) {
-  if (!file) return;
-  const maxSize = 25 * 1024 * 1024;
-  if (file.size > maxSize) {
-    alert("Please choose a file under 25 MB.");
-    return;
+  if(!file) return;
+  if(file.size>25*1024*1024) {
+    alert("25 MB से छोटी file चुनें।");return;
   }
-  if (!file.type.startsWith("image/") && !file.type.startsWith("video/")) {
-    alert("Choose an image or video file.");
-    return;
+  if(!file.type.startsWith("image/")&&!file.type.startsWith("video/")) {
+    alert("Image या video file चुनें।");return;
   }
-
   clearMedia();
-  mediaFile = file;
-  mediaURL = URL.createObjectURL(file);
-  $("mediaInfo").textContent =
-    file.name + " · " + (file.size / (1024 * 1024)).toFixed(2) + " MB";
-
-  if (file.type.startsWith("image/")) {
-    $("imagePreview").src = mediaURL;
-    $("imagePreview").style.display = "block";
+  mediaFile=file;
+  mediaURL=URL.createObjectURL(file);
+  $("mediaInfo").textContent=file.name+" · "+(file.size/1048576).toFixed(2)+" MB";
+  if(file.type.startsWith("image/")) {
+    $("imagePreview").src=mediaURL;
+    $("imagePreview").style.display="block";
   } else {
-    $("videoPreview").src = mediaURL;
-    $("videoPreview").style.display = "block";
+    $("videoPreview").src=mediaURL;
+    $("videoPreview").style.display="block";
   }
   $("removeMedia").classList.remove("hidden");
   updateAnalytics();
 }
+$("photoInput").addEventListener("change",e=>acceptMedia(e.target.files[0]));
+$("videoInput").addEventListener("change",e=>acceptMedia(e.target.files[0]));
+$("removeMedia").addEventListener("click",clearMedia);
 
-$("photoInput").addEventListener("change", e => acceptMedia(e.target.files[0]));
-$("videoInput").addEventListener("change", e => acceptMedia(e.target.files[0]));
-$("removeMedia").addEventListener("click", clearMedia);
-
-$("selectAllBtn").addEventListener("click", () => {
-  const inputs = [...$("platformGrid").querySelectorAll("input")];
-  const allSelected = inputs.every(input => input.checked);
-  inputs.forEach(input => {
-    input.checked = !allSelected;
-    updatePlatformStyle(input);
+$("selectAllBtn").addEventListener("click",()=>{
+  const inputs=[...$("platformGrid").querySelectorAll("input")];
+  const all=inputs.every(input=>input.checked);
+  inputs.forEach(input=>{
+    input.checked=!all;
+    input.closest(".platform").classList.toggle("selected",!all);
   });
-  $("selectAllBtn").textContent = allSelected ? "☑ Select All" : "☐ Deselect All";
+  $("selectAllBtn").textContent=all?"☑ Select All":"☐ Deselect All";
   updateAnalytics();
 });
 
 function validURL(value) {
-  if (!value) return "";
+  if(!value) return "";
   try {
-    const u = new URL(value);
-    return ["https:", "http:"].includes(u.protocol) ? u.href : "";
-  } catch (e) {
-    return "";
-  }
+    const u=new URL(value);
+    return ["https:","http:"].includes(u.protocol)?u.href:"";
+  } catch(e) { return ""; }
 }
 
-function destinationURL(id, message) {
-  const text = encodeURIComponent(message);
-  const link = validURL(profile.links[id] || "");
-
-  switch (id) {
+function destinationURL(id,message) {
+  const text=encodeURIComponent(message);
+  const link=validURL(profile.links[id]||"");
+  switch(id) {
     case "waGroup":
     case "waCommunity":
-      // WhatsApp web/app share composer; destination group selection
-      // may still need to be made by the user.
-      return "https://wa.me/?text=" + text;
-
+      return "https://wa.me/?text="+text;
     case "tgGroup":
     case "tgChannel":
-      // Telegram share sheet; user selects the destination.
-      return "https://t.me/share/url?url=" +
-        encodeURIComponent(link || location.href) + "&text=" + text;
-
+      return "https://t.me/share/url?url="+encodeURIComponent(link||location.href)+"&text="+text;
     case "fbProfile":
     case "fbPage":
     case "fbGroup":
-      // Facebook share dialog. This does not guarantee direct publishing
-      // to a profile, page or group.
-      return "https://www.facebook.com/sharer/sharer.php?u=" +
-        encodeURIComponent(link || location.href) +
-        "&quote=" + text;
-
+      return "https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(link||location.href)+"&quote="+text;
     case "instagram":
-      // Instagram has no general web URL for prefilled feed publishing.
-      return link || "https://www.instagram.com/";
-
+      return link||"https://www.instagram.com/";
     case "youtube":
-      return link || "https://www.youtube.com/";
-
-    default:
-      return link;
+      return link||"https://www.youtube.com/";
+    default:return link;
   }
 }
 
 function renderShareActions() {
-  const container = $("shareActions");
-  container.innerHTML = "";
-  if (!shareQueue.length) {
-    container.classList.add("hidden");
-    return;
+  const container=$("shareActions");
+  container.innerHTML="";
+  if(!shareQueue.length) {
+    container.classList.add("hidden");return;
   }
   container.classList.remove("hidden");
+  const p=shareQueue[shareIndex];
+  const next=document.createElement("button");
+  next.className="btn gold";
+  next.textContent="Open "+p.name+" ("+(shareIndex+1)+"/"+shareQueue.length+")";
+  next.addEventListener("click",openNextDestination);
 
-  const p = shareQueue[shareIndex];
-  const next = document.createElement("button");
-  next.className = "btn gold";
-  next.textContent = "Open " + p.name + " (" + (shareIndex + 1) + "/" + shareQueue.length + ")";
-  next.addEventListener("click", () => openNextDestination());
-
-  const cancel = document.createElement("button");
-  cancel.className = "btn ghost";
-  cancel.textContent = "Finish";
-  cancel.addEventListener("click", () => {
-    shareQueue = [];
-    shareIndex = 0;
-    renderShareActions();
-    showStatus("Sharing sequence closed. Check each platform to confirm publication.");
+  const finish=document.createElement("button");
+  finish.className="btn ghost";
+  finish.textContent="Finish";
+  finish.addEventListener("click",()=>{
+    shareQueue=[];shareIndex=0;renderShareActions();
+    showStatus("Sharing sequence closed. प्रत्येक platform पर post verify करें।");
   });
-
-  container.append(next, cancel);
+  container.append(next,finish);
 }
 
 function openNextDestination() {
-  if (shareIndex >= shareQueue.length) {
-    showStatus("All selected destination links have been opened. Verify posts on the respective platforms.");
-    shareQueue = [];
-    shareIndex = 0;
-    renderShareActions();
-    return;
+  if(shareIndex>=shareQueue.length) {
+    showStatus("सभी destination links खोल दिए गए। Posts को संबंधित apps में verify करें।");
+    shareQueue=[];shareIndex=0;renderShareActions();return;
   }
+  const p=shareQueue[shareIndex];
+  const url=destinationURL(p.id,getMessage());
+  if(!url) { showStatus(p.name+" का valid link Profile में जोड़ें।");return; }
 
-  const p = shareQueue[shareIndex];
-  const message = getMessage();
-  const url = destinationURL(p.id, message);
-
-  if (!url) {
-    showStatus("No valid destination URL for " + p.name + ". Add it in Profile settings.");
-    return;
-  }
-
-  if (p.id === "instagram" && mediaFile) {
-    showStatus("Instagram may require you to upload the selected media manually in the Instagram app. Your media has not been uploaded automatically.");
+  if(p.id==="instagram"&&mediaFile) {
+    showStatus("Instagram में media manually upload करना पड़ सकता है। यह app media को automatically upload नहीं कर रहा।");
   } else {
-    showStatus("Opening " + p.name + ". Complete sharing on that platform, then open the next destination.");
+    showStatus(p.name+" खुल रहा है। वहाँ जाकर sharing पूरी करें।");
   }
-
-  window.open(url, "_blank", "noopener,noreferrer");
-  addHistory("Opened share destination", message, [p]);
+  window.open(url,"_blank","noopener,noreferrer");
+  addHistory("Opened share destination",getMessage(),[p]);
   shareIndex++;
-
-  if (shareIndex < shareQueue.length) {
-    renderShareActions();
-  } else {
-    shareQueue = [];
-    shareIndex = 0;
-    renderShareActions();
-  }
+  if(shareIndex<shareQueue.length) renderShareActions();
+  else { shareQueue=[];shareIndex=0;renderShareActions(); }
 }
 
-$("postBtn").addEventListener("click", async () => {
-  const message = getMessage();
-  const targets = selectedPlatforms();
+$("postBtn").addEventListener("click",async()=>{
+  const message=getMessage();
+  const targets=selectedPlatforms();
+  if(!message&&!mediaFile) { showStatus("पहले message लिखें या media चुनें।");return; }
+  if(!targets.length) { showStatus("कम-से-कम एक platform चुनें।");return; }
 
-  if (!message && !mediaFile) {
-    showStatus("Please enter a message or choose a photo/video.");
-    return;
-  }
-  if (!targets.length) {
-    showStatus("Please select at least one platform.");
-    return;
-  }
+  addHistory("Share requested",message||"[Media selected]",targets);
 
-  // Save a local record of the user's sharing request.
-  addHistory("Share requested", message || "[Media selected]", targets);
-
-  // Native share sheet allows the user to select a compatible app.
-  // Files and text support vary by device and browser.
-  if (targets.length === 1 && navigator.share) {
+  if(targets.length===1&&navigator.share) {
     try {
-      const data = { text: message };
-      if (mediaFile && navigator.canShare) {
-        const fileData = { files: [mediaFile] };
-        if (navigator.canShare(fileData)) {
-          data.files = [mediaFile];
-        }
+      const data={text:message};
+      if(mediaFile&&navigator.canShare&&navigator.canShare({files:[mediaFile]})) {
+        data.files=[mediaFile];
       }
       await navigator.share(data);
-      showStatus("Share sheet completed or dismissed. Verify the post in the destination app.");
+      showStatus("Share sheet बंद हो गई। Destination app में post verify करें।");
       return;
-    } catch (e) {
-      if (e.name === "AbortError") {
-        showStatus("Sharing cancelled.");
-        return;
-      }
+    } catch(e) {
+      if(e.name==="AbortError") { showStatus("Sharing cancelled.");return; }
     }
   }
 
-  // A link-opening sequence is used instead of claiming that a
-  // multi-platform automatic publish has occurred.
-  shareQueue = targets;
-  shareIndex = 0;
-  showStatus(
-    "Your share sequence is ready. Open each destination below and complete the post manually. " +
-    "Some platforms do not allow prefilled posts or direct group publishing."
-  );
+  shareQueue=targets;
+  shareIndex=0;
+  showStatus("Sharing sequence तैयार है। नीचे दिए गए button से एक-एक platform खोलें और post manually पूरी करें।");
   renderShareActions();
 });
 
 function renderProfileFields() {
-  const container = $("profileFields");
-  container.innerHTML = PLATFORMS.map(p => `
+  $("displayName").value=profile.displayName||"";
+  $("profileFields").innerHTML=PLATFORMS.map(p=>`
     <label class="field-label" for="link-${p.id}">${p.name} URL (optional)</label>
-    <input type="url" id="link-${p.id}" placeholder="https://..." inputmode="url">
+    <input type="url" id="link-${p.id}" placeholder="https://...">
   `).join("");
-
-  $("displayName").value = profile.displayName || "";
-  PLATFORMS.forEach(p => {
-    $("link-" + p.id).value = profile.links[p.id] || "";
+  PLATFORMS.forEach(p=>{
+    $("link-"+p.id).value=profile.links[p.id]||"";
   });
 }
 
-$("saveProfileBtn").addEventListener("click", () => {
-  const links = {};
-  for (const p of PLATFORMS) {
-    const raw = $("link-" + p.id).value.trim();
-    if (raw && !validURL(raw)) {
-      showProfileStatus("Please enter a valid HTTP or HTTPS URL for " + p.name + ".");
+$("saveProfileBtn").addEventListener("click",()=>{
+  const links={};
+  for(const p of PLATFORMS) {
+    const raw=$("link-"+p.id).value.trim();
+    if(raw&&!validURL(raw)) {
+      $("profileStatus").textContent="कृपया "+p.name+" का सही HTTP/HTTPS URL डालें।";
       return;
     }
-    links[p.id] = raw ? validURL(raw) : "";
+    links[p.id]=raw?validURL(raw):"";
   }
-
-  profile = {
-    displayName: $("displayName").value.trim(),
-    links
-  };
-
-  if (writeJSON(STORAGE.profile, profile)) {
-    showProfileStatus("Profile saved in this browser.");
+  profile={displayName:$("displayName").value.trim(),links};
+  if(writeJSON(STORAGE.profile,profile)) {
+    $("profileStatus").textContent="Profile इस browser में save हो गई।";
     updateAnalytics();
   }
 });
 
-$("exportProfileBtn").addEventListener("click", () => {
-  const blob = new Blob([JSON.stringify(profile, null, 2)], {
-    type: "application/json"
-  });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "gsda-profile-settings.json";
-  a.click();
+$("exportProfileBtn").addEventListener("click",()=>{
+  const blob=new Blob([JSON.stringify(profile,null,2)],{type:"application/json"});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement("a");
+  a.href=url;a.download="gsda-profile-settings.json";a.click();
   URL.revokeObjectURL(url);
-  showProfileStatus("Settings export requested.");
 });
 
 function escapeHTML(value) {
-  return String(value).replace(/[&<>"']/g, char => ({
-    "&":"&amp;", "<":"&lt;", ">":"&gt;",
-    '"':"&quot;", "'":"&#39;"
-  })[char]);
+  return String(value).replace(/[&<>"']/g,c=>({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  })[c]);
 }
 
 function renderHistory() {
-  history = getHistory();
-  const container = $("historyList");
-
-  if (!history.length) {
-    container.innerHTML = '<div class="empty">No activity recorded yet.</div>';
-    return;
+  history=readJSON(STORAGE.history,[]);
+  if(!history.length) {
+    $("historyList").innerHTML='<div class="empty">अभी कोई activity नहीं है।</div>';return;
   }
-
-  container.innerHTML = history.map(item => `
+  $("historyList").innerHTML=history.map(item=>`
     <div class="history-item">
-      <b>${escapeHTML(item.action)}</b>
+      <b>${escapeHTML(item.action)}</b><br>
       <time>${escapeHTML(new Date(item.date).toLocaleString())}</time>
-      <p>${escapeHTML(item.message || "")}</p>
-      <div class="small">${escapeHTML((item.destinations || []).join(", "))}</div>
-    </div>
-  `).join("");
+      <p>${escapeHTML(item.message||"")}</p>
+      <div class="small">${escapeHTML((item.destinations||[]).join(", "))}</div>
+    </div>`).join("");
 }
-
-$("clearHistoryBtn").addEventListener("click", () => {
-  if (!confirm("Delete local activity history?")) return;
-  history = [];
-  writeJSON(STORAGE.history, history);
-  renderHistory();
-  updateAnalytics();
+$("clearHistoryBtn").addEventListener("click",()=>{
+  if(!confirm("Local history delete करें?")) return;
+  history=[];writeJSON(STORAGE.history,history);
+  renderHistory();updateAnalytics();
 });
 
-$("saveMessageBtn").addEventListener("click", () => {
-  const message = getMessage();
-  if (!message) {
-    alert("Write a message first.");
-    return;
-  }
-
-  saved = readJSON(STORAGE.saved, []);
-  saved.unshift({
-    id: Date.now(),
-    message,
-    date: new Date().toISOString()
-  });
-  saved = saved.slice(0, 100);
-  writeJSON(STORAGE.saved, saved);
-  renderSaved();
-  updateAnalytics();
+$("saveMessageBtn").addEventListener("click",()=>{
+  const message=getMessage();
+  if(!message) { alert("पहले message लिखें।");return; }
+  saved=readJSON(STORAGE.saved,[]);
+  saved.unshift({id:Date.now(),message,date:new Date().toISOString()});
+  saved=saved.slice(0,100);
+  writeJSON(STORAGE.saved,saved);renderSaved();updateAnalytics();
 });
 
 function renderSaved() {
-  saved = readJSON(STORAGE.saved, []);
-  const container = $("savedList");
-
-  if (!saved.length) {
-    container.innerHTML = '<div class="empty">No saved messages yet.</div>';
-    return;
+  saved=readJSON(STORAGE.saved,[]);
+  if(!saved.length) {
+    $("savedList").innerHTML='<div class="empty">अभी कोई saved message नहीं है।</div>';return;
   }
-
-  container.innerHTML = saved.map(item => `
+  $("savedList").innerHTML=saved.map(item=>`
     <div class="history-item">
       <p>${escapeHTML(item.message)}</p>
       <time>${escapeHTML(new Date(item.date).toLocaleString())}</time>
@@ -1118,90 +804,70 @@ function renderSaved() {
         <button class="btn ghost" data-copy="${item.id}">Copy</button>
         <button class="btn danger" data-delete="${item.id}">Delete</button>
       </div>
-    </div>
-  `).join("");
+    </div>`).join("");
 
-  container.querySelectorAll("[data-use]").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const item = saved.find(x => String(x.id) === btn.dataset.use);
-      if (!item) return;
-      $("message").value = item.message;
-      updateCounter();
-      navigate("home");
-      $("message").focus();
+  $("savedList").querySelectorAll("[data-use]").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const item=saved.find(x=>String(x.id)===btn.dataset.use);
+      if(!item)return;
+      $("message").value=item.message;updateCounter();
+      navigate("home");$("message").focus();
     });
   });
-
-  container.querySelectorAll("[data-copy]").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const item = saved.find(x => String(x.id) === btn.dataset.copy);
-      if (item) copyText(item.message);
+  $("savedList").querySelectorAll("[data-copy]").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const item=saved.find(x=>String(x.id)===btn.dataset.copy);
+      if(item)copyText(item.message);
     });
   });
-
-  container.querySelectorAll("[data-delete]").forEach(btn => {
-    btn.addEventListener("click", () => {
-      saved = saved.filter(x => String(x.id) !== btn.dataset.delete);
-      writeJSON(STORAGE.saved, saved);
-      renderSaved();
-      updateAnalytics();
+  $("savedList").querySelectorAll("[data-delete]").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      saved=saved.filter(x=>String(x.id)!==btn.dataset.delete);
+      writeJSON(STORAGE.saved,saved);renderSaved();updateAnalytics();
     });
   });
 }
 
 function updateAnalytics() {
-  $("totalActions").textContent = getHistory().length;
-  $("savedCount").textContent = readJSON(STORAGE.saved, []).length;
-  $("platformCount").textContent = PLATFORMS.filter(p =>
-    !!(profile.links && profile.links[p.id])
-  ).length;
-  $("mediaCount").textContent = mediaFile ? "1" : "0";
+  $("totalActions").textContent=readJSON(STORAGE.history,[]).length;
+  $("savedCount").textContent=readJSON(STORAGE.saved,[]).length;
+  $("platformCount").textContent=PLATFORMS.filter(p=>profile.links[p.id]).length;
+  $("mediaCount").textContent=mediaFile?"1":"0";
 }
 
 function navigate(name) {
-  if (name === "studio-nav") name = "home";
-
-  document.querySelectorAll(".view").forEach(view => {
-    view.classList.toggle("active", view.id === "view-" + name);
+  if(name==="studio-nav") name="home";
+  document.querySelectorAll(".view").forEach(view=>{
+    view.classList.toggle("active",view.id==="view-"+name);
   });
-
-  document.querySelectorAll(".nav-item").forEach(btn => {
-    btn.classList.toggle("active", btn.dataset.view === name ||
-      (name === "home" && btn.dataset.view === "studio-nav"));
+  document.querySelectorAll(".nav-item").forEach(btn=>{
+    btn.classList.toggle("active",btn.dataset.view===name||
+      (name==="home"&&btn.dataset.view==="studio-nav"));
   });
-
-  if (name === "history") renderHistory();
-  if (name === "saved") renderSaved();
-  if (name === "analytics") updateAnalytics();
-  if (name === "profile") renderProfileFields();
-
-  window.scrollTo({top:0, behavior:"smooth"});
+  if(name==="history")renderHistory();
+  if(name==="saved")renderSaved();
+  if(name==="analytics")updateAnalytics();
+  if(name==="profile")renderProfileFields();
+  window.scrollTo({top:0,behavior:"smooth"});
 }
-
-document.querySelectorAll("[data-view]").forEach(btn => {
-  btn.addEventListener("click", () => navigate(btn.dataset.view));
+document.querySelectorAll("[data-view]").forEach(btn=>{
+  btn.addEventListener("click",()=>navigate(btn.dataset.view));
 });
+$("settingsTop").addEventListener("click",()=>navigate("profile"));
 
-$("settingsTop").addEventListener("click", () => navigate("profile"));
-
-$("installBtn").addEventListener("click", async () => {
-  if (installPrompt) {
+$("installBtn").addEventListener("click",async()=>{
+  if(installPrompt) {
     installPrompt.prompt();
     await installPrompt.userChoice;
-    installPrompt = null;
+    installPrompt=null;
   } else {
-    alert("If your browser supports PWA installation, open the browser menu and choose 'Install app' or 'Add to Home screen'.");
+    alert("Browser menu खोलकर 'Install app' या 'Add to Home screen' चुनें, यदि विकल्प उपलब्ध हो।");
   }
 });
-
-window.addEventListener("beforeinstallprompt", event => {
-  event.preventDefault();
-  installPrompt = event;
+window.addEventListener("beforeinstallprompt",event=>{
+  event.preventDefault();installPrompt=event;
 });
-
-window.addEventListener("appinstalled", () => {
-  installPrompt = null;
-});
+window.addEventListener("appinstalled",()=>{installPrompt=null;});
 
 renderPlatforms();
 renderProfileFields();
@@ -1210,11 +876,10 @@ renderSaved();
 updateCounter();
 updateAnalytics();
 
-// Keep the existing PWA service worker.
-if ("serviceWorker" in navigator && location.protocol === "https:") {
-  window.addEventListener("load", () => {
+if("serviceWorker" in navigator&&location.protocol==="https:") {
+  window.addEventListener("load",()=>{
     navigator.serviceWorker.register("./service-worker.js")
-      .catch(error => console.error("Service worker registration failed:", error));
+      .catch(error=>console.error("Service worker registration failed:",error));
   });
 }
 </script>
