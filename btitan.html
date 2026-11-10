@@ -16,8 +16,8 @@ h1{font-size:25px}h2{font-size:16px}
 main{max-width:950px;margin:auto;padding:12px}
 section{background:#111d30;border:1px solid #344258;border-radius:15px;padding:15px;margin:13px 0}
 input,select{width:100%;padding:13px;background:#090f1a;color:white;border:1px solid #475875;border-radius:9px;margin:7px 0 12px}
-button{padding:12px 15px;margin:4px;border:0;border-radius:9px;background:linear-gradient(120deg,#ffe4a1,#d9a63c);font-weight:bold}
-button:disabled{opacity:.4}
+button{padding:12px 15px;margin:4px;border:0;border-radius:9px;background:linear-gradient(120deg,#ffe4a1,#d9a63c);font-weight:bold;cursor:pointer}
+button:disabled{opacity:.4;cursor:not-allowed}
 .muted{color:#aab8ca;font-size:12px;line-height:1.7}
 .status{color:#f3c66a;font-size:12px;line-height:1.7;overflow-wrap:anywhere}
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
@@ -29,12 +29,13 @@ table{border-collapse:collapse;width:100%;min-width:400px}
 td,th{padding:10px;border-bottom:1px solid #344258;text-align:left;font-size:12px}
 th{color:#f3c66a;background:#202c3e}
 details{padding:10px;border:1px solid #344258;border-radius:9px;margin:8px 0}
-summary{color:#f3c66a;font-weight:bold}
+summary{color:#f3c66a;font-weight:bold;cursor:pointer}
 .tag{display:inline-block;background:#1c2b41;padding:7px;margin:4px;border-radius:7px;font-size:12px}
-.progress{height:7px;background:#26364b;border-radius:9px;margin:10px 0}
-.progress div{height:100%;width:0;background:#55dda4}
+.progress{height:7px;background:#26364b;border-radius:9px;margin:10px 0;overflow:hidden}
+.progress div{height:100%;width:0;background:#55dda4;transition:width .2s}
 a{color:#9fcaff}
 .back{display:block;color:#f3c66a;margin-bottom:12px}
+.note{background:#0b1422;border:1px solid #344258;border-radius:9px;padding:10px;margin:10px 0}
 @media(min-width:650px){.grid{grid-template-columns:repeat(4,1fr)}}
 </style>
 </head>
@@ -119,10 +120,13 @@ a{color:#9fcaff}
 <p class="muted">Last Updated: <span id="updated">—</span></p>
 </section>
 
+<div class="note muted">
+This dashboard scans the complete referral tree in batches. It does not stop at 10,000 users. RPC limits, network failures or browser memory limits can still interrupt very large scans. A report is marked complete only after all required calls succeed.
+</div>
+
 <p class="muted">
 Read-only dashboard. Slot counts use isUserSlotActive via Multicall3.
 Root ID excluded. Historical matrix cycles are not included.
-Results appear complete only after all calls succeed. RPC limits may still apply.
 </p>
 </main>
 
@@ -133,26 +137,26 @@ const ADDRESS="0xD6759d47Fccdef7b8E318479cEC4D128366f2a44";
 const MC="0xca11bde05977b3631167028862be2a173976ca11";
 
 const RPCS=[
-"https://bsc-dataseed.bnbchain.org",
-"https://bsc-dataseed1.binance.org",
-"https://bsc-dataseed2.binance.org",
-"https://bsc-dataseed1.bnbchain.org"
+ "https://bsc-dataseed.bnbchain.org",
+ "https://bsc-dataseed1.binance.org",
+ "https://bsc-dataseed2.binance.org",
+ "https://bsc-dataseed1.bnbchain.org"
 ];
 
 const ABI=[
-"function lastUserId() view returns(uint256)",
-"function totalProjectInvestment() view returns(uint256)",
-"function BTCB_TOKEN_ADDRESS() view returns(address)",
-"function getUserDetails(uint256) view returns(address,address,uint256,uint256,uint8,uint256,uint256,uint256)",
-"function getDirectPartnerIds(uint256) view returns(uint256[])",
-"function isUserSlotActive(uint256,uint8) view returns(bool)",
-"function usersXMatrix(address,uint8) view returns(address,uint256,uint256,uint256,uint256,uint256)",
-"function usersXMatrixReferrals(address,uint8) view returns(address[])",
-"function addressToId(address) view returns(uint256)"
+ "function lastUserId() view returns(uint256)",
+ "function totalProjectInvestment() view returns(uint256)",
+ "function BTCB_TOKEN_ADDRESS() view returns(address)",
+ "function getUserDetails(uint256) view returns(address,address,uint256,uint256,uint8,uint256,uint256,uint256)",
+ "function getDirectPartnerIds(uint256) view returns(uint256[])",
+ "function isUserSlotActive(uint256,uint8) view returns(bool)",
+ "function usersXMatrix(address,uint8) view returns(address,uint256,uint256,uint256,uint256,uint256)",
+ "function usersXMatrixReferrals(address,uint8) view returns(address[])",
+ "function addressToId(address) view returns(uint256)"
 ];
 
 const MABI=[
-"function aggregate3((address target,bool allowFailure,bytes callData)[] calls) payable returns ((bool success,bytes returnData)[] returnData)"
+ "function aggregate3((address target,bool allowFailure,bytes callData)[] calls) payable returns ((bool success,bytes returnData)[] returnData)"
 ];
 
 const I=new ethers.Interface(ABI);
@@ -160,458 +164,694 @@ const MI=new ethers.Interface(MABI);
 const $=id=>document.getElementById(id);
 const ZERO="0x0000000000000000000000000000000000000000";
 
-let rpc=[],root=null,wallet=null,dec=18,sym="BTCB";
-let team=[],slotRows=[],busy=false;
+let rpc=[];
+let root=null;
+let wallet=null;
+let dec=18;
+let sym="BTCB";
+let team=[];
+let slotRows=[];
+let slotLeaderRows=[];
+let busy=false;
+let scanCancelled=false;
+
+// Batch sizes: small batches reduce RPC rate-limit failures.
+const REFERRAL_BATCH=10;
+const SLOT_BATCH=20;
+const MAX_RETRIES=4;
+const MAX_DEPTH=1000;
+const DISPLAY_LIMIT=500;
 
 for(let n=1;n<=12;n++){
-$("level").add(new Option("Slot "+n,n));
+ $("level").add(new Option("Slot "+n,n));
 }
 
 const esc=x=>String(x).replace(/[&<>"']/g,c=>({
-"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+ "&":"&amp;",
+ "<":"&lt;",
+ ">":"&gt;",
+ '"':"&quot;",
+ "'":"&#39;"
 }[c]));
 
 const wait=ms=>new Promise(r=>setTimeout(r,ms));
 
-const timed=(p,ms=35000)=>Promise.race([
-p,
-new Promise((_,j)=>setTimeout(()=>j(Error("RPC timeout")),ms))
-]);
+function timed(p,ms=45000){
+ let timer;
+ return Promise.race([
+  p,
+  new Promise((_,reject)=>{
+   timer=setTimeout(()=>reject(Error("RPC timeout")),ms);
+  })
+ ]).finally(()=>clearTimeout(timer));
+}
 
 const fmt=x=>Number(ethers.formatUnits(x,dec)).toLocaleString("en-US",{
-maximumFractionDigits:8
+ maximumFractionDigits:8
 });
+
+function updateBar(percent){
+ $("bar").style.width=Math.max(0,Math.min(100,percent))+"%";
+}
+
+function updateRPC(url){
+ try{$("rpc").textContent=new URL(url).hostname;}
+ catch(e){$("rpc").textContent=url;}
+}
 
 async function connect(){
-if(rpc.length)return;
-if(!window.ethers)throw Error("Ethers library not loaded");
+ if(rpc.length)return;
 
-for(const url of RPCS){
-try{
-const p=new ethers.JsonRpcProvider(url,56,{
-staticNetwork:true,
-batchMaxCount:1
-});
+ if(!window.ethers){
+  throw Error("Ethers library not loaded");
+ }
 
-if(BigInt(await timed(p.send("eth_chainId",[]),10000))===56n){
-rpc.push({url,p});
-}
-}catch(e){
-console.warn(url,e.message);
-}
-}
+ for(const url of RPCS){
+  try{
+   const p=new ethers.JsonRpcProvider(url,56,{
+    staticNetwork:true,
+    batchMaxCount:1
+   });
 
-if(!rpc.length)throw Error("No BNB RPC available");
+   const chain=await timed(p.send("eth_chainId",[]),12000);
 
-$("rpc").textContent=new URL(rpc[0].url).hostname;
+   if(BigInt(chain)===56n){
+    rpc.push({url,p});
+   }
+  }catch(e){
+   console.warn("RPC unavailable:",url,e.message);
+  }
+ }
+
+ if(!rpc.length){
+  throw Error("No BNB RPC available. Please try again later.");
+ }
+
+ updateRPC(rpc[0].url);
 }
 
 async function read(fn){
-await connect();
-let err;
+ await connect();
+ let lastError;
 
-for(const r of rpc){
-try{
-const c=new ethers.Contract(ADDRESS,ABI,r.p);
-const v=await timed(fn(c,r.p));
-$("rpc").textContent=new URL(r.url).hostname;
-return v;
-}catch(e){
-err=e;
-}
-}
+ for(let i=0;i<rpc.length;i++){
+  const r=rpc[i];
 
-throw err||Error("RPC failed");
-}
+  try{
+   const c=new ethers.Contract(ADDRESS,ABI,r.p);
+   const result=await timed(fn(c,r.p),30000);
+   updateRPC(r.url);
+   return result;
+  }catch(e){
+   lastError=e;
+   console.warn("Read failed:",r.url,e.message);
+  }
+ }
 
-async function mcRead(specs){
-await connect();
-let all=[];
-
-async function callPart(part){
-let err;
-
-for(const r of rpc){
-try{
-const calls=part.map(s=>({
-target:ADDRESS,
-allowFailure:false,
-callData:I.encodeFunctionData(s.m,s.a||[])
-}));
-
-const data=MI.encodeFunctionData("aggregate3",[calls]);
-const raw=await timed(r.p.call({to:MC,data}),45000);
-const out=MI.decodeFunctionResult("aggregate3",raw)[0];
-
-if(out.length!==part.length){
-throw Error("Multicall response mismatch");
+ throw lastError||Error("RPC read failed");
 }
 
-const values=out.map((x,i)=>{
-if(!x.success)throw Error("Subcall failed "+part[i].m);
-return I.decodeFunctionResult(part[i].m,x.returnData);
-});
+// One Multicall batch with retry and provider rotation.
+async function callBatch(part){
+ let lastError;
 
-$("rpc").textContent=new URL(r.url).hostname;
-return values;
+ for(let attempt=0;attempt<MAX_RETRIES;attempt++){
+  for(let offset=0;offset<rpc.length;offset++){
+   const r=rpc[(attempt+offset)%rpc.length];
 
-}catch(e){
-err=e;
+   try{
+    const calls=part.map(s=>({
+     target:ADDRESS,
+     allowFailure:false,
+     callData:I.encodeFunctionData(s.m,s.a||[])
+    }));
+
+    const data=MI.encodeFunctionData("aggregate3",[calls]);
+
+    const raw=await timed(
+     r.p.call({to:MC,data}),
+     45000
+    );
+
+    const decoded=MI.decodeFunctionResult("aggregate3",raw)[0];
+
+    if(decoded.length!==part.length){
+     throw Error("Multicall response count mismatch");
+    }
+
+    const values=decoded.map((item,index)=>{
+     if(!item.success){
+      throw Error("Subcall failed: "+part[index].m);
+     }
+     return I.decodeFunctionResult(part[index].m,item.returnData);
+    });
+
+    updateRPC(r.url);
+    return values;
+
+   }catch(e){
+    lastError=e;
+    console.warn(
+     "Batch attempt "+(attempt+1)+" failed on "+r.url,
+     e.message
+    );
+   }
+  }
+
+  await wait(500*(attempt+1));
+ }
+
+ throw lastError||Error("Multicall failed after retries");
 }
+
+// If a batch fails, divide it into smaller batches.
+// This avoids losing an entire group because of one RPC failure.
+async function resilientBatch(part){
+ try{
+  return await callBatch(part);
+ }catch(e){
+  if(part.length<=1)throw e;
+
+  const middle=Math.floor(part.length/2);
+
+  const left=await resilientBatch(part.slice(0,middle));
+  await wait(150);
+  const right=await resilientBatch(part.slice(middle));
+
+  return left.concat(right);
+ }
 }
 
-throw err||Error("Multicall RPC failed");
-}
+async function mcRead(specs,options={}){
+ await connect();
 
-async function split(part){
-try{
-return await callPart(part);
-}catch(e){
-if(part.length===1)throw e;
+ const batchSize=options.batchSize||20;
+ const label=options.label||"Blockchain calls";
+ const results=[];
 
-const mid=Math.floor(part.length/2);
-const a=await split(part.slice(0,mid));
-await wait(200);
-return a.concat(await split(part.slice(mid)));
-}
-}
+ for(let i=0;i<specs.length;i+=batchSize){
+  if(scanCancelled)throw Error("Scan cancelled by user");
 
-for(let i=0;i<specs.length;i+=25){
-const part=specs.slice(i,i+25);
-all.push(...await split(part));
-$("teamStatus").textContent="Multicall checked "+all.length+" / "+specs.length;
-await wait(120);
-}
+  const part=specs.slice(i,i+batchSize);
 
-return all;
-}
+  const values=await resilientBatch(part);
 
-function setbar(n){
-$("bar").style.width=(n/12*100)+"%";
+  results.push(...values);
+
+  if(options.onProgress){
+   options.onProgress(results.length,specs.length);
+  }
+
+  if(i+batchSize<specs.length){
+   await wait(100);
+  }
+ }
+
+ return results;
 }
 
 function exportCSV(name,rows){
-if(!rows.length)return alert("No data");
+ if(!rows.length){
+  alert("No data available to export.");
+  return;
+ }
 
-const keys=Object.keys(rows[0]);
-const q=x=>'"'+String(x??"").replace(/"/g,'""')+'"';
+ const keys=Object.keys(rows[0]);
 
-const txt=[
-keys.map(q).join(","),
-...rows.map(r=>keys.map(k=>q(r[k])).join(","))
-].join("\r\n");
+ const quote=x=>'"'+String(x??"").replace(/"/g,'""')+'"';
 
-const url=URL.createObjectURL(new Blob(["\ufeff"+txt],{
-type:"text/csv;charset=utf-8"
-}));
+ const csv=[
+  keys.map(quote).join(","),
+  ...rows.map(row=>keys.map(key=>quote(row[key])).join(","))
+ ].join("\r\n");
 
-const a=document.createElement("a");
-a.href=url;
-a.download=name;
-a.click();
+ const blob=new Blob(["\ufeff"+csv],{
+  type:"text/csv;charset=utf-8"
+ });
 
-setTimeout(()=>URL.revokeObjectURL(url),1000);
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement("a");
+
+ a.href=url;
+ a.download=name;
+ document.body.appendChild(a);
+ a.click();
+ a.remove();
+
+ setTimeout(()=>URL.revokeObjectURL(url),2000);
 }
 
 function reset(){
-root=null;
-wallet=null;
-team=[];
-slotRows=[];
+ root=null;
+ wallet=null;
+ team=[];
+ slotRows=[];
+ slotLeaderRows=[];
+ scanCancelled=false;
 
-$("teamCount").textContent="—";
-$("teamStatus").textContent="Not loaded";
-$("teamDetails").innerHTML="";
-$("slotDetails").innerHTML="";
-$("slotTable").innerHTML='<tr><td colspan="3">Load complete team first.</td></tr>';
+ $("teamCount").textContent="—";
+ $("teamStatus").textContent="Not loaded";
+ $("teamDetails").innerHTML="";
+ $("slotDetails").innerHTML="";
+ $("slotTable").innerHTML=
+  '<tr><td colspan="3">Load complete team first.</td></tr>';
 
-$("teamCsv").disabled=true;
-$("slotCsv").disabled=true;
-$("loadBtn").disabled=true;
+ $("teamCsv").disabled=true;
+ $("slotCsv").disabled=true;
+ $("loadBtn").disabled=true;
 
-setbar(0);
+ updateBar(0);
 }
 
 async function search(){
-if(busy)return;
+ if(busy)return;
 
-const id=$("uid").value.trim();
+ const id=$("uid").value.trim();
 
-if(!/^[1-9]\d*$/.test(id)){
-$("status").textContent="Valid User ID enter करें";
-return;
-}
+ if(!/^[1-9]\d*$/.test(id)){
+  $("status").textContent="Valid User ID enter करें";
+  return;
+ }
 
-busy=true;
-$("searchBtn").disabled=true;
-reset();
+ busy=true;
+ $("searchBtn").disabled=true;
+ reset();
 
-try{
-$("status").textContent="Connecting...";
+ try{
+  $("status").textContent="Connecting to BNB Smart Chain...";
 
-const [last,inv,token]=await Promise.all([
-read(c=>c.lastUserId()),
-read(c=>c.totalProjectInvestment()),
-read(c=>c.BTCB_TOKEN_ADDRESS())
-]);
+  const [last,investment,tokenAddress]=await Promise.all([
+   read(c=>c.lastUserId()),
+   read(c=>c.totalProjectInvestment()),
+   read(c=>c.BTCB_TOKEN_ADDRESS())
+  ]);
 
-$("registered").textContent=(last-1n).toLocaleString();
+  $("registered").textContent=
+   (last-1n).toLocaleString("en-US");
 
-const meta=await read(async(c,p)=>{
-const t=new ethers.Contract(token,[
-"function decimals() view returns(uint8)",
-"function symbol() view returns(string)"
-],p);
+  const meta=await read(async(c,p)=>{
+   const t=new ethers.Contract(tokenAddress,[
+    "function decimals() view returns(uint8)",
+    "function symbol() view returns(string)"
+   ],p);
 
-const [d,s]=await Promise.all([
-t.decimals(),
-t.symbol()
-]);
+   const [d,s]=await Promise.all([
+    t.decimals(),
+    t.symbol()
+   ]);
 
-return{d:Number(d),s};
-});
+   return{d:Number(d),s};
+  });
 
-dec=meta.d;
-sym=meta.s;
+  dec=meta.d;
+  sym=meta.s;
 
-$("investment").textContent=fmt(inv)+" "+sym;
+  $("investment").textContent=fmt(investment)+" "+sym;
 
-if(BigInt(id)>=last)throw Error("User ID not registered");
+  if(BigInt(id)>=last){
+   throw Error("User ID not registered");
+  }
 
-const d=await read(c=>c.getUserDetails(id));
+  const details=await read(c=>c.getUserDetails(id));
 
-if(d[0]===ZERO)throw Error("User not found");
+  if(details[0]===ZERO){
+   throw Error("User not found");
+  }
 
-root=id;
-wallet=d[0];
+  root=id;
+  wallet=details[0];
 
-$("profile").innerHTML=
-"<b>User ID:</b> "+esc(id)+
-"<br><b>Wallet:</b> "+esc(d[0])+
-"<br><b>Referrer ID:</b> "+esc(d[2])+
-"<br><b>Referrer Wallet:</b> "+esc(d[1])+
-"<br><b>Registration:</b> "+new Date(Number(d[6])*1000).toLocaleString();
+  $("profile").innerHTML=
+   "<b>User ID:</b> "+esc(id)+
+   "<br><b>Wallet:</b> "+esc(details[0])+
+   "<br><b>Referrer ID:</b> "+esc(details[2])+
+   "<br><b>Referrer Wallet:</b> "+esc(details[1])+
+   "<br><b>Registration:</b> "+
+   new Date(Number(details[6])*1000).toLocaleString();
 
-$("income").textContent=fmt(d[7])+" "+sym;
-$("direct").textContent=d[3].toString();
-$("active").textContent=d[4].toString();
-$("teamSize").textContent=d[5].toString();
+  $("income").textContent=fmt(details[7])+" "+sym;
+  $("direct").textContent=details[3].toString();
+  $("active").textContent=details[4].toString();
+  $("teamSize").textContent=details[5].toString();
 
-const direct=await read(c=>c.getDirectPartnerIds(id));
+  const directIds=await read(c=>c.getDirectPartnerIds(id));
 
-$("directList").innerHTML=direct.length
-?direct.map(x=>'<span class="tag">ID '+esc(x)+'</span>').join("")
-:"No direct leaders";
+  $("directList").innerHTML=directIds.length
+   ?directIds.map(x=>'<span class="tag">ID '+esc(x)+'</span>').join("")
+   :"No direct leaders";
 
-let earn=0n;
+  let totalEarning=0n;
 
-for(let s=1;s<=12;s++){
-earn+=(await read(c=>c.usersXMatrix(wallet,s)))[5];
-}
+  for(let s=1;s<=12;s++){
+   const matrix=await read(c=>c.usersXMatrix(wallet,s));
+   totalEarning+=matrix[5];
+  }
 
-$("matrixIncome").textContent=fmt(earn)+" "+sym;
+  $("matrixIncome").textContent=fmt(totalEarning)+" "+sym;
 
-await matrix();
+  await matrix();
 
-$("loadBtn").disabled=false;
-$("updated").textContent=new Date().toLocaleString();
-$("status").textContent="Profile loaded. Load Complete Team दबाएँ";
+  $("loadBtn").disabled=false;
+  $("updated").textContent=new Date().toLocaleString();
+  $("status").textContent="Profile loaded. Load Complete Team दबाएँ";
 
-}catch(e){
-$("status").textContent="ERROR: "+e.message;
-}finally{
-busy=false;
-$("searchBtn").disabled=false;
-}
+ }catch(e){
+  console.error(e);
+  $("status").textContent="ERROR: "+e.message;
+ }finally{
+  busy=false;
+  $("searchBtn").disabled=false;
+ }
 }
 
 async function matrix(){
-if(!wallet)return;
+ if(!wallet)return;
 
-const s=Number($("level").value);
+ const selectedSlot=Number($("level").value);
 
-const [refs,m]=await Promise.all([
-read(c=>c.usersXMatrixReferrals(wallet,s)),
-read(c=>c.usersXMatrix(wallet,s))
-]);
+ const [referrals,matrixData]=await Promise.all([
+  read(c=>c.usersXMatrixReferrals(wallet,selectedSlot)),
+  read(c=>c.usersXMatrix(wallet,selectedSlot))
+ ]);
 
-const ids=await mcRead(
-refs.map(a=>({m:"addressToId",a:[a]}))
-);
+ const idResults=await mcRead(
+  referrals.map(address=>({
+   m:"addressToId",
+   a:[address]
+  })),
+  {batchSize:20,label:"Matrix IDs"}
+ );
 
-$("matrixInfo").textContent=
-"Slot "+s+
-" • Filled "+refs.length+"/14"+
-" • Reinvest "+m[1]+
-" • Historical placements "+m[4];
+ $("matrixInfo").textContent=
+  "Slot "+selectedSlot+
+  " • Filled "+referrals.length+"/14"+
+  " • Reinvest "+matrixData[1]+
+  " • Historical placements "+matrixData[4];
 
-$("spots").innerHTML=Array.from({length:14},(_,i)=>
-i>=refs.length
-?'<div class="card"><b>SPOT '+(i+1)+'</b><p>EMPTY</p></div>'
-:'<div class="card"><b>SPOT '+(i+1)+'</b><p>ID '+esc(ids[i][0])+'</p><small>'+esc(refs[i])+'</small></div>'
-).join("");
+ $("spots").innerHTML=Array.from({length:14},(_,i)=>{
+  if(i>=referrals.length){
+   return '<div class="card"><b>SPOT '+(i+1)+'</b><p>EMPTY</p></div>';
+  }
+
+  return '<div class="card"><b>SPOT '+(i+1)+'</b><p>ID '+
+   esc(idResults[i][0])+'</p><small>'+
+   esc(referrals[i])+'</small></div>';
+ }).join("");
+}
+
+// Display only a limited number of tags to protect mobile browser memory.
+// The full data remains in the CSV export.
+function renderTeamPreview(){
+ const visible=team.slice(0,DISPLAY_LIMIT);
+
+ $("teamDetails").innerHTML=
+  '<details><summary>VIEW TEAM IDs ('+team.length.toLocaleString()+' TOTAL)</summary>'+
+  '<p class="muted">Showing first '+visible.length+
+  ' IDs here. Export CSV for the complete team list.</p>'+
+  visible.map(row=>
+   '<span class="tag">ID '+esc(row.userId)+'</span>'
+  ).join("")+
+  '</details>';
+}
+
+function renderSlotPreview(){
+ let html="";
+
+ for(const row of slotLeaderRows){
+  const visible=row.leaders.slice(0,DISPLAY_LIMIT);
+
+  html+=
+   '<details><summary>SLOT '+row.slot+
+   ' — '+row.leaders.length.toLocaleString()+
+   ' ACTIVE LEADERS</summary>'+
+   '<p class="muted">Showing first '+visible.length+
+   ' IDs. Export Slot CSV for all IDs.</p>'+
+   visible.map(id=>
+    '<span class="tag">ID '+esc(id)+'</span>'
+   ).join("")+
+   '</details>';
+ }
+
+ $("slotDetails").innerHTML=html;
 }
 
 async function loadTeam(){
-if(busy||!root)return;
+ if(busy||!root)return;
 
-busy=true;
-$("loadBtn").disabled=true;
-$("teamCsv").disabled=true;
-$("slotCsv").disabled=true;
+ busy=true;
+ scanCancelled=false;
 
-team=[];
-slotRows=[];
+ $("loadBtn").disabled=true;
+ $("teamCsv").disabled=true;
+ $("slotCsv").disabled=true;
 
-$("slotDetails").innerHTML="";
-$("slotTable").innerHTML='<tr><td colspan="3">Scanning...</td></tr>';
+ team=[];
+ slotRows=[];
+ slotLeaderRows=[];
 
-setbar(0);
+ $("slotDetails").innerHTML="";
+ $("teamDetails").innerHTML="";
+ $("slotTable").innerHTML=
+  '<tr><td colspan="3">Scanning referral team...</td></tr>';
 
-try{
-const seen=new Set([root]);
-let front=[root];
-let depth=0;
-let limited=false;
+ $("teamStatus").textContent="Preparing complete referral scan...";
+ updateBar(0);
 
-while(front.length&&depth<100){
-depth++;
+ try{
+  const seen=new Set([String(root)]);
+  let frontier=[String(root)];
+  let depth=0;
 
-$("teamStatus").textContent="Scanning referral depth "+depth+"...";
+  // No 10,000-member cap. Continue until no new referral IDs remain.
+  while(frontier.length>0){
+   if(scanCancelled)throw Error("Scan cancelled");
 
-const result=await mcRead(
-front.map(id=>({m:"getDirectPartnerIds",a:[id]}))
-);
+   depth++;
 
-const next=[];
-let stop=false;
+   if(depth>MAX_DEPTH){
+    throw Error("Maximum safety depth reached. Report incomplete.");
+   }
 
-for(let i=0;i<result.length&&!stop;i++){
-for(const x of result[i][0]){
-const id=x.toString();
+   $("teamStatus").textContent=
+    "Scanning depth "+depth+
+    " • Found "+team.length.toLocaleString()+
+    " team members • Current batch "+frontier.length;
 
-if(seen.has(id))continue;
+   const next=[];
 
-seen.add(id);
-next.push(id);
+   // Query referral lists in small Multicall batches.
+   const results=await mcRead(
+    frontier.map(id=>({
+     m:"getDirectPartnerIds",
+     a:[id]
+    })),
+    {
+     batchSize:REFERRAL_BATCH,
+     label:"Referral tree"
+    }
+   );
 
-team.push({
-userId:id,
-parentId:front[i],
-depth
-});
+   if(results.length!==frontier.length){
+    throw Error("Incomplete referral response. Report incomplete.");
+   }
 
-if(team.length>=10000){
-limited=true;
-stop=true;
-break;
-}
-}
-}
+   for(let i=0;i<results.length;i++){
+    const children=results[i][0];
 
-front=next;
+    for(const child of children){
+     const childId=child.toString();
 
-if(limited)break;
-}
+     if(seen.has(childId))continue;
 
-if(front.length&&depth>=100)limited=true;
+     seen.add(childId);
 
-$("teamCount").textContent=team.length.toLocaleString();
+     team.push({
+      userId:childId,
+      parentId:frontier[i],
+      depth:depth
+     });
 
-$("teamDetails").innerHTML=
-'<details><summary>VIEW '+team.length+' TEAM IDs</summary>'+
-team.map(r=>'<span class="tag">ID '+esc(r.userId)+'</span>').join("")+
-'</details>';
+     next.push(childId);
+    }
+   }
 
-$("teamCsv").disabled=!team.length;
+   frontier=next;
 
-if(limited)throw Error("Team scan limit reached; full report unavailable");
+   $("teamCount").textContent=
+    team.length.toLocaleString("en-US");
 
-if(!team.length){
-$("teamStatus").textContent="No referral downline found";
-return;
-}
+   renderTeamPreview();
 
-let html="";
+   // Referral discovery progress is indeterminate because total team size
+   // is not known until the tree has been completely traversed.
+   $("teamStatus").textContent=
+    "Referral scan running • Depth "+depth+
+    " • "+team.length.toLocaleString()+
+    " members discovered";
 
-for(let s=1;s<=12;s++){
-$("teamStatus").textContent=
-"Checking Slot "+s+"/12 for "+team.length+" leaders...";
+   await wait(100);
+  }
 
-const result=await mcRead(
-team.map(r=>({m:"isUserSlotActive",a:[r.userId,s]}))
-);
+  if(!team.length){
+   $("teamCount").textContent="0";
+   $("teamStatus").textContent="No referral downline found.";
+   $("slotTable").innerHTML=
+    '<tr><td colspan="3">No referral team found.</td></tr>';
+   return;
+  }
 
-if(result.length!==team.length){
-throw Error("Incomplete Slot "+s+" response");
-}
+  $("teamStatus").textContent=
+   "Referral discovery complete: "+
+   team.length.toLocaleString()+
+   " members. Starting Slot 1–12 checks...";
 
-const active=team.filter((r,i)=>result[i][0]===true);
+  // All referrals discovered. Check all 12 active-level flags.
+  const allSlots=[];
 
-slotRows.push({
-slot:s,
-activeLeaders:active.length,
-teamChecked:team.length
-});
+  for(let slot=1;slot<=12;slot++){
+   if(scanCancelled)throw Error("Scan cancelled");
 
-html+=
-'<details><summary>SLOT '+s+' — '+active.length+' ACTIVE LEADERS</summary>'+
-(active.map(r=>'<span class="tag">ID '+esc(r.userId)+'</span>').join("")||"No active leaders")+
-'</details>';
+   let activeIds=[];
+   let checked=0;
 
-$("slotTable").innerHTML=slotRows.map(r=>
-'<tr><td>Slot '+r.slot+'</td><td>'+r.activeLeaders+'</td><td>'+r.teamChecked+'</td></tr>'
-).join("");
+   $("teamStatus").textContent=
+    "Checking Slot "+slot+"/12 • "+
+    team.length.toLocaleString()+" team members";
 
-$("slotDetails").innerHTML=html;
+   // Check one group at a time to avoid oversized Multicall requests.
+   for(let i=0;i<team.length;i+=SLOT_BATCH){
+    if(scanCancelled)throw Error("Scan cancelled");
 
-setbar(s);
-}
+    const batch=team.slice(i,i+SLOT_BATCH);
 
-$("slotCsv").disabled=false;
+    const results=await mcRead(
+     batch.map(row=>({
+      m:"isUserSlotActive",
+      a:[row.userId,slot]
+     })),
+     {
+      batchSize:SLOT_BATCH,
+      label:"Slot "+slot
+     }
+    );
 
-$("teamStatus").textContent=
-"Complete: "+team.length+" leaders checked across all 12 slots";
+    if(results.length!==batch.length){
+     throw Error("Incomplete response in Slot "+slot);
+    }
 
-$("updated").textContent=new Date().toLocaleString();
+    for(let j=0;j<results.length;j++){
+     if(results[j][0]===true){
+      activeIds.push(batch[j].userId);
+     }
+    }
 
-}catch(e){
-$("teamStatus").textContent=
-"ERROR: "+e.message+" — Report incomplete";
+    checked+=batch.length;
 
-$("slotTable").innerHTML=
-'<tr><td colspan="3">Scan failed. Full report unavailable.</td></tr>';
+    const overall=
+     ((slot-1)+(checked/team.length))/12*100;
 
-console.error(e);
+    updateBar(overall);
 
-}finally{
-busy=false;
-$("loadBtn").disabled=false;
-}
+    $("teamStatus").textContent=
+     "Slot "+slot+"/12 • Checked "+
+     checked.toLocaleString()+"/"+
+     team.length.toLocaleString()+
+     " • Active "+activeIds.length.toLocaleString();
+
+    await wait(80);
+   }
+
+   slotRows.push({
+    slot:slot,
+    activeLeaders:activeIds.length,
+    teamChecked:team.length
+   });
+
+   slotLeaderRows.push({
+    slot:slot,
+    leaders:activeIds
+   });
+
+   allSlots.push(...activeIds.map(id=>({
+    slot:slot,
+    userId:id
+   })));
+
+   $("slotTable").innerHTML=slotRows.map(row=>
+    '<tr><td>Slot '+row.slot+
+    '</td><td>'+row.activeLeaders.toLocaleString()+
+    '</td><td>'+row.teamChecked.toLocaleString()+
+    '</td></tr>'
+   ).join("");
+
+   renderSlotPreview();
+  }
+
+  // Mark report complete only after every slot has been checked.
+  updateBar(100);
+
+  $("teamCsv").disabled=false;
+  $("slotCsv").disabled=false;
+
+  $("teamStatus").textContent=
+   "COMPLETE: "+team.length.toLocaleString()+
+   " team members checked across all 12 slots.";
+
+  $("updated").textContent=new Date().toLocaleString();
+
+ }catch(e){
+  console.error(e);
+
+  $("teamStatus").textContent=
+   "ERROR: "+e.message+
+   " — Report incomplete. Do not use this as a complete report.";
+
+  $("teamCsv").disabled=true;
+  $("slotCsv").disabled=true;
+
+  $("slotTable").innerHTML=
+   '<tr><td colspan="3">Scan failed. Full report unavailable.</td></tr>';
+
+ }finally{
+  busy=false;
+  $("loadBtn").disabled=false;
+ }
 }
 
 $("searchBtn").addEventListener("click",search);
 $("loadBtn").addEventListener("click",loadTeam);
 
-$("teamCsv").addEventListener("click",()=>
-exportCSV("btitan-team.csv",team)
-);
+$("teamCsv").addEventListener("click",()=>{
+ exportCSV("btitan-complete-team.csv",team);
+});
 
-$("slotCsv").addEventListener("click",()=>
-exportCSV("btitan-slot-report.csv",slotRows)
-);
+$("slotCsv").addEventListener("click",()=>{
+ const rows=[];
+
+ for(const group of slotLeaderRows){
+  for(const id of group.leaders){
+   rows.push({
+    slot:group.slot,
+    userId:id
+   });
+  }
+ }
+
+ exportCSV("btitan-complete-slot-report.csv",rows);
+});
 
 $("level").addEventListener("change",()=>{
-if(wallet&&!busy){
-matrix().catch(e=>
-$("status").textContent="Matrix error: "+e.message
-);
-}
+ if(wallet&&!busy){
+  matrix().catch(e=>{
+   $("status").textContent="Matrix error: "+e.message;
+  });
+ }
 });
 
 $("uid").addEventListener("keydown",e=>{
-if(e.key==="Enter")search();
+ if(e.key==="Enter")search();
 });
+
 </script>
 </body>
 </html>
