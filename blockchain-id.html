@@ -11,144 +11,59 @@
 
 <style>
 *{box-sizing:border-box}
-body{
- margin:0;
- background:linear-gradient(145deg,#061126,#102b55);
- color:#fff;
- font-family:Arial,sans-serif;
- min-height:100vh
-}
-header{
- text-align:center;
- padding:28px 15px;
- background:#061a35;
- border-bottom:2px solid #e9bd5c
-}
+body{margin:0;background:linear-gradient(145deg,#061126,#102b55);color:#fff;font-family:Arial,sans-serif;min-height:100vh}
+header{text-align:center;padding:28px 15px;background:#061a35;border-bottom:2px solid #e9bd5c}
 .logo{font-size:43px;color:#f4cf79}
 h1{color:#f4cf79;font-size:25px;margin:10px}
 header p{color:#b9c9df;font-size:13px}
 main{max-width:650px;margin:auto;padding:15px}
-.card{
- background:#0d213d;
- border:1px solid #355475;
- border-radius:17px;
- padding:18px;
- margin:14px 0
-}
+.card{background:#0d213d;border:1px solid #355475;border-radius:17px;padding:18px;margin:14px 0}
 h2{color:#f4cf79;font-size:19px;margin-top:0}
 p{line-height:1.7}
 .muted{color:#b8c9df;font-size:13px}
-button,.link{
- width:100%;
- display:block;
- padding:14px;
- margin:10px 0;
- border:0;
- border-radius:11px;
- font-size:14px;
- font-weight:bold;
- text-align:center;
- text-decoration:none;
- cursor:pointer;
- background:linear-gradient(120deg,#ffe49b,#e5ad32);
- color:#15213a
-}
-.secondary{
- background:#203e66;
- color:white;
- border:1px solid #52759d
-}
+button,.link{width:100%;display:block;padding:14px;margin:10px 0;border:0;border-radius:11px;font-size:14px;font-weight:bold;text-align:center;text-decoration:none;cursor:pointer;background:linear-gradient(120deg,#ffe49b,#e5ad32);color:#15213a}
+.secondary{background:#203e66;color:white;border:1px solid #52759d}
 button:disabled{opacity:.5}
-.field{
- background:#07172d;
- border:1px solid #344e70;
- border-radius:10px;
- padding:13px;
- margin:10px 0;
- overflow-wrap:anywhere
-}
-.field small{
- display:block;
- color:#a9bdd8;
- margin-bottom:7px
-}
+.field{background:#07172d;border:1px solid #344e70;border-radius:10px;padding:13px;margin:10px 0;overflow-wrap:anywhere}
+.field small{display:block;color:#a9bdd8;margin-bottom:7px}
 .field strong{color:#f4cf79}
-.status{
- background:#07172d;
- border:1px solid #344e70;
- border-radius:10px;
- padding:12px;
- color:#f4cf79;
- font-size:13px;
- line-height:1.7;
- overflow-wrap:anywhere
-}
+.status{background:#07172d;border:1px solid #344e70;border-radius:10px;padding:12px;color:#f4cf79;font-size:13px;line-height:1.7;overflow-wrap:anywhere}
 .hide{display:none!important}
-.network{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:10px
-}
+.network{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .network .field{margin:0}
-footer{
- text-align:center;
- padding:25px;
- color:#9db1cd;
- font-size:12px
-}
+footer{text-align:center;padding:25px;color:#9db1cd;font-size:12px}
 </style>
 </head>
 
 <body>
-
 <header>
- <div class="logo">₿</div>
- <h1>BLOCKCHAIN ID</h1>
- <p>GS DIGITAL ACADEMY • B-TITAN BLOCKCHAIN</p>
+<div class="logo">₿</div>
+<h1>BLOCKCHAIN ID</h1>
+<p>GS DIGITAL ACADEMY • B-TITAN BLOCKCHAIN</p>
 </header>
 
 <main>
-
-<a href="./index.html" style="color:#f4cf79">
-← Back to GS DIGITAL ACADEMY
-</a>
+<a href="./index.html" style="color:#f4cf79">← Back to GS DIGITAL ACADEMY</a>
 
 <section class="card">
 <h2>🔗 Connect Your Wallet</h2>
-
-<p class="muted">
-Connect MetaMask, Trust Wallet, TokenPocket or another
-WalletConnect-supported wallet.
-</p>
+<p class="muted">Connect MetaMask, Trust Wallet, TokenPocket or another WalletConnect-supported wallet.</p>
 
 <button id="connectBtn">CONNECT WALLET</button>
+<button id="disconnectBtn" class="secondary hide">DISCONNECT WALLET</button>
+<div id="status" class="status">Choose Connect Wallet to begin.</div>
 
-<button id="disconnectBtn" class="secondary hide">
-DISCONNECT WALLET
-</button>
-
-<div id="status" class="status">
-Choose Connect Wallet to begin.
-</div>
-
-<p class="muted">
-Chrome users can use the WalletConnect option.
-Mobile users can select their wallet from the connection window.
-</p>
+<p class="muted">Chrome users can select a wallet through WalletConnect. Mobile users can choose their wallet from the connection window.</p>
 </section>
 
 <section id="result" class="card hide">
-
 <h2>🆔 Your Blockchain Identity</h2>
 
 <div class="field">
 <small>CONNECTED WALLET</small>
 <strong id="walletAddress">—</strong>
 </div>
-
-<button class="secondary" id="copyBtn">
-COPY WALLET ADDRESS
-</button>
+<button class="secondary" id="copyBtn">COPY WALLET ADDRESS</button>
 
 <div class="field">
 <small>B-TITAN USER ID</small>
@@ -156,27 +71,10 @@ COPY WALLET ADDRESS
 </div>
 
 <div class="network">
-
-<div class="field">
-<small>REFERRER ID</small>
-<strong id="referrerId">—</strong>
-</div>
-
-<div class="field">
-<small>DIRECT PARTNERS</small>
-<strong id="direct">—</strong>
-</div>
-
-<div class="field">
-<small>ACTIVE SLOTS</small>
-<strong id="active">—</strong>
-</div>
-
-<div class="field">
-<small>TOTAL INCOME</small>
-<strong id="income">—</strong>
-</div>
-
+<div class="field"><small>REFERRER ID</small><strong id="referrerId">—</strong></div>
+<div class="field"><small>DIRECT PARTNERS</small><strong id="direct">—</strong></div>
+<div class="field"><small>ACTIVE SLOTS</small><strong id="active">—</strong></div>
+<div class="field"><small>TOTAL INCOME</small><strong id="income">—</strong></div>
 </div>
 
 <div class="field">
@@ -189,71 +87,41 @@ COPY WALLET ADDRESS
 <strong id="regDate">—</strong>
 </div>
 
-<a id="bscLink" class="link secondary"
-target="_blank" rel="noopener">
-VIEW ON BSCSCAN
-</a>
-
+<a id="bscLink" class="link secondary" target="_blank" rel="noopener">VIEW ON BSCSCAN</a>
 <button id="refreshBtn">REFRESH DATA</button>
-
 </section>
 
 <section class="card">
 <h2>🌐 Blockchain Network</h2>
-
-<div class="field">
-<small>NETWORK</small>
-<strong>BNB Smart Chain Mainnet</strong>
-</div>
-
-<div class="field">
-<small>CHAIN ID</small>
-<strong>56</strong>
-</div>
-
-<div class="field">
-<small>SMART CONTRACT</small>
-<strong>0xD6759d47Fccdef7b8E318479cEC4D128366f2a44</strong>
-</div>
-
-<p class="muted">
-This is a read-only blockchain dashboard.
-It never asks for your seed phrase or private key.
-No transaction is required to find your ID.
-</p>
+<div class="field"><small>NETWORK</small><strong>BNB Smart Chain Mainnet</strong></div>
+<div class="field"><small>CHAIN ID</small><strong>56</strong></div>
+<div class="field"><small>SMART CONTRACT</small><strong>0xD6759d47Fccdef7b8E318479cEC4D128366f2a44</strong></div>
+<p class="muted">This is a read-only dashboard. It never asks for your seed phrase or private key. No transaction is required to find your ID.</p>
 </section>
-
 </main>
 
-<footer>
-GS DIGITAL ACADEMY<br>
-Blockchain ID Verification System
-</footer>
+<footer>GS DIGITAL ACADEMY<br>Blockchain ID Verification System</footer>
 
 <script type="module">
-
 import { EthereumProvider } from
 "https://esm.sh/@walletconnect/ethereum-provider@2.26.0";
 
-const PROJECT_ID = "PASTE_YOUR_REOWN_PROJECT_ID_HERE";
+const PROJECT_ID = "ef729adea9b8e7d62a04c6ba213b6eaf";
 
 const CONTRACT_ADDRESS =
 "0xD6759d47Fccdef7b8E318479cEC4D128366f2a44";
 
-const BSC_CHAIN_ID = 56;
-
-const RPC_URL =
-"https://bsc-dataseed.bnbchain.org";
+const RPC_URL = "https://bsc-dataseed.bnbchain.org";
 
 const ABI = [
- "function addressToId(address) view returns(uint256)",
- "function getUserDetails(uint256) view returns(address,address,uint256,uint256,uint8,uint256,uint256,uint256)",
- "function BTCB_TOKEN_ADDRESS() view returns(address)"
+"function addressToId(address) view returns(uint256)",
+"function getUserDetails(uint256) view returns(address,address,uint256,uint256,uint8,uint256,uint256,uint256)",
+"function BTCB_TOKEN_ADDRESS() view returns(address)"
 ];
 
-const ERC20_ABI = [
- "function decimals() view returns(uint8)",
- "function symbol() view returns(string)"
+const TOKEN_ABI = [
+"function decimals() view returns(uint8)",
+"function symbol() view returns(string)"
 ];
 
 const $ = id => document.getElementById(id);
@@ -263,334 +131,189 @@ let ethersProvider = null;
 let contract = null;
 let walletAddress = null;
 let walletType = null;
+let busy = false;
 
 function setStatus(message){
  $("status").textContent = message;
 }
 
-function showResult(value){
- $("result").classList.toggle("hide",!value);
+function showResult(show){
+ $("result").classList.toggle("hide",!show);
 }
 
 function shortError(error){
- return error?.shortMessage ||
- error?.message ||
- "Unknown error";
+ return error?.shortMessage || error?.message || "Unknown error";
 }
 
 async function connectWallet(){
-
- $("connectBtn").disabled = true;
+ if(busy)return;
+ busy=true;
+ $("connectBtn").disabled=true;
 
  try{
+  setStatus("Checking wallet connection...");
 
- setStatus("Opening wallet connection...");
+  if(window.ethereum){
+   walletProvider=window.ethereum;
+   walletType="Injected Wallet";
+  }else{
+   setStatus("Opening WalletConnect...");
 
- /*
-  * First check injected wallet.
-  * If Chrome has no wallet provider,
-  * use WalletConnect.
-  */
-
- if(window.ethereum){
-
-  walletProvider = window.ethereum;
-  walletType = "Injected Wallet";
-
- }else{
-
-  if(
-   PROJECT_ID === "PASTE_YOUR_REOWN_PROJECT_ID_HERE" ||
-   !PROJECT_ID.trim()
-  ){
-   throw new Error(
-    "Reown Project ID missing. Add your Project ID in the code first."
-   );
-  }
-
-  setStatus("Preparing WalletConnect...");
-
-  walletProvider = await EthereumProvider.init({
-
-   projectId: PROJECT_ID,
-
-   optionalChains: [56],
-
-   showQrModal: true,
-
-   rpcMap: {
-    56: RPC_URL
-   },
-
-   metadata: {
-    name: "GS DIGITAL ACADEMY",
-    description: "B-TITAN Blockchain ID Explorer",
-    url: location.origin,
-    icons: [
-     location.origin + "/logo.png"
-    ]
-   }
-
-  });
-
-  walletType = "WalletConnect";
- }
-
- setStatus("Waiting for wallet approval...");
-
- const accounts = await walletProvider.request({
-  method: "eth_requestAccounts"
- });
-
- if(!accounts || !accounts.length){
-  throw new Error("No wallet account selected.");
- }
-
- walletAddress = ethers.getAddress(accounts[0]);
-
- const chain = await walletProvider.request({
-  method: "eth_chainId"
- });
-
- if(BigInt(chain) !== 56n){
-
-  if(walletType === "WalletConnect"){
-   throw new Error(
-    "Connected wallet is not on BNB Smart Chain. Select BNB Smart Chain in your wallet and reconnect."
-   );
-  }
-
-  try{
-
-   await walletProvider.request({
-    method: "wallet_switchEthereumChain",
-    params: [{chainId:"0x38"}]
+   walletProvider=await EthereumProvider.init({
+    projectId:PROJECT_ID,
+    chains:[56],
+    optionalChains:[56],
+    showQrModal:true,
+    rpcMap:{56:RPC_URL},
+    metadata:{
+     name:"GS DIGITAL ACADEMY",
+     description:"B-TITAN Blockchain ID Explorer",
+     url:location.origin,
+     icons:[location.origin+"/logo.png"]
+    }
    });
 
-  }catch(error){
+   walletType="WalletConnect";
+  }
 
-   if(error.code === 4902){
+  setStatus("Please approve wallet connection...");
 
+  const accounts=await walletProvider.request({
+   method:"eth_requestAccounts"
+  });
+
+  if(!accounts||!accounts.length){
+   throw Error("No wallet account selected.");
+  }
+
+  let chain=await walletProvider.request({
+   method:"eth_chainId"
+  });
+
+  if(BigInt(chain)!==56n){
+   if(walletType==="WalletConnect"){
+    throw Error("Please select BNB Smart Chain (56) in your wallet and reconnect.");
+   }
+
+   try{
     await walletProvider.request({
-     method: "wallet_addEthereumChain",
-     params: [{
-      chainId: "0x38",
-      chainName: "BNB Smart Chain",
-      nativeCurrency: {
-       name: "BNB",
-       symbol: "BNB",
-       decimals: 18
-      },
-      rpcUrls: [RPC_URL],
-      blockExplorerUrls: ["https://bscscan.com"]
-     }]
+     method:"wallet_switchEthereumChain",
+     params:[{chainId:"0x38"}]
     });
-
-   }else{
-    throw error;
+   }catch(error){
+    if(error.code===4902){
+     await walletProvider.request({
+      method:"wallet_addEthereumChain",
+      params:[{
+       chainId:"0x38",
+       chainName:"BNB Smart Chain",
+       nativeCurrency:{name:"BNB",symbol:"BNB",decimals:18},
+       rpcUrls:[RPC_URL],
+       blockExplorerUrls:["https://bscscan.com"]
+      }]
+     });
+    }else{
+     throw error;
+    }
    }
   }
- }
 
- const finalChain = await walletProvider.request({
-  method: "eth_chainId"
- });
+  chain=await walletProvider.request({method:"eth_chainId"});
+  if(BigInt(chain)!==56n){
+   throw Error("BNB Smart Chain connection required.");
+  }
 
- if(BigInt(finalChain) !== 56n){
-  throw new Error("BNB Smart Chain connection required.");
- }
+  ethersProvider=new ethers.BrowserProvider(walletProvider);
+  walletAddress=ethers.getAddress(accounts[0]);
 
- ethersProvider = new ethers.BrowserProvider(
-  walletProvider
- );
+  contract=new ethers.Contract(
+   CONTRACT_ADDRESS,ABI,ethersProvider
+  );
 
- contract = new ethers.Contract(
-  CONTRACT_ADDRESS,
-  ABI,
-  ethersProvider
- );
+  $("walletAddress").textContent=walletAddress;
+  $("disconnectBtn").classList.remove("hide");
 
- $("walletAddress").textContent = walletAddress;
+  registerWalletEvents();
 
- $("disconnectBtn").classList.remove("hide");
-
- setStatus(
-  "Wallet connected successfully. Loading Blockchain ID..."
- );
-
- await loadBlockchainData();
+  await loadBlockchainData();
 
  }catch(error){
-
- console.error(error);
-
- setStatus("Connection failed: " + shortError(error));
-
+  console.error(error);
+  setStatus("Connection failed: "+shortError(error));
  }finally{
-
- $("connectBtn").disabled = false;
-
+  busy=false;
+  $("connectBtn").disabled=false;
  }
 }
 
 async function loadBlockchainData(){
-
  try{
+  if(!contract||!walletAddress){
+   throw Error("Connect your wallet first.");
+  }
 
- if(!contract || !walletAddress){
-  throw new Error("Connect your wallet first.");
- }
+  setStatus("Searching your B-TITAN User ID...");
 
- setStatus("Searching your B-TITAN User ID...");
+  const userId=await contract.addressToId(walletAddress);
 
- const userId = await contract.addressToId(
-  walletAddress
- );
+  if(userId===0n){
+   showResult(false);
+   setStatus("No B-TITAN User ID found for this wallet address.");
+   return;
+  }
 
- if(userId === 0n){
+  const details=await contract.getUserDetails(userId);
+  const tokenAddress=await contract.BTCB_TOKEN_ADDRESS();
 
-  showResult(false);
-
-  setStatus(
-   "No B-TITAN User ID found for this wallet address."
+  const token=new ethers.Contract(
+   tokenAddress,TOKEN_ABI,ethersProvider
   );
 
-  return;
- }
+  let decimals=18;
+  let symbol="BTCB";
 
- const details = await contract.getUserDetails(
-  userId
- );
+  try{
+   decimals=Number(await token.decimals());
+   symbol=await token.symbol();
+  }catch(error){
+   console.warn("Token metadata unavailable",error);
+  }
 
- const tokenAddress =
- await contract.BTCB_TOKEN_ADDRESS();
+  $("userId").textContent=userId.toString();
+  $("referrerId").textContent=details[2].toString();
+  $("direct").textContent=details[3].toString();
+  $("active").textContent=details[4].toString();
+  $("income").textContent=
+   ethers.formatUnits(details[7],decimals)+" "+symbol;
 
- const token = new ethers.Contract(
-  tokenAddress,
-  ERC20_ABI,
-  ethersProvider
- );
+  $("referrerWallet").textContent=details[1];
 
- let decimals = 18;
- let symbol = "BTCB";
+  $("regDate").textContent=Number(details[6])>0
+   ?new Date(Number(details[6])*1000).toLocaleString()
+   :"Not available";
 
- try{
-  decimals = Number(await token.decimals());
-  symbol = await token.symbol();
- }catch(e){
-  console.warn("Token metadata unavailable",e);
- }
+  $("walletAddress").textContent=walletAddress;
+  $("bscLink").href="https://bscscan.com/address/"+walletAddress;
 
- $("userId").textContent = userId.toString();
-
- $("referrerId").textContent =
- details[2].toString();
-
- $("direct").textContent =
- details[3].toString();
-
- $("active").textContent =
- details[4].toString();
-
- $("income").textContent =
- ethers.formatUnits(details[7],decimals) +
- " " + symbol;
-
- $("referrerWallet").textContent =
- details[1];
-
- $("regDate").textContent =
- Number(details[6]) > 0
- ? new Date(Number(details[6])*1000).toLocaleString()
- : "Not available";
-
- $("bscLink").href =
- "https://bscscan.com/address/" + walletAddress;
-
- showResult(true);
-
- setStatus(
-  "Success! Your Blockchain ID has been found."
- );
+  showResult(true);
+  setStatus("Success! Your Blockchain ID has been found.");
 
  }catch(error){
-
- console.error(error);
-
- setStatus(
-  "Blockchain data error: " + shortError(error)
- );
-
+  console.error(error);
+  setStatus("Blockchain data error: "+shortError(error));
  }
 }
-
-async function disconnectWallet(){
-
- try{
-
- if(walletProvider && walletType === "WalletConnect"){
-  await walletProvider.disconnect();
- }
-
- }catch(error){
- console.warn(error);
- }
-
- walletProvider = null;
- ethersProvider = null;
- contract = null;
- walletAddress = null;
- walletType = null;
-
- showResult(false);
-
- $("disconnectBtn").classList.add("hide");
-
- setStatus("Wallet disconnected from this page.");
-
-}
-
-async function copyAddress(){
-
- if(!walletAddress)return;
-
- try{
-
- await navigator.clipboard.writeText(walletAddress);
-
- setStatus("Wallet address copied successfully.");
-
- }catch(error){
-
- setStatus("Please copy the address manually.");
-
- }
-
-}
-
-$("connectBtn").addEventListener(
- "click",connectWallet
-);
-
-$("disconnectBtn").addEventListener(
- "click",disconnectWallet
-);
-
-$("refreshBtn").addEventListener(
- "click",loadBlockchainData
-);
-
-$("copyBtn").addEventListener(
- "click",copyAddress
-);
 
 function registerWalletEvents(){
+ if(!walletProvider?.on)return;
 
- if(!walletProvider || !walletProvider.on)return;
+ walletProvider.removeAllListeners?.("accountsChanged");
+ walletProvider.removeAllListeners?.("chainChanged");
+ walletProvider.removeAllListeners?.("disconnect");
 
  walletProvider.on("accountsChanged",()=>{
-  walletAddress = null;
-  contract = null;
+  walletAddress=null;
+  contract=null;
   showResult(false);
   setStatus("Wallet account changed. Please connect again.");
  });
@@ -601,22 +324,48 @@ function registerWalletEvents(){
  });
 
  walletProvider.on("disconnect",()=>{
-  walletAddress = null;
-  contract = null;
+  walletAddress=null;
+  contract=null;
   showResult(false);
   $("disconnectBtn").classList.add("hide");
   setStatus("Wallet disconnected.");
  });
-
 }
 
-const originalConnect = connectWallet;
+async function disconnectWallet(){
+ try{
+  if(walletProvider&&walletType==="WalletConnect"){
+   await walletProvider.disconnect();
+  }
+ }catch(error){
+  console.warn(error);
+ }
 
-$("connectBtn").addEventListener("click",()=>{
- setTimeout(registerWalletEvents,1500);
-});
+ walletProvider=null;
+ ethersProvider=null;
+ contract=null;
+ walletAddress=null;
+ walletType=null;
 
+ showResult(false);
+ $("disconnectBtn").classList.add("hide");
+ setStatus("Wallet disconnected from this page.");
+}
+
+async function copyAddress(){
+ if(!walletAddress)return;
+ try{
+  await navigator.clipboard.writeText(walletAddress);
+  setStatus("Wallet address copied successfully.");
+ }catch(error){
+  setStatus("Please copy the wallet address manually.");
+ }
+}
+
+$("connectBtn").addEventListener("click",connectWallet);
+$("disconnectBtn").addEventListener("click",disconnectWallet);
+$("refreshBtn").addEventListener("click",loadBlockchainData);
+$("copyBtn").addEventListener("click",copyAddress);
 </script>
-
 </body>
 </html>
