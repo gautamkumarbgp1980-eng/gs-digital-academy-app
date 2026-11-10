@@ -1,0 +1,617 @@
+
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#07132e">
+<title>B-TITAN Explorer</title>
+<script src="https://cdn.jsdelivr.net/npm/ethers@6.13.5/dist/ethers.umd.min.js"></script>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at top,#202b40,#070b13 55%);color:#fff;font:14px Arial}
+header{text-align:center;padding:22px;background:#101c32;border-bottom:2px solid #f3c66a}
+h1,h2{color:#f3c66a}
+h1{font-size:25px}h2{font-size:16px}
+main{max-width:950px;margin:auto;padding:12px}
+section{background:#111d30;border:1px solid #344258;border-radius:15px;padding:15px;margin:13px 0}
+input,select{width:100%;padding:13px;background:#090f1a;color:white;border:1px solid #475875;border-radius:9px;margin:7px 0 12px}
+button{padding:12px 15px;margin:4px;border:0;border-radius:9px;background:linear-gradient(120deg,#ffe4a1,#d9a63c);font-weight:bold}
+button:disabled{opacity:.4}
+.muted{color:#aab8ca;font-size:12px;line-height:1.7}
+.status{color:#f3c66a;font-size:12px;line-height:1.7;overflow-wrap:anywhere}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
+.card{padding:12px;background:#0b1422;border:1px solid #344258;border-radius:10px}
+.card small{color:#aab8ca}
+.card strong{display:block;color:#f3c66a;font-size:21px;margin-top:7px;overflow-wrap:anywhere}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:400px}
+td,th{padding:10px;border-bottom:1px solid #344258;text-align:left;font-size:12px}
+th{color:#f3c66a;background:#202c3e}
+details{padding:10px;border:1px solid #344258;border-radius:9px;margin:8px 0}
+summary{color:#f3c66a;font-weight:bold}
+.tag{display:inline-block;background:#1c2b41;padding:7px;margin:4px;border-radius:7px;font-size:12px}
+.progress{height:7px;background:#26364b;border-radius:9px;margin:10px 0}
+.progress div{height:100%;width:0;background:#55dda4}
+a{color:#9fcaff}
+.back{display:block;color:#f3c66a;margin-bottom:12px}
+@media(min-width:650px){.grid{grid-template-columns:repeat(4,1fr)}}
+</style>
+</head>
+<body>
+<header>
+<div style="font-size:34px;color:#f3c66a">₿</div>
+<h1>B-TITAN ULTIMATE EXPLORER</h1>
+<div class="muted">GS DIGITAL ACADEMY • BNB SMART CHAIN</div>
+</header>
+
+<main>
+<a class="back" href="./index.html">← Back to GS DIGITAL ACADEMY</a>
+
+<section>
+<h2>SEARCH USER ID</h2>
+<label>User ID</label>
+<input id="uid" type="number" min="1" value="1">
+<label>Matrix Slot</label>
+<select id="level"></select>
+<button id="searchBtn">SEARCH USER</button>
+<p id="status" class="status">Enter User ID and search.</p>
+<p class="muted">RPC: <span id="rpc">Not connected</span></p>
+</section>
+
+<section>
+<h2>GLOBAL CONTRACT OVERVIEW</h2>
+<div class="grid">
+<div class="card"><small>REGISTERED USERS</small><strong id="registered">—</strong></div>
+<div class="card"><small>REGISTRATION INVESTMENT</small><strong id="investment">—</strong></div>
+</div>
+</section>
+
+<section>
+<h2>SELECTED USER PROFILE</h2>
+<div id="profile" class="muted">Search User ID first.</div>
+<div class="grid" style="margin-top:12px">
+<div class="card"><small>TOTAL INCOME</small><strong id="income">—</strong></div>
+<div class="card"><small>DIRECT LEADERS</small><strong id="direct">—</strong></div>
+<div class="card"><small>ACTIVE SLOTS</small><strong id="active">—</strong></div>
+<div class="card"><small>CONTRACT PLACEMENTS</small><strong id="teamSize">—</strong></div>
+<div class="card"><small>REFERRAL DOWNLINE</small><strong id="teamCount">—</strong></div>
+<div class="card"><small>MATRIX EARNINGS</small><strong id="matrixIncome">—</strong></div>
+</div>
+</section>
+
+<section>
+<h2>DIRECT REFERRAL LEADERS</h2>
+<div id="directList" class="muted">—</div>
+</section>
+
+<section>
+<h2>COMPLETE REFERRAL TEAM</h2>
+<button id="loadBtn" disabled>LOAD COMPLETE TEAM & SLOT REPORT</button>
+<button id="teamCsv" disabled>EXPORT TEAM CSV</button>
+<p id="teamStatus" class="muted">Not loaded</p>
+<div class="progress"><div id="bar"></div></div>
+<div id="teamDetails"></div>
+</section>
+
+<section>
+<h2>ACTIVE LEADERS — SLOT 1 TO 12</h2>
+<div class="scroll">
+<table>
+<thead><tr><th>SLOT</th><th>ACTIVE LEADERS</th><th>TEAM CHECKED</th></tr></thead>
+<tbody id="slotTable"><tr><td colspan="3">Load complete team first.</td></tr></tbody>
+</table>
+</div>
+<button id="slotCsv" disabled>EXPORT SLOT REPORT CSV</button>
+<div id="slotDetails"></div>
+</section>
+
+<section>
+<h2>14 SPOT MATRIX</h2>
+<p id="matrixInfo" class="muted">Search User ID first.</p>
+<div id="spots" class="grid"></div>
+</section>
+
+<section>
+<h2>BLOCKCHAIN INFORMATION</h2>
+<p class="muted">BNB Smart Chain Mainnet • Chain ID 56</p>
+<a target="_blank" rel="noopener" href="https://bscscan.com/address/0xD6759d47Fccdef7b8E318479cEC4D128366f2a44">View contract on BscScan</a>
+<p class="muted">Last Updated: <span id="updated">—</span></p>
+</section>
+
+<p class="muted">
+Read-only dashboard. Slot counts use isUserSlotActive via Multicall3.
+Root ID excluded. Historical matrix cycles are not included.
+Results appear complete only after all calls succeed. RPC limits may still apply.
+</p>
+</main>
+
+<script>
+"use strict";
+
+const ADDRESS="0xD6759d47Fccdef7b8E318479cEC4D128366f2a44";
+const MC="0xca11bde05977b3631167028862be2a173976ca11";
+
+const RPCS=[
+"https://bsc-dataseed.bnbchain.org",
+"https://bsc-dataseed1.binance.org",
+"https://bsc-dataseed2.binance.org",
+"https://bsc-dataseed1.bnbchain.org"
+];
+
+const ABI=[
+"function lastUserId() view returns(uint256)",
+"function totalProjectInvestment() view returns(uint256)",
+"function BTCB_TOKEN_ADDRESS() view returns(address)",
+"function getUserDetails(uint256) view returns(address,address,uint256,uint256,uint8,uint256,uint256,uint256)",
+"function getDirectPartnerIds(uint256) view returns(uint256[])",
+"function isUserSlotActive(uint256,uint8) view returns(bool)",
+"function usersXMatrix(address,uint8) view returns(address,uint256,uint256,uint256,uint256,uint256)",
+"function usersXMatrixReferrals(address,uint8) view returns(address[])",
+"function addressToId(address) view returns(uint256)"
+];
+
+const MABI=[
+"function aggregate3((address target,bool allowFailure,bytes callData)[] calls) payable returns ((bool success,bytes returnData)[] returnData)"
+];
+
+const I=new ethers.Interface(ABI);
+const MI=new ethers.Interface(MABI);
+const $=id=>document.getElementById(id);
+const ZERO="0x0000000000000000000000000000000000000000";
+
+let rpc=[],root=null,wallet=null,dec=18,sym="BTCB";
+let team=[],slotRows=[],busy=false;
+
+for(let n=1;n<=12;n++){
+$("level").add(new Option("Slot "+n,n));
+}
+
+const esc=x=>String(x).replace(/[&<>"']/g,c=>({
+"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+}[c]));
+
+const wait=ms=>new Promise(r=>setTimeout(r,ms));
+
+const timed=(p,ms=35000)=>Promise.race([
+p,
+new Promise((_,j)=>setTimeout(()=>j(Error("RPC timeout")),ms))
+]);
+
+const fmt=x=>Number(ethers.formatUnits(x,dec)).toLocaleString("en-US",{
+maximumFractionDigits:8
+});
+
+async function connect(){
+if(rpc.length)return;
+if(!window.ethers)throw Error("Ethers library not loaded");
+
+for(const url of RPCS){
+try{
+const p=new ethers.JsonRpcProvider(url,56,{
+staticNetwork:true,
+batchMaxCount:1
+});
+
+if(BigInt(await timed(p.send("eth_chainId",[]),10000))===56n){
+rpc.push({url,p});
+}
+}catch(e){
+console.warn(url,e.message);
+}
+}
+
+if(!rpc.length)throw Error("No BNB RPC available");
+
+$("rpc").textContent=new URL(rpc[0].url).hostname;
+}
+
+async function read(fn){
+await connect();
+let err;
+
+for(const r of rpc){
+try{
+const c=new ethers.Contract(ADDRESS,ABI,r.p);
+const v=await timed(fn(c,r.p));
+$("rpc").textContent=new URL(r.url).hostname;
+return v;
+}catch(e){
+err=e;
+}
+}
+
+throw err||Error("RPC failed");
+}
+
+async function mcRead(specs){
+await connect();
+let all=[];
+
+async function callPart(part){
+let err;
+
+for(const r of rpc){
+try{
+const calls=part.map(s=>({
+target:ADDRESS,
+allowFailure:false,
+callData:I.encodeFunctionData(s.m,s.a||[])
+}));
+
+const data=MI.encodeFunctionData("aggregate3",[calls]);
+const raw=await timed(r.p.call({to:MC,data}),45000);
+const out=MI.decodeFunctionResult("aggregate3",raw)[0];
+
+if(out.length!==part.length){
+throw Error("Multicall response mismatch");
+}
+
+const values=out.map((x,i)=>{
+if(!x.success)throw Error("Subcall failed "+part[i].m);
+return I.decodeFunctionResult(part[i].m,x.returnData);
+});
+
+$("rpc").textContent=new URL(r.url).hostname;
+return values;
+
+}catch(e){
+err=e;
+}
+}
+
+throw err||Error("Multicall RPC failed");
+}
+
+async function split(part){
+try{
+return await callPart(part);
+}catch(e){
+if(part.length===1)throw e;
+
+const mid=Math.floor(part.length/2);
+const a=await split(part.slice(0,mid));
+await wait(200);
+return a.concat(await split(part.slice(mid)));
+}
+}
+
+for(let i=0;i<specs.length;i+=25){
+const part=specs.slice(i,i+25);
+all.push(...await split(part));
+$("teamStatus").textContent="Multicall checked "+all.length+" / "+specs.length;
+await wait(120);
+}
+
+return all;
+}
+
+function setbar(n){
+$("bar").style.width=(n/12*100)+"%";
+}
+
+function exportCSV(name,rows){
+if(!rows.length)return alert("No data");
+
+const keys=Object.keys(rows[0]);
+const q=x=>'"'+String(x??"").replace(/"/g,'""')+'"';
+
+const txt=[
+keys.map(q).join(","),
+...rows.map(r=>keys.map(k=>q(r[k])).join(","))
+].join("\r\n");
+
+const url=URL.createObjectURL(new Blob(["\ufeff"+txt],{
+type:"text/csv;charset=utf-8"
+}));
+
+const a=document.createElement("a");
+a.href=url;
+a.download=name;
+a.click();
+
+setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+
+function reset(){
+root=null;
+wallet=null;
+team=[];
+slotRows=[];
+
+$("teamCount").textContent="—";
+$("teamStatus").textContent="Not loaded";
+$("teamDetails").innerHTML="";
+$("slotDetails").innerHTML="";
+$("slotTable").innerHTML='<tr><td colspan="3">Load complete team first.</td></tr>';
+
+$("teamCsv").disabled=true;
+$("slotCsv").disabled=true;
+$("loadBtn").disabled=true;
+
+setbar(0);
+}
+
+async function search(){
+if(busy)return;
+
+const id=$("uid").value.trim();
+
+if(!/^[1-9]\d*$/.test(id)){
+$("status").textContent="Valid User ID enter करें";
+return;
+}
+
+busy=true;
+$("searchBtn").disabled=true;
+reset();
+
+try{
+$("status").textContent="Connecting...";
+
+const [last,inv,token]=await Promise.all([
+read(c=>c.lastUserId()),
+read(c=>c.totalProjectInvestment()),
+read(c=>c.BTCB_TOKEN_ADDRESS())
+]);
+
+$("registered").textContent=(last-1n).toLocaleString();
+
+const meta=await read(async(c,p)=>{
+const t=new ethers.Contract(token,[
+"function decimals() view returns(uint8)",
+"function symbol() view returns(string)"
+],p);
+
+const [d,s]=await Promise.all([
+t.decimals(),
+t.symbol()
+]);
+
+return{d:Number(d),s};
+});
+
+dec=meta.d;
+sym=meta.s;
+
+$("investment").textContent=fmt(inv)+" "+sym;
+
+if(BigInt(id)>=last)throw Error("User ID not registered");
+
+const d=await read(c=>c.getUserDetails(id));
+
+if(d[0]===ZERO)throw Error("User not found");
+
+root=id;
+wallet=d[0];
+
+$("profile").innerHTML=
+"<b>User ID:</b> "+esc(id)+
+"<br><b>Wallet:</b> "+esc(d[0])+
+"<br><b>Referrer ID:</b> "+esc(d[2])+
+"<br><b>Referrer Wallet:</b> "+esc(d[1])+
+"<br><b>Registration:</b> "+new Date(Number(d[6])*1000).toLocaleString();
+
+$("income").textContent=fmt(d[7])+" "+sym;
+$("direct").textContent=d[3].toString();
+$("active").textContent=d[4].toString();
+$("teamSize").textContent=d[5].toString();
+
+const direct=await read(c=>c.getDirectPartnerIds(id));
+
+$("directList").innerHTML=direct.length
+?direct.map(x=>'<span class="tag">ID '+esc(x)+'</span>').join("")
+:"No direct leaders";
+
+let earn=0n;
+
+for(let s=1;s<=12;s++){
+earn+=(await read(c=>c.usersXMatrix(wallet,s)))[5];
+}
+
+$("matrixIncome").textContent=fmt(earn)+" "+sym;
+
+await matrix();
+
+$("loadBtn").disabled=false;
+$("updated").textContent=new Date().toLocaleString();
+$("status").textContent="Profile loaded. Load Complete Team दबाएँ";
+
+}catch(e){
+$("status").textContent="ERROR: "+e.message;
+}finally{
+busy=false;
+$("searchBtn").disabled=false;
+}
+}
+
+async function matrix(){
+if(!wallet)return;
+
+const s=Number($("level").value);
+
+const [refs,m]=await Promise.all([
+read(c=>c.usersXMatrixReferrals(wallet,s)),
+read(c=>c.usersXMatrix(wallet,s))
+]);
+
+const ids=await mcRead(
+refs.map(a=>({m:"addressToId",a:[a]}))
+);
+
+$("matrixInfo").textContent=
+"Slot "+s+
+" • Filled "+refs.length+"/14"+
+" • Reinvest "+m[1]+
+" • Historical placements "+m[4];
+
+$("spots").innerHTML=Array.from({length:14},(_,i)=>
+i>=refs.length
+?'<div class="card"><b>SPOT '+(i+1)+'</b><p>EMPTY</p></div>'
+:'<div class="card"><b>SPOT '+(i+1)+'</b><p>ID '+esc(ids[i][0])+'</p><small>'+esc(refs[i])+'</small></div>'
+).join("");
+}
+
+async function loadTeam(){
+if(busy||!root)return;
+
+busy=true;
+$("loadBtn").disabled=true;
+$("teamCsv").disabled=true;
+$("slotCsv").disabled=true;
+
+team=[];
+slotRows=[];
+
+$("slotDetails").innerHTML="";
+$("slotTable").innerHTML='<tr><td colspan="3">Scanning...</td></tr>';
+
+setbar(0);
+
+try{
+const seen=new Set([root]);
+let front=[root];
+let depth=0;
+let limited=false;
+
+while(front.length&&depth<100){
+depth++;
+
+$("teamStatus").textContent="Scanning referral depth "+depth+"...";
+
+const result=await mcRead(
+front.map(id=>({m:"getDirectPartnerIds",a:[id]}))
+);
+
+const next=[];
+let stop=false;
+
+for(let i=0;i<result.length&&!stop;i++){
+for(const x of result[i][0]){
+const id=x.toString();
+
+if(seen.has(id))continue;
+
+seen.add(id);
+next.push(id);
+
+team.push({
+userId:id,
+parentId:front[i],
+depth
+});
+
+if(team.length>=10000){
+limited=true;
+stop=true;
+break;
+}
+}
+}
+
+front=next;
+
+if(limited)break;
+}
+
+if(front.length&&depth>=100)limited=true;
+
+$("teamCount").textContent=team.length.toLocaleString();
+
+$("teamDetails").innerHTML=
+'<details><summary>VIEW '+team.length+' TEAM IDs</summary>'+
+team.map(r=>'<span class="tag">ID '+esc(r.userId)+'</span>').join("")+
+'</details>';
+
+$("teamCsv").disabled=!team.length;
+
+if(limited)throw Error("Team scan limit reached; full report unavailable");
+
+if(!team.length){
+$("teamStatus").textContent="No referral downline found";
+return;
+}
+
+let html="";
+
+for(let s=1;s<=12;s++){
+$("teamStatus").textContent=
+"Checking Slot "+s+"/12 for "+team.length+" leaders...";
+
+const result=await mcRead(
+team.map(r=>({m:"isUserSlotActive",a:[r.userId,s]}))
+);
+
+if(result.length!==team.length){
+throw Error("Incomplete Slot "+s+" response");
+}
+
+const active=team.filter((r,i)=>result[i][0]===true);
+
+slotRows.push({
+slot:s,
+activeLeaders:active.length,
+teamChecked:team.length
+});
+
+html+=
+'<details><summary>SLOT '+s+' — '+active.length+' ACTIVE LEADERS</summary>'+
+(active.map(r=>'<span class="tag">ID '+esc(r.userId)+'</span>').join("")||"No active leaders")+
+'</details>';
+
+$("slotTable").innerHTML=slotRows.map(r=>
+'<tr><td>Slot '+r.slot+'</td><td>'+r.activeLeaders+'</td><td>'+r.teamChecked+'</td></tr>'
+).join("");
+
+$("slotDetails").innerHTML=html;
+
+setbar(s);
+}
+
+$("slotCsv").disabled=false;
+
+$("teamStatus").textContent=
+"Complete: "+team.length+" leaders checked across all 12 slots";
+
+$("updated").textContent=new Date().toLocaleString();
+
+}catch(e){
+$("teamStatus").textContent=
+"ERROR: "+e.message+" — Report incomplete";
+
+$("slotTable").innerHTML=
+'<tr><td colspan="3">Scan failed. Full report unavailable.</td></tr>';
+
+console.error(e);
+
+}finally{
+busy=false;
+$("loadBtn").disabled=false;
+}
+}
+
+$("searchBtn").addEventListener("click",search);
+$("loadBtn").addEventListener("click",loadTeam);
+
+$("teamCsv").addEventListener("click",()=>
+exportCSV("btitan-team.csv",team)
+);
+
+$("slotCsv").addEventListener("click",()=>
+exportCSV("btitan-slot-report.csv",slotRows)
+);
+
+$("level").addEventListener("change",()=>{
+if(wallet&&!busy){
+matrix().catch(e=>
+$("status").textContent="Matrix error: "+e.message
+);
+}
+});
+
+$("uid").addEventListener("keydown",e=>{
+if(e.key==="Enter")search();
+});
+</script>
+</body>
+</html>
