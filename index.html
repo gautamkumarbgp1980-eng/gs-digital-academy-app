@@ -4,136 +4,252 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#07132e">
-<meta name="description" content="GS Digital Academy - Your Digital World">
+<meta name="theme-color" content="#050b1c">
+<meta name="description" content="GS Digital Academy — Your Digital World">
 <link rel="manifest" href="./manifest.json">
-<title>GS DIGITAL ACADEMY</title>
-
+<title>GS DIGITAL ACADEMY | Your Digital World</title>
 <style>
 :root{
---navy:#07132e;
---panel:#0d2047;
---blue:#176be8;
---gold:#ffd45b;
---text:#f6f8ff;
---muted:#b7c7e9;
+--bg:#050b1c;
+--panel:#0b1835;
+--panel2:#101f43;
+--gold:#ffd76a;
+--gold2:#f2ae27;
+--blue:#43a4ff;
+--text:#f7f9ff;
+--muted:#aebddd;
+--line:rgba(120,173,255,.25);
 }
 *{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
 margin:0;
 min-height:100vh;
 color:var(--text);
-font-family:Arial,system-ui,sans-serif;
-background:radial-gradient(ellipse at 50% 0%,#1b3074,transparent 48%),
-linear-gradient(160deg,#030817,#081633 60%,#09091d);
+font-family:Inter,Arial,system-ui,sans-serif;
+background:
+radial-gradient(ellipse at 8% 8%,rgba(26,93,190,.30),transparent 34%),
+radial-gradient(ellipse at 95% 32%,rgba(111,42,190,.18),transparent 30%),
+linear-gradient(155deg,#030817 0%,#07132d 52%,#080d20 100%);
+overflow-x:hidden;
+}
+body:before{
+content:"";
+position:fixed;
+inset:0;
+pointer-events:none;
+opacity:.16;
+background-image:radial-gradient(rgba(255,255,255,.35) .7px,transparent .7px);
+background-size:25px 25px;
+mask-image:linear-gradient(to bottom,black,transparent 80%);
 }
 button,a{font:inherit}
 .app{
-width:min(100% - 28px,760px);
-margin:0 auto;
-padding:18px 0 35px;
+position:relative;
+width:min(100% - 30px,900px);
+margin:auto;
+padding:18px 0 36px;
 }
-header{
+.topbar{
 display:flex;
 align-items:center;
 justify-content:space-between;
 gap:12px;
-margin-bottom:28px;
+margin-bottom:25px;
 }
 .brand{
 display:flex;
 align-items:center;
-gap:12px;
+gap:11px;
 min-width:0;
 }
 .logo{
-width:54px;
-height:54px;
+width:53px;
+height:53px;
 object-fit:contain;
-border-radius:50%;
-border:2px solid var(--gold);
+border-radius:17px;
+border:1px solid rgba(255,215,106,.75);
 background:#07112a;
+box-shadow:0 0 22px rgba(255,199,75,.13);
 }
 .brand-name{
-font-size:clamp(14px,3vw,20px);
+font-size:clamp(13px,3vw,19px);
 font-weight:900;
+letter-spacing:.5px;
 color:var(--gold);
-letter-spacing:.4px;
 }
 .brand-tag{
-font-size:10px;
-color:#c6d5ff;
-letter-spacing:2px;
+font-size:9px;
+color:#b9c9e9;
+letter-spacing:2.7px;
 margin-top:5px;
 }
 .install{
-border:1px solid #fff0a0;
-border-radius:12px;
+border:1px solid #ffe7a0;
+border-radius:13px;
 padding:10px 13px;
-background:linear-gradient(120deg,#ffe985,#ffbd28);
-color:#171000;
+color:#1b1608;
 font-size:12px;
 font-weight:900;
 white-space:nowrap;
+background:linear-gradient(130deg,#fff0a8,#ffd04f 55%,#efa91f);
+box-shadow:0 7px 22px rgba(255,190,50,.17);
 }
 .hero{
-padding:clamp(25px,6vw,44px) 22px;
+position:relative;
+isolation:isolate;
+overflow:hidden;
+min-height:340px;
+padding:34px 22px 30px;
 text-align:center;
-border:1px solid #338cff;
-border-radius:25px;
-background:radial-gradient(circle at 90% 0%,#982aff45,transparent 35%),
-linear-gradient(140deg,#10265a,#050b20 75%);
-box-shadow:0 0 25px #087cff20;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+border:1px solid rgba(90,164,255,.65);
+border-radius:30px;
+background:
+radial-gradient(circle at 50% 0%,rgba(76,135,255,.27),transparent 45%),
+radial-gradient(circle at 100% 100%,rgba(154,55,255,.20),transparent 40%),
+linear-gradient(145deg,rgba(16,40,87,.94),rgba(4,11,29,.98) 72%);
+box-shadow:0 18px 55px rgba(0,0,0,.25),inset 0 1px rgba(255,255,255,.08);
 }
-.eyebrow{
+.hero:before,.hero:after{
+content:"";
+position:absolute;
+z-index:-1;
+border:1px solid rgba(255,215,106,.22);
+border-radius:50%;
+width:290px;
+height:290px;
+transform:rotate(-24deg);
+}
+.hero:before{
+top:-195px;
+right:-90px;
+}
+.hero:after{
+bottom:-245px;
+left:-115px;
+width:360px;
+height:360px;
+}
+.orbit{
+width:74px;
+height:74px;
+border-radius:24px;
+display:grid;
+place-items:center;
+margin-bottom:18px;
+font-size:35px;
+color:#211600;
+background:linear-gradient(145deg,#fff0a6,#f8bd39);
+box-shadow:0 0 0 8px rgba(255,215,106,.08),0 12px 30px rgba(255,185,40,.2);
+}
+.kicker{
+font-size:10px;
+letter-spacing:4px;
+font-weight:900;
 color:var(--gold);
-font-size:11px;
-font-weight:bold;
-letter-spacing:3px;
 }
 h1{
-font-size:clamp(28px,7vw,44px);
-line-height:1.13;
-margin:15px 0;
+font-size:clamp(34px,8vw,58px);
+line-height:.98;
+letter-spacing:-1.7px;
+margin:13px 0 14px;
 }
-h1 span{color:var(--gold)}
-.hero p{
-max-width:510px;
-margin:0 auto;
-color:#c4d1f5;
+h1 span{
+display:block;
+color:var(--gold);
+text-shadow:0 5px 25px rgba(255,200,70,.18);
+}
+.hero-copy{
+max-width:540px;
+margin:0;
+color:#c6d4f1;
 font-size:14px;
-line-height:1.7;
+line-height:1.8;
+}
+.hero-pill{
+display:inline-flex;
+align-items:center;
+gap:8px;
+margin-top:22px;
+padding:9px 14px;
+border:1px solid rgba(255,215,106,.34);
+border-radius:99px;
+color:#ffe49a;
+background:rgba(255,215,106,.07);
+font-size:10px;
+letter-spacing:1.2px;
+font-weight:800;
+}
+.pulse{
+width:7px;
+height:7px;
+border-radius:50%;
+background:#5df0ac;
+box-shadow:0 0 10px #5df0ac;
+}
+.section-label{
+display:flex;
+align-items:center;
+gap:12px;
+margin:28px 2px 13px;
+}
+.section-label span{
+font-size:10px;
+letter-spacing:2.5px;
+color:#aebddd;
+font-weight:800;
+}
+.section-label:after{
+content:"";
+height:1px;
+flex:1;
+background:linear-gradient(90deg,var(--line),transparent);
 }
 .cards{
 display:grid;
 grid-template-columns:1fr;
-gap:13px;
-margin-top:18px;
+gap:12px;
 }
 .card{
+position:relative;
 display:flex;
 align-items:center;
 gap:15px;
-padding:18px;
+min-height:112px;
+padding:17px;
 text-decoration:none;
 color:var(--text);
-border:1px solid #2869bd;
-border-radius:18px;
-background:linear-gradient(145deg,#102653,#061128);
-transition:transform .15s,border-color .15s;
+overflow:hidden;
+border:1px solid var(--line);
+border-radius:20px;
+background:linear-gradient(115deg,rgba(17,39,80,.94),rgba(7,18,42,.96));
+box-shadow:0 10px 28px rgba(0,0,0,.13);
+transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease;
 }
-.card:active{transform:scale(.99)}
+.card:before{
+content:"";
+position:absolute;
+inset:0 auto 0 0;
+width:3px;
+background:linear-gradient(var(--gold),var(--blue));
+opacity:.9;
+}
+.card:active{transform:scale(.985)}
 .card-icon{
-flex:0 0 52px;
-width:52px;
-height:52px;
+flex:0 0 56px;
+width:56px;
+height:56px;
 display:grid;
 place-items:center;
-border-radius:15px;
-background:linear-gradient(135deg,#ffe985,#ffb51d);
-color:#171000;
-font-size:25px;
-font-weight:900;
+border-radius:18px;
+color:#1b1608;
+font-size:27px;
+background:linear-gradient(145deg,#fff0a7,#ffd04f 58%,#eda51c);
+box-shadow:0 8px 20px rgba(255,190,45,.13);
 }
 .card-copy{
 flex:1;
@@ -141,42 +257,72 @@ min-width:0;
 }
 .card-copy strong{
 display:block;
-color:var(--gold);
+color:#ffe08a;
 font-size:15px;
-margin-bottom:5px;
+margin-bottom:6px;
 }
 .card-copy small{
 display:block;
-color:var(--muted);
-font-size:12px;
-line-height:1.5;
+color:#b9c9e8;
+font-size:11px;
+line-height:1.6;
 }
 .arrow{
-font-size:24px;
+width:31px;
+height:31px;
+flex:0 0 31px;
+border-radius:50%;
+display:grid;
+place-items:center;
 color:var(--gold);
+border:1px solid rgba(255,215,106,.35);
+font-size:21px;
+background:rgba(255,215,106,.06);
 }
-.note{
-margin-top:18px;
-padding:14px;
-border:1px solid #29456f;
-border-radius:14px;
-background:#07142c;
-color:#b7c7e9;
-font-size:12px;
-line-height:1.7;
+.bottom-note{
+margin-top:20px;
+padding:17px 14px;
 text-align:center;
+border:1px solid rgba(120,173,255,.18);
+border-radius:17px;
+background:rgba(8,20,46,.65);
+color:#c0cee9;
 }
+.bottom-note strong{
+display:block;
+color:var(--gold);
+font-size:11px;
+letter-spacing:2px;
+margin-bottom:6px;
+}
+.bottom-note span{font-size:11px}
 footer{
 text-align:center;
-color:#8094be;
+color:#7f91b8;
 font-size:10px;
-line-height:1.8;
-margin-top:25px;
+line-height:1.9;
+margin-top:22px;
 }
-@media(min-width:600px){
-.cards{grid-template-columns:1fr 1fr}
-.card{min-height:135px}
+@media(min-width:650px){
+.app{padding-top:25px}
+.hero{min-height:390px}
+.cards{grid-template-columns:repeat(2,minmax(0,1fr))}
 .card:first-child{grid-column:1/-1}
+.card{min-height:125px;padding:20px}
+}
+@media(hover:hover){
+.card:hover{
+transform:translateY(-3px);
+border-color:rgba(255,215,106,.65);
+box-shadow:0 15px 35px rgba(0,0,0,.22);
+}
+.install:hover{filter:brightness(1.05)}
+}
+@media(max-width:360px){
+.app{width:calc(100% - 22px)}
+.brand-tag{letter-spacing:1.7px}
+.install{padding:9px 10px}
+.hero{min-height:310px}
 }
 </style>
 </head>
@@ -184,9 +330,11 @@ margin-top:25px;
 <body>
 <div class="app">
 
-<header>
+<header class="topbar">
 <div class="brand">
-<img class="logo" src="./logo.png"
+
+<img class="logo"
+src="./logo.png"
 alt="GS Digital Academy Logo"
 onerror="this.style.display='none'">
 
@@ -194,27 +342,43 @@ onerror="this.style.display='none'">
 <div class="brand-name">GS DIGITAL ACADEMY</div>
 <div class="brand-tag">YOUR DIGITAL WORLD</div>
 </div>
+
 </div>
 
 <button class="install" id="installBtn" type="button">
-📲 Install
+📲 Install App
 </button>
 </header>
 
 <main>
 
 <section class="hero">
-<div class="eyebrow">WELCOME TO</div>
+
+<div class="orbit">✦</div>
+
+<div class="kicker">
+WELCOME TO YOUR DIGITAL WORLD
+</div>
 
 <h1>
-GS DIGITAL<br>
+GS DIGITAL
 <span>ACADEMY</span>
 </h1>
 
-<p>
-Your Digital World — learning, exploring and growing with technology.
+<p class="hero-copy">
+Explore digital learning, discover technology and move forward with confidence. Your journey starts here.
 </p>
+
+<div class="hero-pill">
+<i class="pulse"></i>
+LEARN · EXPLORE · GROW
+</div>
+
 </section>
+
+<div class="section-label">
+<span>EXPLORE OUR SERVICES</span>
+</div>
 
 <section class="cards" aria-label="Main services">
 
@@ -227,7 +391,7 @@ rel="noopener noreferrer">
 
 <span class="card-copy">
 <strong>Official Website</strong>
-<small>Visit the GS Digital Academy official website.</small>
+<small>Visit the GS Digital Academy official website and explore our digital resources.</small>
 </span>
 
 <span class="arrow">›</span>
@@ -239,7 +403,7 @@ rel="noopener noreferrer">
 
 <span class="card-copy">
 <strong>B-TITAN Explorer</strong>
-<small>Open the B-TITAN team and blockchain explorer.</small>
+<small>Open the B-TITAN team and blockchain explorer dashboard.</small>
 </span>
 
 <span class="arrow">›</span>
@@ -251,7 +415,7 @@ rel="noopener noreferrer">
 
 <span class="card-copy">
 <strong>Blockchain ID</strong>
-<small>Open the Blockchain ID and wallet tools.</small>
+<small>Access Blockchain ID and wallet-related tools.</small>
 </span>
 
 <span class="arrow">›</span>
@@ -259,15 +423,16 @@ rel="noopener noreferrer">
 
 </section>
 
-<div class="note">
-GS DIGITAL ACADEMY · YOUR DIGITAL WORLD
-</div>
+<section class="bottom-note">
+<strong>GS DIGITAL ACADEMY</strong>
+<span>One place to learn, explore and grow in the digital world.</span>
+</section>
 
 </main>
 
 <footer>
-Learn · Explore · Grow<br>
-© GS DIGITAL ACADEMY
+© GS DIGITAL ACADEMY<br>
+Designed for your digital journey.
 </footer>
 
 </div>
@@ -290,6 +455,7 @@ await installPrompt.userChoice;
 installPrompt=null;
 
 return;
+
 }
 
 alert(
@@ -301,19 +467,27 @@ alert(
 installBtn.addEventListener("click",installApp);
 
 window.addEventListener("beforeinstallprompt",event=>{
+
 event.preventDefault();
+
 installPrompt=event;
+
 });
 
 window.addEventListener("appinstalled",()=>{
+
 installPrompt=null;
+
 });
 
 if("serviceWorker" in navigator && location.protocol==="https:"){
 
 window.addEventListener("load",()=>{
+
 navigator.serviceWorker.register("./service-worker.js")
+
 .catch(error=>console.error("Service worker registration failed",error));
+
 });
 
 }
