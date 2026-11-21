@@ -3,613 +3,408 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#07132e">
-<title>GS DIGITAL ACADEMY | B-TITAN LIVE COUNTER</title>
-
-<script src="https://cdn.jsdelivr.net/npm/ethers@6.13.5/dist/ethers.umd.min.js"></script>
-
+<title>B-TITAN | Live Counter</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.13.5/ethers.umd.min.js"></script>
 <style>
-:root{
- --bg:#050b1c;
- --navy:#081735;
- --blue:#087cff;
- --purple:#982aff;
- --gold:#ffd45b;
- --text:#f6f8ff;
- --muted:#aab9dc;
-}
 *{box-sizing:border-box}
-body{
- margin:0;
- min-height:100vh;
- color:var(--text);
- background:radial-gradient(ellipse at 50% 0%,#1b3074,transparent 48%),
- linear-gradient(160deg,#030817,#081633 55%,#09091d);
- font-family:Arial,system-ui,sans-serif;
-}
-button,input{font:inherit}
-button{cursor:pointer}
-.app{max-width:950px;margin:auto;padding:14px 13px 35px}
-.topbar{
- display:flex;align-items:center;justify-content:space-between;
- gap:10px;margin-bottom:15px
-}
-.brand{display:flex;align-items:center;gap:10px}
-.logo{
- width:45px;height:45px;object-fit:contain;
- border:2px solid var(--gold);border-radius:50%;
- background:#07112a
-}
-.brand-name{font-size:14px;font-weight:900;color:var(--gold)}
-.brand-tag{font-size:9px;letter-spacing:1.5px;color:#c6d5ff;margin-top:4px}
-.btn{
- padding:11px 14px;border-radius:11px;
- border:1px solid var(--gold);
- background:linear-gradient(120deg,#ffe985,#ffbd28);
- color:#171000;font-size:12px;font-weight:900
-}
-.btn.blue{background:linear-gradient(135deg,#1268ee,#1645a9);color:white;border-color:#318aff}
-.btn:disabled{opacity:.5;cursor:not-allowed}
-.hero{
- padding:27px 17px;text-align:center;
- border:1px solid #338cff;border-radius:23px;
- background:radial-gradient(circle at 90% 0%,#982aff50,transparent 35%),
- linear-gradient(140deg,#10265a,#050b20 75%);
- box-shadow:0 0 24px #087cff25
-}
-.eyebrow{color:var(--gold);font-size:11px;font-weight:bold;letter-spacing:3px}
-.hero h1{font-size:clamp(24px,6vw,38px);line-height:1.2;margin:13px 0}
-.hero h1 span{color:var(--gold)}
-.hero p{color:#c4d1f5;font-size:12px;line-height:1.7}
-.status{
- margin-top:12px;padding:12px;border-radius:11px;
- border:1px solid #334a78;background:#07142c;
- color:#d9e4ff;font-size:12px;line-height:1.7;
- overflow-wrap:anywhere
-}
-.status:empty{display:none}
-.live-dot{color:#35e99a;font-weight:bold}
-.section{
- margin-top:14px;padding:16px;
- background:rgba(8,23,53,.96);
- border:1px solid #236cc5;border-radius:20px
-}
-.section-head{
- display:flex;align-items:center;justify-content:space-between;
- flex-wrap:wrap;gap:10px;margin-bottom:13px
-}
-.section-title{font-size:15px;font-weight:900}
-.small{font-size:11px;color:var(--muted);line-height:1.7}
-.stat-grid{
- display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
- gap:10px;margin-top:14px
-}
-.stat{
- padding:16px 12px;background:linear-gradient(145deg,#102653,#061128);
- border:1px solid #2858a0;border-radius:15px;min-width:0
-}
-.stat strong{
- display:block;font-size:clamp(19px,5vw,27px);
- color:var(--gold);margin:10px 0;overflow-wrap:anywhere
-}
-.stat span{color:#bdcbea;font-size:11px}
-.stat small{font-size:10px;color:#91a6d5}
-.field-label{display:block;margin:12px 0 6px;font-size:12px;font-weight:bold}
-input{
- width:100%;padding:13px;border-radius:12px;
- border:1px solid #b7c7e9;background:#f5f7ff;color:#17213c
-}
-.action-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-.action-row button{flex:1}
-.result{
- margin-top:12px;padding:12px;background:#07142c;
- border:1px solid #344b76;border-radius:11px;
- font-size:12px;line-height:1.9;overflow-wrap:anywhere
-}
-.activity-item{
- padding:12px 0;border-bottom:1px solid #253a61;
- font-size:12px;line-height:1.7;overflow-wrap:anywhere
-}
-.activity-item b{color:var(--gold)}
-a{color:var(--gold)}
-footer{
- text-align:center;color:#8094be;font-size:10px;
- margin-top:22px;line-height:1.8
-}
-@media(min-width:600px){
- .app{padding:20px}
- .stat-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
- .hero{padding:35px}
- .brand-name{font-size:19px}
-}
+body{margin:0;background:#07132e;color:#fff;font-family:Arial,sans-serif}
+header{padding:22px 15px;text-align:center;background:linear-gradient(135deg,#101f48,#28134e);border-bottom:1px solid #b58b35}
+h1{margin:0;color:#f4c65e;font-size:25px}
+.sub{color:#c4cce0;font-size:12px;margin-top:7px}
+main{max-width:1050px;margin:auto;padding:14px}
+.panel{background:#101e3d;border:1px solid #293b63;border-radius:14px;padding:15px;margin:12px 0}
+.panel h2{color:#f4c65e;font-size:17px;margin:0 0 13px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.stat{background:#0a1530;border:1px solid #26375b;border-radius:11px;padding:13px;min-width:0}
+.stat small{display:block;color:#aebbd5;font-size:11px;line-height:1.4}
+.stat strong{display:block;color:#fff;font-size:21px;margin-top:7px;overflow-wrap:anywhere}
+.stat em{display:block;color:#9baac6;font-size:10px;font-style:normal;margin-top:5px}
+.gold{color:#f4c65e!important}
+input{width:100%;padding:13px;background:#08132b;color:#fff;border:1px solid #52668e;border-radius:9px;font-size:15px;margin:5px 0}
+button{border:0;border-radius:9px;padding:12px 15px;background:#d9a83e;color:#111;font-weight:bold;cursor:pointer}
+button:disabled{opacity:.5}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.secondary{background:#293d67;color:#fff}
+.muted{color:#aab8d2;font-size:12px;line-height:1.6}
+.result{background:#09152e;border-radius:10px;padding:13px;margin-top:12px;overflow-wrap:anywhere}
+.result p{margin:7px 0;font-size:13px}
+table{width:100%;border-collapse:collapse;font-size:12px}
+td,th{padding:9px 5px;border-bottom:1px solid #293b5e;text-align:left}
+th{color:#f4c65e}
+#status{font-size:12px;color:#f4c65e;line-height:1.6}
+.progress{height:8px;background:#26375b;border-radius:10px;overflow:hidden;margin-top:8px}
+.bar{height:100%;width:0;background:#e7b94e}
+a{color:#f4c65e}
+footer{text-align:center;color:#8798b8;font-size:11px;padding:22px}
+@media(min-width:650px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
 </style>
 </head>
-
 <body>
-<div class="app">
-
-<header class="topbar">
- <div class="brand">
-  <img src="./logo.png" class="logo" alt="GSDA Logo"
-       onerror="this.style.display='none'">
-  <div>
-   <div class="brand-name">GS DIGITAL ACADEMY</div>
-   <div class="brand-tag">YOUR DIGITAL WORLD</div>
-  </div>
- </div>
- <button class="btn" onclick="location.href='./index.html'">← HOME</button>
+<header>
+<h1>⚡ B-TITAN LIVE COUNTER</h1>
+<div class="sub">REAL-TIME BLOCKCHAIN DASHBOARD · BNB SMART CHAIN</div>
 </header>
 
 <main>
-
-<section class="hero">
- <div class="eyebrow">BLOCKCHAIN LIVE DASHBOARD</div>
- <h1>₿ B-TITAN <span>LIVE COUNTER</span></h1>
- <p>Real Blockchain Statistics · BNB Smart Chain · Read Only</p>
- <div class="status" id="connection">
-  Connecting to BNB Smart Chain...
- </div>
- <p class="small" id="lastUpdated">Waiting for blockchain data...</p>
+<section class="panel">
+<h2>🔗 Blockchain Connection</h2>
+<div id="status">Connecting to BNB Smart Chain...</div>
+<div class="btnrow">
+<button id="refreshBtn" onclick="refreshAll()">↻ Refresh Data</button>
+<a href="https://bscscan.com/address/0xD6759d47Fccdef7b8E318479cEC4D128366f2a44" target="_blank">
+<button class="secondary">View Contract</button></a>
+</div>
+<p class="muted">Data is read directly from the deployed smart contract. Refresh may take time because member and slot counts are checked on-chain.</p>
 </section>
 
-<section class="section">
- <div class="section-head">
-  <div class="section-title">📊 LIVE STATISTICS</div>
-  <button class="btn blue" id="refreshBtn">↻ Refresh</button>
- </div>
-
- <div class="stat-grid">
-
-  <div class="stat">
-   <span>👥 TOTAL REGISTERED IDs</span>
-   <strong id="lastId">—</strong>
-   <small>Last User ID</small>
-  </div>
-
-  <div class="stat">
-   <span>💰 TOTAL PROJECT INVESTMENT</span>
-   <strong id="investment">—</strong>
-   <small id="tokenInfo">Reading token information...</small>
-  </div>
-
-  <div class="stat">
-   <span>🔗 BNB BLOCK NUMBER</span>
-   <strong id="block">—</strong>
-   <small>Latest confirmed block</small>
-  </div>
-
-  <div class="stat">
-   <span>📝 RECENT REGISTRATIONS</span>
-   <strong id="registrations">—</strong>
-   <small>Scanned block range</small>
-  </div>
-
-  <div class="stat">
-   <span>⬆️ RECENT UPGRADES</span>
-   <strong id="upgrades">—</strong>
-   <small>Scanned block range</small>
-  </div>
-
-  <div class="stat">
-   <span>🔄 RECENT REINVESTMENTS</span>
-   <strong id="reinvests">—</strong>
-   <small>Scanned block range</small>
-  </div>
-
- </div>
- <p class="small">
-  Event counts show only the recent scanned block range,
-  not lifetime totals.
- </p>
+<section class="panel">
+<h2>📊 Global Statistics</h2>
+<div class="grid">
+<div class="stat"><small>TOTAL REGISTERED MEMBERS</small><strong id="members">--</strong></div>
+<div class="stat"><small>LATEST SYSTEM ID</small><strong id="latestId">--</strong></div>
+<div class="stat"><small>LAST 24 HOURS REGISTRATIONS</small><strong id="growth24">--</strong></div>
+<div class="stat"><small>TOTAL PROJECT INVESTMENT</small><strong id="investment">--</strong><em id="investmentUnit">BTCB</em></div>
+<div class="stat"><small>CONTRACT BTCB RESERVE</small><strong id="reserve">--</strong><em id="tokenName">BTCB</em></div>
+<div class="stat"><small>BTCB TOKEN ADDRESS</small><strong id="tokenAddress" style="font-size:11px">--</strong></div>
+<div class="stat"><small>CONTRACT ADDRESS</small><strong style="font-size:11px">0xD675...2a44</strong></div>
+<div class="stat"><small>LAST UPDATED</small><strong id="updated" style="font-size:14px">--</strong></div>
+</div>
 </section>
 
-<section class="section">
- <div class="section-title">🔎 MEMBER ID EXPLORER</div>
- <p class="small">Enter User ID to check on-chain member information.</p>
-
- <label class="field-label" for="userId">B-TITAN USER ID</label>
- <input id="userId" type="number" min="1" placeholder="Enter User ID">
-
- <div class="action-row">
-  <button class="btn" id="lookupBtn">SEARCH MEMBER</button>
- </div>
-
- <div class="result" id="memberResult">
-  Member information will appear here.
- </div>
+<section class="panel">
+<h2>🏆 Slot Achievement Counter</h2>
+<p class="muted">Counts are based on each member's currently active levels. They are not lifetime achievement totals.</p>
+<div class="grid" id="slotGrid">
+<div class="stat"><small>Slot 1</small><strong>--</strong></div>
+<div class="stat"><small>Slot 2</small><strong>--</strong></div>
+<div class="stat"><small>Slot 3 · RISING RANK</small><strong>--</strong></div>
+<div class="stat"><small>Slot 4</small><strong>--</strong></div>
+<div class="stat"><small>Slot 5</small><strong>--</strong></div>
+<div class="stat"><small>Slot 6 · PRIME</small><strong>--</strong></div>
+<div class="stat"><small>Slot 7</small><strong>--</strong></div>
+<div class="stat"><small>Slot 8</small><strong>--</strong></div>
+<div class="stat"><small>Slot 9 · ROYAL</small><strong>--</strong></div>
+<div class="stat"><small>Slot 10</small><strong>--</strong></div>
+<div class="stat"><small>Slot 11</small><strong>--</strong></div>
+<div class="stat"><small>Slot 12 · LEGENDARY</small><strong>--</strong></div>
+</div>
+<div id="scanProgress" class="muted">Slot scan not started.</div>
+<div class="progress"><div class="bar" id="scanBar"></div></div>
 </section>
 
-<section class="section">
- <div class="section-head">
-  <div class="section-title">⚡ BLOCKCHAIN ACTIVITY</div>
-  <span class="small">Recent Events</span>
- </div>
- <div id="activity">
-  <div class="small">Loading blockchain events...</div>
- </div>
+<section class="panel">
+<h2>🎖️ Rank Achievers</h2>
+<div class="grid">
+<div class="stat"><small>SLOT 2 ACHIEVERS</small><strong id="rank2">--</strong></div>
+<div class="stat"><small>RISING RANK · SLOT 3</small><strong id="rank3">--</strong></div>
+<div class="stat"><small>PRIME · SLOT 6</small><strong id="rank6">--</strong></div>
+<div class="stat"><small>ROYAL · SLOT 9</small><strong id="rank9">--</strong></div>
+<div class="stat"><small>LEGENDARY · SLOT 12</small><strong id="rank12">--</strong></div>
+</div>
+<p class="muted">These counts represent members with the relevant slot currently active.</p>
 </section>
 
-<section class="section">
- <div class="section-title">🔐 SMART CONTRACT INFORMATION</div>
- <p class="small">Network: BNB Smart Chain (Chain ID 56)</p>
- <p class="small">Contract Name: BTitanXMatrix</p>
- <p class="small">Mode: Read Only</p>
- <p class="small" style="overflow-wrap:anywhere">
-  Contract Address:<br>
-  <b id="contractAddress"></b>
- </p>
- <a href="https://bscscan.com/address/0xD6759d47Fccdef7b8E318479cEC4D128366f2a44#code"
-    target="_blank" rel="noopener">
-  View Smart Contract on BscScan ↗
- </a>
+<section class="panel">
+<h2>🎫 Registration Pass NFT</h2>
+<div class="grid">
+<div class="stat"><small>REGISTRATION PASS CONTRACT</small><strong id="passAddress" style="font-size:11px">--</strong></div>
+<div class="stat"><small>REGISTERED MEMBER IDs</small><strong id="passMinted">--</strong></div>
+</div>
+<p class="muted">Total NFT supply cap is not defined in the Matrix contract. Minted count shown here is based on registered member IDs, not independently verified NFT total supply. Total cap and percentage progress require the NFT contract's own supply/cap functions.</p>
 </section>
 
-</main>
+<section class="panel">
+<h2>💰 Royalty & Pool Information</h2>
+<div class="grid">
+<div class="stat"><small>EXPECTED ROYALTY</small><strong>Not available</strong><em>No public getter in this contract</em></div>
+<div class="stat"><small>ROYAL POOL ADDRESS</small><strong>Private</strong><em>Not exposed by contract</em></div>
+</div>
+<p class="muted">The contract emits TreasuryPool events when amounts are sent to the Royal Pool. The private pool address and the absence of a royalty balance getter prevent this dashboard from verifying the current pool balance or an expected royalty amount directly.</p>
+</section>
+
+<section class="panel">
+<h2>🔎 Member ID Search</h2>
+<input id="searchId" type="number" min="1" placeholder="Enter System Member ID">
+<button onclick="searchMember()">Search Member</button>
+<div id="memberResult" class="result muted">Enter a member ID to view on-chain details.</div>
+</section>
+
+<section class="panel">
+<h2>🧩 14-Spot Matrix Details</h2>
+<p class="muted">Search a member above, then choose a slot to inspect that member's current matrix.</p>
+<input id="matrixId" type="number" min="1" placeholder="Member ID">
+<select id="matrixLevel" style="width:100%;padding:12px;background:#08132b;color:#fff;border:1px solid #52668e;border-radius:9px;margin:5px 0">
+</select>
+<button onclick="loadMatrix()">View Matrix</button>
+<div id="matrixResult" class="result muted">Matrix details will appear here.</div>
+</section>
 
 <footer>
- GS DIGITAL ACADEMY · YOUR DIGITAL WORLD<br>
- CREATE · SHARE · CONNECT
+B-TITAN · Live Blockchain Data Dashboard<br>
+Read-only public contract explorer
 </footer>
-
-</div>
+</main>
 
 <script>
-"use strict";
+const CONTRACT_ADDRESS = "0xD6759d47Fccdef7b8E318479cEC4D128366f2a44";
+const RPC_URL = "https://bsc-dataseed.binance.org/";
 
-const ADDRESS="0xD6759d47Fccdef7b8E318479cEC4D128366f2a44";
-
-const RPCS=[
- "https://bsc-dataseed.binance.org/",
- "https://bsc-dataseed1.defibit.io/",
- "https://bsc-dataseed1.ninicoin.io/"
+const ABI = [
+"function lastUserId() view returns(uint256)",
+"function totalProjectInvestment() view returns(uint256)",
+"function BTCB_TOKEN_ADDRESS() view returns(address)",
+"function REGISTRATION_PASS_NFT_CONTRACT() view returns(address)",
+"function LAST_LEVEL() view returns(uint8)",
+"function MATRIX_SIZE() view returns(uint8)",
+"function getUserDetails(uint userId) view returns(address userAddress,address referrerAddress,uint referrerId,uint partnersCount,uint8 activeSlotsCount,uint teamSize,uint registrationTimestamp,uint256 totalIncome)",
+"function getActiveLevelsCount(address userAddress) view returns(uint8)",
+"function isUserExists(address user) view returns(bool)",
+"function isUserSlotActive(uint256 userId,uint8 slot) view returns(bool)",
+"function usersXMatrix(address userAddress,uint8 level) view returns(address currentReferrer,uint reinvestCount,uint heldTokenForUpgrade,uint lastSpillUnderReceiverIndex,uint totalTeamSize,uint256 totalEarning)",
+"function usersXMatrixReferrals(address userAddress,uint8 level) view returns(address[])",
+"event Registration(uint indexed userId,uint indexed referrerId,address indexed userAddress)",
+"event Reinvest(uint indexed userId,uint indexed newReferrerId,uint indexed callerId,uint8 level)",
+"event Upgrade(uint indexed userId,uint indexed newReferrerId,uint8 level)",
+"event NewUserPlace(uint indexed user,uint indexed referrer,uint8 level,uint cycle,uint8 spot)",
+"event TreasuryPool(uint indexed refId,uint indexed userId,uint256 amount,uint8 level)"
 ];
 
-const ABI=[
- "function lastUserId() view returns(uint256)",
- "function totalProjectInvestment() view returns(uint256)",
- "function BTCB_TOKEN_ADDRESS() view returns(address)",
- "function getUserDetails(uint256) view returns(address,address,uint256,uint256,uint8,uint256,uint256,uint256)",
- "function getActiveLevelsCount(address) view returns(uint8)",
- "event Registration(uint256 indexed userId,uint256 indexed referrerId,address indexed userAddress)",
- "event Upgrade(uint256 indexed userId,uint256 indexed newReferrerId,uint8 level)",
- "event Reinvest(uint256 indexed userId,uint256 indexed newReferrerId,uint256 indexed callerId,uint8 level)"
+const ERC20_ABI = [
+"function balanceOf(address) view returns(uint256)",
+"function decimals() view returns(uint8)",
+"function symbol() view returns(string)"
 ];
 
-const TOKEN_ABI=[
- "function decimals() view returns(uint8)",
- "function symbol() view returns(string)"
-];
+let provider, contract, tokenContract, lastKnownId = 0;
+let slotCounts = Array(13).fill(0);
 
-const $=id=>document.getElementById(id);
+function el(id){return document.getElementById(id)}
+function fmt(n){return Number(n).toLocaleString("en-IN")}
+function shortAddr(a){
+ return a && a.length>15 ? a.slice(0,8)+"..."+a.slice(-6) : a;
+}
+function showStatus(s){el("status").textContent=s}
+function setText(id,value){el(id).textContent=value}
 
-let provider=null;
-let contract=null;
-let decimals=18;
-let symbol="BTCB";
-let busy=false;
-
-$("contractAddress").textContent=ADDRESS;
-
-function formatNumber(value){
- return BigInt(value).toLocaleString("en-IN");
+async function connect(){
+ if(!window.ethers) throw new Error("Ethers library failed to load.");
+ provider = new ethers.JsonRpcProvider(RPC_URL,56);
+ contract = new ethers.Contract(CONTRACT_ADDRESS,ABI,provider);
+ const network = await provider.getNetwork();
+ if(Number(network.chainId)!==56) throw new Error("RPC network is not BNB Smart Chain.");
 }
 
-function shortAddress(address){
- if(!address)return "Unavailable";
- return address.slice(0,7)+"..."+address.slice(-5);
+async function getTokenInfo(){
+ const tokenAddress = await contract.BTCB_TOKEN_ADDRESS();
+ setText("tokenAddress",shortAddr(tokenAddress));
+ tokenContract = new ethers.Contract(tokenAddress,ERC20_ABI,provider);
+ let decimals = 18, symbol = "BTCB";
+ try{decimals = Number(await tokenContract.decimals())}catch(e){}
+ try{symbol = await tokenContract.symbol()}catch(e){}
+ setText("tokenName",symbol);
+ return {tokenAddress,decimals,symbol};
 }
 
-function setStatus(message){
- $("connection").textContent=message;
-}
-
-function errorMessage(error){
- return error?.shortMessage||error?.reason||error?.message||String(error);
-}
-
-async function connectBlockchain(){
-
- let lastError=null;
-
- for(const rpc of RPCS){
-
-  try{
-
-   const p=new ethers.JsonRpcProvider(
-    rpc,
-    56,
-    {staticNetwork:true}
-   );
-
-   const network=await p.getNetwork();
-
-   if(Number(network.chainId)!==56){
-    throw Error("Incorrect blockchain network");
+async function get24HourRegistrations(){
+ try{
+  const latest = await provider.getBlockNumber();
+  // BNB Smart Chain produces roughly one block every few seconds.
+  // Scan a recent block window, then verify timestamps for matching events.
+  const from = Math.max(0,latest-30000);
+  const filter = contract.filters.Registration();
+  let logs = [];
+  const chunk = 1500;
+  for(let start=from;start<=latest;start+=chunk){
+   const end=Math.min(start+chunk-1,latest);
+   try{
+    const part=await contract.queryFilter(filter,start,end);
+    logs=logs.concat(part);
+   }catch(e){
+    console.warn("Registration log range unavailable:",start,end,e);
    }
-
-   await p.getBlockNumber();
-
-   provider=p;
-   contract=new ethers.Contract(ADDRESS,ABI,provider);
-
-   return true;
-
-  }catch(error){
-   lastError=error;
   }
-
+  const cutoff = Math.floor(Date.now()/1000)-86400;
+  const blocks=[...new Set(logs.map(x=>x.blockNumber))];
+  const times={};
+  for(let i=0;i<blocks.length;i+=15){
+   const group=blocks.slice(i,i+15);
+   await Promise.all(group.map(async b=>{
+    try{const block=await provider.getBlock(b);times[b]=Number(block.timestamp)}catch(e){}
+   }));
+  }
+  return logs.filter(x=>times[x.blockNumber]>=cutoff).length;
+ }catch(e){
+  console.warn(e);
+  return null;
  }
-
- throw lastError||Error("RPC connection unavailable");
 }
 
-async function loadToken(){
+async function scanSlots(latestId){
+ slotCounts=Array(13).fill(0);
+ const progress=el("scanProgress");
+ const bar=el("scanBar");
+ if(latestId<1)return;
 
+ let completed=0;
+ const batchSize=5;
+ for(let start=1;start<=latestId;start+=batchSize){
+  const ids=[];
+  for(let id=start;id<Math.min(start+batchSize,latestId+1);id++)ids.push(id);
+  await Promise.all(ids.map(async id=>{
+   try{
+    const details=await contract.getUserDetails(id);
+    const address=details.userAddress;
+    const active=await contract.getActiveLevelsCount(address);
+    for(let level=1;level<=12;level++){
+     if(level<=Number(active)){
+      // Active levels are sequential in this contract: each upgrade unlocks
+      // the next level. Verify each level directly to avoid assumptions.
+      const isActive=await contract.isUserSlotActive(id,level);
+      if(isActive)slotCounts[level]++;
+     }
+    }
+   }catch(e){}
+   completed++;
+  }));
+  const pct=Math.round(completed/latestId*100);
+  bar.style.width=pct+"%";
+  progress.textContent=`Checking members: ${fmt(completed)} / ${fmt(latestId)} (${pct}%)`;
+ }
+ renderSlots();
+}
+
+function renderSlots(){
+ const labels=["Slot 1","Slot 2","Slot 3 · RISING RANK","Slot 4","Slot 5","Slot 6 · PRIME","Slot 7","Slot 8","Slot 9 · ROYAL","Slot 10","Slot 11","Slot 12 · LEGENDARY"];
+ el("slotGrid").innerHTML="";
+ for(let i=1;i<=12;i++){
+  const d=document.createElement("div");
+  d.className="stat";
+  d.innerHTML=`<small>${labels[i-1]}</small><strong>${fmt(slotCounts[i])}</strong>`;
+  el("slotGrid").appendChild(d);
+ }
+ setText("rank2",fmt(slotCounts[2]));
+ setText("rank3",fmt(slotCounts[3]));
+ setText("rank6",fmt(slotCounts[6]));
+ setText("rank9",fmt(slotCounts[9]));
+ setText("rank12",fmt(slotCounts[12]));
+}
+
+async function refreshAll(){
+ const btn=el("refreshBtn");
+ btn.disabled=true;
+ showStatus("Connecting and reading contract data...");
  try{
+  if(!contract)await connect();
+  const [lastIdRaw,investmentRaw,tokenInfo,passAddress]=await Promise.all([
+   contract.lastUserId(),
+   contract.totalProjectInvestment(),
+   getTokenInfo(),
+   contract.REGISTRATION_PASS_NFT_CONTRACT()
+  ]);
 
-  const tokenAddress=await contract.BTCB_TOKEN_ADDRESS();
+  const lastId=Number(lastIdRaw);
+  const latestMemberId=Math.max(0,lastId-1);
+  lastKnownId=latestMemberId;
+  setText("latestId",fmt(latestMemberId));
+  setText("members",fmt(latestMemberId));
+  setText("passMinted",fmt(latestMemberId));
+  setText("passAddress",shortAddr(passAddress));
 
-  const token=new ethers.Contract(
-   tokenAddress,
-   TOKEN_ABI,
-   provider
-  );
-
-  decimals=Number(await token.decimals());
-  symbol=await token.symbol();
-
-  $("tokenInfo").textContent=symbol+" · "+decimals+" decimals";
-
- }catch(error){
-
-  decimals=18;
-  symbol="BTCB";
-
-  $("tokenInfo").textContent=
-   "BTCB · 18 decimals assumed (verify token contract)";
-
- }
-}
-
-async function loadEvents(latestBlock){
-
- const events=[
-  ["Registration","registrations"],
-  ["Upgrade","upgrades"],
-  ["Reinvest","reinvests"]
- ];
-
- const iface=new ethers.Interface(ABI);
-
- const fromBlock=Math.max(0,latestBlock-19999);
-
- let allEvents=[];
-
- for(const [eventName,elementId] of events){
-
+  setText("investment",Number(ethers.formatUnits(investmentRaw,tokenInfo.decimals)).toLocaleString("en-IN",{maximumFractionDigits:6})+" "+tokenInfo.symbol);
   try{
+   const reserveRaw=await tokenContract.balanceOf(CONTRACT_ADDRESS);
+   setText("reserve",Number(ethers.formatUnits(reserveRaw,tokenInfo.decimals)).toLocaleString("en-IN",{maximumFractionDigits:6})+" "+tokenInfo.symbol);
+  }catch(e){setText("reserve","Unavailable");}
 
-   const topic=iface.getEvent(eventName).topicHash;
+  showStatus("Reading Registration events for the last 24 hours...");
+  const growth=await get24HourRegistrations();
+  setText("growth24",growth===null?"Unavailable":fmt(growth));
 
-   const logs=await provider.getLogs({
-    address:ADDRESS,
-    fromBlock:fromBlock,
-    toBlock:latestBlock,
-    topics:[topic]
-   });
+  showStatus("Scanning active slots for registered members. Please keep this page open...");
+  await scanSlots(latestMemberId);
 
-   $(elementId).textContent=formatNumber(logs.length);
-
-   logs.slice(-10).forEach(log=>{
-
-    const parsed=iface.parseLog(log);
-
-    allEvents.push({
-     name:eventName,
-     block:log.blockNumber,
-     args:Array.from(parsed.args).map(x=>String(x))
-    });
-
-   });
-
-  }catch(error){
-
-   $(elementId).textContent="Unavailable";
-
-  }
-
- }
-
- allEvents.sort((a,b)=>b.block-a.block);
-
- if(!allEvents.length){
-
-  $("activity").innerHTML=
-   '<div class="small">No events found in scanned range, or RPC log access is unavailable.</div>';
-
-  return;
-
- }
-
- $("activity").innerHTML=allEvents.slice(0,20).map(event=>`
-
-  <div class="activity-item">
-   <b>${event.name}</b><br>
-   Block: ${event.block}<br>
-   <span class="small">${event.args.join(" · ")}</span>
-  </div>
-
- `).join("");
-
-}
-
-async function refreshDashboard(){
-
- if(busy)return;
-
- busy=true;
- $("refreshBtn").disabled=true;
-
- setStatus("Connecting to BNB Smart Chain...");
-
- try{
-
-  if(!provider){
-   await connectBlockchain();
-  }
-
-  await loadToken();
-
-  const [lastId,totalInvestment,blockNumber]=
-   await Promise.all([
-
-    contract.lastUserId(),
-
-    contract.totalProjectInvestment(),
-
-    provider.getBlockNumber()
-
-   ]);
-
-  $("lastId").textContent=formatNumber(lastId);
-
-  $("investment").textContent=
-   Number(
-    ethers.formatUnits(totalInvestment,decimals)
-   ).toLocaleString("en-IN",{
-    maximumFractionDigits:4
-   });
-
-  $("block").textContent=formatNumber(blockNumber);
-
-  await loadEvents(blockNumber);
-
-  setStatus("● CONNECTED · BNB SMART CHAIN · READ ONLY");
-
-  $("lastUpdated").textContent=
-   "Last Updated: "+new Date().toLocaleString();
-
- }catch(error){
-
-  setStatus("Connection Error: "+errorMessage(error));
-
-  $("lastUpdated").textContent=
-   "Please check internet connection and try again.";
-
+  setText("updated",new Date().toLocaleString());
+  showStatus("Connected · BNB Smart Chain · Data refreshed successfully.");
+ }catch(e){
+  console.error(e);
+  showStatus("Connection or read error: "+(e.shortMessage||e.message||"Unknown error"));
  }finally{
-
-  busy=false;
-  $("refreshBtn").disabled=false;
-
+  btn.disabled=false;
  }
-
 }
 
 async function searchMember(){
-
- const raw=$("userId").value.trim();
-
- if(!/^[1-9][0-9]*$/.test(raw)){
-
-  $("memberResult").textContent="Please enter a valid User ID.";
-
-  return;
- }
-
- $("memberResult").textContent="Searching blockchain...";
-
+ const id=Number(el("searchId").value);
+ const out=el("memberResult");
+ if(!id||id<1){out.textContent="Please enter a valid Member ID.";return}
+ out.textContent="Searching on blockchain...";
  try{
-
-  if(!contract){
-   await connectBlockchain();
-  }
-
-  const id=BigInt(raw);
-
-  const details=await contract.getUserDetails(id);
-
-  const address=details[0];
-
-  if(
-   address==="0x0000000000000000000000000000000000000000"
-  ){
-
-   $("memberResult").textContent=
-    "No member found for this User ID.";
-
-   return;
-  }
-
-  let activeLevels="Unavailable";
-
-  try{
-
-   activeLevels=String(
-    await contract.getActiveLevelsCount(address)
-   );
-
-  }catch(error){}
-
-  $("memberResult").innerHTML=`
-
-   <b>User ID:</b> ${formatNumber(id)}<br>
-
-   <b>Wallet Address:</b> ${shortAddress(address)}<br>
-
-   <b>Referrer ID:</b> ${formatNumber(details[2])}<br>
-
-   <b>Direct Partners:</b> ${formatNumber(details[3])}<br>
-
-   <b>Active Levels:</b> ${activeLevels}<br>
-
-   <b>Team Size:</b> ${formatNumber(details[5])}<br>
-
-   <b>Registration Timestamp:</b>
-   ${Number(details[6])?
-    new Date(Number(details[6])*1000).toLocaleString():
-    "Unavailable"}<br>
-
-   <b>Total Income (raw units):</b>
-   ${formatNumber(details[7])}<br>
-
-   <a href="https://bscscan.com/address/${address}"
-      target="_blank" rel="noopener">
-      View Wallet on BscScan ↗
-   </a>
-
-  `;
-
- }catch(error){
-
-  $("memberResult").textContent=
-   "Member lookup error: "+errorMessage(error);
-
+  if(!contract)await connect();
+  const d=await contract.getUserDetails(id);
+  const date=new Date(Number(d.registrationTimestamp)*1000).toLocaleString();
+  const income=ethers.formatUnits(d.totalIncome,18);
+  out.innerHTML=`
+   <p><b class="gold">MEMBER ID:</b> ${id}</p>
+   <p><b>Wallet:</b> ${d.userAddress}</p>
+   <p><b>Referrer ID:</b> ${fmt(d.referrerId)}</p>
+   <p><b>Referrer Wallet:</b> ${d.referrerAddress}</p>
+   <p><b>Direct Partners:</b> ${fmt(d.partnersCount)}</p>
+   <p><b>Active Slots:</b> ${fmt(d.activeSlotsCount)} / 12</p>
+   <p><b>Team Size:</b> ${fmt(d.teamSize)}</p>
+   <p><b>Registration:</b> ${date}</p>
+   <p><b>Total Income:</b> ${Number(income).toLocaleString("en-IN",{maximumFractionDigits:6})} BTCB</p>`;
+  el("matrixId").value=id;
+ }catch(e){
+  out.textContent="Member not found or contract read failed: "+(e.shortMessage||e.message);
  }
-
 }
 
-$("refreshBtn").addEventListener(
- "click",refreshDashboard
-);
-
-$("lookupBtn").addEventListener(
- "click",searchMember
-);
-
-$("userId").addEventListener("keydown",event=>{
-
- if(event.key==="Enter"){
-  searchMember();
+async function loadMatrix(){
+ const id=Number(el("matrixId").value);
+ const level=Number(el("matrixLevel").value);
+ const out=el("matrixResult");
+ if(!id||id<1){out.textContent="Enter a valid Member ID.";return}
+ out.textContent="Loading matrix...";
+ try{
+  if(!contract)await connect();
+  const d=await contract.getUserDetails(id);
+  const address=d.userAddress;
+  const [matrix,referrals]=await Promise.all([
+   contract.usersXMatrix(address,level),
+   contract.usersXMatrixReferrals(address,level)
+  ]);
+  const spots=Array.from({length:14},(_,i)=>{
+   const member=referrals[i];
+   return `<tr><td>Spot ${i+1}</td><td>${member?shortAddr(member):"Empty"}</td></tr>`;
+  }).join("");
+  out.innerHTML=`
+   <p><b class="gold">MEMBER ID:</b> ${id} · SLOT ${level}</p>
+   <p><b>Current Referrer:</b> ${matrix.currentReferrer}</p>
+   <p><b>Reinvest Count:</b> ${fmt(matrix.reinvestCount)}</p>
+   <p><b>Held Token for Upgrade:</b> ${ethers.formatUnits(matrix.heldTokenForUpgrade,18)} BTCB</p>
+   <p><b>Spill Receiver Index:</b> ${fmt(matrix.lastSpillUnderReceiverIndex)}</p>
+   <p><b>Total Team Size in Matrix:</b> ${fmt(matrix.totalTeamSize)}</p>
+   <p><b>Matrix Total Earnings:</b> ${ethers.formatUnits(matrix.totalEarning,18)} BTCB</p>
+   <p><b>Current Matrix Referrals:</b> ${referrals.length} / 14</p>
+   <table><thead><tr><th>Matrix Position</th><th>Wallet Address</th></tr></thead><tbody>${spots}</tbody></table>`;
+ }catch(e){
+  out.textContent="Unable to load matrix: "+(e.shortMessage||e.message);
  }
+}
 
-});
+for(let i=1;i<=12;i++){
+ const option=document.createElement("option");
+ option.value=i;
+ option.textContent="Slot "+i;
+ el("matrixLevel").appendChild(option);
+}
 
-refreshDashboard();
-
-setInterval(refreshDashboard,60000);
-
+refreshAll();
+setInterval(()=>{
+ if(!document.hidden)refreshAll();
+},120000);
 </script>
-
 </body>
 </html>
