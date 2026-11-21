@@ -1,140 +1,321 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="hi">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#07132e">
-<meta name="description" content="GS Digital Academy — Create, Share, Connect and explore B-TITAN on BNB Smart Chain.">
+<meta name="description" content="GS Digital Academy - Your Digital World">
 <link rel="manifest" href="./manifest.json">
-<title>GS DIGITAL ACADEMY</title>
+<title>GS DIGITAL ACADEMY | Social Media Hub</title>
 <style>
-:root{--bg:#061126;--panel:#0d1d3b;--panel2:#12264b;--line:#263d67;--gold:#f3c969;--purple:#8d6bff;--blue:#4c9dff;--muted:#aab8d2;--white:#f7f9ff;--green:#48d597;--red:#ff7777}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% -10%,#29205b 0,transparent 35%),linear-gradient(160deg,#061126,#091a37 65%,#080f24);color:var(--white);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;min-height:100vh;padding-bottom:86px}
-header{position:sticky;top:0;z-index:20;background:#07132eec;backdrop-filter:blur(14px);border-bottom:1px solid #26395c;padding:12px 15px;display:flex;align-items:center;gap:12px}
-.logo{width:43px;height:43px;border-radius:13px;object-fit:contain;background:#fff;padding:4px}.brand{min-width:0}.brand b{display:block;letter-spacing:1.2px;font-size:15px}.brand small{color:var(--gold);font-size:11px;letter-spacing:2px}
-.install{margin-left:auto;border:1px solid var(--gold);color:var(--gold);background:transparent;border-radius:20px;padding:7px 11px;font-weight:700}
-main{max-width:900px;margin:auto;padding:16px}.screen{display:none}.screen.active{display:block}
-.hero{border:1px solid #344979;border-radius:23px;padding:24px 20px;background:linear-gradient(135deg,#122b56,#241b51 72%,#382553);position:relative;overflow:hidden}
-.hero:after{content:"";position:absolute;width:180px;height:180px;border:1px solid #ffffff20;border-radius:50%;right:-65px;top:-65px;box-shadow:0 0 0 24px #ffffff08,0 0 0 50px #ffffff05}
-.eyebrow{color:var(--gold);font-size:11px;letter-spacing:2px;font-weight:800}.hero h1{font-size:clamp(26px,7vw,39px);line-height:1.12;margin:8px 0}.hero p{color:#d6def2;max-width:550px;margin:8px 0 18px}.btn{border:0;border-radius:12px;padding:11px 15px;font-weight:800;background:linear-gradient(100deg,var(--gold),#ffe6a1);color:#1a2140;cursor:pointer}.btn.secondary{background:#1c3562;color:#fff;border:1px solid #3c5786}.btn.purple{background:linear-gradient(100deg,#7959e8,#a18bff);color:white}.btn.danger{background:#4b2537;color:#ffd5dd;border:1px solid #7c4057}
-.actions{display:flex;gap:9px;flex-wrap:wrap}.section-title{font-size:19px;margin:22px 0 10px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.tile,.card{background:linear-gradient(145deg,#102347,#0b1934);border:1px solid var(--line);border-radius:17px;padding:15px}.tile{cursor:pointer;text-align:left;color:var(--white)}.tile b{display:block;margin:5px 0}.tile small,.muted{color:var(--muted)}.tile .ico{font-size:23px}
-.card{margin:12px 0}.card h3{margin:0 0 10px}.field{width:100%;background:#07152e;color:white;border:1px solid #385078;border-radius:11px;padding:12px;font:inherit;outline:none}.field:focus{border-color:var(--gold)}textarea.field{min-height:135px;resize:vertical}label{display:block;color:#d9e3f8;font-size:13px;margin:10px 0 6px}
-.row{display:flex;gap:9px;flex-wrap:wrap;align-items:center}.row>*{flex:1}.row .btn{flex:0 0 auto}.platforms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.platform{display:flex;gap:8px;align-items:center;background:#0a1933;border:1px solid #30466d;border-radius:11px;padding:10px;font-size:13px}.platform input{accent-color:var(--gold)}
-nav{position:fixed;z-index:30;bottom:0;left:0;right:0;background:#07132ef5;border-top:1px solid #2a3c60;display:flex;justify-content:space-around;padding:8px 3px calc(8px + env(safe-area-inset-bottom));backdrop-filter:blur(12px)}
-nav button{background:none;border:0;color:#aebbd4;font-size:10px;display:flex;flex-direction:column;align-items:center;gap:2px;min-width:0;flex:1}nav button span{font-size:19px}nav button.active{color:var(--gold);font-weight:800}
-.statgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.stat{background:#091831;border:1px solid #2c426b;border-radius:13px;padding:12px}.stat small{display:block;color:var(--muted)}.stat strong{font-size:19px;color:var(--gold);overflow-wrap:anywhere}
-.listitem{padding:12px 0;border-bottom:1px solid #263b5e}.listitem:last-child{border:0}.pill{font-size:11px;border:1px solid #45618e;border-radius:20px;padding:3px 8px;color:#c8d8f5}
-iframe{width:100%;border:0;border-radius:14px;min-height:500px}.status{font-size:12px;color:var(--muted);margin-top:8px}.good{color:var(--green)}.bad{color:var(--red)}.partner{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid #263b5e;overflow-wrap:anywhere}
-.levels{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.level{border:1px solid #30466d;border-radius:10px;padding:9px;background:#091831;text-align:center}.level b{display:block;color:var(--gold)}.hidden{display:none!important}
-footer{text-align:center;color:#8394b4;font-size:11px;padding:20px}
-@media(min-width:650px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.platforms{grid-template-columns:repeat(3,minmax(0,1fr))}.statgrid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+:root{--bg:#050b1c;--navy:#081735;--blue:#087cff;--purple:#982aff;--gold:#ffd45b;--text:#f6f8ff;--muted:#aab9dc}
+*{box-sizing:border-box}
+body{margin:0;color:var(--text);background:radial-gradient(ellipse at 50% 0%,#1b3074,transparent 48%),linear-gradient(160deg,#030817,#081633 55%,#09091d);font-family:Arial,system-ui,sans-serif;min-height:100vh}
+button,input,textarea{font:inherit}button{cursor:pointer}
+.app{max-width:900px;margin:auto;padding:12px 12px 100px}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:15px}
+.brand{display:flex;align-items:center;gap:9px;min-width:0}
+.logo{width:48px;height:48px;object-fit:contain;border-radius:50%;border:2px solid var(--gold);background:#07112a}
+.brand-name{color:var(--gold);font-size:14px;font-weight:900}
+.brand-tag{color:#c6d5ff;font-size:9px;letter-spacing:1.5px;margin-top:4px}
+.header-actions{display:flex;align-items:center;gap:6px}
+.install-header{padding:10px 9px;border-radius:11px;border:1px solid #fff0a0;background:linear-gradient(120deg,#ffe985,#ffbd28);color:#11152a;font-size:12px;font-weight:900;white-space:nowrap}
+.icon-btn{width:39px;height:39px;border-radius:11px;background:#10234a;color:var(--gold);border:1px solid var(--gold);font-size:19px}
+.hero{padding:25px 19px;border:1px solid #338cff;border-radius:23px;background:radial-gradient(circle at 90% 0%,#982aff50,transparent 35%),linear-gradient(140deg,#10265a,#050b20 75%);box-shadow:0 0 24px #087cff25}
+.eyebrow{color:var(--gold);font-size:11px;font-weight:bold;letter-spacing:3px}
+.hero h1{font-size:clamp(25px,6vw,38px);line-height:1.15;margin:12px 0}
+.hero h1 span{color:var(--gold)}
+.hero p{color:#c4d1f5;font-size:13px;line-height:1.7;margin-bottom:0}
+.official-website{margin:13px 0}
+.official-btn{display:flex;align-items:center;gap:12px;padding:13px;border-radius:16px;text-decoration:none;color:white;border:1px solid var(--gold);background:linear-gradient(110deg,#102b60,#261454)}
+.website-icon{width:42px;height:42px;display:grid;place-items:center;border-radius:12px;font-size:23px;background:linear-gradient(135deg,#ffe985,#ffb51d)}
+.website-text{flex:1;display:flex;flex-direction:column;gap:4px}
+.website-text strong{color:var(--gold);font-size:12px}
+.website-text small{color:#d4e0ff;font-size:11px}
+.website-arrow{color:var(--gold);font-size:22px}
+.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:13px 0}
+.quick{padding:12px 3px;text-align:center;font-size:11px;background:#0c2045;border:1px solid #24539b;border-radius:13px}
+.quick span{display:block;font-size:22px;margin-bottom:6px}
+.section{margin-top:14px;padding:15px;background:rgba(8,23,53,.96);border:1px solid #236cc5;border-radius:20px}
+.section-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:13px}
+.section-title{font-size:16px;font-weight:850}
+.small{font-size:11px;color:var(--muted);line-height:1.6}
+textarea,input[type="text"],input[type="url"]{width:100%;padding:13px;border-radius:12px;border:1px solid #b7c7e9;background:#f5f7ff;color:#17213c}
+textarea{min-height:140px;resize:vertical;line-height:1.6}
+.counter{text-align:right;color:var(--muted);font-size:11px;margin-top:6px}
+.btn{border:1px solid #318aff;color:white;background:linear-gradient(135deg,#1268ee,#1645a9);border-radius:11px;padding:11px 13px;font-size:12px;font-weight:750}
+.btn.gold{color:#171000;border-color:#fff0a0;background:linear-gradient(120deg,#ffe985,#ffbd28)}
+.btn.purple{background:linear-gradient(120deg,#bd35ff,#6d24e8)}
+.btn.ghost{background:#0a1a39;border-color:#344b76}
+.btn.danger{background:#592239;border-color:#aa4e70}
+.action-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:11px}
+.action-row .btn{flex:1}
+.file-label{display:flex;flex:1;min-width:100px;align-items:center;justify-content:center;padding:12px 7px;border:1px solid #377fff;border-radius:12px;background:#0d2450;font-size:12px;font-weight:bold;cursor:pointer}
+.file-label input{display:none}
+.preview{display:none;max-width:100%;max-height:280px;margin-top:12px;border-radius:12px;background:#000}
+.platform-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.platform{position:relative;min-width:0;min-height:108px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:12px 4px;border:1px solid #1768ca;border-radius:14px;background:linear-gradient(145deg,#102653,#061128);color:#fff;text-align:center}
+.platform.selected{border:2px solid var(--gold);background:linear-gradient(145deg,#3c2a11,#101b3c)}
+.platform input{position:absolute;top:7px;right:7px;accent-color:#ffd45b;width:16px;height:16px}
+.platform-icon{width:40px;height:40px;display:grid;place-items:center;border-radius:50%;background:#1268f6;font-size:22px}
+.platform[data-color="green"] .platform-icon{background:#05a966}
+.platform[data-color="purple"] .platform-icon{background:#a329f4}
+.platform[data-color="red"] .platform-icon{background:#ed263e}
+.platform strong{font-size:11px;overflow-wrap:anywhere}
+.platform small{color:#b9c9eb;font-size:10px}
+.post-main{width:100%;margin-top:14px;padding:16px;font-size:17px;font-weight:900;color:#171000;border:1px solid #fff0a0;border-radius:14px;background:linear-gradient(110deg,#ffdc69,#fff0a3,#f8b925)}
+.status{margin-top:12px;padding:11px;border-radius:11px;border:1px solid #334a78;background:#07142c;color:#d9e4ff;font-size:12px;line-height:1.7;overflow-wrap:anywhere;white-space:pre-wrap}
+.status:empty{display:none}
+.feature-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
+.feature{padding:14px;text-align:left;color:white;background:#0a1b3c;border:1px solid #254c8c;border-radius:13px}
+.feature b{display:block;font-size:13px;margin-bottom:6px}
+.feature span{font-size:11px;color:#aebfe2}
+.view{display:none}.view.active{display:block}
+.field-label{display:block;margin:13px 0 6px;font-size:12px;font-weight:bold}
+.history-item{padding:12px 0;border-bottom:1px solid #253a61;overflow-wrap:anywhere}
+.history-item p{font-size:12px;line-height:1.6;color:#d3def7}
+.history-item time{font-size:10px;color:#91a6d5}
+.empty{text-align:center;color:var(--muted);padding:20px;font-size:12px}
+.stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.stat{padding:15px;background:#0b2046;border:1px solid #2858a0;border-radius:14px}
+.stat strong{display:block;font-size:25px;color:var(--gold)}
+.stat span{color:#bdcbea;font-size:11px}
+.bottom-nav{position:fixed;z-index:20;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,900px);padding:8px 4px calc(8px + env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(7,minmax(0,1fr));background:rgba(3,10,28,.97);border-top:1px solid #287bff}
+.nav-item{border:0;border-radius:11px;background:transparent;color:#a9bce4;font-size:10px;padding:7px 1px}
+.nav-icon{display:block;font-size:20px;margin-bottom:4px}
+.nav-item.active{color:var(--gold);background:#152346}
+footer{text-align:center;color:#8094be;font-size:10px;margin-top:22px;line-height:1.8}
+.hidden{display:none!important}
+.btitan-frame{width:100%;height:calc(100vh - 190px);min-height:650px;border:1px solid #345078;border-radius:14px;background:#070b13}
+@media(min-width:600px){.app{padding:20px 20px 110px}.platform-grid{grid-template-columns:repeat(5,minmax(0,1fr))}.hero{padding:35px}.brand-name{font-size:20px}}
+@media(max-width:350px){.platform-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.section{padding:11px}.install-header{padding:9px 7px;font-size:11px}.brand-name{font-size:12px}.nav-item{font-size:9px}}
 </style>
-<script src="https://cdn.jsdelivr.net/npm/ethers@6.13.5/dist/ethers.umd.min.js"></script>
 </head>
 <body>
-<header>
-<img class="logo" src="./logo.png" alt="GSDA" onerror="this.style.display='none'">
-<div class="brand"><b>GS DIGITAL ACADEMY</b><small>YOUR DIGITAL WORLD</small></div>
-<button class="install" id="installBtn" hidden>＋ Install</button>
+<div class="app">
+<header class="topbar">
+<div class="brand">
+<img class="logo" src="./logo.png" alt="GS Digital Academy Logo" onerror="this.style.display='none'">
+<div><div class="brand-name">GS DIGITAL ACADEMY</div><div class="brand-tag">YOUR DIGITAL WORLD</div></div>
+</div>
+<div class="header-actions">
+<button class="install-header" id="headerInstallBtn" type="button">📲 Install</button>
+<button class="icon-btn" id="settingsTop" type="button" aria-label="Settings">⚙</button>
+</div>
 </header>
 <main>
-<section id="home" class="screen active">
-<div class="hero"><div class="eyebrow">LEARN • CONNECT • PROMOTE</div><h1>Build Your Digital World.</h1><p>Understand. Decide. Build Your Future. Create meaningful content, share it with your network and explore blockchain information from one place.</p><div class="actions"><button class="btn" onclick="go('create')">Create Content</button><button class="btn secondary" onclick="go('btitan')">B-TITAN Dashboard</button></div></div>
-<h2 class="section-title">Your Academy</h2><div class="grid">
-<button class="tile" onclick="go('create')"><div class="ico">✍️</div><b>Create & Share</b><small>Prepare a message and share manually</small></button>
-<button class="tile" onclick="go('history')"><div class="ico">🕘</div><b>History</b><small>Review your recorded activity</small></button>
-<button class="tile" onclick="go('analytics')"><div class="ico">📊</div><b>Analytics</b><small>View your local activity summary</small></button>
-<button class="tile" onclick="go('saved')"><div class="ico">🔖</div><b>Saved Content</b><small>Keep useful messages</small></button>
-<button class="tile" onclick="go('profile')"><div class="ico">👤</div><b>Profile</b><small>Your name and social links</small></button>
-<button class="tile" onclick="go('blockchain')"><div class="ico">🔗</div><b>Blockchain ID</b><small>Open your blockchain ID page</small></button>
+<div class="view active" id="view-home">
+<section class="hero">
+<div class="eyebrow">YOUR DIGITAL WORLD</div>
+<h1>SHARE. GROW.<br><span>CONNECT TOGETHER.</span></h1>
+<p>Create promotional messages, choose social media destinations and share content from one convenient dashboard.</p>
+</section>
+<div class="official-website">
+<a class="official-btn" href="https://tinyurl.com/GSdigitalacademy" target="_blank" rel="noopener noreferrer">
+<span class="website-icon">🌐</span><span class="website-text"><strong>OFFICIAL WEBSITE</strong><small>Visit GS Digital Academy ↗</small></span><span class="website-arrow">➜</span>
+</a>
 </div>
-<div class="card"><h3>Official GS Digital Academy</h3><p class="muted">Visit the official academy website for updates and information.</p><a class="btn" href="https://tinyurl.com/GSdigitalacademy" target="_blank" rel="noopener">Open Official Website ↗</a></div>
-</section>
-
-<section id="create" class="screen">
-<h2 class="section-title">Create & Share</h2><div class="card">
-<label for="message">Your message</label><textarea id="message" class="field" maxlength="2000" placeholder="Write your promotional or informative message here..."></textarea><div class="row" style="margin-top:8px"><button class="btn secondary" onclick="pasteText()">Paste</button><button class="btn secondary" onclick="copyText()">Copy</button><button class="btn danger" onclick="clearText()">Clear</button><small id="count" class="muted">0/2000</small></div>
-<label for="media">Choose photo or video (optional)</label><input id="media" class="field" type="file" accept="image/*,video/*"><div id="preview" class="muted"></div>
-<h3 style="margin-top:18px">Choose platform</h3><div class="platforms">
-<label class="platform"><input type="checkbox" value="fbProfile"> Facebook Profile</label><label class="platform"><input type="checkbox" value="fbPage"> Facebook Page</label><label class="platform"><input type="checkbox" value="fbGroup"> Facebook Group</label><label class="platform"><input type="checkbox" value="waGroup"> WhatsApp Group</label><label class="platform"><input type="checkbox" value="waCommunity"> WhatsApp Community</label><label class="platform"><input type="checkbox" value="instagram"> Instagram</label><label class="platform"><input type="checkbox" value="tgGroup"> Telegram Group</label><label class="platform"><input type="checkbox" value="tgChannel"> Telegram Channel</label><label class="platform"><input type="checkbox" value="youtube"> YouTube</label></div>
-<div class="actions" style="margin-top:15px"><button class="btn" onclick="shareSelected()">Open Selected Platforms</button><button class="btn secondary" onclick="saveCurrent()">Save Message</button></div><p class="status">Note: This app opens the selected platform. You must review and complete publishing inside that platform. It does not auto-post.</p></div>
-</section>
-
-<section id="history" class="screen"><h2 class="section-title">History</h2><div class="card" id="historyList"><p class="muted">No activity recorded yet.</p></div></section>
-<section id="analytics" class="screen"><h2 class="section-title">Analytics</h2><div class="statgrid" id="analyticsStats"></div><div class="card"><p class="muted">These are records stored on this device only. They are not verified social-media reach, views, or downloads.</p></div></section>
-<section id="saved" class="screen"><h2 class="section-title">Saved Content</h2><div class="card" id="savedList"><p class="muted">No saved messages yet.</p></div></section>
-<section id="profile" class="screen"><h2 class="section-title">My Profile</h2><div class="card"><label>Your display name</label><input id="profileName" class="field" placeholder="Enter your name"><h3 style="margin-top:18px">Your social links</h3><div id="profileLinks"></div><button class="btn" style="margin-top:14px" onclick="saveProfile()">Save Profile</button><p class="status">Never enter social-media passwords, private keys or recovery phrases here.</p></div></section>
-<section id="blockchain" class="screen"><h2 class="section-title">Blockchain ID</h2><div class="card"><p class="muted">Open the separate Blockchain ID page if it is present in your project files.</p><a class="btn" href="./blockchain-id.html">Open Blockchain ID ↗</a></div></section>
-
-<section id="btitan" class="screen">
-<h2 class="section-title">B-TITAN Live Explorer</h2>
-<div class="card"><div class="row"><div><span class="pill">BNB SMART CHAIN MAINNET</span><h3 style="margin:8px 0 2px">On-chain Project Dashboard</h3></div><button class="btn secondary" onclick="refreshChain()">↻ Refresh</button></div>
-<div class="status" id="chainStatus">Connecting to BNB Smart Chain…</div>
-<div class="statgrid" style="margin-top:13px">
-<div class="stat"><small>Last User ID</small><strong id="lastId">—</strong></div><div class="stat"><small>Registered IDs*</small><strong id="userCount">—</strong></div><div class="stat"><small>Project Investment*</small><strong id="investment">—</strong></div><div class="stat"><small>Partner Setup</small><strong id="setup">—</strong></div>
-</div><p class="status">*Registered IDs is calculated as lastUserId minus one, based on sequential IDs. Project investment is the contract's reported totalProjectInvestment value, not a wallet or pool balance.</p>
+<div class="quick-grid">
+<div class="quick"><span>✍️</span>Create</div><div class="quick"><span>🖼️</span>Add Media</div><div class="quick"><span>☑️</span>Select</div><div class="quick"><span>🚀</span>Share</div>
 </div>
-<div class="card"><h3>Find User Details</h3><label>User ID</label><div class="row"><input id="userIdInput" class="field" type="number" min="1" placeholder="Enter B-TITAN User ID"><button class="btn" onclick="lookupUser()">Search</button></div><div id="userResult" class="status">Enter a user ID to view contract details.</div></div>
-<div class="card"><h3>Connect Wallet (optional)</h3><p class="muted">Connect to check whether the connected address exists in the contract. This does not request a transaction.</p><button class="btn secondary" onclick="connectWallet()">Connect Wallet</button><div id="walletResult" class="status">No wallet connected.</div></div>
-<div class="card"><h3>Contract Information</h3><p class="muted">Contract address</p><div style="overflow-wrap:anywhere;font-weight:700">0xD6759d47Fccdef7b8E318479cEC4D128366f2a44</div><a href="https://bscscan.com/address/0xD6759d47Fccdef7b8E318479cEC4D128366f2a44#code" target="_blank" rel="noopener">View contract on BscScan ↗</a></div>
+<section class="section" id="studio">
+<div class="section-head"><div class="section-title">✍️ Create Your Message</div><button class="btn gold" id="pasteBtn">📋 Paste</button></div>
+<textarea id="message" maxlength="2000" placeholder="Write or paste your promotional message here..."></textarea>
+<div class="counter"><span id="charCount">0</span>/2000 characters</div>
+<div class="action-row"><button class="btn" id="copyBtn">📄 Copy Message</button><button class="btn purple" id="clearBtn">✕ Clear</button></div>
+<div class="section-head" style="margin-top:20px"><div class="section-title">📸 Add Photo / Video</div></div>
+<div class="action-row">
+<label class="file-label">🖼️ Choose Photo<input id="photoInput" type="file" accept="image/*"></label>
+<label class="file-label">🎥 Choose Video<input id="videoInput" type="file" accept="video/*"></label>
+<button class="btn danger" id="removeMedia" type="button">Remove</button>
+</div>
+<img class="preview" id="imagePreview" alt="Image preview">
+<video class="preview" id="videoPreview" controls playsinline></video>
+<div class="small" id="mediaInfo"></div>
+<div class="section-head" style="margin-top:20px"><div class="section-title">🌐 Select Platforms</div><button class="btn ghost" id="selectAllBtn">☑ Select All</button></div>
+<div class="platform-grid" id="platformGrid"></div>
+<button class="post-main" id="postBtn">🚀 SHARE / POST NOW</button>
+<div class="action-row hidden" id="shareActions"></div>
+<div class="status" id="shareStatus"></div>
 </section>
+<section class="section"><div class="section-title">⚡ App Features</div><div class="feature-grid">
+<button class="feature" data-view="history"><b>📋 Post History</b><span>Recent sharing activity</span></button>
+<button class="feature" data-view="analytics"><b>📊 Analytics</b><span>Activity summary</span></button>
+<button class="feature" data-view="saved"><b>🔖 Saved Content</b><span>Save your messages</span></button>
+<button class="feature" data-view="profile"><b>👤 Profile</b><span>Manage your social links</span></button>
+<button class="feature" data-view="wallet-link"><b>🆔 Blockchain ID</b><span>Connect wallet and find your on-chain ID</span></button>
+<button class="feature" data-view="btitan"><b>₿ B-TITAN Explorer</b><span>Live Team & Slot Dashboard</span></button>
+</div></section>
+</div>
+
+<div class="view" id="view-history"><section class="section"><div class="section-head"><div class="section-title">📋 Post History</div><button class="btn ghost" id="clearHistoryBtn">Clear History</button></div><p class="small">यह browser activity का रिकॉर्ड है, प्रकाशित पोस्ट की पुष्टि नहीं।</p><div id="historyList"></div></section></div>
+
+<div class="view" id="view-analytics">
+<section class="section"><div class="section-title" style="margin-bottom:15px">📊 Activity Dashboard</div><div class="stat-grid">
+<div class="stat"><strong id="totalActions">0</strong><span>Recorded actions</span></div><div class="stat"><strong id="savedCount">0</strong><span>Saved messages</span></div><div class="stat"><strong id="platformCount">0</strong><span>Configured links</span></div><div class="stat"><strong id="mediaCount">0</strong><span>Media selected now</span></div></div><p class="small" style="margin-top:15px">ये local आँकड़े हैं, social reach या confirmed published posts नहीं।</p></section>
+</div>
+
+<div class="view" id="view-saved"><section class="section"><div class="section-head"><div class="section-title">🔖 Saved Content</div><button class="btn gold" id="saveMessageBtn">＋ Save Current</button></div><div id="savedList"></div></section></div>
+
+<div class="view" id="view-profile">
+<section class="section"><div class="section-title">👤 Profile & Social Links</div><p class="small">अपने links जोड़ें। सेटिंग्स इसी browser में सेव होंगी।</p>
+<label class="field-label" for="displayName">Display Name</label><input type="text" id="displayName" placeholder="Your name"><div id="profileFields"></div>
+<div class="action-row"><button class="btn gold" id="saveProfileBtn">Save Profile</button><button class="btn ghost" id="exportProfileBtn">Export Settings</button></div><div id="profileStatus" class="status"></div></section>
+<section class="section"><div class="section-title">🔐 Posting & Privacy</div><p class="small">इस page में social passwords या API secrets न डालें। यह app platform खोलता है; Post/Send आपको खुद करना होगा।</p><button class="btn ghost" id="installProfileBtn" style="width:100%;margin-top:10px">📲 Install App</button></section>
+</div>
+
+<div class="view" id="view-btitan">
+<section class="section">
+<div class="section-head"><div class="section-title">₿ B-TITAN Ultimate Explorer</div><button class="btn gold" id="btitanHomeBtn">← Home</button></div>
+<p class="small">BNB Smart Chain पर Read-only Team और Slot Dashboard.</p>
+<iframe class="btitan-frame" src="./btitan.html" title="B-TITAN Explorer" loading="lazy"></iframe>
+</section>
+</div>
 </main>
-<footer>GS DIGITAL ACADEMY · Create · Share · Connect</footer>
-<nav>
-<button class="active" data-screen="home" onclick="go('home')"><span>⌂</span>Home</button>
-<button data-screen="history" onclick="go('history')"><span>◷</span>History</button>
-<button data-screen="create" onclick="go('create')"><span>＋</span>Create</button>
-<button data-screen="analytics" onclick="go('analytics')"><span>▥</span>Analytics</button>
-<button data-screen="profile" onclick="go('profile')"><span>♙</span>Profile</button>
-<button data-screen="blockchain" onclick="go('blockchain')"><span>⌁</span>ID</button>
-<button data-screen="btitan" onclick="go('btitan')"><span>◆</span>B-TITAN</button>
-</nav>
-<script>
-const $=id=>document.getElementById(id);
-const KEY={profile:'gsda_profile_v5',history:'gsda_history_v1',saved:'gsda_saved_v1'};
-let mediaUrl='',installPrompt=null,provider=null,contract=null;
-const platforms={fbProfile:'https://www.facebook.com/',fbPage:'https://www.facebook.com/pages/',fbGroup:'https://www.facebook.com/groups/',waGroup:'https://web.whatsapp.com/',waCommunity:'https://www.whatsapp.com/',instagram:'https://www.instagram.com/',tgGroup:'https://t.me/',tgChannel:'https://t.me/',youtube:'https://www.youtube.com/'};
-function getStore(k,fallback){try{return JSON.parse(localStorage.getItem(k))??fallback}catch{return fallback}}
-function setStore(k,v){localStorage.setItem(k,JSON.stringify(v))}
-function go(id){document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('active',s.id===id));document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.screen===id));window.scrollTo({top:0,behavior:'smooth'});if(id==='analytics')renderAnalytics();if(id==='history')renderHistory();if(id==='saved')renderSaved();if(id==='profile')renderProfile();if(id==='btitan')refreshChain()}
-function addHistory(action,message){let h=getStore(KEY.history,[]);h.unshift({action,message:(message||'').slice(0,180),time:new Date().toISOString()});setStore(KEY.history,h.slice(0,150));}
-$('message').addEventListener('input',()=>$('count').textContent=$('message').value.length+'/2000');
-$('media').addEventListener('change',e=>{if(mediaUrl)URL.revokeObjectURL(mediaUrl);const f=e.target.files[0];mediaUrl=f?URL.createObjectURL(f):'';$('preview').innerHTML=f?`<div class="listitem">${f.type.startsWith('image/')?`<img src="${mediaUrl}" style="max-width:100%;max-height:220px;border-radius:12px">`:`<video src="${mediaUrl}" controls style="max-width:100%;max-height:220px"></video>`}<div>${escapeHtml(f.name)}</div></div>`:''});
-function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-async function pasteText(){try{$('message').value=await navigator.clipboard.readText();$('message').dispatchEvent(new Event('input'))}catch{$('message').focus();alert('Clipboard permission is not available. Long-press and paste into the message box.')}} 
-async function copyText(){try{await navigator.clipboard.writeText($('message').value);alert('Message copied.')}catch{alert('Copy is not available on this browser.')}}function clearText(){$('message').value='';$('message').dispatchEvent(new Event('input'));$('media').value='';$('preview').innerHTML='';mediaUrl=''}
-function selected(){return [...document.querySelectorAll('.platform input:checked')].map(x=>x.value)}
-function shareSelected(){let msg=$('message').value.trim(),chosen=selected();if(!msg&&!mediaUrl){alert('Please write a message or choose media first.');return}if(!chosen.length){alert('Please select at least one platform.');return}addHistory('Share launcher opened',msg);let first=true;chosen.forEach(id=>{let url=platforms[id];if(id.startsWith('wa'))url='https://wa.me/?text='+encodeURIComponent(msg);else if(id.startsWith('tg'))url='https://t.me/share/url?url=&text='+encodeURIComponent(msg);else if(id==='youtube')url='https://www.youtube.com/upload';else if(id==='instagram')url='https://www.instagram.com/';else if(id.startsWith('fb'))url='https://www.facebook.com/';window.open(url,'_blank','noopener');first=false});}
-function saveCurrent(){let m=$('message').value.trim();if(!m){alert('Write a message first.');return}let a=getStore(KEY.saved,[]);a.unshift({message:m,time:new Date().toISOString()});setStore(KEY.saved,a.slice(0,100));addHistory('Message saved',m);alert('Message saved.');}
-function renderHistory(){let a=getStore(KEY.history,[]);$('historyList').innerHTML=a.length?a.map(x=>`<div class="listitem"><b>${escapeHtml(x.action)}</b><div>${escapeHtml(x.message||'')}</div><small class="muted">${new Date(x.time).toLocaleString()}</small></div>`).join(''):'<p class="muted">No activity recorded yet.</p>'}
-function renderSaved(){let a=getStore(KEY.saved,[]);$('savedList').innerHTML=a.length?a.map((x,i)=>`<div class="listitem"><div>${escapeHtml(x.message)}</div><small class="muted">${new Date(x.time).toLocaleString()}</small><div class="actions" style="margin-top:8px"><button class="btn secondary" onclick="useSaved(${i})">Use message</button><button class="btn danger" onclick="deleteSaved(${i})">Delete</button></div></div>`).join(''):'<p class="muted">No saved messages yet.</p>'}
-function useSaved(i){$('message').value=getStore(KEY.saved,[])[i].message;$('message').dispatchEvent(new Event('input'));go('create')}
-function deleteSaved(i){let a=getStore(KEY.saved,[]);a.splice(i,1);setStore(KEY.saved,a);renderSaved()}
-function renderAnalytics(){let h=getStore(KEY.history,[]),s=getStore(KEY.saved,[]),p=getStore(KEY.profile,{});$('analyticsStats').innerHTML=[['Recorded actions',h.length],['Saved messages',s.length],['Configured links',Object.values(p.links||{}).filter(Boolean).length],['Media selected now',$('media').files.length]].map(x=>`<div class="stat"><small>${x[0]}</small><strong>${x[1]}</strong></div>`).join('')}
-const linkNames=['Facebook','Instagram','WhatsApp','Telegram','YouTube'];
-function renderProfile(){let p=getStore(KEY.profile,{});$('profileName').value=p.name||'';$('profileLinks').innerHTML=linkNames.map(n=>`<label>${n} URL</label><input class="field profile-link" data-name="${n}" value="${escapeHtml((p.links||{})[n]||'')}" placeholder="https://...">`).join('')}
-function saveProfile(){let links={};document.querySelectorAll('.profile-link').forEach(x=>links[x.dataset.name]=x.value.trim());setStore(KEY.profile,{name:$('profileName').value.trim(),links});alert('Profile saved on this device.')}
-renderProfile();
+<footer>GS DIGITAL ACADEMY · YOUR DIGITAL WORLD<br>Create · Share · Connect</footer>
+</div>
 
-const CONTRACT_ADDRESS='0xD6759d47Fccdef7b8E318479cEC4D128366f2a44';
-const ABI=[
-'function lastUserId() view returns (uint256)',
-'function totalProjectInvestment() view returns (uint256)',
-'function partnersInitialized() view returns (bool)',
-'function isUserExists(address) view returns (bool)',
-'function getUserDetails(uint256) view returns (address userAddress,address referrerAddress,uint256 referrerId,uint256 partnersCount,uint256 activeSlotsCount,uint256 teamSize,uint256 registrationTimestamp,uint256 totalIncome)',
-'function getDirectPartnerAddresses(uint256) view returns (address[])',
-'function getDirectPartnerIds(uint256) view returns (uint256[])',
-'function getActiveLevelsCount(address) view returns (uint256)'
-];
-const RPCS=['https://bsc-rpc.publicnode.com','https://bsc-dataseed.binance.org/','https://binance.llamarpc.com'];
-async function connectReadOnly(){if(contract)return contract;if(!window.ethers)throw Error('Ethers library did not load. Check your internet connection.');let lastError;for(const rpc of RPCS){try{provider=new ethers.JsonRpcProvider(rpc);contract=new ethers.Contract(CONTRACT_ADDRESS,ABI,provider);await contract.lastUserId();return contract}catch(e){lastError=e;provider=null;contract=null}}throw lastError||Error('Could not connect to BNB Smart Chain RPC')}
-function fmtToken(v){try{return Number(ethers.formatEther(v)).toLocaleString('en-US',{maximumFractionDigits:4})+' BTCB'}catch{return String(v)}}
-async function refreshChain(){let s=$('chainStatus');s.textContent='Connecting to BNB Smart Chain…';s.className='status';try{let c=await connectReadOnly();let [last,invest,setup]=await Promise.all([c.lastUserId(),c.totalProjectInvestment(),c.partnersInitialized().catch(()=>null)]);$('lastId').textContent=last.toString();$('userCount').textContent=last>0n?(last-1n).toString():'0';$('investment').textContent=fmtToken(invest);$('setup').textContent=setup===null?'Not exposed':(setup?'Initialized':'Pending');s.textContent='Live read-only data loaded from BNB Smart Chain.';s.className='status good'}catch(e){s.textContent='Unable to load contract data: '+(e.shortMessage||e.message||e);s.className='status bad'}}
-async function lookupUser(){let id=$('userIdInput').value.trim(),out=$('userResult');if(!id||Number(id)<1){out.textContent='Please enter a valid user ID.';return}out.textContent='Loading user from contract…';try{let c=await connectReadOnly(),d=await c.getUserDetails(BigInt(id));let [ids,addresses]=await Promise.all([c.getDirectPartnerIds(BigInt(id)).catch(()=>[]),c.getDirectPartnerAddresses(BigInt(id)).catch(()=>[])]);let date=Number(d.registrationTimestamp)>0?new Date(Number(d.registrationTimestamp)*1000).toLocaleString():'Not available';out.innerHTML=`<div class="statgrid"><div class="stat"><small>User wallet</small><strong style="font-size:12px">${escapeHtml(d.userAddress)}</strong></div><div class="stat"><small>Referrer ID</small><strong>${d.referrerId}</strong></div><div class="stat"><small>Direct partners</small><strong>${d.partnersCount}</strong></div><div class="stat"><small>Active levels</small><strong>${d.activeSlotsCount}</strong></div><div class="stat"><small>Team size</small><strong>${d.teamSize}</strong></div><div class="stat"><small>Total income*</small><strong>${fmtToken(d.totalIncome)}</strong></div></div><p class="status">Registered: ${escapeHtml(date)}</p><h4>Direct Partners</h4>${ids.length?ids.map((x,i)=>`<div class="partner"><span>ID ${x}</span><small>${escapeHtml(addresses[i]||'')}</small></div>`).join(''):'<p class="muted">No direct partner IDs returned.</p>'}<p class="status">*Income is the contract's reported value; token denomination/withdrawable balance should be confirmed against the verified contract logic.</p>`}catch(e){out.textContent='Could not read this user. Check the ID and deployed contract ABI. '+(e.shortMessage||e.message||e)}}
-async function connectWallet(){let out=$('walletResult');if(!window.ethereum){out.textContent='No compatible wallet detected. Open this app in MetaMask or TokenPocket browser.';return}try{let web3=new ethers.BrowserProvider(window.ethereum);await web3.send('eth_requestAccounts',[]);let signer=await web3.getSigner(),addr=await signer.getAddress(),c=await connectReadOnly(),exists=await c.isUserExists(addr);out.innerHTML=`Connected: <b>${escapeHtml(addr)}</b><br>Registered in B-TITAN: <b class="${exists?'good':'bad'}">${exists?'Yes':'No'}</b>`}catch(e){out.textContent='Wallet connection cancelled or failed: '+(e.shortMessage||e.message||e)}}
-window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e;$('installBtn').hidden=false});
-$('installBtn').addEventListener('click',async()=>{if(!installPrompt)return;installPrompt.prompt();await installPrompt.userChoice;installPrompt=null;$('installBtn').hidden=true});
-if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}));
+<nav class="bottom-nav" aria-label="Main navigation">
+<button class="nav-item active" data-view="home"><span class="nav-icon">⌂</span>Home</button>
+<button class="nav-item" data-view="history"><span class="nav-icon">◷</span>History</button>
+<button class="nav-item" data-view="studio-nav"><span class="nav-icon">＋</span>Create</button>
+<button class="nav-item" data-view="analytics"><span class="nav-icon">▥</span>Analytics</button>
+<button class="nav-item" data-view="profile"><span class="nav-icon">♙</span>Profile</button>
+<button class="nav-item" data-view="wallet-link"><span class="nav-icon">🆔</span>Blockchain ID</button>
+<button class="nav-item" data-view="btitan"><span class="nav-icon">₿</span>B-TITAN</button>
+</nav>
+
+<script>
+"use strict";
+const $=id=>document.getElementById(id);
+const STORAGE={profile:"gsda_profile_v5",history:"gsda_history_v1",saved:"gsda_saved_v1"};
+const PLATFORMS=[
+{id:"fbProfile",name:"Facebook Profile",sub:"Profile",icon:"f",color:"blue"},{id:"fbPage",name:"Facebook Page",sub:"Page",icon:"⚑",color:"blue"},{id:"fbGroup",name:"Facebook Group",sub:"Group",icon:"👥",color:"blue"},{id:"waGroup",name:"WhatsApp Group",sub:"Group",icon:"◉",color:"green"},{id:"waCommunity",name:"WhatsApp Community",sub:"Community",icon:"👥",color:"green"},{id:"instagram",name:"Instagram",sub:"Account",icon:"◎",color:"purple"},{id:"tgGroup",name:"Telegram Group",sub:"Group",icon:"➤",color:"blue"},{id:"tgChannel",name:"Telegram Channel",sub:"Channel",icon:"➤",color:"blue"},{id:"youtube",name:"YouTube",sub:"Channel",icon:"▶",color:"red"}];
+const DEFAULT_PROFILE={displayName:"",links:{fbProfile:"",fbPage:"",fbGroup:"",waGroup:"",waCommunity:"",instagram:"",tgGroup:"",tgChannel:"",youtube:""}};
+function readJSON(k,f){try{const v=localStorage.getItem(k);return v?JSON.parse(v):f}catch(e){return f}}
+function writeJSON(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){alert("Browser storage unavailable or full.");return false}}
+let profile=readJSON(STORAGE.profile,DEFAULT_PROFILE),history=readJSON(STORAGE.history,[]),saved=readJSON(STORAGE.saved,[]);
+if(!profile.links)profile=JSON.parse(JSON.stringify(DEFAULT_PROFILE));
+let mediaFile=null,mediaURL=null,installPrompt=null,shareQueue=[],shareIndex=0;
+
+function renderPlatforms(){
+$("platformGrid").innerHTML=PLATFORMS.map(p=>`<label class="platform" data-platform="${p.id}" data-color="${p.color}"><input type="checkbox" value="${p.id}" aria-label="${p.name}"><span class="platform-icon">${p.icon}</span><strong>${p.name}</strong><small>${p.sub}</small></label>`).join("");
+$("platformGrid").querySelectorAll("input").forEach(i=>i.addEventListener("change",()=>{i.closest(".platform").classList.toggle("selected",i.checked);updateAnalytics()}));
+}
+function selectedPlatforms(){return [...$("platformGrid").querySelectorAll("input:checked")].map(i=>PLATFORMS.find(p=>p.id===i.value)).filter(Boolean)}
+function showStatus(s){$("shareStatus").textContent=s}
+function updateCounter(){$("charCount").textContent=$("message").value.length}
+function getMessage(){return $("message").value.trim()}
+function addHistory(action,message,destinations=[]){
+history=readJSON(STORAGE.history,[]);
+history.unshift({id:Date.now()+"-"+Math.random().toString(36).slice(2,7),action,message:(message||"").slice(0,350),destinations:destinations.map(p=>p.name||p),date:new Date().toISOString()});
+history=history.slice(0,100);writeJSON(STORAGE.history,history);renderHistory();updateAnalytics();
+}
+async function copyText(text){
+if(!text){showStatus("पहले message लिखें।");return false}
+try{await navigator.clipboard.writeText(text)}catch(e){const a=document.createElement("textarea");a.value=text;a.style.position="fixed";a.style.opacity="0";document.body.appendChild(a);a.select();const ok=document.execCommand("copy");a.remove();if(!ok){showStatus("Message manually copy करें।");return false}}
+showStatus("Message copied successfully.");addHistory("Copied message",text);return true;
+}
+$("copyBtn").addEventListener("click",()=>copyText(getMessage()));
+$("pasteBtn").addEventListener("click",async()=>{try{if(!navigator.clipboard?.readText)throw Error();const t=await navigator.clipboard.readText();if(t)$("message").value=t;updateCounter();showStatus(t?"Text pasted.":"Clipboard is empty.")}catch(e){$("message").focus();showStatus("Message box पर long-press करके Paste चुनें।")}});
+$("message").addEventListener("input",updateCounter);
+$("clearBtn").addEventListener("click",()=>{$("message").value="";updateCounter();showStatus("")});
+
+function clearMedia(){if(mediaURL)URL.revokeObjectURL(mediaURL);mediaURL=null;mediaFile=null;$("imagePreview").style.display="none";$("videoPreview").style.display="none";$("imagePreview").removeAttribute("src");$("videoPreview").removeAttribute("src");$("mediaInfo").textContent="";$("photoInput").value="";$("videoInput").value="";$("removeMedia").classList.add("hidden");updateAnalytics()}
+function acceptMedia(f){if(!f)return;if(f.size>25*1024*1024){alert("25 MB से छोटी file चुनें।");return}if(!f.type.startsWith("image/")&&!f.type.startsWith("video/")){alert("Image या video चुनें।");return}clearMedia();mediaFile=f;mediaURL=URL.createObjectURL(f);$("mediaInfo").textContent=f.name+" · "+(f.size/1048576).toFixed(2)+" MB";if(f.type.startsWith("image/")){$("imagePreview").src=mediaURL;$("imagePreview").style.display="block"}else{$("videoPreview").src=mediaURL;$("videoPreview").style.display="block"}$("removeMedia").classList.remove("hidden");updateAnalytics()}
+$("photoInput").addEventListener("change",e=>acceptMedia(e.target.files[0]));
+$("videoInput").addEventListener("change",e=>acceptMedia(e.target.files[0]));
+$("removeMedia").addEventListener("click",clearMedia);
+
+$("selectAllBtn").addEventListener("click",()=>{const inputs=[...$("platformGrid").querySelectorAll("input")],all=inputs.every(i=>i.checked);inputs.forEach(i=>{i.checked=!all;i.closest(".platform").classList.toggle("selected",!all)});$("selectAllBtn").textContent=all?"☑ Select All":"☐ Deselect All";updateAnalytics()});
+
+function validURL(v){if(!v)return"";try{const u=new URL(v);return["https:","http:"].includes(u.protocol)?u.href:""}catch(e){return""}}
+function destinationURL(id,message){
+const t=encodeURIComponent(message),link=validURL(profile.links[id]||"");
+switch(id){
+case"waGroup":case"waCommunity":return"https://wa.me/?text="+t;
+case"tgGroup":case"tgChannel":return"https://t.me/share/url?url="+encodeURIComponent(link||location.href)+"&text="+t;
+case"fbProfile":case"fbPage":case"fbGroup":return"https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(link||location.href)+"&quote="+t;
+case"instagram":return link||"https://www.instagram.com/";
+case"youtube":return link||"https://www.youtube.com/";
+default:return link;
+}}
+function renderShareActions(){
+const c=$("shareActions");c.innerHTML="";
+if(!shareQueue.length){c.classList.add("hidden");return}
+c.classList.remove("hidden");
+const p=shareQueue[shareIndex];
+const n=document.createElement("button");n.className="btn gold";n.textContent="Open "+p.name+" ("+(shareIndex+1)+"/"+shareQueue.length+")";n.addEventListener("click",openNextDestination);
+const f=document.createElement("button");f.className="btn ghost";f.textContent="Finish";f.addEventListener("click",()=>{shareQueue=[];shareIndex=0;renderShareActions();showStatus("Finished. संबंधित app में post/send खुद verify करें।")});
+c.append(n,f);
+}
+function openNextDestination(){
+if(shareIndex>=shareQueue.length){shareQueue=[];shareIndex=0;renderShareActions();showStatus("सभी चुने हुए platforms खोलने का प्रयास पूरा हुआ।");return}
+const p=shareQueue[shareIndex],url=destinationURL(p.id,getMessage());
+if(!url){showStatus(p.name+" का सही URL Profile में जोड़ें।");return}
+showStatus(p.name+" खोलने का प्रयास हो रहा है। वहाँ खुद पोस्ट/Send पूरा करें।");
+window.open(url,"_blank");addHistory("Opened platform manually",getMessage()||"[Media selected]",[p]);shareIndex++;
+if(shareIndex<shareQueue.length)renderShareActions();else{shareQueue=[];shareIndex=0;renderShareActions()}
+}
+$("postBtn").addEventListener("click",()=>{
+const m=getMessage(),targets=selectedPlatforms();
+if(!m&&!mediaFile){showStatus("पहले message लिखें या photo/video चुनें।");return}
+if(!targets.length){showStatus("पहले कम-से-कम एक platform चुनें।");return}
+shareQueue=targets;shareIndex=0;showStatus("नीचे Open बटन दबाएँ। कोई auto posting नहीं होगी।");renderShareActions();
+});
+
+function renderProfileFields(){
+$("displayName").value=profile.displayName||"";
+$("profileFields").innerHTML=PLATFORMS.map(p=>`<label class="field-label" for="link-${p.id}">${p.name} URL (optional)</label><input type="url" id="link-${p.id}" placeholder="https://...">`).join("");
+PLATFORMS.forEach(p=>{$("link-"+p.id).value=profile.links[p.id]||""});
+}
+$("saveProfileBtn").addEventListener("click",()=>{
+const links={};for(const p of PLATFORMS){const raw=$("link-"+p.id).value.trim();if(raw&&!validURL(raw)){$("profileStatus").textContent="कृपया "+p.name+" का सही URL डालें।";return}links[p.id]=raw?validURL(raw):""}
+profile={displayName:$("displayName").value.trim(),links};if(writeJSON(STORAGE.profile,profile)){$("profileStatus").textContent="Profile saved in this browser.";updateAnalytics()}
+});
+$("exportProfileBtn").addEventListener("click",()=>{const b=new Blob([JSON.stringify(profile,null,2)],{type:"application/json"}),u=URL.createObjectURL(b),a=document.createElement("a");a.href=u;a.download="gsda-profile-settings.json";a.click();setTimeout(()=>URL.revokeObjectURL(u),1000)});
+
+function escapeHTML(v){return String(v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function renderHistory(){
+history=readJSON(STORAGE.history,[]);if(!history.length){$("historyList").innerHTML='<div class="empty">अभी कोई activity नहीं है।</div>';return}
+$("historyList").innerHTML=history.map(i=>`<div class="history-item"><b>${escapeHTML(i.action)}</b><br><time>${escapeHTML(new Date(i.date).toLocaleString())}</time><p>${escapeHTML(i.message||"")}</p><div class="small">${escapeHTML((i.destinations||[]).join(", "))}</div></div>`).join("");
+}
+$("clearHistoryBtn").addEventListener("click",()=>{if(!confirm("Local history delete करें?"))return;history=[];writeJSON(STORAGE.history,history);renderHistory();updateAnalytics()});
+$("saveMessageBtn").addEventListener("click",()=>{const m=getMessage();if(!m){alert("पहले message लिखें।");return}saved=readJSON(STORAGE.saved,[]);saved.unshift({id:Date.now(),message:m,date:new Date().toISOString()});saved=saved.slice(0,100);writeJSON(STORAGE.saved,saved);renderSaved();updateAnalytics()});
+function renderSaved(){
+saved=readJSON(STORAGE.saved,[]);if(!saved.length){$("savedList").innerHTML='<div class="empty">अभी कोई saved message नहीं है।</div>';return}
+$("savedList").innerHTML=saved.map(i=>`<div class="history-item"><p>${escapeHTML(i.message)}</p><time>${escapeHTML(new Date(i.date).toLocaleString())}</time><div class="action-row"><button class="btn" data-use="${i.id}">Use Message</button><button class="btn ghost" data-copy="${i.id}">Copy</button><button class="btn danger" data-delete="${i.id}">Delete</button></div></div>`).join("");
+$("savedList").querySelectorAll("[data-use]").forEach(b=>b.addEventListener("click",()=>{const i=saved.find(x=>String(x.id)===b.dataset.use);if(!i)return;$("message").value=i.message;updateCounter();navigate("home");$("message").focus()}));
+$("savedList").querySelectorAll("[data-copy]").forEach(b=>b.addEventListener("click",()=>{const i=saved.find(x=>String(x.id)===b.dataset.copy);if(i)copyText(i.message)}));
+$("savedList").querySelectorAll("[data-delete]").forEach(b=>b.addEventListener("click",()=>{saved=saved.filter(x=>String(x.id)!==b.dataset.delete);writeJSON(STORAGE.saved,saved);renderSaved();updateAnalytics()}));
+}
+function updateAnalytics(){$("totalActions").textContent=readJSON(STORAGE.history,[]).length;$("savedCount").textContent=readJSON(STORAGE.saved,[]).length;$("platformCount").textContent=PLATFORMS.filter(p=>profile.links[p.id]).length;$("mediaCount").textContent=mediaFile?"1":"0"}
+
+function navigate(name){
+if(name==="studio-nav")name="home";
+document.querySelectorAll(".view").forEach(v=>v.classList.toggle("active",v.id==="view-"+name));
+document.querySelectorAll(".nav-item").forEach(b=>b.classList.toggle("active",b.dataset.view===name||(name==="home"&&b.dataset.view==="studio-nav")));
+if(name==="history")renderHistory();if(name==="saved")renderSaved();if(name==="analytics")updateAnalytics();if(name==="profile")renderProfileFields();
+window.scrollTo({top:0,behavior:"smooth"});
+}
+document.querySelectorAll("[data-view]").forEach(b=>b.addEventListener("click",()=>{
+if(b.dataset.view==="wallet-link"){window.location.href="./blockchain-id.html";}
+else{navigate(b.dataset.view)}
+}));
+$("settingsTop").addEventListener("click",()=>navigate("profile"));
+$("btitanHomeBtn").addEventListener("click",()=>navigate("home"));
+
+async function installGSApp(){
+if(installPrompt){installPrompt.prompt();const result=await installPrompt.userChoice;installPrompt=null;if(result.outcome==="accepted")alert("GS DIGITAL ACADEMY installation started.");return}
+alert("Install prompt अभी उपलब्ध नहीं है। Chrome के ⋮ मेनू में 'Install app' या 'Add to Home screen' चुनें।");
+}
+$("headerInstallBtn").addEventListener("click",installGSApp);
+$("installProfileBtn").addEventListener("click",installGSApp);
+window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();installPrompt=e});
+window.addEventListener("appinstalled",()=>{installPrompt=null});
+
+renderPlatforms();renderProfileFields();renderHistory();renderSaved();updateCounter();updateAnalytics();
+if("serviceWorker" in navigator&&location.protocol==="https:"){window.addEventListener("load",()=>navigator.serviceWorker.register("./service-worker.js").catch(e=>console.error("Service worker registration failed",e)))}
 </script>
-</body></html>
+</body>
+</html>
