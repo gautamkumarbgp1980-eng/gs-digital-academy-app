@@ -1,0 +1,615 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#07132e">
+<title>GS DIGITAL ACADEMY | B-TITAN LIVE COUNTER</title>
+
+<script src="https://cdn.jsdelivr.net/npm/ethers@6.13.5/dist/ethers.umd.min.js"></script>
+
+<style>
+:root{
+ --bg:#050b1c;
+ --navy:#081735;
+ --blue:#087cff;
+ --purple:#982aff;
+ --gold:#ffd45b;
+ --text:#f6f8ff;
+ --muted:#aab9dc;
+}
+*{box-sizing:border-box}
+body{
+ margin:0;
+ min-height:100vh;
+ color:var(--text);
+ background:radial-gradient(ellipse at 50% 0%,#1b3074,transparent 48%),
+ linear-gradient(160deg,#030817,#081633 55%,#09091d);
+ font-family:Arial,system-ui,sans-serif;
+}
+button,input{font:inherit}
+button{cursor:pointer}
+.app{max-width:950px;margin:auto;padding:14px 13px 35px}
+.topbar{
+ display:flex;align-items:center;justify-content:space-between;
+ gap:10px;margin-bottom:15px
+}
+.brand{display:flex;align-items:center;gap:10px}
+.logo{
+ width:45px;height:45px;object-fit:contain;
+ border:2px solid var(--gold);border-radius:50%;
+ background:#07112a
+}
+.brand-name{font-size:14px;font-weight:900;color:var(--gold)}
+.brand-tag{font-size:9px;letter-spacing:1.5px;color:#c6d5ff;margin-top:4px}
+.btn{
+ padding:11px 14px;border-radius:11px;
+ border:1px solid var(--gold);
+ background:linear-gradient(120deg,#ffe985,#ffbd28);
+ color:#171000;font-size:12px;font-weight:900
+}
+.btn.blue{background:linear-gradient(135deg,#1268ee,#1645a9);color:white;border-color:#318aff}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.hero{
+ padding:27px 17px;text-align:center;
+ border:1px solid #338cff;border-radius:23px;
+ background:radial-gradient(circle at 90% 0%,#982aff50,transparent 35%),
+ linear-gradient(140deg,#10265a,#050b20 75%);
+ box-shadow:0 0 24px #087cff25
+}
+.eyebrow{color:var(--gold);font-size:11px;font-weight:bold;letter-spacing:3px}
+.hero h1{font-size:clamp(24px,6vw,38px);line-height:1.2;margin:13px 0}
+.hero h1 span{color:var(--gold)}
+.hero p{color:#c4d1f5;font-size:12px;line-height:1.7}
+.status{
+ margin-top:12px;padding:12px;border-radius:11px;
+ border:1px solid #334a78;background:#07142c;
+ color:#d9e4ff;font-size:12px;line-height:1.7;
+ overflow-wrap:anywhere
+}
+.status:empty{display:none}
+.live-dot{color:#35e99a;font-weight:bold}
+.section{
+ margin-top:14px;padding:16px;
+ background:rgba(8,23,53,.96);
+ border:1px solid #236cc5;border-radius:20px
+}
+.section-head{
+ display:flex;align-items:center;justify-content:space-between;
+ flex-wrap:wrap;gap:10px;margin-bottom:13px
+}
+.section-title{font-size:15px;font-weight:900}
+.small{font-size:11px;color:var(--muted);line-height:1.7}
+.stat-grid{
+ display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:10px;margin-top:14px
+}
+.stat{
+ padding:16px 12px;background:linear-gradient(145deg,#102653,#061128);
+ border:1px solid #2858a0;border-radius:15px;min-width:0
+}
+.stat strong{
+ display:block;font-size:clamp(19px,5vw,27px);
+ color:var(--gold);margin:10px 0;overflow-wrap:anywhere
+}
+.stat span{color:#bdcbea;font-size:11px}
+.stat small{font-size:10px;color:#91a6d5}
+.field-label{display:block;margin:12px 0 6px;font-size:12px;font-weight:bold}
+input{
+ width:100%;padding:13px;border-radius:12px;
+ border:1px solid #b7c7e9;background:#f5f7ff;color:#17213c
+}
+.action-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.action-row button{flex:1}
+.result{
+ margin-top:12px;padding:12px;background:#07142c;
+ border:1px solid #344b76;border-radius:11px;
+ font-size:12px;line-height:1.9;overflow-wrap:anywhere
+}
+.activity-item{
+ padding:12px 0;border-bottom:1px solid #253a61;
+ font-size:12px;line-height:1.7;overflow-wrap:anywhere
+}
+.activity-item b{color:var(--gold)}
+a{color:var(--gold)}
+footer{
+ text-align:center;color:#8094be;font-size:10px;
+ margin-top:22px;line-height:1.8
+}
+@media(min-width:600px){
+ .app{padding:20px}
+ .stat-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .hero{padding:35px}
+ .brand-name{font-size:19px}
+}
+</style>
+</head>
+
+<body>
+<div class="app">
+
+<header class="topbar">
+ <div class="brand">
+  <img src="./logo.png" class="logo" alt="GSDA Logo"
+       onerror="this.style.display='none'">
+  <div>
+   <div class="brand-name">GS DIGITAL ACADEMY</div>
+   <div class="brand-tag">YOUR DIGITAL WORLD</div>
+  </div>
+ </div>
+ <button class="btn" onclick="location.href='./index.html'">← HOME</button>
+</header>
+
+<main>
+
+<section class="hero">
+ <div class="eyebrow">BLOCKCHAIN LIVE DASHBOARD</div>
+ <h1>₿ B-TITAN <span>LIVE COUNTER</span></h1>
+ <p>Real Blockchain Statistics · BNB Smart Chain · Read Only</p>
+ <div class="status" id="connection">
+  Connecting to BNB Smart Chain...
+ </div>
+ <p class="small" id="lastUpdated">Waiting for blockchain data...</p>
+</section>
+
+<section class="section">
+ <div class="section-head">
+  <div class="section-title">📊 LIVE STATISTICS</div>
+  <button class="btn blue" id="refreshBtn">↻ Refresh</button>
+ </div>
+
+ <div class="stat-grid">
+
+  <div class="stat">
+   <span>👥 TOTAL REGISTERED IDs</span>
+   <strong id="lastId">—</strong>
+   <small>Last User ID</small>
+  </div>
+
+  <div class="stat">
+   <span>💰 TOTAL PROJECT INVESTMENT</span>
+   <strong id="investment">—</strong>
+   <small id="tokenInfo">Reading token information...</small>
+  </div>
+
+  <div class="stat">
+   <span>🔗 BNB BLOCK NUMBER</span>
+   <strong id="block">—</strong>
+   <small>Latest confirmed block</small>
+  </div>
+
+  <div class="stat">
+   <span>📝 RECENT REGISTRATIONS</span>
+   <strong id="registrations">—</strong>
+   <small>Scanned block range</small>
+  </div>
+
+  <div class="stat">
+   <span>⬆️ RECENT UPGRADES</span>
+   <strong id="upgrades">—</strong>
+   <small>Scanned block range</small>
+  </div>
+
+  <div class="stat">
+   <span>🔄 RECENT REINVESTMENTS</span>
+   <strong id="reinvests">—</strong>
+   <small>Scanned block range</small>
+  </div>
+
+ </div>
+ <p class="small">
+  Event counts show only the recent scanned block range,
+  not lifetime totals.
+ </p>
+</section>
+
+<section class="section">
+ <div class="section-title">🔎 MEMBER ID EXPLORER</div>
+ <p class="small">Enter User ID to check on-chain member information.</p>
+
+ <label class="field-label" for="userId">B-TITAN USER ID</label>
+ <input id="userId" type="number" min="1" placeholder="Enter User ID">
+
+ <div class="action-row">
+  <button class="btn" id="lookupBtn">SEARCH MEMBER</button>
+ </div>
+
+ <div class="result" id="memberResult">
+  Member information will appear here.
+ </div>
+</section>
+
+<section class="section">
+ <div class="section-head">
+  <div class="section-title">⚡ BLOCKCHAIN ACTIVITY</div>
+  <span class="small">Recent Events</span>
+ </div>
+ <div id="activity">
+  <div class="small">Loading blockchain events...</div>
+ </div>
+</section>
+
+<section class="section">
+ <div class="section-title">🔐 SMART CONTRACT INFORMATION</div>
+ <p class="small">Network: BNB Smart Chain (Chain ID 56)</p>
+ <p class="small">Contract Name: BTitanXMatrix</p>
+ <p class="small">Mode: Read Only</p>
+ <p class="small" style="overflow-wrap:anywhere">
+  Contract Address:<br>
+  <b id="contractAddress"></b>
+ </p>
+ <a href="https://bscscan.com/address/0xD6759d47Fccdef7b8E318479cEC4D128366f2a44#code"
+    target="_blank" rel="noopener">
+  View Smart Contract on BscScan ↗
+ </a>
+</section>
+
+</main>
+
+<footer>
+ GS DIGITAL ACADEMY · YOUR DIGITAL WORLD<br>
+ CREATE · SHARE · CONNECT
+</footer>
+
+</div>
+
+<script>
+"use strict";
+
+const ADDRESS="0xD6759d47Fccdef7b8E318479cEC4D128366f2a44";
+
+const RPCS=[
+ "https://bsc-dataseed.binance.org/",
+ "https://bsc-dataseed1.defibit.io/",
+ "https://bsc-dataseed1.ninicoin.io/"
+];
+
+const ABI=[
+ "function lastUserId() view returns(uint256)",
+ "function totalProjectInvestment() view returns(uint256)",
+ "function BTCB_TOKEN_ADDRESS() view returns(address)",
+ "function getUserDetails(uint256) view returns(address,address,uint256,uint256,uint8,uint256,uint256,uint256)",
+ "function getActiveLevelsCount(address) view returns(uint8)",
+ "event Registration(uint256 indexed userId,uint256 indexed referrerId,address indexed userAddress)",
+ "event Upgrade(uint256 indexed userId,uint256 indexed newReferrerId,uint8 level)",
+ "event Reinvest(uint256 indexed userId,uint256 indexed newReferrerId,uint256 indexed callerId,uint8 level)"
+];
+
+const TOKEN_ABI=[
+ "function decimals() view returns(uint8)",
+ "function symbol() view returns(string)"
+];
+
+const $=id=>document.getElementById(id);
+
+let provider=null;
+let contract=null;
+let decimals=18;
+let symbol="BTCB";
+let busy=false;
+
+$("contractAddress").textContent=ADDRESS;
+
+function formatNumber(value){
+ return BigInt(value).toLocaleString("en-IN");
+}
+
+function shortAddress(address){
+ if(!address)return "Unavailable";
+ return address.slice(0,7)+"..."+address.slice(-5);
+}
+
+function setStatus(message){
+ $("connection").textContent=message;
+}
+
+function errorMessage(error){
+ return error?.shortMessage||error?.reason||error?.message||String(error);
+}
+
+async function connectBlockchain(){
+
+ let lastError=null;
+
+ for(const rpc of RPCS){
+
+  try{
+
+   const p=new ethers.JsonRpcProvider(
+    rpc,
+    56,
+    {staticNetwork:true}
+   );
+
+   const network=await p.getNetwork();
+
+   if(Number(network.chainId)!==56){
+    throw Error("Incorrect blockchain network");
+   }
+
+   await p.getBlockNumber();
+
+   provider=p;
+   contract=new ethers.Contract(ADDRESS,ABI,provider);
+
+   return true;
+
+  }catch(error){
+   lastError=error;
+  }
+
+ }
+
+ throw lastError||Error("RPC connection unavailable");
+}
+
+async function loadToken(){
+
+ try{
+
+  const tokenAddress=await contract.BTCB_TOKEN_ADDRESS();
+
+  const token=new ethers.Contract(
+   tokenAddress,
+   TOKEN_ABI,
+   provider
+  );
+
+  decimals=Number(await token.decimals());
+  symbol=await token.symbol();
+
+  $("tokenInfo").textContent=symbol+" · "+decimals+" decimals";
+
+ }catch(error){
+
+  decimals=18;
+  symbol="BTCB";
+
+  $("tokenInfo").textContent=
+   "BTCB · 18 decimals assumed (verify token contract)";
+
+ }
+}
+
+async function loadEvents(latestBlock){
+
+ const events=[
+  ["Registration","registrations"],
+  ["Upgrade","upgrades"],
+  ["Reinvest","reinvests"]
+ ];
+
+ const iface=new ethers.Interface(ABI);
+
+ const fromBlock=Math.max(0,latestBlock-19999);
+
+ let allEvents=[];
+
+ for(const [eventName,elementId] of events){
+
+  try{
+
+   const topic=iface.getEvent(eventName).topicHash;
+
+   const logs=await provider.getLogs({
+    address:ADDRESS,
+    fromBlock:fromBlock,
+    toBlock:latestBlock,
+    topics:[topic]
+   });
+
+   $(elementId).textContent=formatNumber(logs.length);
+
+   logs.slice(-10).forEach(log=>{
+
+    const parsed=iface.parseLog(log);
+
+    allEvents.push({
+     name:eventName,
+     block:log.blockNumber,
+     args:Array.from(parsed.args).map(x=>String(x))
+    });
+
+   });
+
+  }catch(error){
+
+   $(elementId).textContent="Unavailable";
+
+  }
+
+ }
+
+ allEvents.sort((a,b)=>b.block-a.block);
+
+ if(!allEvents.length){
+
+  $("activity").innerHTML=
+   '<div class="small">No events found in scanned range, or RPC log access is unavailable.</div>';
+
+  return;
+
+ }
+
+ $("activity").innerHTML=allEvents.slice(0,20).map(event=>`
+
+  <div class="activity-item">
+   <b>${event.name}</b><br>
+   Block: ${event.block}<br>
+   <span class="small">${event.args.join(" · ")}</span>
+  </div>
+
+ `).join("");
+
+}
+
+async function refreshDashboard(){
+
+ if(busy)return;
+
+ busy=true;
+ $("refreshBtn").disabled=true;
+
+ setStatus("Connecting to BNB Smart Chain...");
+
+ try{
+
+  if(!provider){
+   await connectBlockchain();
+  }
+
+  await loadToken();
+
+  const [lastId,totalInvestment,blockNumber]=
+   await Promise.all([
+
+    contract.lastUserId(),
+
+    contract.totalProjectInvestment(),
+
+    provider.getBlockNumber()
+
+   ]);
+
+  $("lastId").textContent=formatNumber(lastId);
+
+  $("investment").textContent=
+   Number(
+    ethers.formatUnits(totalInvestment,decimals)
+   ).toLocaleString("en-IN",{
+    maximumFractionDigits:4
+   });
+
+  $("block").textContent=formatNumber(blockNumber);
+
+  await loadEvents(blockNumber);
+
+  setStatus("● CONNECTED · BNB SMART CHAIN · READ ONLY");
+
+  $("lastUpdated").textContent=
+   "Last Updated: "+new Date().toLocaleString();
+
+ }catch(error){
+
+  setStatus("Connection Error: "+errorMessage(error));
+
+  $("lastUpdated").textContent=
+   "Please check internet connection and try again.";
+
+ }finally{
+
+  busy=false;
+  $("refreshBtn").disabled=false;
+
+ }
+
+}
+
+async function searchMember(){
+
+ const raw=$("userId").value.trim();
+
+ if(!/^[1-9][0-9]*$/.test(raw)){
+
+  $("memberResult").textContent="Please enter a valid User ID.";
+
+  return;
+ }
+
+ $("memberResult").textContent="Searching blockchain...";
+
+ try{
+
+  if(!contract){
+   await connectBlockchain();
+  }
+
+  const id=BigInt(raw);
+
+  const details=await contract.getUserDetails(id);
+
+  const address=details[0];
+
+  if(
+   address==="0x0000000000000000000000000000000000000000"
+  ){
+
+   $("memberResult").textContent=
+    "No member found for this User ID.";
+
+   return;
+  }
+
+  let activeLevels="Unavailable";
+
+  try{
+
+   activeLevels=String(
+    await contract.getActiveLevelsCount(address)
+   );
+
+  }catch(error){}
+
+  $("memberResult").innerHTML=`
+
+   <b>User ID:</b> ${formatNumber(id)}<br>
+
+   <b>Wallet Address:</b> ${shortAddress(address)}<br>
+
+   <b>Referrer ID:</b> ${formatNumber(details[2])}<br>
+
+   <b>Direct Partners:</b> ${formatNumber(details[3])}<br>
+
+   <b>Active Levels:</b> ${activeLevels}<br>
+
+   <b>Team Size:</b> ${formatNumber(details[5])}<br>
+
+   <b>Registration Timestamp:</b>
+   ${Number(details[6])?
+    new Date(Number(details[6])*1000).toLocaleString():
+    "Unavailable"}<br>
+
+   <b>Total Income (raw units):</b>
+   ${formatNumber(details[7])}<br>
+
+   <a href="https://bscscan.com/address/${address}"
+      target="_blank" rel="noopener">
+      View Wallet on BscScan ↗
+   </a>
+
+  `;
+
+ }catch(error){
+
+  $("memberResult").textContent=
+   "Member lookup error: "+errorMessage(error);
+
+ }
+
+}
+
+$("refreshBtn").addEventListener(
+ "click",refreshDashboard
+);
+
+$("lookupBtn").addEventListener(
+ "click",searchMember
+);
+
+$("userId").addEventListener("keydown",event=>{
+
+ if(event.key==="Enter"){
+  searchMember();
+ }
+
+});
+
+refreshDashboard();
+
+setInterval(refreshDashboard,60000);
+
+</script>
+
+</body>
+</html>
