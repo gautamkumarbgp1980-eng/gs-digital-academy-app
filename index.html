@@ -1,62 +1,143 @@
-<!-- GSDA LIVE DASHBOARD -->
-<section id="liveDashboard" class="screen">
-  <div class="dashboard-header">
-    <h2>🚀 GSDA LIVE DASHBOARD</h2>
-    <p>YOUR DIGITAL WORLD</p>
-  </div>
-
-  <div class="dashboard-grid">
-    <div class="dashboard-card">
-      <span>₿</span>
-      <h3>Bitcoin Price</h3>
-      <strong id="btcPrice">Loading...</strong>
-      <small id="btcInr">Please wait</small>
-    </div>
-
-    <div class="dashboard-card">
-      <span>🕒</span>
-      <h3>India Time</h3>
-      <strong id="indiaTime">--:--:--</strong>
-      <small id="indiaDate">Loading...</small>
-    </div>
-
-    <div class="dashboard-card">
-      <span>📱</span>
-      <h3>App Status</h3>
-      <strong id="appStatus">Active</strong>
-      <small>GS Digital Academy</small>
-    </div>
-
-    <div class="dashboard-card">
-      <span>📊</span>
-      <h3>Dashboard Visits</h3>
-      <strong id="visitCount">0</strong>
-      <small>This browser only</small>
-    </div>
-  </div>
-
-  <div class="dashboard-card">
-    <h3>💱 BTC Calculator</h3>
-    <input id="btcAmount" type="number" min="0"
-      placeholder="Enter BTC amount" oninput="calculateBTC()">
-    <h3 id="btcResult">₹0</h3>
-  </div>
-
-  <div class="dashboard-card">
-    <h3>🌐 Academy Quick Links</h3>
-    <button onclick="window.open('https://tinyurl.com/GSdigitalacademy','_blank')">
-      Official Website
-    </button>
-    <button onclick="window.open('https://beacons.ai/gsdigitalacademy','_blank')">
-      Academy Links
-    </button>
-    <button onclick="window.open('https://tinyurl.com/GSDIGITALACADEMYAPP','_blank')">
-      Share App
-    </button>
-  </div>
-
-  <p class="dashboard-note">
-    * Bitcoin price is fetched from a public API. Visit count is stored
-    only on this device; it is not a global visitor count.
-  </p>
-</section>
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07132e">
+<title>B-TITAN Ultimate Explorer</title>
+<script src="https://cdn.jsdelivr.net/npm/ethers@6.13.5/dist/ethers.umd.min.js"></script>
+<style>
+:root{--bg:#050b1c;--panel:#0b1b3b;--panel2:#102650;--line:#28599d;--gold:#ffd45b;--text:#f5f7ff;--muted:#adbfdf;--blue:#1680ff;--green:#2bd69b;--red:#ff7188}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% 0%,#1b3074,transparent 48%),linear-gradient(160deg,#030817,#081633 55%,#09091d);font-family:Arial,system-ui,sans-serif;color:var(--text)}
+main{max-width:980px;margin:auto;padding:15px 13px 35px}.head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}.brand{font-weight:900;color:var(--gold);font-size:18px}.sub{font-size:11px;color:var(--muted);margin-top:5px}
+button,input{font:inherit}.btn{border:1px solid #3987ec;border-radius:11px;padding:11px 13px;background:linear-gradient(135deg,#1268ee,#1645a9);color:white;font-weight:750;font-size:12px;cursor:pointer}.btn.gold{color:#1b1606;border-color:#fff0a0;background:linear-gradient(120deg,#ffe985,#ffbd28)}.btn.ghost{background:#0a1a39;border-color:#45618e}.btn:disabled{opacity:.5;cursor:wait}
+.hero{padding:18px;border:1px solid #397bd2;border-radius:18px;background:linear-gradient(135deg,#10265a,#070e25);margin-bottom:13px}.eyebrow{font-size:10px;letter-spacing:2px;color:var(--gold);font-weight:bold}.hero h1{font-size:25px;margin:9px 0}.hero p{font-size:12px;line-height:1.65;color:#c4d1f5;margin:0}
+.panel{padding:15px;background:rgba(8,23,53,.96);border:1px solid #236cc5;border-radius:17px;margin:13px 0}.panel h2{font-size:15px;margin:0 0 12px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.stat{padding:13px;background:#0b2046;border:1px solid #2858a0;border-radius:13px;min-width:0}.stat strong{display:block;font-size:clamp(18px,5vw,25px);color:var(--gold);overflow-wrap:anywhere}.stat span{font-size:10px;color:#bdcbea;display:block;margin-top:5px}.muted{color:var(--muted);font-size:11px;line-height:1.65}.status{padding:11px;border:1px solid #344c78;background:#07142c;color:#dbe6ff;border-radius:11px;font-size:11px;line-height:1.65;white-space:pre-wrap;overflow-wrap:anywhere;margin-top:10px}.status:empty{display:none}.row{display:flex;gap:8px;flex-wrap:wrap}.row input{flex:1;min-width:130px;padding:12px;border-radius:10px;border:1px solid #aebfe0;background:#f5f7ff;color:#14203b}.details{display:grid;grid-template-columns:1fr 1fr;gap:8px}.detail{padding:10px;background:#0a1b3b;border:1px solid #263f6c;border-radius:10px;min-width:0}.detail small{display:block;color:var(--muted);font-size:10px}.detail b{display:block;font-size:12px;margin-top:5px;overflow-wrap:anywhere}.tablewrap{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:11px}th,td{text-align:left;padding:10px 8px;border-bottom:1px solid #263d67;white-space:nowrap}th{color:var(--gold)}td{color:#e2eaff}.pill{display:inline-block;border:1px solid #3d659d;border-radius:20px;padding:4px 8px;font-size:10px;color:#dce8ff}.on{color:var(--green)}.off{color:#91a0bd}.foot{font-size:10px;color:#8298c1;text-align:center;line-height:1.7;margin:18px 0}
+@media(min-width:650px){main{padding:22px}.grid{grid-template-columns:repeat(4,minmax(0,1fr))}.hero{padding:24px}.hero h1{font-size:30px}}
+</style>
+</head>
+<body>
+<main>
+<header class="head"><div><div class="brand">₿ B-TITAN ULTIMATE EXPLORER</div><div class="sub">BNB Smart Chain · Read-only Dashboard</div></div><div class="row"><button class="btn ghost" id="refreshBtn">↻ Refresh</button><button class="btn gold" id="connectBtn">Connect Wallet</button></div></header>
+<section class="hero"><div class="eyebrow">LIVE BLOCKCHAIN DATA</div><h1>Team & Slot Dashboard</h1><p>यह Dashboard आपके deployed BTitanXMatrix contract से सीधे BNB Smart Chain पर उपलब्ध जानकारी पढ़ता है। कोई transaction या payment नहीं करता।</p></section>
+<section class="panel"><h2>🌐 Network & Contract</h2><div class="details"><div class="detail"><small>Network</small><b>BNB Smart Chain Mainnet</b></div><div class="detail"><small>Connection</small><b id="connectionState">Connecting…</b></div><div class="detail" style="grid-column:1/-1"><small>Contract Address</small><b id="contractAddress">0xD6759d47Fccdef7b8E318479cEC4D128366f2a44</b></div><div class="detail"><small>BTCB Token</small><b id="tokenAddress">Loading…</b></div><div class="detail"><small>Token</small><b id="tokenInfo">Loading…</b></div></div><div class="status" id="globalStatus">Blockchain से संपर्क किया जा रहा है…</div></section>
+<section class="panel"><h2>📊 Global Live Counters</h2><div class="grid">
+<div class="stat"><strong id="usersCount">—</strong><span>Registered User IDs*</span></div>
+<div class="stat"><strong id="lastId">—</strong><span>Last User ID Counter</span></div>
+<div class="stat"><strong id="investment">—</strong><span>Total Project Investment</span></div>
+<div class="stat"><strong id="levelOne">—</strong><span>Level 1 Cost</span></div>
+</div><p class="muted" style="margin:11px 0 0">*Registered User IDs की गणना contract के sequential user IDs से की जाती है। यह unique wallet count का अलग दावा नहीं है। Investment वही contract variable है जो registration logic में record होता है।</p></section>
+<section class="panel"><h2>🔎 Search User / Team</h2><div class="row"><input id="userIdInput" type="number" min="1" step="1" placeholder="Enter User ID e.g. 4"><button class="btn gold" id="searchUserBtn">Search User</button></div><div class="row" style="margin-top:9px"><button class="btn ghost" id="myUserBtn">Find Connected Wallet</button></div><div class="status" id="userStatus"></div><div id="userResult" class="hidden">
+<div class="details" style="margin-top:12px" id="userDetails"></div>
+<div class="panel" style="margin:12px 0 0;padding:12px"><h2>👥 Direct Partners</h2><div id="partnersList" class="muted">No data</div></div>
+<div class="panel" style="margin:12px 0 0;padding:12px"><h2>⚡ Level 1–12 Status</h2><div class="tablewrap"><table><thead><tr><th>Level</th><th>Active</th><th>Level Cost</th><th>Matrix Team</th><th>Total Earning</th></tr></thead><tbody id="levelsTable"></tbody></table></div></div>
+</div></section>
+<div class="foot">B-TITAN · Read-only public blockchain data<br>Data availability depends on BNB Chain RPC response. Not financial or investment advice.</div>
+</main>
+<script>
+"use strict";
+const CONTRACT_ADDRESS="0xD6759d47Fccdef7b8E318479cEC4D128366f2a44";
+const RPC_URLS=["https://bsc-rpc.publicnode.com","https://bsc-dataseed.binance.org/"];
+const ABI=[
+"function lastUserId() view returns (uint256)",
+"function totalProjectInvestment() view returns (uint256)",
+"function levelTokenCost(uint8) view returns (uint256)",
+"function BTCB_TOKEN_ADDRESS() view returns (address)",
+"function partnersInitialized() view returns (bool)",
+"function getUserDetails(uint256) view returns (address userAddress,address referrerAddress,uint256 referrerId,uint256 partnersCount,uint256 activeSlotsCount,uint256 teamSize,uint256 registrationTimestamp,uint256 totalIncome)",
+"function getDirectPartnerAddresses(uint256) view returns (address[])",
+"function getDirectPartnerIds(uint256) view returns (uint256[])",
+"function isUserExists(address) view returns (bool)",
+"function getActiveLevelsCount(address) view returns (uint8)",
+"function isUserSlotActive(uint256,uint8) view returns (bool)",
+"function usersXMatrix(address,uint8) view returns (address currentReferrer,uint256 reinvestCount,uint256 heldTokenForUpgrade,uint256 lastSpillUnderReceiverIndex,uint256 totalTeamSize,uint256 totalEarning)",
+"function usersXMatrixReferrals(address,uint8) view returns (address[])",
+"function Registration(uint256 indexed userId,uint256 indexed referrerId,address indexed userAddress)",
+"function Upgrade(uint256 indexed userId,uint8 indexed level)",
+"function Reinvest(uint256 indexed userId,uint256 newReferrerId,uint256 callerId,uint8 level)"
+];
+const ERC20_ABI=["function decimals() view returns (uint8)","function symbol() view returns (string)"];
+const $=id=>document.getElementById(id);
+let provider,contract,tokenContract,decimals=18,tokenSymbol="BTCB",connectedAddress="";
+const fmt=(v,d=decimals)=>{try{return ethers.formatUnits(v,d)}catch(e){return String(v)}};
+const short=a=>a&&a.length>16?a.slice(0,8)+"…"+a.slice(-6):a||"—";
+const show=(id,v)=>$(id).textContent=v;
+function setStatus(id,msg){show(id,msg)}
+async function makeProvider(){
+ let lastError;
+ for(const url of RPC_URLS){try{const p=new ethers.JsonRpcProvider(url,56,{staticNetwork:true});await p.getBlockNumber();return p}catch(e){lastError=e}}
+ throw lastError||new Error("No RPC endpoint available");
+}
+async function init(){
+ $("refreshBtn").disabled=true;setStatus("connectionState","Connecting…");setStatus("globalStatus","BNB Smart Chain RPC से संपर्क हो रहा है…");
+ try{
+  provider=await makeProvider();contract=new ethers.Contract(CONTRACT_ADDRESS,ABI,provider);
+  const [last,investment,cost,tokenAddr,partnersReady]=await Promise.all([
+   contract.lastUserId(),contract.totalProjectInvestment(),contract.levelTokenCost(1),contract.BTCB_TOKEN_ADDRESS(),contract.partnersInitialized().catch(()=>true)
+  ]);
+  let count=BigInt(last)>0n?BigInt(last)-1n:0n;
+  if(partnersReady===false)count=BigInt(last)>0n?BigInt(last)-1n:0n;
+  show("usersCount",count.toString());show("lastId",last.toString());
+  show("tokenAddress",short(tokenAddr));
+  tokenContract=new ethers.Contract(tokenAddr,ERC20_ABI,provider);
+  try{[decimals,tokenSymbol]=await Promise.all([tokenContract.decimals(),tokenContract.symbol()])}catch(e){decimals=18;tokenSymbol="BTCB (assumed 18 decimals)"}
+  show("tokenInfo",tokenSymbol+" · "+decimals+" decimals");
+  show("investment",Number(fmt(investment)).toLocaleString("en-US",{maximumFractionDigits:6})+" "+tokenSymbol);
+  show("levelOne",fmt(cost)+" "+tokenSymbol);
+  show("connectionState","Connected · Block "+(await provider.getBlockNumber()));
+  setStatus("globalStatus","Live read successful. Contract data updated.");
+ }catch(e){console.error(e);show("connectionState","Unavailable");setStatus("globalStatus","Blockchain data load नहीं हो पाया। RPC/network issue हो सकता है। Refresh दबाएँ।\n"+(e.shortMessage||e.message||"Unknown error"))}
+ finally{$("refreshBtn").disabled=false}
+}
+function detail(label,value){return `<div class="detail"><small>${label}</small><b>${value}</b></div>`}
+async function searchUser(id){
+ $("searchUserBtn").disabled=true;show("userStatus","User ID "+id+" की जानकारी पढ़ी जा रही है…");$("userResult").classList.add("hidden");
+ try{
+  const u=await contract.getUserDetails(id);
+  const address=u.userAddress??u[0];
+  if(!address||address===ethers.ZeroAddress)throw new Error("इस User ID का record नहीं मिला।");
+  const referrer=u.referrerAddress??u[1],refId=u.referrerId??u[2],partners=u.partnersCount??u[3],active=u.activeSlotsCount??u[4],team=u.teamSize??u[5],joined=u.registrationTimestamp??u[6],income=u.totalIncome??u[7];
+  const activeLevels=await contract.getActiveLevelsCount(address).catch(()=>active);
+  $("userDetails").innerHTML=
+   detail("User ID",id)+detail("Wallet Address",short(address))+
+   detail("Referrer ID",refId.toString())+detail("Referrer Wallet",short(referrer))+
+   detail("Direct Partners",partners.toString())+detail("Active Levels",activeLevels.toString()+"/12")+
+   detail("Total Team Size",team.toString())+detail("Total Income",fmt(income)+" "+tokenSymbol)+
+   detail("Registration Date",Number(joined)>0?new Date(Number(joined)*1000).toLocaleString():"Not available");
+  const [ids,addresses]=await Promise.all([contract.getDirectPartnerIds(id).catch(()=>[]),contract.getDirectPartnerAddresses(id).catch(()=>[])]);
+  if(ids.length){$("partnersList").innerHTML=ids.map((pid,i)=>`<div class="detail" style="margin:5px 0"><b>Partner ID: ${pid.toString()}</b><small>${short(addresses[i]||"")}</small></div>`).join("")}
+  else $("partnersList").textContent="इस user के direct partners अभी उपलब्ध नहीं हैं।";
+  let rows="";
+  for(let level=1;level<=12;level++){
+   const [isActive,cost,matrix]=await Promise.all([
+    contract.isUserSlotActive(id,level).catch(()=>false),
+    contract.levelTokenCost(level).catch(()=>0n),
+    contract.usersXMatrix(address,level).catch(()=>null)
+   ]);
+   let teamSize="—",earning="—";
+   if(matrix){teamSize=(matrix.totalTeamSize??matrix[4]).toString();earning=fmt(matrix.totalEarning??matrix[5])+" "+tokenSymbol}
+   rows+=`<tr><td>L${level}</td><td class="${isActive?"on":"off"}">${isActive?"ACTIVE":"INACTIVE"}</td><td>${fmt(cost)} ${tokenSymbol}</td><td>${teamSize}</td><td>${earning}</td></tr>`;
+  }
+  $("levelsTable").innerHTML=rows;$("userResult").classList.remove("hidden");setStatus("userStatus","User details loaded from the contract.");
+ }catch(e){setStatus("userStatus",e.shortMessage||e.message||"User data unavailable.")}
+ finally{$("searchUserBtn").disabled=false}
+}
+$("searchUserBtn").addEventListener("click",()=>{const id=$("userIdInput").value.trim();if(!/^[1-9]\d*$/.test(id)){setStatus("userStatus","कृपया सही User ID डालें।");return}searchUser(id)});
+$("userIdInput").addEventListener("keydown",e=>{if(e.key==="Enter")$("searchUserBtn").click()});
+$("refreshBtn").addEventListener("click",async()=>{await init();if(connectedAddress)await findConnectedUser()});
+$("connectBtn").addEventListener("click",async()=>{
+ if(!window.ethereum){setStatus("userStatus","Wallet app/browser उपलब्ध नहीं है। MetaMask या Trust Wallet browser से खोलें।");return}
+ try{const acc=await window.ethereum.request({method:"eth_requestAccounts"});connectedAddress=acc[0];const net=await window.ethereum.request({method:"eth_chainId"});if(parseInt(net,16)!==56){setStatus("userStatus","कृपया wallet को BNB Smart Chain Mainnet पर switch करें।");return}show("userStatus","Wallet connected: "+short(connectedAddress));await findConnectedUser()}catch(e){setStatus("userStatus",e.message||"Wallet connection cancelled.")}
+});
+async function findConnectedUser(){
+ if(!connectedAddress)return;
+ try{const exists=await contract.isUserExists(connectedAddress);if(!exists){setStatus("userStatus","Connected wallet registered user नहीं है: "+short(connectedAddress));return}
+ // Contract interface supplied does not expose a wallet-to-userId getter.
+ setStatus("userStatus","Wallet registered है: "+short(connectedAddress)+". इस ABI में wallet से User ID निकालने का public getter उपलब्ध नहीं है। कृपया अपना User ID ऊपर डालें।");
+ }catch(e){setStatus("userStatus","Wallet lookup unavailable: "+(e.shortMessage||e.message))}
+}
+$("myUserBtn").addEventListener("click",findConnectedUser);
+init();
+</script>
+</body>
+</html>
