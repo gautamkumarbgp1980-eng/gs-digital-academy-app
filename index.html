@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="hi">
 <head>
@@ -6,7 +7,7 @@
 <meta name="theme-color" content="#07132e">
 <meta name="description" content="GS Digital Academy - Your Digital World">
 <link rel="manifest" href="./manifest.json">
-<title>GS DIGITAL ACADEMY | Social Media Hub</title>
+<title>GS DIGITAL ACADEMY | Your Digital World</title>
 <style>
 :root{--bg:#050b1c;--navy:#081735;--blue:#087cff;--purple:#982aff;--gold:#ffd45b;--text:#f6f8ff;--muted:#aab9dc}
 *{box-sizing:border-box}
@@ -70,6 +71,8 @@ textarea{min-height:140px;resize:vertical;line-height:1.6}
 .feature{padding:14px;text-align:left;color:white;background:#0a1b3c;border:1px solid #254c8c;border-radius:13px}
 .feature b{display:block;font-size:13px;margin-bottom:6px}
 .feature span{font-size:11px;color:#aebfe2}
+.feature.live-feature{border:1px solid #d8ae45;background:radial-gradient(circle at 100% 0%,#b7832330,transparent 45%),linear-gradient(145deg,#172b50,#11132c)}
+.feature.live-feature b{color:var(--gold)}
 .view{display:none}.view.active{display:block}
 .field-label{display:block;margin:13px 0 6px;font-size:12px;font-weight:bold}
 .history-item{padding:12px 0;border-bottom:1px solid #253a61;overflow-wrap:anywhere}
@@ -80,15 +83,22 @@ textarea{min-height:140px;resize:vertical;line-height:1.6}
 .stat{padding:15px;background:#0b2046;border:1px solid #2858a0;border-radius:14px}
 .stat strong{display:block;font-size:25px;color:var(--gold)}
 .stat span{color:#bdcbea;font-size:11px}
-.bottom-nav{position:fixed;z-index:20;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,900px);padding:8px 4px calc(8px + env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(7,minmax(0,1fr));background:rgba(3,10,28,.97);border-top:1px solid #287bff}
+.bottom-nav{position:fixed;z-index:20;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,900px);padding:8px 4px calc(8px + env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(8,minmax(0,1fr));background:rgba(3,10,28,.97);border-top:1px solid #287bff}
 .nav-item{border:0;border-radius:11px;background:transparent;color:#a9bce4;font-size:10px;padding:7px 1px}
 .nav-icon{display:block;font-size:20px;margin-bottom:4px}
 .nav-item.active{color:var(--gold);background:#152346}
 footer{text-align:center;color:#8094be;font-size:10px;margin-top:22px;line-height:1.8}
 .hidden{display:none!important}
 .btitan-frame{width:100%;height:calc(100vh - 190px);min-height:650px;border:1px solid #345078;border-radius:14px;background:#070b13}
+.live-counter-card{display:flex;align-items:center;gap:12px;padding:16px;border:1px solid #c99c3c;border-radius:17px;background:radial-gradient(circle at 100% 0%,#a66a2b30,transparent 50%),linear-gradient(120deg,#142b51,#111329);color:white;text-align:left;width:100%;margin-top:12px}
+.live-counter-icon{width:48px;height:48px;flex-shrink:0;display:grid;place-items:center;border-radius:14px;background:linear-gradient(135deg,#ffe985,#d99b20);font-size:25px}
+.live-counter-copy{flex:1;min-width:0}
+.live-counter-copy strong{display:block;color:var(--gold);font-size:14px;margin-bottom:5px}
+.live-counter-copy small{display:block;color:#c3d2f2;font-size:11px;line-height:1.5}
+.live-arrow{font-size:23px;color:var(--gold)}
 @media(min-width:600px){.app{padding:20px 20px 110px}.platform-grid{grid-template-columns:repeat(5,minmax(0,1fr))}.hero{padding:35px}.brand-name{font-size:20px}}
-@media(max-width:350px){.platform-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.section{padding:11px}.install-header{padding:9px 7px;font-size:11px}.brand-name{font-size:12px}.nav-item{font-size:9px}}
+@media(max-width:390px){.nav-item{font-size:8px}.nav-icon{font-size:18px}.bottom-nav{padding-left:2px;padding-right:2px}}
+@media(max-width:350px){.platform-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.section{padding:11px}.install-header{padding:9px 7px;font-size:11px}.brand-name{font-size:12px}}
 </style>
 </head>
 <body>
@@ -118,6 +128,13 @@ footer{text-align:center;color:#8094be;font-size:10px;margin-top:22px;line-heigh
 <div class="quick-grid">
 <div class="quick"><span>✍️</span>Create</div><div class="quick"><span>🖼️</span>Add Media</div><div class="quick"><span>☑️</span>Select</div><div class="quick"><span>🚀</span>Share</div>
 </div>
+
+<button class="live-counter-card" type="button" onclick="window.location.href='./live-counter.html'">
+<span class="live-counter-icon">📊</span>
+<span class="live-counter-copy"><strong>₿ B-TITAN LIVE COUNTER</strong><small>Real-Time Blockchain Statistics · Member Search · Investment Overview</small></span>
+<span class="live-arrow">➜</span>
+</button>
+
 <section class="section" id="studio">
 <div class="section-head"><div class="section-title">✍️ Create Your Message</div><button class="btn gold" id="pasteBtn">📋 Paste</button></div>
 <textarea id="message" maxlength="2000" placeholder="Write or paste your promotional message here..."></textarea>
@@ -145,6 +162,7 @@ footer{text-align:center;color:#8094be;font-size:10px;margin-top:22px;line-heigh
 <button class="feature" data-view="profile"><b>👤 Profile</b><span>Manage your social links</span></button>
 <button class="feature" data-view="wallet-link"><b>🆔 Blockchain ID</b><span>Connect wallet and find your on-chain ID</span></button>
 <button class="feature" data-view="btitan"><b>₿ B-TITAN Explorer</b><span>Live Team & Slot Dashboard</span></button>
+<button class="feature live-feature" type="button" onclick="window.location.href='./live-counter.html'"><b>📊 B-TITAN LIVE COUNTER</b><span>Real-Time Statistics & Member Search</span></button>
 </div></section>
 </div>
 
@@ -181,8 +199,9 @@ footer{text-align:center;color:#8094be;font-size:10px;margin-top:22px;line-heigh
 <button class="nav-item" data-view="studio-nav"><span class="nav-icon">＋</span>Create</button>
 <button class="nav-item" data-view="analytics"><span class="nav-icon">▥</span>Analytics</button>
 <button class="nav-item" data-view="profile"><span class="nav-icon">♙</span>Profile</button>
-<button class="nav-item" data-view="wallet-link"><span class="nav-icon">🆔</span>Blockchain ID</button>
-<button class="nav-item" data-view="btitan"><span class="nav-icon">₿</span>B-TITAN</button>
+<button class="nav-item" data-view="wallet-link"><span class="nav-icon">🆔</span>ID</button>
+<button class="nav-item" data-view="btitan"><span class="nav-icon">₿</span>Explorer</button>
+<button class="nav-item" type="button" onclick="window.location.href='./live-counter.html'"><span class="nav-icon">📊</span>Live</button>
 </nav>
 
 <script>
