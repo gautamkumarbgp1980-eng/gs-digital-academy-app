@@ -285,7 +285,7 @@ shareQueue=targets;shareIndex=0;showStatus("नीचे Open बटन दब�
 function renderProfileFields(){
 $("displayName").value=profile.displayName||"";
 $("profileFields").innerHTML=PLATFORMS.map(p=>`<label class="field-label" for="link-${p.id}">${p.name} URL (optional)</label><input type="url" id="link-${p.id}" placeholder="https://...">`).join("");
-PLATFORMS.forEach(p=>$("link-"+p.id).value=profile.links[p.id]||"");
+PLATFORMS.forEach(p=>{$("link-"+p.id).value=profile.links[p.id]||""});
 }
 $("saveProfileBtn").addEventListener("click",()=>{
 const links={};for(const p of PLATFORMS){const raw=$("link-"+p.id).value.trim();if(raw&&!validURL(raw)){$("profileStatus").textContent="कृपया "+p.name+" का सही URL डालें।";return}links[p.id]=raw?validURL(raw):""}
